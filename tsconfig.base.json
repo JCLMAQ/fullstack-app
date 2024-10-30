@@ -33,9 +33,10 @@
       "@be/users": ["libs/backend/users/src/index.ts"],
       "@fe/material": ["libs/frontend/material/src/index.ts"],
       "@fe/post": ["libs/frontend/post/src/index.ts"],
+      "@fe/shared": ["libs/frontend/shared/src/index.ts"],
       "@fe/todo": ["libs/frontend/todo/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
-      "@fe/shared": ["libs/frontend/shared/src/index.ts"]
+      "@fullstack-app/language-selector": ["libs/frontend/ui/i18n/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
