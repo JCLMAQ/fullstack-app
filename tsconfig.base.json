@@ -36,7 +36,31 @@
       "@fe/shared": ["libs/frontend/shared/src/index.ts"],
       "@fe/todo": ["libs/frontend/todo/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
-      "@fullstack-app/language-selector": ["libs/frontend/ui/i18n/src/index.ts"]
+      "@fullstack-app/buttons-detail": [
+        "libs/frontend/ui/buttons-detail/src/index.ts"
+      ],
+      "@fullstack-app/confirmation-dialog": [
+        "libs/frontend/ui/confirmation-dialog/src/index.ts"
+      ],
+      "@fullstack-app/error-field": [
+        "libs/frontend/ui/error-field/src/index.ts"
+      ],
+      "@fullstack-app/geolocation": [
+        "libs/frontend/ui/geolocation/src/index.ts"
+      ],
+      "@fullstack-app/image-uploader": [
+        "libs/frontend/ui/image-uploader/src/index.ts"
+      ],
+      "@fullstack-app/language-selector": [
+        "libs/frontend/ui/i18n/src/index.ts"
+      ],
+      "@fullstack-app/loading-indicator": [
+        "libs/frontend/ui/loading-indicator/src/index.ts"
+      ],
+      "@fullstack-app/messages": ["libs/frontend/ui/messages/src/index.ts"],
+      "@fullstack-app/simpledialog": [
+        "libs/frontend/ui/simpledialog/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
