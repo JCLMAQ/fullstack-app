@@ -13,7 +13,10 @@
         "outputPath": "dist/apps/frontend/angular-app",
         "index": "apps/frontend/angular-app/src/index.html",
         "browser": "apps/frontend/angular-app/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js",
+          "@angular/localize/init"
+        ],
         "tsConfig": "apps/frontend/angular-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
