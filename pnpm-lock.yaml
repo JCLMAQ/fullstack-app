@@ -405,6 +405,9 @@ importers:
       typescript-eslint:
         specifier: ^8.12.2
         version: 8.12.2(eslint@9.13.0(jiti@1.21.6))(typescript@5.5.4)
+      typesync:
+        specifier: 0.13.3
+        version: 0.13.3(typescript@5.5.4)
       webpack-cli:
         specifier: ^5.1.4
         version: 5.1.4(webpack-dev-server@5.0.4)(webpack@5.95.0)
@@ -4027,6 +4030,10 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
+  awilix@10.0.2:
+    resolution: {integrity: sha512-hFatb7eZFdtiWjjmGRSm/K/uxZpmcBlM+YoeMB3VpOPXk3xa6+7zctg3LRbUzoimom5bwGrePF0jXReO6b4zNQ==}
+    engines: {node: '>=14.0.0'}
+
   axios@1.7.7:
     resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
 
@@ -5070,6 +5077,10 @@ packages:
   destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+
+  detect-indent@6.1.0:
+    resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
+    engines: {node: '>=8'}
 
   detect-libc@1.0.3:
     resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
@@ -9118,6 +9129,11 @@ packages:
   typescript@5.5.4:
     resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
+    hasBin: true
+
+  typesync@0.13.3:
+    resolution: {integrity: sha512-pX4DFcdF6fJGShG269lYih8ZaGH9KzbXVq/Oo9wYyy8ni8/UOBZ/UXzfABqS9A3mXlgRYO8kGR9cGIq9efBxnQ==}
+    engines: {node: '>=16.0.0'}
     hasBin: true
 
   ufo@1.5.4:
@@ -15034,6 +15050,11 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
+  awilix@10.0.2:
+    dependencies:
+      camel-case: 4.1.2
+      fast-glob: 3.3.2
+
   axios@1.7.7:
     dependencies:
       follow-redirects: 1.15.9(debug@4.3.7)
@@ -16296,6 +16317,8 @@ snapshots:
   depd@2.0.0: {}
 
   destroy@1.2.0: {}
+
+  detect-indent@6.1.0: {}
 
   detect-libc@1.0.3: {}
 
@@ -21121,6 +21144,21 @@ snapshots:
   typescript@5.4.5: {}
 
   typescript@5.5.4: {}
+
+  typesync@0.13.3(typescript@5.5.4):
+    dependencies:
+      awilix: 10.0.2
+      chalk: 4.1.2
+      cosmiconfig: 9.0.0(typescript@5.5.4)
+      detect-indent: 6.1.0
+      glob: 10.4.5
+      js-yaml: 4.1.0
+      npm-registry-fetch: 17.1.0
+      ora: 5.4.1
+      semver: 7.6.3
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   ufo@1.5.4:
     optional: true
