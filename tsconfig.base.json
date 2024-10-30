@@ -28,7 +28,8 @@
       "@be/tasks": ["libs/backend/tasks/src/index.ts"],
       "@be/time-util": ["libs/backend/utilities/time-util/src/index.ts"],
       "@be/todos": ["libs/backend/todos/src/index.ts"],
-      "@be/users": ["libs/backend/users/src/index.ts"]
+      "@be/users": ["libs/backend/users/src/index.ts"],
+      "@fullstack-app/prisma": ["libs/prisma/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
