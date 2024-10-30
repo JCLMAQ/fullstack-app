@@ -1,0 +1,21 @@
+<h2>Todo</h2>
+
+@if (todoStore.todoLoading()) {
+  <h2>Loading...</h2>
+  <mat-progress-bar
+  mode="indeterminate"
+  class="loader"
+></mat-progress-bar>
+
+  }
+
+@if (todoStore.todoLoaded()) {
+  <h4>Loaded...</h4>
+  }
+
+@if (todoStore.todoError()) {
+  <div>{{ todoStore.todoError() }}</div>
+}
+
+<full-stack-app-todo-list></full-stack-app-todo-list>
+
