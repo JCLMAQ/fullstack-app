@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start be:dev": "nx serve nestjs",
-    "start fe:dev": "nx serve angular-app --port 4210",
+    "start fe:jcm-app": "nx serve jcm-app --port 4210",
+    "start fe:angular-app": "nx serve angular-app --port 4220",
     "pnpm-instal": "pnpm install --no-frozen-lockfile",
     "pnpm-auto-update": "pnpm update",
     "nxupdate": "nx migrate latest",
