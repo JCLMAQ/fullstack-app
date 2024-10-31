@@ -31,37 +31,28 @@
       "@be/time-util": ["libs/backend/utilities/time-util/src/index.ts"],
       "@be/todos": ["libs/backend/todos/src/index.ts"],
       "@be/users": ["libs/backend/users/src/index.ts"],
-      "@fe/material": ["libs/frontend/material/src/index.ts"],
-      "@fe/post": ["libs/frontend/post/src/index.ts"],
-      "@fe/shared": ["libs/frontend/shared/src/index.ts"],
-      "@fe/todo": ["libs/frontend/todo/src/index.ts"],
-      "@fe/translate": ["libs/frontend/ui/translate/src/index.ts"],
-      "@fe/user": ["libs/frontend/user/src/index.ts"],
-      "@fe/buttons-detail": [
-        "libs/frontend/ui/buttons-detail/src/index.ts"
-      ],
+      "@fe/buttons-detail": ["libs/frontend/ui/buttons-detail/src/index.ts"],
       "@fe/confirmation-dialog": [
         "libs/frontend/ui/confirmation-dialog/src/index.ts"
       ],
-      "@fe/error-field": [
-        "libs/frontend/ui/error-field/src/index.ts"
-      ],
-      "@fe/geolocation": [
-        "libs/frontend/ui/geolocation/src/index.ts"
-      ],
+      "@fe/error-field": ["libs/frontend/ui/error-field/src/index.ts"],
+      "@fe/geolocation": ["libs/frontend/ui/geolocation/src/index.ts"],
       "@fe/home": ["libs/frontend/ui/pages/src/index.ts"],
-      "@fe/image-uploader": [
-        "libs/frontend/ui/image-uploader/src/index.ts"
-      ],
-      "@fe/language-selector": [
-        "libs/frontend/ui/i18n/src/index.ts"
-      ],
+      "@fe/image-uploader": ["libs/frontend/ui/image-uploader/src/index.ts"],
+      "@fe/language-selector": ["libs/frontend/ui/i18n/src/index.ts"],
       "@fe/loading-indicator": [
         "libs/frontend/ui/loading-indicator/src/index.ts"
       ],
+      "@fe/material": ["libs/frontend/material/src/index.ts"],
       "@fe/messages": ["libs/frontend/ui/messages/src/index.ts"],
-      "@fe/simpledialog": [
-        "libs/frontend/ui/simpledialog/src/index.ts"
+      "@fe/post": ["libs/frontend/post/src/index.ts"],
+      "@fe/shared": ["libs/frontend/shared/src/index.ts"],
+      "@fe/simpledialog": ["libs/frontend/ui/simpledialog/src/index.ts"],
+      "@fe/todo": ["libs/frontend/todo/src/index.ts"],
+      "@fe/translate": ["libs/frontend/ui/translate/src/index.ts"],
+      "@fe/user": ["libs/frontend/user/src/index.ts"],
+      "@fullstack-app/theme-selector": [
+        "libs/frontend/ui/theming/theme-selector/src/index.ts"
       ]
     }
   },
