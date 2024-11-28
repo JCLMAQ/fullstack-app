@@ -31,7 +31,7 @@ const environmentFileContent = `
         supportedLanguages: ${process.env.SUPPORTED_LANGUAGE}
     };`;
 // write the content to the respective file
-writeFile(targetPath, environmentFileContent, function (err: any) {
+writeFile(targetPath, environmentFileContent, function (err) {
     if (err) {
       console.log(err);
     }
