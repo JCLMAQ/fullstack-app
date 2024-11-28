@@ -1,16 +1,17 @@
-import { Component, ElementRef, inject, viewChild } from '@angular/core';
-import { WidgetComponent } from '../../components/widget/widget.component';
-import { wrapGrid } from 'animate-css-grid';
-import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import {
-  CdkDropList,
   CdkDragDrop,
+  CdkDropList,
   CdkDropListGroup,
 } from '@angular/cdk/drag-drop';
+import { Component, ElementRef, inject, viewChild } from '@angular/core';
+import { wrapGrid } from 'animate-css-grid';
 import Chart from 'chart.js/auto';
+import { WidgetComponent } from '../../components/widget/widget.component';
+import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardStore } from './dashboard.store';
 
 @Component({
+    standalone: true,
     selector: 'app-dashboard',
     imports: [
         WidgetComponent,

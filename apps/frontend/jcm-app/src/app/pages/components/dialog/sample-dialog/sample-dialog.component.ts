@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 
 @Component({
+  standalone: true,
     selector: 'app-sample-dialog',
     imports: [MatDialogModule, MatFormFieldModule, MatButtonModule, MatInput],
     template: `

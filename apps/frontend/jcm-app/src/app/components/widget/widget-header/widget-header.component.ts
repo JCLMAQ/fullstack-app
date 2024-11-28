@@ -1,10 +1,11 @@
 import { Component, inject, input, model } from '@angular/core';
-import { Widget } from '../../../models/dashboard';
-import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { Widget } from '../../../models/dashboard';
 import { DashboardStore } from '../../../pages/dashboard/dashboard.store';
 
 @Component({
+  standalone: true,
     selector: 'app-widget-header',
     imports: [MatIcon, MatButtonModule],
     template: `
@@ -23,7 +24,7 @@ import { DashboardStore } from '../../../pages/dashboard/dashboard.store';
     </div>
   `,
     styles: `
-  
+
   `
 })
 export class WidgetHeaderComponent {

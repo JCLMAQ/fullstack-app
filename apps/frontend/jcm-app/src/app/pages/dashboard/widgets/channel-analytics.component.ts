@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import Chart from 'chart.js/auto';
 
 @Component({
+  standalone: true,
     selector: 'app-channel-analytics',
     imports: [MatButtonModule],
     template: `

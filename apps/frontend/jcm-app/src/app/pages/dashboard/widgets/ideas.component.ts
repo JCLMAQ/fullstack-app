@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
+  standalone: true,
     selector: 'app-ideas',
     imports: [MatButtonModule],
     template: `
@@ -19,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
   :host {
     font-size: 0.9rem;
   }
-  
+
   `
 })
 export class IdeasComponent {}

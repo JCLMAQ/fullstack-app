@@ -18,6 +18,7 @@ export type Video = {
 };
 
 @Component({
+  standalone: true,
     selector: 'app-published-videos',
     imports: [YouTubePlayer, DatePipe, MatButtonModule],
     template: `
@@ -53,7 +54,7 @@ export type Video = {
     display: block;
     margin-top: 32px;
   }
-  
+
   youtube-player ::ng-deep .youtube-player-placeholder {
     border-radius: 16px;
   }

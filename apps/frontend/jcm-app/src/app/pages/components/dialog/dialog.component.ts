@@ -4,13 +4,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { SampleDialogComponent } from './sample-dialog/sample-dialog.component';
 
 @Component({
+  standalone: true,
     selector: 'app-dialog',
     imports: [MatButtonModule],
     template: `
     <button mat-flat-button (click)="openDialog()">Open Dialog</button>
   `,
     styles: `
-  
+
   :host {
     padding: 24px;
   }

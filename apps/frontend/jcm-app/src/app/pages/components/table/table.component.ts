@@ -46,6 +46,7 @@ const NAMES: string[] = [
 ];
 
 @Component({
+  standalone: true,
     selector: 'app-table',
     imports: [
         MatFormFieldModule,

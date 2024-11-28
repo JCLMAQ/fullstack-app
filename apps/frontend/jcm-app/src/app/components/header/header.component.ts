@@ -4,6 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
+  standalone: true,
     selector: 'app-header',
     imports: [MatToolbar, MatIcon, MatButtonModule],
     template: `
@@ -21,7 +22,7 @@ import { MatToolbar } from '@angular/material/toolbar';
     </mat-toolbar>
   `,
     styles: `
-  
+
     mat-toolbar {
         position: relative;
         z-index: 5;

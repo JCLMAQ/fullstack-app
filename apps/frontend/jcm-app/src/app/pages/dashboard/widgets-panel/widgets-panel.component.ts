@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
-import { MatIcon } from '@angular/material/icon';
 import { CdkDrag, CdkDragPlaceholder } from '@angular/cdk/drag-drop';
+import { Component, inject } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { DashboardStore } from '../dashboard.store';
 
 @Component({
+  standalone: true,
     selector: 'app-widgets-panel',
     imports: [MatListModule, MatIcon, CdkDrag, CdkDragPlaceholder],
     template: `
@@ -16,8 +17,8 @@ import { DashboardStore } from '../dashboard.store';
       @for (widget of store.widgetsToAdd(); track widget.id) {
       <div
         cdkDrag
-        class="text-sm text-center rounded-2xl bg-surface-container 
-        text-inverse-surface cursor-move px-4 py-2 
+        class="text-sm text-center rounded-2xl bg-surface-container
+        text-inverse-surface cursor-move px-4 py-2
         hover:bg-surface-container-high mat-elevation-z2"
         [cdkDragData]="widget.id"
       >

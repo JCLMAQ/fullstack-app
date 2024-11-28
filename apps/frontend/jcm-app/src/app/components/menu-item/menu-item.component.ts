@@ -1,13 +1,17 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, computed, input, signal } from '@angular/core';
 import { RouterLinkActive, RouterModule } from '@angular/router';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { MATERIAL } from '@fe/material';
 import { MenuItem } from '../../menu-items';
 
 @Component({
+    standalone: true,
     selector: 'app-menu-item',
-    imports: [RouterModule, RouterLinkActive, MatListModule, MatIconModule],
+    imports: [
+      RouterModule,
+      RouterLinkActive,
+      ...MATERIAL
+    ],
     template: `
     <a
       mat-list-item

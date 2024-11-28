@@ -9,6 +9,7 @@ export type Post = {
 };
 
 @Component({
+  standalone: true,
     selector: 'app-posts',
     imports: [MatCardModule, MatButtonModule],
     template: `
@@ -28,7 +29,7 @@ export type Post = {
     }
   `,
     styles: `
-  
+
   :host {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

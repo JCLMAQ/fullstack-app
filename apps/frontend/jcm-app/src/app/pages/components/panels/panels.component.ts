@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
+  standalone: true,
     selector: 'app-panels',
     imports: [MatExpansionModule, MatCardModule, MatButtonModule],
     template: `

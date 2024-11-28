@@ -1,14 +1,15 @@
-import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MenuItemComponent } from '../menu-item/menu-item.component';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
 import { menuItems } from '../../menu-items';
 import { CreditsComponent } from '../credits/credits.component';
+import { MenuItemComponent } from '../menu-item/menu-item.component';
 
 @Component({
+    standalone: true,
     selector: 'app-custom-sidenav',
     template: `
     <div class="pt-6 flex flex-col items-center">

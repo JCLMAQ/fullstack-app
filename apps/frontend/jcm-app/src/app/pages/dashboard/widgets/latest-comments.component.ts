@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { WidgetComponent } from '../../../components/widget/widget.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
-import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
+import { MatIcon } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { WidgetComponent } from '../../../components/widget/widget.component';
 
 export type Comment = {
   user: string;
@@ -11,6 +11,7 @@ export type Comment = {
 };
 
 @Component({
+  standalone: true,
     selector: 'app-latest-comments',
     imports: [
         WidgetComponent,

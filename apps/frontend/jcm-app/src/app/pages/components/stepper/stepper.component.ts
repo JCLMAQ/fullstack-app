@@ -6,6 +6,7 @@ import { MatInput } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
+  standalone: true,
     selector: 'app-stepper',
     imports: [
         MatStepperModule,

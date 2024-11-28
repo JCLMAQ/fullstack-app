@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
     RouterModule,
     ...MATERIAL,
     CustomSidenavComponent,
-        HeaderComponent,
+    HeaderComponent,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component, signal } from '@angular/core';
 
 @Component({
+  standalone: true,
     selector: 'app-gallery',
     imports: [NgOptimizedImage],
     template: `
@@ -10,7 +11,7 @@ import { Component, signal } from '@angular/core';
     }
   `,
     styles: `
-  
+
   :host {
     padding: 32px;
     display: grid;

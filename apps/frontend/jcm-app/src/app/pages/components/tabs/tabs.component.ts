@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
+  standalone: true,
     selector: 'app-tabs',
     imports: [MatTabsModule],
     template: `
@@ -12,7 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     </mat-tab-group>
   `,
     styles: `
-  
+
   mat-tab {
     padding: 24px;
   }
