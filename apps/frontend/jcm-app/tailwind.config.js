@@ -1,9 +1,16 @@
+const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
+const { join } = require('path');
+
 /** @type {import('tailwindcss').Config} */
 
 const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
+  content: [
+    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    ...createGlobPatternsForDependencies(__dirname),
+  ],
   darkMode: "class",
   theme: {
     colors: {

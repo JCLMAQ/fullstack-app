@@ -24,8 +24,6 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
           collapsed() ? '!h-0 opacity-0' : ''
         }}"
       >
-        <h2 class="text-lg">Zoaib Khan</h2>
-        <p class="text-sm">Admin</p>
       </div>
     </div>
     <mat-nav-list class="[--mat-list-active-indicator-shape:0px]">
