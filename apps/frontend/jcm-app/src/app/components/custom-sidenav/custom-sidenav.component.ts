@@ -17,13 +17,15 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
         class="object-cover object-center rounded-full mb-3"
         [width]="profilePicSize()"
         [height]="profilePicSize()"
-        src="profile-pic.webp"
+        src="IMG_8836.heic"
       />
       <div
         class="text-center mb-2 h-[3rem] {{
           collapsed() ? '!h-0 opacity-0' : ''
         }}"
       >
+      <h2 class="text-lg">Stylton</h2>
+      <p class="text-sm">The true Admin</p>
       </div>
     </div>
     <mat-nav-list class="[--mat-list-active-indicator-shape:0px]">

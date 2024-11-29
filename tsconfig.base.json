@@ -51,6 +51,7 @@
       "@fe/todo": ["libs/frontend/todo/src/index.ts"],
       "@fe/translate": ["libs/frontend/ui/translate/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
+      "@fullstack-app/dashboard": ["libs/frontend/dashboard/src/index.ts"],
       "@fullstack-app/theme-selector": [
         "libs/frontend/ui/theming/theme-selector/src/index.ts"
       ]
