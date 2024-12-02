@@ -31,12 +31,11 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
     <mat-nav-list class="[--mat-list-active-indicator-shape:0px]">
       @for (item of menuItems; track item.label) {
       <app-menu-item [item]="item" [collapsed]="collapsed()" />
-      <!-- <app-menu-item [item]="item" [collapsed]="collapsed()" /> -->
       }
     </mat-nav-list>
 
     @if (!collapsed()) {
-    <app-credits class="absolute bottom-5 bg-surface-container py-3" />
+    <!-- <app-credits class="absolute bottom-5 bg-surface-container py-3" /> -->
     }
   `,
     styles: [

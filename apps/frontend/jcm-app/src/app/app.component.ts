@@ -1,5 +1,4 @@
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MATERIAL } from '@fe/material';
 import { CustomSidenavComponent } from './components/custom-sidenav/custom-sidenav.component';
@@ -19,12 +18,20 @@ import { ResponsiveService } from './services/responsive.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  readonly sidenav = viewChild.required(MatSidenav);
+
   responsiveService = inject(ResponsiveService);
 
   title = 'jcm-app';
   collapsed = signal(false);
-  sidenavWidth = computed(() => (this.collapsed() ? '65px' : '250px'));
+  // smallNavbar = signal('65px');
+  smallNavbarWidth = computed(() => (this.responsiveService.extraSmallWidth() ? '0px' : '65px'));
+  sidenavWidth = computed(() => (this.collapsed() ? this.smallNavbarWidth() : '250px'));
+  // sideNavWidthSignal = signal('250px');
+  // sideNavWidth = linkedSignal({
+  //   source: this.sideNavWidthSignal,
+  //   computation: () => this.sideNavWidthSignal()
+  // });
+
 
   themeSelectorMode = computed(() => {
     if(this.responsiveService.largeWidth() ) {
@@ -34,9 +41,10 @@ export class AppComponent {
   })
 
   componentSelectorMode = computed(() => {
-    if(this.responsiveService.smallWidth()) {
+    if(this.responsiveService.smallWidth() || this.responsiveService.extraSmallWidth() ) {
       return 'over';
     }
       return 'side';
   });
+
 }

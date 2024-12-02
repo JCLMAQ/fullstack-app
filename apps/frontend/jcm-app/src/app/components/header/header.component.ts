@@ -1,6 +1,7 @@
-import { Component, effect, model, signal } from '@angular/core';
+import { Component, effect, model, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
@@ -9,6 +10,7 @@ import { MatToolbar } from '@angular/material/toolbar';
     imports: [MatToolbar, MatIcon, MatButtonModule],
     template: `
     <mat-toolbar class="mat-elevation-z3">
+      <!-- <button mat-icon-button (click)="sidenav.toggle()"> -->
       <button mat-icon-button (click)="collapsed.set(!collapsed())">
         <mat-icon>menu</mat-icon>
       </button>
@@ -33,6 +35,8 @@ import { MatToolbar } from '@angular/material/toolbar';
   `
 })
 export class HeaderComponent {
+
+  readonly sidenav = viewChild.required(MatSidenav);
   collapsed = model.required<boolean>();
 
   darkMode = signal(false);
