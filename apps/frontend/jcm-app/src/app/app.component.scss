@@ -19,3 +19,10 @@ mat-sidenav {
   --mat-sidenav-container-divider-color: var(--sys-outline-variant);
   --mat-sidenav-container-shape: 0px;
 }
+
+.component-selector {
+  width: 200px;
+  height: inherit;
+  background: rgba(0,0,0,0.05);
+  --mat-sidenav-container-divider-color: var(--primary-light);
+}
