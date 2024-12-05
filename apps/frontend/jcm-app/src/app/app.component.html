@@ -1,5 +1,6 @@
 
-<app-header [(collapsed)]="collapsed" />
+<!-- <app-header [(isCcollapsed)]="isCollapsed()" /> -->
+ <app-header />
 <mat-sidenav-container>
   <!-- <mat-sidenav
   [opened]="true"
@@ -7,18 +8,29 @@
                   [mode]="componentSelectorMode()"
   [style.width]="sidenavWidth()"
 > -->
-<mat-sidenav
+<!-- <mat-sidenav
 [opened]="true"
 class="component-selector"
                 [mode]="componentSelectorMode()"
                 [style.width]="sidenavWidth()"
+                      [style.width]="responsiveService.sidenavWidth()"
+    [ngClass]="!responsiveService.isCollapsed()? 'expanded' : ''"
+        [opened]="responsiveService.isMobile() ? 'false' : 'true'"
+        [mode]="responsiveService.isMobile() ? 'over' : 'side'"
+         [opened]="true"
+> -->
+  <mat-sidenav
 
->
-    <app-custom-sidenav [collapsed]="collapsed()"/>
+      [mode]= responsiveService.sideNavSelectorMode()
+      [opened]= responsiveService.isCollapsed()
+      [style.width]="responsiveService.sidenavWidth()"
+      >
+    <app-custom-sidenav />
+    <!-- <app-custom-sidenav [collapsed]="collapsed()"/> -->
   </mat-sidenav>
   <mat-sidenav-content
       class="content"
-      [style.margin-left]="sidenavWidth()"
+      [style.margin-left]="responsiveService.sidenavWidth()"
       >
     <router-outlet></router-outlet>
     <a
