@@ -1,11 +1,11 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
-import { MatDrawerMode } from '@angular/material/sidenav';
+import { Component, computed, inject, viewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { MATERIAL } from '@fe/material';
 import { CustomSidenavComponent } from './components/custom-sidenav/custom-sidenav.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ResponsiveService } from './services/responsive.service';
+import { ResponsiveService } from './responsive.service';
 
 @Component({
   standalone: true,
@@ -24,14 +24,17 @@ export class AppComponent {
 
   responsiveService = inject(ResponsiveService);
 
+
+  readonly sidenav = viewChild.required(MatSidenav);
+
   title = 'jcm-app';
 
-  // isCollapsed = signal(false);
-  // isMobile = computed(() => this.responsiveService.mobileLimitWidth())
 
-  // smallNavbar = signal('65px');
-  // smallNavbarWidth = computed(() => (this.responsiveService.extraSmallWidth() ? '0px' : '65px'));
-  // sidenavWidth = computed(() => (this.responsiveService.isCollapsed() ? this.smallNavbarWidth() : '250px'));
+  backDrop() {
+    if (this.responsiveService.isMobile()) {
+      this.responsiveService.isMenuBarOpen.set(!this.responsiveService.isMenuBarOpen());
+    }
+  }
 
   themeSelectorMode = computed(() => {
     if(this.responsiveService.largeWidth() ) {
@@ -39,14 +42,6 @@ export class AppComponent {
   }
       return 'over'
   })
-// side: MatDrawerMode;
-mode = 'side' as MatDrawerMode
 
-  // componentSelectorMode = computed(() => {
-  //   if(this.responsiveService.smallWidth() || this.responsiveService.extraSmallWidth() ) {
-  //     return 'over';
-  //   }
-  //     return 'side';
-  // });
 
 }

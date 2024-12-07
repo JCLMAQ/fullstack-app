@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatTabsModule } from '@angular/material/tabs';
+import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
-  standalone: true,
     selector: 'app-content',
     imports: [CommonModule, RouterOutlet, MatTabsModule, RouterModule],
     template: `

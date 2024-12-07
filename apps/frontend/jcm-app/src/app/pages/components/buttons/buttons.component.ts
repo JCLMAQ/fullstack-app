@@ -19,7 +19,6 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  standalone: true,
     selector: 'app-buttons',
     imports: [
         MatButtonModule,
@@ -68,7 +67,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     <button mat-raised-button (click)="openSnackbar()">Snack bar</button>
   `,
     styles: `
-
+  
   :host {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

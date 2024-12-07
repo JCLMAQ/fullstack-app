@@ -15,7 +15,6 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
-  standalone: true,
     selector: 'app-inputs',
     imports: [
         MatCheckbox,
@@ -147,7 +146,7 @@ import { MatSliderModule } from '@angular/material/slider';
     </mat-slider>
   `,
     styles: `
-
+  
   :host {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

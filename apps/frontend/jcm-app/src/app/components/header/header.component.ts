@@ -3,14 +3,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
-import { ResponsiveService } from '../../services/responsive.service';
+import { ResponsiveService } from '../../responsive.service';
 
 @Component({
-  standalone: true,
     selector: 'app-header',
     imports: [MatToolbar, MatIcon, MatButtonModule],
     template: `
     <mat-toolbar class="mat-elevation-z3">
+    <!-- <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon>menu</mat-icon>
+      </button> -->
       <button mat-icon-button (click)="toggleMenu()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -35,40 +37,44 @@ import { ResponsiveService } from '../../services/responsive.service';
   `
 })
 export class HeaderComponent {
-
   responsiveService = inject(ResponsiveService);
 
   readonly sidenav = viewChild.required(MatSidenav);
 
-  // isCollapsed = model.required<boolean>();
-
-  toggleMenu() {
-    this.responsiveService.modeSideNav.set(this.responsiveService.sideNavSelectorMode()); // over or side
-    // this.responsiveService.isCollapsed.set(!this.responsiveService.isCollapsed())
-    if(this.responsiveService.isMobile()){
-      // this.sidenav().mode = 'over';
-      this.sidenav().toggle();
-
-      // this.responsiveService.isCollapsed.set(false);
-    } else {
-      this.responsiveService.isCollapsed.set(!this.responsiveService.isCollapsed())
-      this.sidenav().toggle();
-      this.sidenav().mode = 'side';
-      // this.responsiveService.modeSideNav.set('over');
-      // this.responsiveService.isCollapsed.set(!this.responsiveService.isCollapsed());
-    }
-  }
-
-  // componentSelectorMode = computed(() => {
-  //   if(this.smallWidth() || this.extraSmallWidth() ) {
-  //     return 'over';
-  //   }
-  //     return 'side';
-  // });
+  // collapsed = model.required<boolean>();
+  collapsed = this.responsiveService.isCollapsed;
+  barOpen = this.responsiveService.isMenuBarOpen;
 
   darkMode = signal(false);
 
   setDarkModeClass = effect(() => {
     document.documentElement.classList.toggle('dark', this.darkMode());
   });
+
+
+  toggleMenu() {
+    if(!this.barOpen()){
+      this.barOpen.set(!this.barOpen());
+    } else {
+      // this.collapsed.set(!this.collapsed());
+      if(!this.collapsed()){
+        this.collapsed.set(!this.collapsed());
+
+      } else {
+        this.barOpen.set(!this.barOpen());
+        this.collapsed.set(!this.collapsed());
+      }
+  }
+
+
+    // if(this.responsiveService.isMobile()){
+    //   // this.sidenav().close();
+    //   this.sidenav().toggle();
+    //   // this.collapsed.set(!this.collapsed());
+    //   // this.responsiveService.collapsed.set(false);
+    // } else {
+    //   this.sidenav().open();
+    //   // this.responsiveService.collapsed.set(!this.responsiveService.collapsed());
+    // }
+  }
 }

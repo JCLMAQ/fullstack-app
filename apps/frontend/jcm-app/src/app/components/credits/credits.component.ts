@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-    standalone: true,
     selector: 'app-credits',
     imports: [MatButtonModule],
     template: `
@@ -25,7 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
     >
   `,
     styles: `
-
+  
   :host {
     width: 100%;
     text-align: center;

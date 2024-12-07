@@ -1,24 +1,21 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, computed, input, signal } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { RouterLinkActive, RouterModule } from '@angular/router';
-import { MATERIAL } from '@fe/material';
 import { MenuItem } from '../../menu-items';
 
 @Component({
-    standalone: true,
     selector: 'app-menu-item',
-    imports: [
-      RouterModule,
-      RouterLinkActive,
-      ...MATERIAL
-    ],
+    imports: [RouterModule, RouterLinkActive, MatListModule, MatIconModule],
     template: `
     <a
       mat-list-item
+      class="menu-item"
       [style.--mat-list-list-item-leading-icon-start-space]="indentation()"
       [routerLink]="routeHistory() + '/' + item().route"
       (click)="nestedItemOpen.set(!nestedItemOpen())"
-      routerLinkActive
+      routerLinkActive="selected-menu-item"
       #rla="routerLinkActive"
       [activated]="rla.isActive"
     >
@@ -57,6 +54,16 @@ import { MenuItem } from '../../menu-items';
       transition-duration: 500ms;
       transition-timing-function: ease-in-out;
     }
+
+    .menu-item {
+      border-left: 5px solid;
+      border-left-color: transparent;
+    }
+    .selected-menu-item {
+        border-left-color: var(--md-sys-color-primary);
+        // border-left-color: var(--md-sys-color-primary);
+      }
+
   `,
     animations: [
         trigger('expandContractMenu', [

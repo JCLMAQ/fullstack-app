@@ -1,13 +1,12 @@
-import { CdkDrag, CdkDragPlaceholder } from '@angular/cdk/drag-drop';
-import { NgComponentOutlet } from '@angular/common';
 import { Component, inject, input, signal } from '@angular/core';
 import { Widget } from '../../models/dashboard';
-import { DashboardStore } from '../../pages/dashboard/dashboard.store';
 import { WidgetHeaderComponent } from './widget-header/widget-header.component';
 import { WidgetOptionsComponent } from './widget-options/widget-options.component';
+import { NgComponentOutlet } from '@angular/common';
+import { CdkDrag, CdkDragPlaceholder } from '@angular/cdk/drag-drop';
+import { DashboardStore } from '../../pages/dashboard/dashboard.store';
 
 @Component({
-  standalone: true,
     selector: 'app-widget',
     imports: [
         WidgetHeaderComponent,

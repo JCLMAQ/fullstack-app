@@ -1,14 +1,13 @@
-import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
-import { Component, inject, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { Component, effect, inject, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { DashboardStore } from '../dashboard.store';
+import { MatButtonModule } from '@angular/material/button';
 import { WidgetsPanelComponent } from '../widgets-panel/widgets-panel.component';
+import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
+import { DashboardStore } from '../dashboard.store';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
-  standalone: true,
     selector: 'app-dashboard-header',
     imports: [
         MatIcon,

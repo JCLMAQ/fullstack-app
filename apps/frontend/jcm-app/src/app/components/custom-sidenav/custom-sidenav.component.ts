@@ -5,12 +5,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { menuItems } from '../../menu-items';
-import { ResponsiveService } from '../../services/responsive.service';
-import { CreditsComponent } from '../credits/credits.component';
+import { ResponsiveService } from '../../responsive.service';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 
 @Component({
-    standalone: true,
     selector: 'app-custom-sidenav',
     template: `
     <div class="pt-6 flex flex-col items-center">
@@ -22,20 +20,20 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
       />
       <div
         class="text-center mb-2 h-[3rem] {{
-          responsiveService.isCollapsed() ? '!h-0 opacity-0' : ''
+          collapsed() ? '!h-0 opacity-0' : ''
         }}"
       >
-      <h2 class="text-lg">Stylton</h2>
-      <p class="text-sm">The true Admin</p>
+        <h2 class="text-lg">Stylton</h2>
+        <p class="text-sm">The true Admin</p>
       </div>
     </div>
     <mat-nav-list class="[--mat-list-active-indicator-shape:0px]">
       @for (item of menuItems; track item.label) {
-      <app-menu-item [item]="item" [collapsed]="responsiveService.isCollapsed()" />
+      <app-menu-item [item]="item" [collapsed]="collapsed()" />
       }
     </mat-nav-list>
 
-    @if (!responsiveService.isCollapsed()) {
+    @if (!collapsed()) {
     <!-- <app-credits class="absolute bottom-5 bg-surface-container py-3" /> -->
     }
   `,
@@ -46,6 +44,12 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
         transition-duration: 500ms;
         transition-timing-function: ease-in-out;
       }
+
+      .selected-meni-item {
+        border-left: 5px solid;
+        border-left-color: blue;
+        // border-left-color: var(--md-sys-color-primary);
+      }
     `,
     ],
     imports: [
@@ -55,17 +59,16 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
         RouterModule,
         MatIconModule,
         MenuItemComponent,
-        CreditsComponent,
+        // CreditsComponent,
     ]
 })
 export class CustomSidenavComponent {
-
   responsiveService = inject(ResponsiveService);
-
-  // collapsed = input<boolean>(false);
 
   menuItems = menuItems;
 
-  profilePicSize = computed(() => (this.responsiveService.isCollapsed() ? '32' : '100'));
-  // profilePicSize = computed(() => (this.collapsed() ? '32' : '100'));
+  collapsed = computed(() => this.responsiveService.isCollapsed());
+
+  profilePicSize = computed(() => (this.collapsed() ? '32' : '100'));
+
 }

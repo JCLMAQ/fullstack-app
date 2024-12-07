@@ -1,46 +1,27 @@
+<app-header />
+    <mat-sidenav-container (backdropClick)="backDrop()" >
+        <mat-sidenav
+          (keydown.escape)="backDrop()"
+          [mode]="responsiveService.modeSideNav()"
 
-<!-- <app-header [(isCcollapsed)]="isCollapsed()" /> -->
- <app-header />
-<mat-sidenav-container>
-  <!-- <mat-sidenav
-  [opened]="true"
-  class="component-selector"
-                  [mode]="componentSelectorMode()"
-  [style.width]="sidenavWidth()"
-> -->
-<!-- <mat-sidenav
-[opened]="true"
-class="component-selector"
-                [mode]="componentSelectorMode()"
-                [style.width]="sidenavWidth()"
-                      [style.width]="responsiveService.sidenavWidth()"
-    [ngClass]="!responsiveService.isCollapsed()? 'expanded' : ''"
-        [opened]="responsiveService.isMobile() ? 'false' : 'true'"
-        [mode]="responsiveService.isMobile() ? 'over' : 'side'"
-         [opened]="true"
-> -->
-  <mat-sidenav
+          [opened]="responsiveService.sideNavOpen()"
 
-      [mode]= responsiveService.sideNavSelectorMode()
-      [opened]= responsiveService.isCollapsed()
-      [style.width]="responsiveService.sidenavWidth()"
-      >
-    <app-custom-sidenav />
-    <!-- <app-custom-sidenav [collapsed]="collapsed()"/> -->
-  </mat-sidenav>
-  <mat-sidenav-content
-      class="content"
-      [style.margin-left]="responsiveService.sidenavWidth()"
-      >
-    <router-outlet></router-outlet>
-    <a
-      mat-fab
-      extended
-      class="!fixed bottom-5 right-10"
-      href="https://zoaibkhan.lemonsqueezy.com/buy/4bc3b34d-4980-44be-80bc-bde1dc5b71e9"
-      target="_blank"
-    >
-      <mat-icon>code</mat-icon>Get the code</a
-    >
-  </mat-sidenav-content>
-</mat-sidenav-container>
+          [style.width]="responsiveService.sideNavWidth()"
+        >
+        <app-custom-sidenav  />
+      </mat-sidenav>
+      <mat-sidenav-content class="content" [style.margin-left]="responsiveService.styleMarginLeft()">
+
+
+        <router-outlet></router-outlet>
+        <!-- <a
+          mat-fab
+          extended
+          class="!fixed bottom-5 right-10"
+          href="https://zoaibkhan.lemonsqueezy.com/buy/4bc3b34d-4980-44be-80bc-bde1dc5b71e9"
+          target="_blank"
+        >
+          <mat-icon>code</mat-icon>Get the code</a
+        > -->
+      </mat-sidenav-content>
+    </mat-sidenav-container>

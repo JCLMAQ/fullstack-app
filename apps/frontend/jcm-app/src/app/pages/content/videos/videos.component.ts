@@ -17,7 +17,6 @@ export type Video = {
 };
 
 @Component({
-  standalone: true,
     selector: 'app-videos',
     imports: [YouTubePlayer, DatePipe],
     template: `
@@ -98,7 +97,7 @@ export type Video = {
         border-radius: 16px;
         object-fit: cover;
       }
-
+     
     }
 
   `

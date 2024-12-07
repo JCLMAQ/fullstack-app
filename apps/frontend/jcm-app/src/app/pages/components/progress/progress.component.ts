@@ -3,7 +3,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
-  standalone: true,
     selector: 'app-progress',
     imports: [MatProgressBarModule, MatProgressSpinner],
     template: `

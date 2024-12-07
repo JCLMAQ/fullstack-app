@@ -7,11 +7,11 @@ import { Component, ElementRef, inject, viewChild } from '@angular/core';
 import { wrapGrid } from 'animate-css-grid';
 import Chart from 'chart.js/auto';
 import { WidgetComponent } from '../../components/widget/widget.component';
+import { ResponsiveService } from '../../responsive.service';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardStore } from './dashboard.store';
 
 @Component({
-    standalone: true,
     selector: 'app-dashboard',
     imports: [
         WidgetComponent,
@@ -39,10 +39,47 @@ import { DashboardStore } from './dashboard.store';
         </div>
       </div>
     </div>
+    <div>
+
+
+        <span> modeSideNav = {{ reponsiveService.modeSideNav() }}</span>
+        <br>
+
+        <span> sideNavWidth = {{ reponsiveService.sideNavWidth() }}</span>
+        <br>
+
+        <span> sideNavOpen = {{ reponsiveService.sideNavOpen() }}</span>
+        <br>
+        @if(reponsiveService.isMenuBarOpen()) {
+          <span>isMenuBarOpen = true</span>
+        } @else {
+          <span>isMenuBarOpen = false</span>
+        }
+        <br>
+        @if(reponsiveService.isMobile()) {
+          <span>isMobile = true</span>
+        } @else {
+          <span>isMobile = false</span>
+        }
+        <br>
+        @if(this.reponsiveService.mobileLimitWidth()) {
+          <span> mobile limit = true</span>
+        } @else {
+          <span> mobile limit = false</span>
+        }
+        <br>
+        @if(reponsiveService.isCollapsed()) {
+          <span> collapsed = true</span>
+        } @else {
+          <span> collapsed = false</span>
+        }
+    </div>
   `,
     providers: [DashboardStore]
 })
 export default class DashboardComponent {
+  reponsiveService = inject(ResponsiveService);
+
   dashboard = viewChild.required<ElementRef>('dashboard');
 
   store = inject(DashboardStore);

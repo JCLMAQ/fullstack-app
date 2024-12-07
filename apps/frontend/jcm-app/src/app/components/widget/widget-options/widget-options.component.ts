@@ -6,7 +6,6 @@ import { Widget } from '../../../models/dashboard';
 import { DashboardStore } from '../../../pages/dashboard/dashboard.store';
 
 @Component({
-    standalone: true,
     selector: 'app-widget-options',
     imports: [MatButtonToggleModule, MatIcon, MatButtonModule],
     template: `
@@ -54,7 +53,7 @@ import { DashboardStore } from '../../../pages/dashboard/dashboard.store';
     </button>
   `,
     styles: `
-
+  
   :host {
     position: absolute;
     z-index: 2;

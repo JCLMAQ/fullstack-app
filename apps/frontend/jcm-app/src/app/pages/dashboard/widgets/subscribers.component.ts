@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  standalone: true,
     selector: 'app-subscribers',
     imports: [MatIcon],
     template: `
