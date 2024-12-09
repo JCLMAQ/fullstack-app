@@ -6,6 +6,7 @@ import {
 import { Component, ElementRef, inject, viewChild } from '@angular/core';
 import { wrapGrid } from 'animate-css-grid';
 import Chart from 'chart.js/auto';
+import { AppStore } from '../../app.store';
 import { WidgetComponent } from '../../shared/components/widget/widget.component';
 import { ResponsiveService } from '../../shared/services/responsive.service';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
@@ -41,6 +42,8 @@ import { DashboardStore } from './dashboard.store';
     </div>
     <div>
 
+        <span> user = {{ appStore.user()?.email }}</span>
+        <br>
 
         <span> modeSideNav = {{ reponsiveService.modeSideNav() }}</span>
         <br>
@@ -78,6 +81,9 @@ import { DashboardStore } from './dashboard.store';
     providers: [DashboardStore]
 })
 export default class DashboardComponent {
+
+  appStore = inject(AppStore);
+
   reponsiveService = inject(ResponsiveService);
 
   dashboard = viewChild.required<ElementRef>('dashboard');

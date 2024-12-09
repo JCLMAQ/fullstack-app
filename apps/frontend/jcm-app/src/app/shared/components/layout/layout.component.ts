@@ -4,7 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { ResponsiveService } from '../../services/responsive.service';
-import { CustomSidenavComponent } from '../custom-sidenav/old-custom-sidenav.component';
+import { CustomSidenavComponent } from '../custom-sidenav/custom-sidenav.component';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
