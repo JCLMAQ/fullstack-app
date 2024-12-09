@@ -1,8 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
+import { ResponsiveService } from '../../services/responsive.service';
 import { CustomSidenavComponent } from '../custom-sidenav/old-custom-sidenav.component';
 import { HeaderComponent } from '../header/header.component';
 
@@ -19,14 +20,21 @@ import { HeaderComponent } from '../header/header.component';
   template: `
     <!-- <app-header [(collapsed)]="collapsed" /> -->
     <app-header />
-    <mat-sidenav-container>
-      <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <mat-sidenav-container  (backdropClick)="backDrop()">
+      <mat-sidenav
+      (keydown.escape)="backDrop()"
+          [mode]="responsiveService.modeSideNav()"
+
+          [opened]="responsiveService.sideNavOpen()"
+
+          [style.width]="responsiveService.sideNavWidth()"
+      >
         <app-custom-sidenav  />
         <!-- <app-custom-sidenav [collapsed]="collapsed()" /> -->
       </mat-sidenav>
-      <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+      <mat-sidenav-content class="content" [style.margin-left]="responsiveService.styleMarginLeft()">
         <router-outlet></router-outlet>
-        <a
+        <!-- <a
           mat-fab
           extended
           class="!fixed bottom-5 right-10"
@@ -34,7 +42,7 @@ import { HeaderComponent } from '../header/header.component';
           target="_blank"
         >
           <mat-icon>code</mat-icon>Get the code</a
-        >
+        > -->
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
@@ -65,6 +73,17 @@ import { HeaderComponent } from '../header/header.component';
   `,
 })
 export default class LayoutComponent {
-  collapsed = signal(false);
-  sidenavWidth = computed(() => (this.collapsed() ? '65px' : '250px'));
+
+  responsiveService = inject(ResponsiveService);
+
+  readonly sidenav = viewChild.required(MatSidenav);
+
+  backDrop() {
+    if (this.responsiveService.isMobile()) {
+      this.responsiveService.isMenuBarOpen.set(!this.responsiveService.isMenuBarOpen());
+    }
+  }
+
+  // collapsed = signal(false);
+  // sidenavWidth = computed(() => (this.collapsed() ? '65px' : '250px'));
 }
