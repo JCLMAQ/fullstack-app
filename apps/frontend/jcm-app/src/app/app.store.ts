@@ -13,7 +13,9 @@ import { User } from './shared/models/user';
 // type AppState = {};
 type AppState = {user: User | undefined};
 
-const initialState: AppState = { user: undefined};
+// const initialState: AppState = { user: undefined};
+const initialState: AppState = { user: { email: "jcl.maquinay@gmail.com", name: "", password:"12345", photoUrl: "", role: "admin" } };
+
 
 export const AppStore = signalStore(
   { providedIn: 'root' },
@@ -46,7 +48,7 @@ export const AppStore = signalStore(
       },
       logout: async () => {
         // await firebaseService.logout();
-        patchState(store, { user: { email: "", name: "", password:"", photoUrl: "", role: "" } });
+        patchState(store, { user: undefined });
         router.navigate(['/login']);
       },
     })
