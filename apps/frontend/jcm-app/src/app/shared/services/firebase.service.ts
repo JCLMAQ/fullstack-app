@@ -1,16 +1,24 @@
 import { Injectable, signal } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import {
+  User as FirebaseUser,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  User as FirebaseUser,
 } from 'firebase/auth';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { User } from '../models/user';
 
 // Replace with your own Firebase config
-const firebaseConfig = {};
+const firebaseConfig = {
+    apiKey: "AIzaSyAqWYoASk35mE9OrZlKomWxsf-MD02jkZA",
+    authDomain: "jcm-app-88293.firebaseapp.com",
+    projectId: "jcm-app-88293",
+    storageBucket: "jcm-app-88293.firebasestorage.app",
+    messagingSenderId: "899524604551",
+    appId: "1:899524604551:web:df741645d13f6aa16abe22",
+    measurementId: "G-NMYRCE4WLG"
+};
 
 @Injectable({
   providedIn: 'root',

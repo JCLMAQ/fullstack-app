@@ -1,11 +1,19 @@
-import { Module, Global } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { PrismaModule } from '@prisma/prisma';
+import { UsersRepository } from './users-repository';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
+import { UsersUtilities } from './users.utilities';
 
-@Global()
 @Module({
+  imports: [
+    PrismaModule,
+    ConfigModule
+  ],
   controllers: [UsersController],
-  providers: [UsersService],
-  exports: [UsersService],
+  providers: [UsersService, UsersRepository, UsersUtilities],
+  exports: [UsersService, UsersUtilities,  UsersRepository],
 })
 export class UsersModule {}
+

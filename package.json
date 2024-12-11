@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start be:dev": "nx serve nestjs",
     "start fe:jcm-app": "nx serve jcm-app --port 4210",
     "start fe:angular-app": "nx serve angular-app --port 4220",
     "pnpm-instal": "pnpm install --no-frozen-lockfile",

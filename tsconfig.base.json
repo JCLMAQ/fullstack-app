@@ -31,6 +31,7 @@
       "@be/time-util": ["libs/backend/utilities/time-util/src/index.ts"],
       "@be/todos": ["libs/backend/todos/src/index.ts"],
       "@be/users": ["libs/backend/users/src/index.ts"],
+      "@prisma/prisma": ["libs/prisma/src/index.ts"],
       "@fe/buttons-detail": ["libs/frontend/ui/buttons-detail/src/index.ts"],
       "@fe/confirmation-dialog": [
         "libs/frontend/ui/confirmation-dialog/src/index.ts"

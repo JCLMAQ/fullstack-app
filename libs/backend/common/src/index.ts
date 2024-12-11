@@ -19,3 +19,4 @@ export * from './lib/pipes/parse-int/parse-int.pipe';
 export * from './lib/scalars/date.scalar/date.scalar';
 export * from './lib/utilities/arrayToObject';
 export * from './lib/utilities/string-utilities';
+
