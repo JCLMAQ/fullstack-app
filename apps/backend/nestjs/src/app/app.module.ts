@@ -50,7 +50,7 @@ import path = require('path');
       // NODE_ENV: Joi.string()
       //   .valid('development', 'production', 'test', 'provision')
       //   .default('development'),
-      NEST_SERVER_PORT: Joi.number().default(3000),
+      NEST_SERVER_PORT: Joi.number().default(3100),
       JWT_VALIDITY_DURATION: Joi.string().default('240s'),
       }),
     }),
