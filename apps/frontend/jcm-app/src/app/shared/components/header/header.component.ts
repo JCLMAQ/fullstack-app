@@ -48,7 +48,7 @@ import { ResponsiveService } from '../../services/responsive.service';
     mat-toolbar {
         position: relative;
         z-index: 5;
-        justify-content: space-between;
+       justify-content: space-between;
         --mat-toolbar-container-background-color: var(--sys-surface-container-low);
     }
 
