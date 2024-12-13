@@ -18,7 +18,6 @@ import { HeaderComponent } from '../header/header.component';
     MatButtonModule,
   ],
   template: `
-    <!-- <app-header [(collapsed)]="collapsed" /> -->
     <app-header />
     <mat-sidenav-container  (backdropClick)="backDrop()">
       <mat-sidenav
@@ -30,7 +29,6 @@ import { HeaderComponent } from '../header/header.component';
           [style.width]="responsiveService.sideNavWidth()"
       >
         <app-custom-sidenav  />
-        <!-- <app-custom-sidenav [collapsed]="collapsed()" /> -->
       </mat-sidenav>
       <mat-sidenav-content class="content" [style.margin-left]="responsiveService.styleMarginLeft()">
         <router-outlet></router-outlet>
@@ -83,7 +81,4 @@ export default class LayoutComponent {
       this.responsiveService.isMenuBarOpen.set(!this.responsiveService.isMenuBarOpen());
     }
   }
-
-  // collapsed = signal(false);
-  // sidenavWidth = computed(() => (this.collapsed() ? '65px' : '250px'));
 }

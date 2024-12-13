@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+// import { initializeApp } from 'firebase/app';
 import { initializeApp } from 'firebase/app';
 import {
   User as FirebaseUser,

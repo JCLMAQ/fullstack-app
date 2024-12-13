@@ -7,6 +7,11 @@ export type MenuItem = {
 
 export const menuItems: MenuItem[] = [
   {
+    icon: 'home',
+    label: 'Home',
+    route: 'home',
+  },
+  {
     icon: 'dashboard',
     label: 'Dashboard',
     route: 'dashboard',

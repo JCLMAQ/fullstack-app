@@ -13,12 +13,10 @@ import { ResponsiveService } from '../../services/responsive.service';
     imports: [MatToolbar, MatIcon, MatButtonModule, MatMenuModule],
     template: `
     <mat-toolbar class="mat-elevation-z3 relative z-10">
-    <!-- <button mat-icon-button (click)="collapsed.set(!collapsed())">
-        <mat-icon>menu</mat-icon>
-      </button> -->
       <button mat-icon-button (click)="toggleMenu()">
         <mat-icon>menu</mat-icon>
       </button>
+      <div class="flex-1"></div>
       <button mat-icon-button (click)="darkMode.set(!darkMode())">
         @if (darkMode()) {
         <mat-icon>light_mode</mat-icon>
@@ -30,7 +28,7 @@ import { ResponsiveService } from '../../services/responsive.service';
       @if (appStore.user(); as user) {
         <button mat-icon-button [mat-menu-trigger-for]="profileMenu">
           <img
-            [src]="user.photoUrl"
+            [src]="user?.photoUrl ?? 'person-placeholder.png'"
             class="w-[40px] h-[40px] object-cover rounded-full"
           />
         </button>
@@ -38,6 +36,19 @@ import { ResponsiveService } from '../../services/responsive.service';
           <button mat-menu-item (click)="appStore.logout()">
             <mat-icon>logout</mat-icon>
             Log out
+          </button>
+        </mat-menu>
+      } @else {
+        <button mat-icon-button [mat-menu-trigger-for]="profileMenu2">
+          <img
+            [src]="'person-placeholder.png'"
+            class="w-[40px] h-[40px] object-cover rounded-full"
+          />
+        </button>
+        <mat-menu #profileMenu2="matMenu">
+          <button mat-menu-item (click)="login()">
+            <mat-icon>login</mat-icon>
+            Log in
           </button>
         </mat-menu>
       }
@@ -48,7 +59,7 @@ import { ResponsiveService } from '../../services/responsive.service';
     mat-toolbar {
         position: relative;
         z-index: 5;
-       justify-content: space-between;
+        justify-content: space-between;
         --mat-toolbar-container-background-color: var(--sys-surface-container-low);
     }
 
@@ -86,4 +97,9 @@ export class HeaderComponent {
       }
     }
   }
+
+  login() {
+    this.router.navigate(['/login']);
+  }
+
 }

@@ -9,12 +9,13 @@ import {
 // import { FirebaseService } from './shared/services/firebase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from './shared/models/user';
+// import { FirebaseService } from './shared/services/firebase.service';
 
 // type AppState = {};
 type AppState = {user: User | undefined};
 
-// const initialState: AppState = { user: undefined};
-const initialState: AppState = { user: { email: "jcl.maquinay@gmail.com", name: "", password:"12345", photoUrl: "", role: "admin" } };
+const initialState: AppState = { user: undefined};
+// const initialState: AppState = { user: { email: "jcl.maquinay@gmail.com", name: "", password:"12345", photoUrl: "", role: "admin" } };
 
 
 export const AppStore = signalStore(
@@ -37,7 +38,7 @@ export const AppStore = signalStore(
 
         try {
           // await firebaseService.login(email, password);
-          patchState(store, { user: { email, name: "jclm", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" } });
+          patchState(store, { user: { email: "jcl.maquinay@gmail.com", name: "jclm", password: "test12345", photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" } });
           router.navigate(['/dashboard']);
         } catch (error) {
           snackbar.open('Invalid email or password', 'Close', {
@@ -49,7 +50,7 @@ export const AppStore = signalStore(
       logout: async () => {
         // await firebaseService.logout();
         patchState(store, { user: undefined });
-        router.navigate(['/login']);
+        router.navigate(['/home']);
       },
     })
   )

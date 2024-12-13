@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { AppStore } from '../../app.store';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { AppStore } from '../../app.store';
 import LoginInfoComponent from './login-info/login-info.component';
 
 @Component({
@@ -90,8 +90,8 @@ export default class LoginComponent {
   appStore = inject(AppStore);
   router = inject(Router);
 
-  email = signal('zoaib@zoaibkhan.com');
-  password = signal('testing123');
+  email = signal('jcl.maquinay@gmail.com');
+  password = signal('test12345');
 
   hidePassword = signal(true);
 }

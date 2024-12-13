@@ -1,23 +1,22 @@
 import { Routes } from '@angular/router';
-import { redirectDashboardIfAuthenticated, redirectLoginIfNotAuthenticated } from './shared/guards/auth.guards';
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'dashboard',
-  },
-  {
     path: 'login',
     loadComponent: () => import('./features/login/login.component'),
-    canActivate: [redirectDashboardIfAuthenticated()],
+    // canActivate: [redirectDashboardIfAuthenticated()],
   },
   {
     path: '',
     loadComponent: () =>
       import('../app/shared/components/layout/layout.component'),
-    canActivate: [redirectLoginIfNotAuthenticated()],
+    // canActivate: [redirectLoginIfNotAuthenticated()],
     children: [
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('../app/features/home/home.component').then(m => m.HomeComponent),
+      },
       {
         path: 'dashboard',
         loadComponent: () =>
