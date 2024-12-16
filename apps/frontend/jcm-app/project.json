@@ -14,7 +14,7 @@
         "index": "apps/frontend/jcm-app/src/index.html",
         "browser": "apps/frontend/jcm-app/src/main.ts",
         "polyfills": [
-          "zone.js",
+
           "@angular/localize/init"
         ],
         "tsConfig": "apps/frontend/jcm-app/tsconfig.app.json",

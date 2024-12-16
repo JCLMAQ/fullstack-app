@@ -18,6 +18,10 @@ export class AuthService {
 
   isLoggedIn = computed(() => !!this.user());
 
+  private authenticated = false;
+  private adminRole = false;
+
+
   // http = inject(HttpClient);
 
   router = inject(Router);
@@ -47,8 +51,9 @@ export class AuthService {
     //   password});
     // const user = await firstValueFrom(login$);
     const userbis = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin"}
-   console.log("User: ",userbis)
+
     this.#userSignal.set(userbis);
+    this.loginAsUser();
     return userbis;
   }
 
@@ -56,7 +61,33 @@ export class AuthService {
     localStorage.removeItem(USER_STORAGE_KEY);
     this.#userSignal.set(undefined);
     console.log("User: ", this.user)
+
+    this.logoutAsUser();
+
     // await this.router.navigateByUrl('/login');
+  }
+
+
+  isAuthenticated() {
+    return this.authenticated;
+  }
+
+  loginAsUser() {
+    this.authenticated = true;
+  }
+
+  loginAsAdmin() {
+    this.authenticated = true;
+    this.adminRole = true;
+  }
+
+  hasAdminRole() {
+    return this.adminRole;
+  }
+  // Log out the user
+  logoutAsUser() {
+    this.authenticated = false;
+    this.adminRole = false;
   }
 
 }
