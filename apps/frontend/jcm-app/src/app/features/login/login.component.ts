@@ -94,4 +94,5 @@ export default class LoginComponent {
   password = signal('test12345');
 
   hidePassword = signal(true);
+
 }

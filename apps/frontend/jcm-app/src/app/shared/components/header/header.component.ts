@@ -39,7 +39,10 @@ import { ResponsiveService } from '../../services/responsive.service';
           </button>
         </mat-menu>
       } @else {
-        <button mat-icon-button [mat-menu-trigger-for]="profileMenu2">
+        <button mat-icon-button (click)="login()">
+          <mat-icon>login</mat-icon>
+        </button>
+        <!-- <button mat-icon-button [mat-menu-trigger-for]="profileMenu2">
           <img
             [src]="'person-placeholder.png'"
             class="w-[40px] h-[40px] object-cover rounded-full"
@@ -50,7 +53,7 @@ import { ResponsiveService } from '../../services/responsive.service';
             <mat-icon>login</mat-icon>
             Log in
           </button>
-        </mat-menu>
+        </mat-menu> -->
       }
     </mat-toolbar>
   `,

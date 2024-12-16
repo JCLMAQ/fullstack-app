@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  imports: [],
-  template: `<p>home works!</p>`,
-  styles: ``,
+    selector: 'app-homes',
+    imports: [],
+    template: `<p>Home works!</p>`,
+    styles: []
 })
-export class HomeComponent {}
+export default class CommentsComponent {}
