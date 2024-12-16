@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AppStore } from '../../app.store';
-import LoginInfoComponent from './login-info/login-info.component';
+// import LoginInfoComponent from './login-info/login-info.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ import LoginInfoComponent from './login-info/login-info.component';
     MatIcon,
     MatButtonModule,
     FormsModule,
-    LoginInfoComponent,
+    // LoginInfoComponent,
   ],
   template: `
     <div
@@ -81,7 +81,7 @@ import LoginInfoComponent from './login-info/login-info.component';
           <button mat-flat-button class="w-full mt-3">Login</button>
         </form>
       </div>
-      <app-login-info />
+      <!-- <app-login-info /> -->
     </div>
   `,
   styles: ``,

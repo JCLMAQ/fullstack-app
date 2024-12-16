@@ -90,7 +90,6 @@ export class HeaderComponent {
     if(!this.barOpen()){
       this.barOpen.set(!this.barOpen());
     } else {
-      // this.collapsed.set(!this.collapsed());
       if(!this.collapsed()){
         this.collapsed.set(!this.collapsed());
 

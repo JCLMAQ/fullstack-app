@@ -1,16 +1,31 @@
-import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from "@angular/router";
-import {inject} from "@angular/core";
-import {AuthService} from "../services/auth.service";
+import { inject } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
+import { MessagesService } from "../messages/messages.service";
+import { AuthService } from "../services/auth.service";
 
 
 export const isUserAuthenticated: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const authService = inject(AuthService);
     const router = inject(Router);
+    const snackbar = inject(MatSnackBar);
+    const messagesService = inject(MessagesService);
+
     if (authService.isLoggedIn()) {
       return true;
     }
     else {
-     return router.parseUrl('/login')
+
+      // messagesService.showMessage(
+      //   "Log in first",
+      //   "warning"
+      // )
+
+      snackbar.open('Please Log in first', 'Close', {
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+      });
+     return router.parseUrl('/home')
     }
   }

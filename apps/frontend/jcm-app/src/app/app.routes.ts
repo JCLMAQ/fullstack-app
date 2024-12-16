@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { isUserAuthenticated } from './shared/guards/auth.guard';
 // import { redirectDashboardIfAuthenticated, redirectHomeIfNotAuthenticated, redirectLoginIfNotAuthenticated } from './shared/guards/auth-bis.guards';
 
 export const appRoutes: Routes = [
@@ -23,16 +24,18 @@ export const appRoutes: Routes = [
         path: 'dashboard',
         loadComponent: () =>
           import('../app/features/dashboard/dashboard.component'),
-        // canActivate: [redirectLoginIfNotAuthenticated()],
+        canActivate: [isUserAuthenticated],
       },
       {
         path: 'content',
         loadChildren: () => import('../app/features/content/content.routes'),
+        canActivate: [isUserAuthenticated],
       },
       {
         path: 'components',
         loadChildren: () =>
           import('../app/features/components/components.routes'),
+        canActivate: [isUserAuthenticated],
       },
       {
         path: 'comments',

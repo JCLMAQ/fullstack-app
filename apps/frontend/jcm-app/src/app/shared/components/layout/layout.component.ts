@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
+import { MessagesComponent } from "../../messages/messages.component";
 import { ResponsiveService } from '../../services/responsive.service';
 import { CustomSidenavComponent } from '../custom-sidenav/custom-sidenav.component';
 import { HeaderComponent } from '../header/header.component';
@@ -16,7 +17,8 @@ import { HeaderComponent } from '../header/header.component';
     CustomSidenavComponent,
     RouterOutlet,
     MatButtonModule,
-  ],
+    MessagesComponent
+],
   template: `
     <app-header />
     <mat-sidenav-container  (backdropClick)="backDrop()">
@@ -31,6 +33,7 @@ import { HeaderComponent } from '../header/header.component';
         <app-custom-sidenav  />
       </mat-sidenav>
       <mat-sidenav-content class="content" [style.margin-left]="responsiveService.styleMarginLeft()">
+        <app-messages />
         <router-outlet></router-outlet>
         <!-- <a
           mat-fab
