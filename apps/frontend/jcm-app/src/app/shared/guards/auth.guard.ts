@@ -1,7 +1,6 @@
 import { inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
-import { MessagesService } from "../messages/messages.service";
 import { AuthService } from "../services/auth.service";
 
 
@@ -10,7 +9,7 @@ export const isUserAuthenticated: CanActivateFn =
     const authService = inject(AuthService);
     const router = inject(Router);
     const snackbar = inject(MatSnackBar);
-    const messagesService = inject(MessagesService);
+    // const messagesService = inject(MessagesService);
 
     if (authService.isLoggedIn()) {
       return true;

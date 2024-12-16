@@ -90,4 +90,8 @@ export class AuthService {
     this.adminRole = false;
   }
 
+//   getUserInfo(uid: string): User {
+//     return this.user();
+// }
+
 }
