@@ -13,7 +13,9 @@ import { createTodo } from '../factories-bis/todo';
 import { create4Users } from '../factories-bis/user';
 import { dataUserFollower } from '../factories-bis/userFollower';
 
-const { PrismaClient } = require('@prisma/client');
+// const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
+
 const prisma = new PrismaClient();
 
 

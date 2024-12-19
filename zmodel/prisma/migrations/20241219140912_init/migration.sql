@@ -503,55 +503,73 @@ CREATE TABLE "AccountValidation" (
 -- CreateTable
 CREATE TABLE "_OrganizationToUser" (
     "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_OrganizationToUser_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_UsersProfiles" (
     "A" INTEGER NOT NULL,
-    "B" TEXT NOT NULL
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_UsersProfiles_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_GroupToUser" (
     "A" INTEGER NOT NULL,
-    "B" TEXT NOT NULL
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_GroupToUser_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_GroupToTask" (
     "A" INTEGER NOT NULL,
-    "B" TEXT NOT NULL
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_GroupToTask_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_GroupToTodo" (
     "A" INTEGER NOT NULL,
-    "B" TEXT NOT NULL
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_GroupToTodo_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_GroupToPost" (
     "A" INTEGER NOT NULL,
-    "B" TEXT NOT NULL
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_GroupToPost_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_PostsCategory" (
     "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_PostsCategory_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_FileToGroup" (
     "A" TEXT NOT NULL,
-    "B" INTEGER NOT NULL
+    "B" INTEGER NOT NULL,
+
+    CONSTRAINT "_FileToGroup_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_apikeysscopes" (
     "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL
+    "B" INTEGER NOT NULL,
+
+    CONSTRAINT "_apikeysscopes_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateIndex
@@ -588,55 +606,28 @@ CREATE UNIQUE INDEX "Token_emailToken_key" ON "Token"("emailToken");
 CREATE UNIQUE INDEX "AccountValidation_emailToken_key" ON "AccountValidation"("emailToken");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_OrganizationToUser_AB_unique" ON "_OrganizationToUser"("A", "B");
-
--- CreateIndex
 CREATE INDEX "_OrganizationToUser_B_index" ON "_OrganizationToUser"("B");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_UsersProfiles_AB_unique" ON "_UsersProfiles"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_UsersProfiles_B_index" ON "_UsersProfiles"("B");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_GroupToUser_AB_unique" ON "_GroupToUser"("A", "B");
-
--- CreateIndex
 CREATE INDEX "_GroupToUser_B_index" ON "_GroupToUser"("B");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_GroupToTask_AB_unique" ON "_GroupToTask"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_GroupToTask_B_index" ON "_GroupToTask"("B");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_GroupToTodo_AB_unique" ON "_GroupToTodo"("A", "B");
-
--- CreateIndex
 CREATE INDEX "_GroupToTodo_B_index" ON "_GroupToTodo"("B");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_GroupToPost_AB_unique" ON "_GroupToPost"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_GroupToPost_B_index" ON "_GroupToPost"("B");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_PostsCategory_AB_unique" ON "_PostsCategory"("A", "B");
-
--- CreateIndex
 CREATE INDEX "_PostsCategory_B_index" ON "_PostsCategory"("B");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_FileToGroup_AB_unique" ON "_FileToGroup"("A", "B");
-
--- CreateIndex
 CREATE INDEX "_FileToGroup_B_index" ON "_FileToGroup"("B");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_apikeysscopes_AB_unique" ON "_apikeysscopes"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_apikeysscopes_B_index" ON "_apikeysscopes"("B");
