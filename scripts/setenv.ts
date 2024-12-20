@@ -1,9 +1,14 @@
-const { writeFile } = require('fs');
-const { argv } = require('yargs');
+// const { writeFile } = require('fs');
+import { writeFile } from 'fs';
+// const { argv } = require('yargs');
 // read environment variables from .env file
-require('dotenv').config();
+// require('dotenv').config();
+import dotenv from 'dotenv';
+const config = dotenv.config()
 // read the command line arguments passed with yargs
-const environment = argv.environment;
+// const argv = yargs.environemnt;
+
+const environment = process.env.NODE_ENV || 'dev';
 const isProduction = environment === 'prod';
 
 if ( !process.env.API_FRONTEND || !process.env.API_FRONTEND_PORT || !process.env.API_BACKEND || !process.env.API_BACKEND_PORT || !process.env.API_SECRET || !process.env.AUTO_REGISTRATION_ENABLE || !process.env.REGISTRATION_VALIDATION || !process.env.PWDLESS_LOGIN_ENABLE || !process.env.DEFAULT_LANGUAGE || !process.env.SUPPORTED_LANGUAGE) {

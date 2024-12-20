@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { MessagesComponent } from "../../messages/messages.component";
 import { ResponsiveService } from '../../services/responsive.service';
 import { CustomSidenavComponent } from '../custom-sidenav/custom-sidenav.component';
@@ -18,16 +19,14 @@ import { HeaderComponent } from '../header/header.component';
     RouterOutlet,
     MatButtonModule,
     MessagesComponent
-],
+  ],
   template: `
     <app-header />
     <mat-sidenav-container  (backdropClick)="backDrop()">
       <mat-sidenav
-      (keydown.escape)="backDrop()"
+          (keydown.escape)="backDrop()"
           [mode]="responsiveService.modeSideNav()"
-
           [opened]="responsiveService.sideNavOpen()"
-
           [style.width]="responsiveService.sideNavWidth()"
       >
         <app-custom-sidenav  />
@@ -74,6 +73,12 @@ import { HeaderComponent } from '../header/header.component';
   `,
 })
 export default class LayoutComponent {
+
+  constructor(private translate: TranslateService) {
+    this.translate.addLangs(['fr', 'en']);
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+  }
 
   responsiveService = inject(ResponsiveService);
 

@@ -51,7 +51,7 @@ export const AppStore = signalStore(
 
           await authService.login(email, password);
 
-          patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" } });
+          patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
           // router.navigate(['/dashboard']);
         router.navigate(['/home']);
 

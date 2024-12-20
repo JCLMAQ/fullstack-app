@@ -50,7 +50,7 @@ export class AuthService {
     //   email,
     //   password});
     // const user = await firstValueFrom(login$);
-    const userbis = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin"}
+    const userbis = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
 
     this.#userSignal.set(userbis);
     this.loginAsUser();

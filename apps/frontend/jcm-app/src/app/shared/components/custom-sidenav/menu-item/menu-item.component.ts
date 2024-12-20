@@ -1,13 +1,15 @@
-import { Component, computed, input, signal } from '@angular/core';
-import { RouterLinkActive, RouterModule } from '@angular/router';
-import { MatListModule } from '@angular/material/list';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { MatListModule } from '@angular/material/list';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 import { MenuItem } from '../menu-items';
+
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu-item',
-  imports: [RouterModule, RouterLinkActive, MatListModule, MatIconModule],
+  imports: [RouterModule, RouterLinkActive, MatListModule, MatIconModule, TranslateModule],
   template: `
     <a
       mat-list-item
@@ -24,7 +26,7 @@ import { MenuItem } from '../menu-items';
         >{{ item().icon }}</mat-icon
       >
       @if(!collapsed()) {
-      <span matListItemTitle>{{ item().label }}</span>
+      <span matListItemTitle>{{ item().label | translate }}</span>
       } @if(item().subItems) {
       <span matListItemMeta>
         @if(nestedItemOpen()) {
@@ -67,6 +69,10 @@ import { MenuItem } from '../menu-items';
   ],
 })
 export class MenuItemComponent {
+
+  translateService = inject(TranslateService);
+
+
   item = input.required<MenuItem>();
   collapsed = input.required<boolean>();
   routeHistory = input('');

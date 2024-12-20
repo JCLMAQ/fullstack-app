@@ -2,9 +2,9 @@
   "name": "@fullstack-app/source",
   "version": "0.0.0",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "prisma": {
-   "seed": " npx tsx zmodel/prisma/seed.ts"
+    "seed": " npx tsx zmodel/prisma/seed.ts"
   },
   "scripts": {
     "start fe:jcm-app": "nx serve jcm-app --port 4210",
@@ -17,7 +17,7 @@
     "start:zenstack-prisma": "pnpm run zenstack:generate && pnpm run prisma:generate && pnpm run prisma-migrate",
     "start:backend:dev": "pnpm run configproxy && nx serve nestjs --watch",
     "start:frontend:dev": "pnpm run configangular -- --environment=dev && nx serve jcm-app --proxy-config ./proxy.config.json --host 127.0.0.1 --port 4210",
-    "start:frontend:script": "dotenv -e ../.env ts-node ./scripts/run-env.js",
+    "start:frontend:script": "dotenv -e ../.env npx tsx ./scripts/run-env.ts",
     "prisma:studio": "dotenv -e ../.env -- pnpm exec prisma studio --schema=./zmodel/prisma/schema.prisma",
     "seed-param": "dotenv -e ../.env npx tsx zmodel/prisma/seed-param.ts",
     "seed-faker": "dotenv -e ../.env npx tsx zmodel/prisma/seedfaker.ts",
@@ -38,7 +38,7 @@
     "prisma:generate:watch": "pnpm exec prisma generate --schema=./zmodel/prisma/schema.prisma --watch",
     "prisma-migrate": "dotenv -e ../.env -- pnpm exec prisma migrate dev --schema=./zmodel/prisma/schema.prisma",
     "circular-dependency": "pnpm madge --circular apps/backend/src/main.ts",
-    "configangular": "dotenv -e ../.env ts-node ./scripts/setenv.js",
+    "configangular": "dotenv -e ../.env npx tsx ./scripts/setenv.ts",
     "configproxy": "dotenv -e ../.env ts-node ./scripts/setproxyconfig.js",
     "ng": "pnpm nx",
     "start": "nx serve",
@@ -57,6 +57,7 @@
     "@angular/platform-browser-dynamic": "^19.0.4",
     "@angular/router": "^19.0.4",
     "@angular/youtube-player": "^19.0.3",
+    "@colsen1991/ngx-translate-extract-marker": "^3.0.1",
     "@nestjs/common": "^10.4.15",
     "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.4.15",
@@ -80,6 +81,7 @@
     "@ngx-translate/core": "^16.0.3",
     "@ngx-translate/http-loader": "^16.0.0",
     "@prisma/client": "^6.1.0",
+
     "@zenstackhq/runtime": "^2.10.2",
     "@zenstackhq/server": "^2.10.2",
     "animate-css-grid": "^1.5.1",

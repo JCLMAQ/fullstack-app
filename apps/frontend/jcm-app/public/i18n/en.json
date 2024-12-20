@@ -1,0 +1,50 @@
+{
+  "User": {
+    "title": "Titre",
+    "lastName": "Nom",
+    "firstName": "Prénom",
+    "dob": "Date de naissance"
+  },
+  "DatePicker": {
+    "datePlaceholder": "Choose a date",
+    "dateLabel": "Date"
+  },
+  "HEADER.CHOOSE": "Choose your language",
+
+    "SITETITLE": "Angular Multi Language Site",
+    "Name": "Name",
+    "NameError": "I am sure you must have a name!",
+    "Email": "Email address",
+    "PhoneNo": "Phone No",
+    "Password": "Password",
+    "Bio": "Enter bio",
+    "TermsConditions": "I agree to terms and conditions.",
+    "Submit": "Submit",
+    "portal": {
+        "title": "Translation demo",
+        "text": "This is a simple demonstration app for ngx-translate"
+    },
+  "SideNavMenu": {
+    "About": "About",
+    "Dashboard": "Dashboard",
+    "Home": "Home",
+    "Users": "Users",
+    "Todos": "Todos",
+    "Tasks": "Tasks",
+    "Posts": "Posts",
+    "Components": "Components",
+    "Content": "Content",
+    "Comments": "Comments"
+  },
+  "ToolBarMenu": {
+    "Users": "Users",
+    "Choices": "Choices",
+    "Pictos": "Pictures",
+    "Carrousel": "Caroussel",
+    "Images": "Images"
+  },
+  "MainPage": {
+    "Content": "Content"
+  }
+
+}

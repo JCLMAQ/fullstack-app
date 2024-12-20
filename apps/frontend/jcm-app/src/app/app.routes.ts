@@ -46,13 +46,13 @@ export const appRoutes: Routes = [
         path: 'home',
         loadComponent: () =>
           import('../app/features/home/home.component'),
-      }
-      // {
-      //   path: 'home',
-      //   loadComponent: () => import('../app/features/home/home.component')
-      //   // loadComponent: () => import('../app/features/home/home.component').then(module => module.HomeComponent)
-      // },
+      },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+      { path: '**', loadComponent: () => import('@fe/ui/pages').then(m => m.PageNotFoundComponent) },
+
     ],
-  },
+
+  }
 ];
 

@@ -8,17 +8,17 @@ export type MenuItem = {
 export const menuItems: MenuItem[] = [
   {
     icon: 'home',
-    label: 'Home',
+    label: 'SideNavMenu.Home',
     route: 'home',
   },
   {
     icon: 'dashboard',
-    label: 'Dashboard',
+    label: 'SideNavMenu.Dashboard',
     route: 'dashboard',
   },
   {
     icon: 'format_list_bulleted',
-    label: 'Components',
+    label: 'SideNavMenu.Components',
     route: 'components',
     subItems: [
       {
@@ -65,12 +65,12 @@ export const menuItems: MenuItem[] = [
   },
   {
     icon: 'video_library',
-    label: 'Content',
+    label: 'SideNavMenu.Content',
     route: 'content',
   },
   {
     icon: 'comment',
-    label: 'Comments',
+    label: 'SideNavMenu.Comments',
     route: 'comments',
   },
 ];
