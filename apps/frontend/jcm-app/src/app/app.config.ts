@@ -1,10 +1,10 @@
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection, } from '@angular/core';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRoutes } from './app.routes';
 
@@ -26,13 +26,13 @@ export const appConfig: ApplicationConfig = {
         //loadingInterceptor
       ])
     ),
-    importProvidersFrom([TranslateModule.forRoot({
+    provideTranslateService({
       loader: {
         provide: TranslateLoader,
         useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
-    })]),
+    }),
     provideNativeDateAdapter(),
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),

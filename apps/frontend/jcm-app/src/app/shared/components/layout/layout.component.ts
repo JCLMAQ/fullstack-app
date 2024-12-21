@@ -1,9 +1,7 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { MessagesComponent } from "../../messages/messages.component";
 import { ResponsiveService } from '../../services/responsive.service';
 import { CustomSidenavComponent } from '../custom-sidenav/custom-sidenav.component';
@@ -13,12 +11,11 @@ import { HeaderComponent } from '../header/header.component';
   selector: 'app-layout',
   imports: [
     HeaderComponent,
-    MatIcon,
     MatSidenavModule,
     CustomSidenavComponent,
     RouterOutlet,
     MatButtonModule,
-    MessagesComponent
+    MessagesComponent,
   ],
   template: `
     <app-header />
@@ -73,12 +70,6 @@ import { HeaderComponent } from '../header/header.component';
   `,
 })
 export default class LayoutComponent {
-
-  constructor(private translate: TranslateService) {
-    this.translate.addLangs(['fr', 'en']);
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
-  }
 
   responsiveService = inject(ResponsiveService);
 

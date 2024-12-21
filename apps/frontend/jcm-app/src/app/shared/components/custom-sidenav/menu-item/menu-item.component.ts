@@ -1,15 +1,14 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterLinkActive, RouterModule } from '@angular/router';
+import { TranslatePipe } from "@ngx-translate/core";
 import { MenuItem } from '../menu-items';
-
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu-item',
-  imports: [RouterModule, RouterLinkActive, MatListModule, MatIconModule, TranslateModule],
+  imports: [RouterModule, RouterLinkActive, MatListModule, MatIconModule, TranslatePipe],
   template: `
     <a
       mat-list-item
@@ -69,8 +68,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   ],
 })
 export class MenuItemComponent {
-
-  translateService = inject(TranslateService);
 
 
   item = input.required<MenuItem>();

@@ -81,7 +81,6 @@
     "@ngx-translate/core": "^16.0.3",
     "@ngx-translate/http-loader": "^16.0.0",
     "@prisma/client": "^6.1.0",
-
     "@zenstackhq/runtime": "^2.10.2",
     "@zenstackhq/server": "^2.10.2",
     "animate-css-grid": "^1.5.1",
@@ -189,6 +188,7 @@
     "@types/qrcode": "^1.5.5",
     "@types/swagger-ui-express": "^4.1.7",
     "@typescript-eslint/utils": "^8.18.1",
+    "@vendure/ngx-translate-extract": "^9.4.0",
     "@zenstackhq/openapi": "^2.10.2",
     "angular-eslint": "19.0.2",
     "autoprefixer": "^10.4.20",

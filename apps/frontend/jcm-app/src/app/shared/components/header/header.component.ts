@@ -6,13 +6,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AppStore } from '../../../app.store';
 import { ResponsiveService } from '../../services/responsive.service';
 
 @Component({
     selector: 'app-header',
-    imports: [MatToolbar, MatIcon, MatButtonModule, MatMenuModule, MatDivider, TranslateModule],
+    imports: [MatToolbar, MatIcon, MatButtonModule, MatMenuModule, MatDivider,TranslatePipe],
     template: `
     <mat-toolbar class="mat-elevation-z3 relative z-10">
       <button mat-icon-button (click)="toggleMenu()">
