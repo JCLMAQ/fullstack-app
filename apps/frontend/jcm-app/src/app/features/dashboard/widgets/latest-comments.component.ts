@@ -3,7 +3,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { WidgetComponent } from '../../../shared/components/widget/widget.component';
 
 export type Comment = {
   user: string;
@@ -13,7 +12,7 @@ export type Comment = {
 @Component({
     selector: 'app-latest-comments',
     imports: [
-        WidgetComponent,
+
         MatButtonModule,
         MatListModule,
         MatIcon,

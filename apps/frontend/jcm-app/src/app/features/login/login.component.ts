@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AppStore } from '../../app.store';
-// import LoginInfoComponent from './login-info/login-info.component';
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,6 @@ import { AppStore } from '../../app.store';
     MatIcon,
     MatButtonModule,
     FormsModule,
-    // LoginInfoComponent,
   ],
   template: `
     <div

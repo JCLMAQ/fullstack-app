@@ -4,12 +4,8 @@ import { isUserAuthenticated } from './shared/guards/auth.guard';
 
 export const appRoutes: Routes = [
   {
-  //   path: '',
-  //   component: DashboardComponent
-  // },
-  // {
     path: 'login',
-    loadComponent: () => import('./features/login/login.component'),
+    loadComponent: () => import('./features/auth/login/login.component'),
     // canActivate: [redirectDashboardIfAuthenticated()],
   },
   {
@@ -19,6 +15,11 @@ export const appRoutes: Routes = [
     // canActivate: [redirectHomeIfNotAuthenticated()],
     // canActivateChild: [adminGuard], // Protect all child routes with adminGuard
     children: [
+      // {
+      //   path: 'login',
+      //   loadComponent: () => import('./features/auth/login/login.component'),
+      //   // canActivate: [redirectDashboardIfAuthenticated()],
+      // },
 
       {
         path: 'dashboard',
