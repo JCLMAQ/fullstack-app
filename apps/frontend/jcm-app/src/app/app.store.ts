@@ -73,6 +73,23 @@ export const AppStore = signalStore(
         patchState(store, { user: undefined });
         router.navigate(['/home']);
       },
+      register: async (email: string, password: string, confirmPassword: string) => {
+        try {
+          await authService.register(email, password, confirmPassword);
+          patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
+          router.navigate(['/home']);
+        } catch (error) {
+          snackbar.open('Invalid email or password', 'Close', {
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+          });
+          console.error(error);
+          messagesService.showMessage(
+            "Registration failed, please try again",
+            "error"
+          )
+        }
+      },
     })
   )
 );

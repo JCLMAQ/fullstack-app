@@ -9,6 +9,11 @@ export const appRoutes: Routes = [
     // canActivate: [redirectDashboardIfAuthenticated()],
   },
   {
+    path: 'register',
+    loadComponent: () => import('./features/auth/register/register.component'),
+    // canActivate: [redirectDashboardIfAuthenticated()],
+  },
+  {
     path: '',
     loadComponent: () =>
       import('../app/shared/components/layout/layout.component'),
