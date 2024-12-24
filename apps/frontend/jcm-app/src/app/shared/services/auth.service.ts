@@ -60,12 +60,13 @@ export class AuthService {
   async register(email:string, password:string, confirmPassword:string): Promise<User> {
     // const register$ = this.http.post<User>(`${environment.apiRoot}/register`, {
     //   email,
-    //   password});
+    //   password,
+    // confirmPassword});
     // const user = await firstValueFrom(register$);
-    const userbis = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
-    this.#userSignal.set(userbis);
+    const user = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
+    this.#userSignal.set(user);
     this.loginAsUser();
-    return userbis;
+    return user;
   }
 
   async logout() {

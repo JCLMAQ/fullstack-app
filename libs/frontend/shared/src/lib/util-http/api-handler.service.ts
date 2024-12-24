@@ -13,12 +13,6 @@ import { IApiBaseActions, ParamsType } from "./api-base-actions.interface";
 export class ApiHandlerService implements IApiBaseActions {
   httpClient = inject(HttpClient);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {
-  }
-
   Get(url: string, params?: ParamsType) {
     return this.httpClient
       .get(url, {params: this.createParams(params)})

@@ -5,7 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { PageNotFoundComponent } from "../../../../../../../../libs/frontend/ui/pages/src/lib/page-not-found/page-not-found.component";
 import { AppStore } from '../../../app.store';
 
 @Component({
@@ -16,7 +15,6 @@ import { AppStore } from '../../../app.store';
     MatInput,
     MatIcon,
     MatButtonModule,
-    PageNotFoundComponent
 ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
