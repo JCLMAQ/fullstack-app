@@ -19,22 +19,22 @@ async function main() {
       },
       {
         name: 'APP_EMAIL_LIMIT_DOMAIN',
-        value: '1',
+        value: '0',
         utility: 'Email domain limitation (domains listed in the DB)'
       },
       {
         name: 'ORG_LIMIT_DOMAIN',
-        value: '1',
+        value: '0',
         utility: 'Email domain limitation for the Organization (domains listed in the DB)'
       },
       {
         name: 'ORG_LIMIT_EXTENSION',
-        value: '1',
+        value: '0',
         utility: 'Email domain extension limitation (extensions listed in the DB)'
       },
       {
         name: 'ACCOUNT_VALIDATION_EMAIL',
-        value: '1',
+        value: '0',
         utility: 'Email addresse verification with new register or account change email.'
       },
       {
@@ -66,12 +66,12 @@ async function main() {
       },
       {
         name: 'EMAIL_NOREPLY',
-        value: 'project.1@$localhost',
+        value: 'project.2@$localhost',
         utility: 'No-reply email address.'
       },
       {
         name: 'EMAIL_NOREPLY_USER',
-        value: 'project.1',
+        value: 'project.2',
         utility: 'No-reply user.'
       },
       {
@@ -81,7 +81,7 @@ async function main() {
       },
       {
         name: 'EMAIL_NOREPLY_PWD',
-        value: 'secret.1',
+        value: 'secret.2',
         utility: 'No-reply email password.'
       },
       {
