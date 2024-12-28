@@ -2,8 +2,9 @@ import { computed, effect, inject, Injectable, signal } from "@angular/core";
 // import {User} from "../models/user.model";
 // import {environment} from "../../environments/environment";
 // import { HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { User } from "../models/user";
+import { User } from "../../../shared/models/user";
 
 const USER_STORAGE_KEY = 'user';
 
@@ -22,7 +23,7 @@ export class AuthService {
   private adminRole = false;
 
 
-  // http = inject(HttpClient);
+  httpClient = inject(HttpClient);
 
   router = inject(Router);
 

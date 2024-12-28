@@ -1,7 +1,7 @@
 import { inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "../../features/auth/Services/auth.service";
 
 
 export const isUserAuthenticated: CanActivateFn =

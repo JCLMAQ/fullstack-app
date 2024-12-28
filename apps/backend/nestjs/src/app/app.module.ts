@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 
 import { PrismaModule } from '@prisma/prisma';
 import { ClsModule } from 'nestjs-cls';
@@ -6,7 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { AuthsModule } from '@be/auths';
-import { CommonModule } from '@be/common';
+import { CommonModule, CrudMiddleware } from '@be/common';
 import { DbConfigModule } from '@be/db-config';
 import { FilesModule } from '@be/files';
 // import { IamModule } from '@be/iam';
@@ -50,7 +50,7 @@ import path = require('path');
       // NODE_ENV: Joi.string()
       //   .valid('development', 'production', 'test', 'provision')
       //   .default('development'),
-      NEST_SERVER_PORT: Joi.number().default(3100),
+      // NEST_SERVER_PORT: Joi.number().default(3100),
       JWT_VALIDITY_DURATION: Joi.string().default('240s'),
       }),
     }),
@@ -98,7 +98,7 @@ controllers: [AppController],
 providers: [AppService],
 })
 export class AppModule {
-// configure(consumer: MiddlewareConsumer) {
-//   consumer.apply(CrudMiddleware).forRoutes('/zen');
-// }
+configure(consumer: MiddlewareConsumer) {
+  consumer.apply(CrudMiddleware).forRoutes('/zen');
+}
 }

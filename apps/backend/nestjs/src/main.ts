@@ -6,6 +6,7 @@
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 
+// import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PrismaService } from '@prisma/prisma';
 import { ClsMiddleware } from 'nestjs-cls';
@@ -52,10 +53,13 @@ async function bootstrap() {
   );
 
     // const configService = app.get(ConfigService);
+  // const port: number = configService.get<number>('NEST_SERVER_PORT') || 3100;
   // const port: number = configService.get('NEST_SERVER_PORT');
+  const port = 3100;
 
-  const port = process.env.NEST_SERVER_PORT || 3333;
 
+  // const port = process.env.NEST_SERVER_PORT || 3333;
+// const port = process.env.NEST_SERVER_PORT
   // Swagger config
   const config = new DocumentBuilder()
   .setTitle(process.env.SET_APP_TITLE)

@@ -9,9 +9,9 @@ import {
 } from '@ngrx/signals';
 // import { FirebaseService } from './shared/services/firebase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
 import { User } from './shared/models/user';
-import { AuthService } from './shared/services/auth.service';
 // import { FirebaseService } from './shared/services/firebase.service';
 
 // type AppState = {};

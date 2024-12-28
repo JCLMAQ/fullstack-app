@@ -14,7 +14,7 @@ export function IsJsonObject() {
             );
           },
           defaultMessage(validationArguments?: ValidationArguments): string {
-            return `${validationArguments.property} must be a valid object`;
+            return `${validationArguments?.property} must be a valid object`;
           },
         },
       });
