@@ -1,10 +1,11 @@
 import { computed, effect, inject, Injectable, signal } from "@angular/core";
 // import {User} from "../models/user.model";
-// import {environment} from "../../environments/environment";
 // import { HttpClient } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { User } from "../../../shared/models/user";
+import { User } from "@prisma/client";
+import { firstValueFrom } from "rxjs";
+// import { User } from "../../../shared/models/user";
 
 const USER_STORAGE_KEY = 'user';
 
@@ -47,27 +48,40 @@ export class AuthService {
   }
 
   async login(email:string, password:string): Promise<User> {
-    // const login$ = this.http.post<User>(`${environment.apiRoot}/login`, {
-    //   email,
-    //   password});
-    // const user = await firstValueFrom(login$);
-    const userbis = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
 
-    this.#userSignal.set(userbis);
-    this.loginAsUser();
-    return userbis;
-  }
+    const pathUrl = "api/auths/auth/loginwithpwd";
+    const login$ = this.httpClient.post<User>(`${pathUrl}`, {
+      // const login$ = this.httpClient.post<User>(`${environment.apiRoot}/login`, {
+      email,
+      password});
+    const user = await firstValueFrom(login$);
+    // const userbis = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
 
-  async register(email:string, password:string, confirmPassword:string): Promise<User> {
-    // const register$ = this.http.post<User>(`${environment.apiRoot}/register`, {
-    //   email,
-    //   password,
-    // confirmPassword});
-    // const user = await firstValueFrom(register$);
-    const user = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
     this.#userSignal.set(user);
     this.loginAsUser();
     return user;
+  }
+
+  async register(email:string, password:string, confirmPassword:string): Promise<User> {
+
+    const pathUrl = "api/auths/auth/registerwithpwd";
+    // const register$ = this.httpClient.post<User>(`${environment.apiRoot}/register`, {
+    const register$ = this.httpClient.post<User>(`${pathUrl}`, {
+      email,
+      password,
+      verifyPassword: confirmPassword,
+      lastName: '',
+      firstName: '',
+      nickName: '',
+      gender: '',
+      role: '',
+      title: '',
+
+    });
+    const response = await firstValueFrom(register$);
+    // const user = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
+    console.log("User: ", response)
+    return response;
   }
 
   async logout() {
@@ -75,7 +89,7 @@ export class AuthService {
     this.#userSignal.set(undefined);
     console.log("User: ", this.user)
 
-    this.logoutAsUser();
+    this.logoutAsUserOrAdmin();
 
     // await this.router.navigateByUrl('/login');
   }
@@ -98,7 +112,7 @@ export class AuthService {
     return this.adminRole;
   }
   // Log out the user
-  logoutAsUser() {
+  logoutAsUserOrAdmin() {
     this.authenticated = false;
     this.adminRole = false;
   }

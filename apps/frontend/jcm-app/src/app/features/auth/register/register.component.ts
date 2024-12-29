@@ -24,12 +24,14 @@ export default class RegisterComponent {
   appStore = inject(AppStore);
   router = inject(Router);
 
-    email = signal('jcl.maquinay@gmail.com');
-    password = signal('test12345');
-    confirmPassword = signal('test12345');
+    email = signal('user2@test.be');
+    password = signal('Pwd!123456');
+    confirmPassword = signal('Pwd!123456');
 
     hidePassword = signal(true);
-
+  register() {
+    this.appStore.register(this.email(), this.password(), this.confirmPassword());
+  }
   login() {
     this.router.navigate(['login']);
   }

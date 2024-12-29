@@ -1,6 +1,6 @@
 
 
-import { Gender, Role } from "@prisma/client";
+import { Gender, Language, Role } from "@prisma/client";
 import { IsString } from "class-validator";
 import * as Joi from 'joi';
 
@@ -22,8 +22,8 @@ export class RegisterAuthDto extends (AuthDto) {
   // @IsJsonObject()
   // @IsOptional()
   // // social?: Prisma.InputJsonValue;
-  // @IsString()
-  // Language: Language | undefined;
+  @IsString()
+  Language: Language | undefined;
   @IsString()
   Roles: Role[] | undefined;
   // dob?: Date;

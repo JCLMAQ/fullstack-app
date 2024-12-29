@@ -164,6 +164,7 @@ model User extends BaseUuid {
     Gender Gender? @default(UNKNOWN)
     social Json? @db.Json
     Language Language? @default(en)
+    photoUrl String?
     dob DateTime?
     address Json?  @db.Json
     isValidated DateTime?

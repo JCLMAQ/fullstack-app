@@ -58,6 +58,7 @@ export interface User {
   Gender: Gender | null;
   social: any | null;
   Language: Language | null;
+  photoUrl: string | null;
   dob: Date | null;
   address: any | null;
   isValidated: Date | null;

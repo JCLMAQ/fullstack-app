@@ -17,13 +17,13 @@ import { AppStore } from '../../../../app.store';
           collapsed() ? '!h-0 opacity-0' : ''
         }}"
       >
-        <h2 class="text-lg">{{ appStore.user()?.name ?? 'User' }}</h2>
-        <p class="text-sm">{{ appStore.user()?.role }}</p>
+        <h2 class="text-lg">{{ appStore.user()?.nickName ?? 'User' }}</h2>
+        <p class="text-sm">{{ appStore.user()?.Roles }}</p>
       </div>
     </div>
   `,
   styles: `
-  
+
   :host * {
     transition-property: width, height, opacity;
     transition-duration: 500ms;

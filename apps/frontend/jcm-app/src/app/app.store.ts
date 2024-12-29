@@ -9,9 +9,10 @@ import {
 } from '@ngrx/signals';
 // import { FirebaseService } from './shared/services/firebase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '@prisma/client';
 import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
-import { User } from './shared/models/user';
+// import { User } from './shared/models/user';
 // import { FirebaseService } from './shared/services/firebase.service';
 
 // type AppState = {};
@@ -49,11 +50,13 @@ export const AppStore = signalStore(
             return;
           }
 
-          await authService.login(email, password);
+          const user = await authService.login(email, password);
 
-          patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
-          // router.navigate(['/dashboard']);
-        router.navigate(['/home']);
+          patchState(store, { user });
+       //   patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
+
+          router.navigate(['/dashboard']);
+          // router.navigate(['/home']);
 
         } catch (error) {
           snackbar.open('Invalid email or password', 'Close', {
@@ -67,27 +70,51 @@ export const AppStore = signalStore(
           )
         }
       },
+
       logout: async () => {
         await authService.logout();
         // await firebaseService.logout();
         patchState(store, { user: undefined });
         router.navigate(['/home']);
       },
+
       register: async (email: string, password: string, confirmPassword: string) => {
         try {
-          await authService.register(email, password, confirmPassword);
-          patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
-          router.navigate(['/home']);
+
+          if (!email || !password || !confirmPassword) {
+            messagesService.showMessage(
+              "Enter an email and password + confirm password.",
+              "error"
+            )
+            return;
+          }
+
+        // const response =
+        await authService.register(email, password, confirmPassword);
+          snackbar.open('Registration done', 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+        });
+        // messagesService.showMessage(
+        //   response.email ? "Registration successful" : "Registration failed, please try again",
+        //   response.email ? "success" : "error"
+        // )
+
+        //   patchState(store, { user });
+          // patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
+
+          router.navigate(['/login']);
+
         } catch (error) {
-          snackbar.open('Invalid email or password', 'Close', {
+          snackbar.open('Invalid email, password or confirm password', 'Close', {
             verticalPosition: 'top',
             horizontalPosition: 'right',
           });
           console.error(error);
-          messagesService.showMessage(
-            "Registration failed, please try again",
-            "error"
-          )
+          // messagesService.showMessage(
+          //   "Registration failed, please try again",
+          //   "error"
+          // )
         }
       },
     })

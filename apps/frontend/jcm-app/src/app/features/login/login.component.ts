@@ -89,8 +89,8 @@ export default class LoginComponent {
   appStore = inject(AppStore);
   router = inject(Router);
 
-  email = signal('jcl.maquinay@gmail.com');
-  password = signal('test12345');
+  email = signal('');
+  password = signal('');
 
   hidePassword = signal(true);
 
