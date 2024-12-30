@@ -8,6 +8,7 @@ export interface IUserRegister {
   title?: string;
   gender?: string;
   role?: string;
+  Language?: string;
 }
 
 export interface ICurrentUser {
@@ -15,6 +16,10 @@ export interface ICurrentUser {
   fullName?: string;
 }
 
+export interface IRegisterResponse {
+  success: string;
+  message: string;
+}
 export interface ILoginResponse {
   // authJwtToken: string;
   // user: User;

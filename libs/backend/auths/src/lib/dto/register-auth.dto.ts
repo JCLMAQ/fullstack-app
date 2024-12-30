@@ -29,6 +29,10 @@ export class RegisterAuthDto extends (AuthDto) {
   // dob?: Date;
 }
 
+export class ChortRegisterAuthDto extends (AuthDto) {
+  @IsString()
+  verifyPassword: string | undefined;
+}
 // Joi Schema according : https://www.notion.so/jclmaq5510/Data-Validation-with-Joi-502789ddb6f349ea9d79d0447899cf3d?pvs=4
 export const registerSchema = Joi.object({
   // username: Joi.string().alphanum().min(3).max(30).required(),

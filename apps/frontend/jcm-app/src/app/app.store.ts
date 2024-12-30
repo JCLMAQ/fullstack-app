@@ -10,6 +10,7 @@ import {
 // import { FirebaseService } from './shared/services/firebase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@prisma/client';
+// import { User } from '@fe/user';
 import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
 // import { User } from './shared/models/user';
@@ -32,11 +33,8 @@ export const AppStore = signalStore(
     (
       store,
       router = inject(Router),
-      // firebaseService = inject(FirebaseService),
       messagesService = inject(MessagesService),
-
       authService = inject(AuthService),
-
       snackbar = inject(MatSnackBar)
     ) => ({
       login: async (email: string, password: string) => {

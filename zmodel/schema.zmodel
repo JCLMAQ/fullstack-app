@@ -86,6 +86,7 @@ enum Gender {
     MALE
     FEMELE
     UNKNOWN
+    NONE
 }
 
 enum Title {

@@ -3,6 +3,7 @@ import { ApiKey, ChangesTracking, Gender, Group, Language, PermissionClaim, Post
 import { Exclude } from 'class-transformer';
 
 export class UserEntity implements User {
+
     constructor(partial: Partial<UserEntity>) {
       Object.assign(this, partial);
     }
@@ -61,5 +62,6 @@ export class UserEntity implements User {
   published: boolean;
   isDeleted: number;
   isPublic: boolean;
+  photoUrl: string;
 
 }

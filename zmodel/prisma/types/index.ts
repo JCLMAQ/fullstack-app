@@ -410,6 +410,7 @@ export const Gender = {
   MALE: "MALE",
   FEMELE: "FEMELE",
   UNKNOWN: "UNKNOWN",
+  NONE: "NONE",
 } as const;
 export type Gender = (typeof Gender)[keyof typeof Gender];
 

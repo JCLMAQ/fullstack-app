@@ -91849,6 +91849,7 @@ components:
         - MALE
         - FEMELE
         - UNKNOWN
+        - NONE
     Title:
       type: string
       description: The "Title" Enum

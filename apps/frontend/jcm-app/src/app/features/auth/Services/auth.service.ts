@@ -4,7 +4,9 @@ import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { User } from "@prisma/client";
+// import { User } from "@fe/user";
 import { firstValueFrom } from "rxjs";
+// import { IUserRegister } from "../auth.model";
 // import { User } from "../../../shared/models/user";
 
 const USER_STORAGE_KEY = 'user';
@@ -70,15 +72,28 @@ export class AuthService {
       email,
       password,
       verifyPassword: confirmPassword,
-      lastName: '',
-      firstName: '',
-      nickName: '',
-      gender: '',
-      role: '',
-      title: '',
+      lastName: 'test',
+      firstName: 'test',
+      nickName: 'test',
+      Gender: 'NONE',
+      Roles: "Roles.User",
+      // title: 'Sir',
+      Language: "fr"
+// "email": "user3@test.be",
+// 	"password": "Pwd!123456",
+//     "verifyPassword": "Pwd!123456",
+//     "Gender": "MALE",
+//     "nickName": "JCMBIS",
+//     "lastName": "MAQBIS",
+//     "firstName": "Jean-Claude",
+//     "Roles": "ADMIN",
+//     "Language": "fr"
+
+
 
     });
     const response = await firstValueFrom(register$);
+    console.log("Registing User Response: ", response)
     // const user = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
     console.log("User: ", response)
     return response;
