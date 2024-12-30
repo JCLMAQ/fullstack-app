@@ -45,6 +45,9 @@ import { DashboardStore } from './dashboard.store';
         <span> user = {{ appStore.user()?.email }}</span>
         <br>
 
+        <span> user full name = {{ appStore.user()?.nickName }}</span>
+        <br>
+
         <span> modeSideNav = {{ reponsiveService.modeSideNav() }}</span>
         <br>
 

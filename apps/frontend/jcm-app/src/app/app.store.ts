@@ -1,4 +1,5 @@
 import { computed, inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import {
   patchState,
@@ -7,27 +8,26 @@ import {
   withMethods,
   withState
 } from '@ngrx/signals';
-// import { FirebaseService } from './shared/services/firebase.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@prisma/client';
-// import { User } from '@fe/user';
 import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
-// import { User } from './shared/models/user';
-// import { FirebaseService } from './shared/services/firebase.service';
 
 // type AppState = {};
-type AppState = {user: User | undefined};
+type AppState = {
+  user: User | undefined,
+  authToken: string | undefined
+};
 
-const initialState: AppState = { user: undefined };
-// const initialState: AppState = { user: { email: "jcl.maquinay@gmail.com", name: "", password:"12345", photoUrl: "", role: "admin" } };
-
+const initialState: AppState = {
+  user: undefined,
+  authToken: undefined
+};
 
 export const AppStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed((store, authService = inject(AuthService)) => ({
-    user: computed(() => authService.user()),
+    userbis: computed(() => authService.user()),
   })),
   withMethods(
     (
@@ -48,13 +48,12 @@ export const AppStore = signalStore(
             return;
           }
 
-          const user = await authService.login(email, password);
+          const userAfterLogin = await authService.login(email, password);
+          console.log("user after login: ", userAfterLogin);
 
-          patchState(store, { user });
-       //   patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
+          patchState(store, { user: userAfterLogin });
 
           router.navigate(['/dashboard']);
-          // router.navigate(['/home']);
 
         } catch (error) {
           snackbar.open('Invalid email or password', 'Close', {
@@ -71,7 +70,6 @@ export const AppStore = signalStore(
 
       logout: async () => {
         await authService.logout();
-        // await firebaseService.logout();
         patchState(store, { user: undefined });
         router.navigate(['/home']);
       },
@@ -90,16 +88,13 @@ export const AppStore = signalStore(
         // const response =
         await authService.register(email, password, confirmPassword);
           snackbar.open('Registration done', 'Close', {
-          verticalPosition: 'top',
-          horizontalPosition: 'right',
-        });
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+          });
         // messagesService.showMessage(
         //   response.email ? "Registration successful" : "Registration failed, please try again",
         //   response.email ? "success" : "error"
         // )
-
-        //   patchState(store, { user });
-          // patchState(store, { user: { email, name: "", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin" , lang: "en"} });
 
           router.navigate(['/login']);
 

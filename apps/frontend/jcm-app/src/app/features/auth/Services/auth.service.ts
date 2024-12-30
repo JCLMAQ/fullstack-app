@@ -1,15 +1,10 @@
-import { computed, effect, inject, Injectable, signal } from "@angular/core";
-// import {User} from "../models/user.model";
-// import { HttpClient } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
+import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "@prisma/client";
-// import { User } from "@fe/user";
 import { firstValueFrom } from "rxjs";
-// import { IUserRegister } from "../auth.model";
-// import { User } from "../../../shared/models/user";
 
-const USER_STORAGE_KEY = 'user';
+const USER_STORAGE_KEY = 'userOne';
 
 @Injectable({
   providedIn: 'root'
@@ -56,9 +51,10 @@ export class AuthService {
       // const login$ = this.httpClient.post<User>(`${environment.apiRoot}/login`, {
       email,
       password});
-    const user = await firstValueFrom(login$);
-    // const userbis = {email, name: "test", password, photoUrl: "https://avatars.githubusercontent.com/u/123456?u=1&v=4", role: "admin", lang: "fr"};
+    const response = await firstValueFrom(login$);
+    console.log("User logged: ", response)
 
+    const user =
     this.#userSignal.set(user);
     this.loginAsUser();
     return user;
@@ -72,25 +68,13 @@ export class AuthService {
       email,
       password,
       verifyPassword: confirmPassword,
-      lastName: 'test',
-      firstName: 'test',
-      nickName: 'test',
-      Gender: 'NONE',
-      Roles: "Roles.User",
+      lastName: '',
+      firstName: '',
+      nickName: '',
+      Gender: 'UNKNOWN',
+      Roles: "GUEST",
       // title: 'Sir',
       Language: "fr"
-// "email": "user3@test.be",
-// 	"password": "Pwd!123456",
-//     "verifyPassword": "Pwd!123456",
-//     "Gender": "MALE",
-//     "nickName": "JCMBIS",
-//     "lastName": "MAQBIS",
-//     "firstName": "Jean-Claude",
-//     "Roles": "ADMIN",
-//     "Language": "fr"
-
-
-
     });
     const response = await firstValueFrom(register$);
     console.log("Registing User Response: ", response)
