@@ -2,6 +2,10 @@
 import { StringUtilities } from '@be/common';
 import { DbConfigService } from '@be/db-config';
 import { MailsService } from '@be/mails';
+
+
+// Ensure ILoginResponse includes roles
+
 import { HttpException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -11,6 +15,7 @@ import { randomBytes } from 'crypto';
 import { I18nService } from 'nestjs-i18n';
 import { AuthsService } from '../auths.service';
 import { ForgotEmailAuthDto } from '../dto/forgot-email-auth.dto';
+import { LoginResponse } from '../dto/login-auth.dto';
 import { RegisterAuthDto } from '../dto/register-auth.dto';
 import { AccountValidationService } from './account-validation.service';
 import { TokenService } from './token.service';
@@ -44,7 +49,7 @@ export class LoginwithpwdService {
     Email and password Authentication
 */
 
-  async loginWithPwd(email: string , plaintextPassword: string | undefined, lang: string) {
+  async loginWithPwd(email: string , plaintextPassword: string | undefined, lang: string) : Promise<LoginResponse> {
     // Verify the email domain (if restriction active) and the structure of the email
     email = email.toLowerCase(); // Always use lower case email
     const emailValidation = await this.mailService.emailValidationProcess(email, lang)
@@ -78,7 +83,7 @@ export class LoginwithpwdService {
       const fullName = await this.userAuthService.generateFullName(userFound)
       return {
         access_token: this.jwtService.sign(payload),
-        fullName: fullName,
+        fullName: fullName ?? '',
         roles: userFound.Roles
       };
     }

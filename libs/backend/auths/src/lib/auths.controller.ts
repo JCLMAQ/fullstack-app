@@ -4,7 +4,7 @@ import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { Prisma, Token, User } from '@prisma/client';
 import { I18nLang, I18nService } from 'nestjs-i18n';
 import { AuthsService } from './auths.service';
-import { AuthDto } from './dto/auth.dto';
+import { AuthDto, ICurrentUser, IResponse } from './dto/auth.dto';
 import { ChangePwdDto } from './dto/changepwd-auth.dto';
 import { EmailAuthDto } from './dto/email-auth.dto';
 import { ForgotEmailAuthDto } from './dto/forgot-email-auth.dto';
@@ -34,7 +34,7 @@ export class AuthsController {
 // @Public()
   @UseGuards(JwtAuthGuard)
   @Get('auth/checkCredential/:emailCheck')
-  async checkCredential(@Param('emailCheck') emailCheck: string, @I18nLang() lang: string ) {
+  async checkCredential(@Param('emailCheck') emailCheck: string, @I18nLang() lang: string ): Promise<IResponse | ICurrentUser> {
       const userEmail= { email: emailCheck }
       const user = await this.userAuthService.getOneUserByUnique(userEmail);
       if (!user) {
@@ -76,7 +76,7 @@ export class AuthsController {
   // Register - Sign-up
   @Post('auth/registerwithpwd')
   // @UsePipes(new JoiValidationPipe(registerSchema)) // Joi Schema according : https://www.notion.so/jclmaq5510/Data-Validation-with-Joi-502789ddb6f349ea9d79d0447899cf3d?pvs=4
-  async registerWithPwd(@Body() registerUserDto: RegisterAuthDto, @I18nLang() lang: string): Promise<unknown> {
+  async registerWithPwd(@Body() registerUserDto: RegisterAuthDto, @I18nLang() lang: string): Promise<IResponse> {
     const isRegistered = await this.loginWithPasswdService.registerWithPwd(registerUserDto, lang);
     switch(isRegistered) {
       case "USER_CREATED": {
@@ -123,11 +123,17 @@ export class AuthsController {
 
   @UseGuards(JwtAuthGuard)
   @Post('auth/changepwd')
-  async changetPwd(@Body() userChangePwd: ChangePwdDto, @I18nLang() lang: string ): Promise<unknown> {
+  async changetPwd(@Body() userChangePwd: ChangePwdDto, @I18nLang() lang: string ): Promise<IResponse> {
     const userWhereUniqueInput: Prisma.UserWhereUniqueInput = { email: userChangePwd.email?.toLowerCase()};
     // Verify that dtat are not null or undifined
 
 
+    if (!userChangePwd.oldPassword || !userChangePwd.newPassword || !userChangePwd.verifyPassword) {
+        return {
+            success: false,
+            message: await this.i18n.translate("auths.CHANGE_PWD_ERROR",{ lang: lang, })
+        };
+    }
     const isOK = await this.loginWithPasswdService.changePasswordProcess(userWhereUniqueInput, userChangePwd.oldPassword, userChangePwd.newPassword, userChangePwd.verifyPassword, lang);
     if (!isOK) {
         return {
@@ -147,7 +153,7 @@ export class AuthsController {
 
   // Account validation with a token
   @Get('auth/valid-account/:token')
-  async accountValidation(@Param() params: {token: string}, @I18nLang() lang: string): Promise<unknown> {
+  async accountValidation(@Param() params: {token: string}, @I18nLang() lang: string): Promise<IResponse | Token> {
       let valideTkn: Token;
       try {
           valideTkn = await this.accountValidationService.verifyAccountValidationToken(params.token, lang);
@@ -171,7 +177,7 @@ export class AuthsController {
 
   // Ask for a new Account Validation email
   @Post('auth/new-email-validation-Account')
-  async emailAccountValidationwithYoken(@Body() emailAuthDto: EmailAuthDto, @I18nLang() lang: string): Promise<unknown> {
+  async emailAccountValidationwithYoken(@Body() emailAuthDto: EmailAuthDto, @I18nLang() lang: string): Promise<IResponse> {
     // Verify if user exist
     const email = {email: emailAuthDto.email}
     const userExist = await this.userAuthService.getOneUserByUnique(email)
@@ -218,7 +224,7 @@ export class AuthsController {
 
     //@UseGuards(LocalAuthGuard)
     @Post('auth/email/forgot-password')
-    async sendEmailForgotPassword(@Body() emailForgot: ForgotEmailAuthDto, @I18nLang() lang: string): Promise<unknown> {
+    async sendEmailForgotPassword(@Body() emailForgot: ForgotEmailAuthDto, @I18nLang() lang: string): Promise<IResponse> {
         try {
             const isEmailSent = await this.loginWithPasswdService.sendEmailForgotPwd(emailForgot, lang);
             if (isEmailSent) {
@@ -234,9 +240,9 @@ export class AuthsController {
             }
         } catch (error) {
             return {
-                answer: "bad news...",
+                // answer: "bad news...",
                 success: false,
-                message: `${error}`
+                message: `Bad News... (Error: ${error})`
             }
         }
     }
@@ -244,14 +250,14 @@ export class AuthsController {
     // Validate the password forgot token send back
     // @UseGuards(LocalAuthGuard)
     @Get('auth/email/reset-password/:token')
-    async validateToken(@Param() params: {token: string}, @I18nLang() lang: string): Promise<unknown> {
+    async validateToken(@Param() params: {token: string}, @I18nLang() lang: string): Promise<IResponse | Token> {
         let valideTkn: Token;
         try {
             valideTkn = await this.loginWithPasswdService.verifyForgotPwdToken(params.token, lang);
         } catch (error) {
             return {
                 success: false,
-                message: `${error}`
+                message: `Bad News... (Error: ${error})`
             }
         }
         return valideTkn;
@@ -259,7 +265,7 @@ export class AuthsController {
 
     // Reset forgotpwd: the new password and the verification password
     @Post('auth/email/reset-password/:token')
-    async resetPwd(@Param() params: {token: string}, @Body() forgotAuth: ForgotAuth, @I18nLang() lang: string): Promise<unknown> {
+    async resetPwd(@Param() params: {token: string}, @Body() forgotAuth: ForgotAuth, @I18nLang() lang: string): Promise<IResponse> {
         const { newPassword, verifyPassword } = forgotAuth;
         let valideTknObj: Token | null;
         let user: User | null;

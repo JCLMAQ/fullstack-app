@@ -44,7 +44,7 @@ export const registerSchema = Joi.object({
   nickName:Joi.string().alphanum().min(3).max(10),
   Gender: Gender ,
   // social: Joi.object({}).optional(),
-  // Language: Language,
+  Language: Language,
   Roles: Role,
   // dob: Date
 });

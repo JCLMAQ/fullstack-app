@@ -48,10 +48,12 @@ export const AppStore = signalStore(
             return;
           }
 
-          const userAfterLogin = await authService.login(email, password);
-          console.log("user after login: ", userAfterLogin);
+          const loginResponse = await authService.login(email, password);
+          console.log("user after login: ", loginResponse);
 
-          patchState(store, { user: userAfterLogin });
+          patchState(store, {
+            user,
+            authToken: loginResponse.id});
 
           router.navigate(['/dashboard']);
 
