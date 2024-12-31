@@ -26,19 +26,19 @@ export class ApiHandlerService implements IApiBaseActions {
       .pipe(tap((x) => this.HandleResponse(x)));
   }
 
-  Post(url: string, data: any, params?: ParamsType) {
+  Post(url: string, data: unknown, params?: ParamsType) {
     return this.httpClient
       .post(url, data, {params: this.createParams(params)})
       .pipe(tap((x) => this.HandleResponse(x)));
   }
 
-  Delete(url: string, data:any, params?: ParamsType) {
+  Delete(url: string, data:unknown, params?: ParamsType) {
     return this.httpClient
       .delete(url, {params: this.createParams(params)})
       .pipe(tap((x) => this.HandleResponse(x)));
   }
 
-  Put(url: string, data: any, params?: ParamsType) {
+  Put(url: string, data: unknown, params?: ParamsType) {
     return this.httpClient
       .put(url, data, {params: this.createParams(params)})
       .pipe(tap((x) => this.HandleResponse(x)));
