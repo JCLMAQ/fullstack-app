@@ -9,6 +9,7 @@ import { ChangePwdDto } from './dto/changepwd-auth.dto';
 import { EmailAuthDto } from './dto/email-auth.dto';
 import { ForgotEmailAuthDto } from './dto/forgot-email-auth.dto';
 import { ForgotAuth } from './dto/forgot-pwd-auth.dto';
+import { LoginResponse } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
@@ -43,10 +44,10 @@ export class AuthsController {
           message: await this.i18n.translate("auths.EMAIL_NOT_FOUND",{ lang: lang, }) //'no email found'
         }
       }
-      const fullName: string | null | undefined  = await this.userAuthService.generateFullName(user)
+      const fullName: string | null | undefined = await this.userAuthService.generateFullName(user)
       return {
-          email: user.email,
-          fullName: fullName
+        user: user,
+        fullName: fullName
       };
   }
 
@@ -54,7 +55,7 @@ export class AuthsController {
   // Login with password (and email) - Sign-in
   @UseGuards(LocalAuthGuard) // Local strategy verify the password
   @Post('auth/loginwithpwd')
-  async loginWithPwd(@Body() userCredential: AuthDto, @I18nLang() lang: string): Promise<unknown> {
+  async loginWithPwd(@Body() userCredential: AuthDto, @I18nLang() lang: string): Promise<LoginResponse> {
       return await this.loginWithPasswdService.loginWithPwd(userCredential.email, userCredential.password, lang);
   }
 

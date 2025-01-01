@@ -1,4 +1,4 @@
-import { Gender, Language, Role, Title } from "@prisma/client";
+import { Gender, Language, Role, Title, User } from "@prisma/client";
 
 export interface IUserRegister {
   email: string;
@@ -15,18 +15,19 @@ export interface IUserRegister {
 
 export interface IUserLogged {
   email: string;
-  lastName?: string;
-  firstName?: string;
-  nickName?: string;
-  title?: Title;
-  Gender?: Gender;
-  Role?: Role[];
-  Language?: Language;
+  lastName?: string | null | undefined;
+  firstName?: string| null;
+  nickName?: string| null;
+  title?: Title| null;
+  Gender?: Gender| null;
+  Role?: Role[]| null;
+  Language?: Language| null;
+  fullName?: string | null | undefined;
 }
 
 
 export interface ICurrentUser {
-  username?: string;
+  user?: User;
   fullName?: string;
 }
 
@@ -36,7 +37,7 @@ export interface IRegisterResponse {
 }
 export interface ILoginResponse {
   // authJwtToken: string;
-  // user: User;
+  user: IUserLogged;
   access_token: string;
   fullName: string;
   role: Role[];

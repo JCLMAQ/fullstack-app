@@ -27,7 +27,7 @@ export const AppStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed((store, authService = inject(AuthService)) => ({
-    userbis: computed(() => authService.user()),
+    user: computed(() => authService.user()),
   })),
   withMethods(
     (
