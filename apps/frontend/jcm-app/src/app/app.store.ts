@@ -8,13 +8,14 @@ import {
   withMethods,
   withState
 } from '@ngrx/signals';
-import { User } from '@prisma/client';
+// import { User } from '@prisma/client';
+import { IUserLogged } from './features/auth/auth.model';
 import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
 
 // type AppState = {};
 type AppState = {
-  user: User | undefined,
+  user: IUserLogged | undefined,
   authToken: string | undefined
 };
 
