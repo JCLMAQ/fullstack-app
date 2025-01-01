@@ -5,7 +5,7 @@ import { PrismaService } from '@prisma/prisma';
 import { enhance } from '@zenstackhq/runtime';
 import RESTHandler from '@zenstackhq/server/api/rest';
 import { ZenStackMiddleware } from '@zenstackhq/server/express';
-import { Request, Response } from 'express';
+import { Request, Response } from 'express-serve-static-core';
 
 @Injectable()
 export class CrudMiddleware implements NestMiddleware {

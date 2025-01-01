@@ -8,9 +8,10 @@ export interface IUserRegister {
   firstName?: string;
   nickName?: string;
   title?: Title;
-  Role?: Role[];
+  Roles?: Role[];
   Language?: Language;
   Gender?: Gender;
+  photoUrl?: string;
 }
 
 export interface IUserLogged {
@@ -20,9 +21,10 @@ export interface IUserLogged {
   nickName?: string| null;
   title?: Title| null;
   Gender?: Gender| null;
-  Role?: Role[]| null;
+  Roles?: Role[]| null;
   Language?: Language| null;
   fullName?: string | null | undefined;
+  photoUrl?: string;
 }
 
 

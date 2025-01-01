@@ -172,6 +172,7 @@
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint__js": "^8.42.3",
     "@types/express": "^5.0.0",
+    "@types/express-serve-static-core":"4.19.6",
     "@types/fs-extra": "^11.0.4",
     "@types/jasmine": "~5.1.5",
     "@types/jest": "^29.5.14",

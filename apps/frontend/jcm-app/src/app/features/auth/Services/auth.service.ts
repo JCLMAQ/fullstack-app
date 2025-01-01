@@ -64,8 +64,6 @@ export class AuthService {
       this.#userSignal.set(userLogged);
     }
 
-    // this.#userSignal.set(user);
-
     this.loginAsUser();
     return response;
   }
@@ -116,7 +114,17 @@ export class AuthService {
         }),
       );
       if (user) {
-        return { email: user.email, lastName: user.lastName, firstName: user.firstName, nickName: user.nickName, fullName, title: user.title, Gender: user.Gender, Role: user.Roles, Language: user.Language };
+        return { email: user.email,
+          lastName: user.lastName,
+          firstName: user.firstName,
+          nickName: user.nickName,
+          fullName,
+          title: user.title,
+          Gender: user.Gender,
+          Roles: user.Roles,
+          Language: user.Language,
+          photoUrl: user.photoUrl ?? ''
+        };
       } else {
         return null;
       }

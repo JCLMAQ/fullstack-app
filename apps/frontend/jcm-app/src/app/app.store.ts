@@ -53,8 +53,8 @@ export const AppStore = signalStore(
           console.log("user after login: ", loginResponse);
 
           patchState(store, {
-            user,
-            authToken: loginResponse.id});
+            user: loginResponse.user,
+            authToken: loginResponse.access_token});
 
           router.navigate(['/dashboard']);
 
