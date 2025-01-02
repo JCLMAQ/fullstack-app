@@ -4,18 +4,18 @@
 
 import {
   HttpErrorResponse,
+  HttpEvent,
   HttpHandler,
+  HttpHandlerFn,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable()
-export class OfflineModeInterceptor implements HttpInterceptor {
-  constructor() {}
+export function OfflineModeInterceptor (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
 
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
     // Check if the device is offline
     if (!navigator.onLine) {
       // Handle offline mode (e.g., store requests for later)
@@ -23,6 +23,6 @@ export class OfflineModeInterceptor implements HttpInterceptor {
       return throwError(new HttpErrorResponse({ status: 0, statusText: 'Offline' }));
     }
 
-    return next.handle(request);
+    return next(request);
   }
 }

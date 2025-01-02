@@ -4,23 +4,15 @@ to automatically request compressed content (e.g., gzip) from the server,
 reducing the amount of data transferred over the network.
 */
 
-import {
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-@Injectable()
-export class CompressionInterceptor implements HttpInterceptor {
-  constructor() {}
-
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
+export function CompressionInterceptor (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
     const compressedRequest = request.clone({
-      setHeaders: {
-        'Accept-Encoding': 'gzip, deflate',
-      },
+        setHeaders: {
+            'Accept-Encoding': 'gzip, deflate',
+        },
     });
-    return next.handle(compressedRequest);
-  }
+    return next(compressedRequest);
+
 }

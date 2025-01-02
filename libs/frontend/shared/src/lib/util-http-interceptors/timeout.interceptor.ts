@@ -6,21 +6,19 @@ requests from blocking your application.
 
 
 import {
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, timeout } from 'rxjs/operators';
 
 @Injectable()
-export class TimeoutInterceptor implements HttpInterceptor {
-  constructor() {}
+export function TimeoutInterceptor (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     const timeoutDuration = 10000; // 10 seconds
-    return next.handle(request).pipe(
+    return next(request).pipe(
       timeout(timeoutDuration),
       catchError((error) => {
         if (error.name === 'TimeoutError') {
@@ -32,4 +30,4 @@ export class TimeoutInterceptor implements HttpInterceptor {
       })
     );
   }
-}
+

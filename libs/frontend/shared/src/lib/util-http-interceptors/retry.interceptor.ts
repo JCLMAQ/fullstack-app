@@ -3,20 +3,17 @@
 //issues.
 
 import {
-  HttpHandler,
-  HttpInterceptor,
+  HttpEvent,
+  HttpHandlerFn,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 
-@Injectable()
-export class RetryInterceptor implements HttpInterceptor {
-  constructor() {}
-
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
+export function RetryInterceptor  (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
     // Define the maximum number of retries
     const maxRetries = 3;
-    return next.handle(request).pipe(retry(maxRetries));
+    return next(request).pipe(retry(maxRetries));
   }
 }

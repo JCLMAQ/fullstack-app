@@ -5,18 +5,18 @@ helping you identify performance bottlenecks.
 */
 
 import {
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class RequestTimingInterceptor implements HttpInterceptor {
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
+export function RequestTimingInterceptor (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
+
     const startTime = Date.now();
-    return next.handle(request).pipe(
+    return next(request).pipe(
       tap(() => {
         const endTime = Date.now();
         const duration = endTime - startTime;
@@ -24,4 +24,4 @@ export class RequestTimingInterceptor implements HttpInterceptor {
       })
     );
   }
-}
+

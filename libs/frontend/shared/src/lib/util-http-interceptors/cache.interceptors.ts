@@ -6,6 +6,7 @@ reducing the number of unnecessary network requests.
 
 import {
   HttpHandler,
+  HttpHandlerFn,
   HttpInterceptor,
   HttpRequest,
   HttpResponse
@@ -15,24 +16,23 @@ import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class CacheInterceptor implements HttpInterceptor {
-  private cache = new Map<string, HttpResponse<any>>();
+export function CacheInterceptor (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
+  const cache = new Map<string, HttpResponse<any>>();
 
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
-    if (request.method !== 'GET') {
-      return next.handle(request);
+    if (req.method !== 'GET') {
+      return next(req);
     }
 
-    const cachedResponse = this.cache.get(request.url);
+    const cachedResponse = cache.get(req.url);
 
     if (cachedResponse) {
       return of(cachedResponse);
     }
 
-    return next.handle(request).pipe(
+    return next(req).pipe(
       tap((event) => {
         if (event instanceof HttpResponse) {
-          this.cache.set(request.url, event);
+          cache.set(req.url, event);
         }
       })
     );

@@ -4,30 +4,21 @@
  that the server sends responses in the appropriate language.
 */
 
-import {
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { HttpRequest, HttpHandlerFn, HttpEvent } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Observable } from 'rxjs';
 import { LocaleService } from './locale.service';
 
-@Injectable()
-export class LocalizationInterceptor implements HttpInterceptor {
-  private localeService = inject(LocaleService);
+export function LocalizationInterceptor (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
+  const localeService = inject(LocaleService) as LocaleService;
 
-  constructor() {}
-
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
-    const userLocale = this.localeService.getUserLocale();
+    const userLocale = localeService.getUserLocale();
     const localizedRequest = request.clone({
       setHeaders: {
         'Accept-Language': userLocale,
       },
     });
-    return next.handle(localizedRequest);
+    return next(localizedRequest);
   }
 }
