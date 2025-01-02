@@ -8,7 +8,8 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRoutes } from './app.routes';
-import { AuthInterceptor, LoggingInterceptor } from './features/auth/auth.interceptor';
+import { AuthInterceptor } from './features/auth/auth.interceptor';
+import { LoggingInterceptor } from './features/auth/loggind.interceptors';
 
 
 // export function httpLoaderFactory(http: HttpClient): TranslateHttpLoader {
