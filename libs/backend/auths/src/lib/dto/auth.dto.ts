@@ -1,4 +1,4 @@
-import { Gender, Language, Role, Title, User } from "@prisma/client";
+import { Gender, Language, Role, Title } from "@prisma/client";
 import { IsEmail, IsString } from "class-validator";
 import * as Joi from 'joi';
 
@@ -22,8 +22,7 @@ export interface IResponse {
 }
 
 export interface ICurrentUser {
-  //
-  user: User | null;
+  user: IUserLogged | null;
   fullName: string | null;
 }
 
@@ -36,6 +35,7 @@ export interface IUserLogged {
   Gender?: Gender;
   Role?: Role[];
   Language?: Language;
+  photoUrl?: string;
 }
 
 

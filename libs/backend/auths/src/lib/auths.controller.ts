@@ -4,7 +4,7 @@ import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { Prisma, Token, User } from '@prisma/client';
 import { I18nLang, I18nService } from 'nestjs-i18n';
 import { AuthsService } from './auths.service';
-import { AuthDto, ICurrentUser, IResponse } from './dto/auth.dto';
+import { AuthDto, ICurrentUser, IResponse, IUserLogged } from './dto/auth.dto';
 import { ChangePwdDto } from './dto/changepwd-auth.dto';
 import { EmailAuthDto } from './dto/email-auth.dto';
 import { ForgotEmailAuthDto } from './dto/forgot-email-auth.dto';
@@ -34,9 +34,9 @@ export class AuthsController {
   // Verify if the user exist (with his email)
 // @Public()
   @UseGuards(JwtAuthGuard)
-  @Get('auth/checkCredential/:emailCheck')
-  async checkCredential(@Param('emailCheck') emailCheck: string, @I18nLang() lang: string ): Promise<IResponse | ICurrentUser> {
-      const userEmail= { email: emailCheck }
+  @Get('auth/loggedUser/:emailId')
+  async getOneUserByEmail(@Param('emailId') emailId: string, @I18nLang() lang: string ): Promise<IResponse | ICurrentUser> {
+      const userEmail= { email: emailId }
       const user = await this.userAuthService.getOneUserByUnique(userEmail);
       if (!user) {
         return {
@@ -45,12 +45,43 @@ export class AuthsController {
         }
       }
       const fullName: string | null | undefined = await this.userAuthService.generateFullName(user)
+      const userLogged: IUserLogged = {
+        email: user.email,
+        lastName: user.lastName || undefined,
+        firstName: user.firstName || undefined,
+        nickName: user.nickName || undefined,
+        title: user.title || undefined,
+        Gender: user.Gender || undefined,
+        Role: user.Roles || undefined,
+        Language: user.Language || undefined,
+        photoUrl: user.photoUrl || undefined
+      }
+
       return {
-        user: user,
+        user: userLogged,
         fullName: fullName
       };
   }
 
+  // Verify if the user exist (with his email)
+// @Public()
+@UseGuards(JwtAuthGuard)
+@Get('auth/checkCredential/:emailCheck')
+async checkCredential(@Param('emailCheck') emailCheck: string, @I18nLang() lang: string ): Promise<IResponse | ICurrentUser> {
+    const userEmail= { email: emailCheck }
+    const user = await this.userAuthService.getOneUserByUnique(userEmail);
+    if (!user) {
+      return {
+        success: false,
+        message: await this.i18n.translate("auths.EMAIL_NOT_FOUND",{ lang: lang, }) //'no email found'
+      }
+    }
+    const fullName: string | null | undefined = await this.userAuthService.generateFullName(user)
+    return {
+      user: user,
+      fullName: fullName
+    };
+}
 
   // Login with password (and email) - Sign-in
   @UseGuards(LocalAuthGuard) // Local strategy verify the password

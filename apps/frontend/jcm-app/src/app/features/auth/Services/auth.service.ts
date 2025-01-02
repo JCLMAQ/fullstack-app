@@ -6,6 +6,7 @@ import { firstValueFrom } from "rxjs";
 import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../auth.model";
 
 const USER_STORAGE_KEY = 'user';
+const AUTH_TOKEN_STORAGE_KEY = 'authJwtToken';
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +28,22 @@ export class AuthService {
   private adminRole = false;
 
   constructor() {
+    this.#authTokenSignal.set(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || undefined )
     this.loadUserFromStorage();
     effect(() => {
       const user = this.user();
       if (user) {
         localStorage.setItem(USER_STORAGE_KEY,
           JSON.stringify(user));
-      }
+      };
+      const authToken = this.authToken();
+      if (authToken) {
+        localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, authToken);
+      };
     });
 
-    this.#authTokenSignal.set(localStorage["authJwtToken"] || undefined ) ; //this.#authToken = localStorage["authJwtToken"] || '';
-
+    // this.#authTokenSignal.set(localStorage["authJwtToken"] || undefined ) ; //this.#authToken = localStorage["authJwtToken"] || '';
+    // this.#authTokenSignal.set(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || undefined )
   }
 
   loadUserFromStorage() {
@@ -58,7 +64,7 @@ export class AuthService {
     const response = await firstValueFrom(login$);
 
     this.#authTokenSignal.set(response.access_token);
-    localStorage.setItem("authJwtToken", response.access_token);
+    // localStorage.setItem("authJwtToken", response.access_token);
 
     console.log("User logged: ", response)
 
@@ -96,6 +102,8 @@ export class AuthService {
 
   async logout() {
     localStorage.removeItem(USER_STORAGE_KEY);
+    localStorage.removeItem("authJwtToken");
+    this.#authTokenSignal.set(undefined);
     this.#userSignal.set(undefined);
     console.log("User: ", this.user)
 
@@ -114,27 +122,28 @@ export class AuthService {
       const emailToCheck = decodedJwt.username; // username = email
       if (emailToCheck) {
       const response = await firstValueFrom(
-        this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/checkCredential/${emailToCheck}`)
+        this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/loggedUser/${emailToCheck}`)
       );
       if ('success' in response) {
         console.error(response.message);
         return null;
       }
-      const { user, fullName } = response;
-      if (user) {
-        return {
-          email: user.email,
-          lastName: user.lastName,
-          firstName: user.firstName,
-          nickName: user.nickName,
-          fullName,
-          title: user.title,
-          Gender: user.Gender,
-          Roles: user.Roles,
-          Language: user.Language,
-          photoUrl: user.photoUrl ?? ''
-        };
-      }
+      // const { user, fullName } = response;
+      // if (user) {
+      //   return {
+      //     email: user.email,
+      //     lastName: user.lastName,
+      //     firstName: user.firstName,
+      //     nickName: user.nickName,
+      //     fullName,
+      //     title: user.title,
+      //     Gender: user.Gender,
+      //     Roles: user.Roles,
+      //     Language: user.Language,
+      //     photoUrl: user.photoUrl ?? ''
+      //   };
+      // }
+      return response.user;
 
       }
     }
@@ -162,9 +171,5 @@ export class AuthService {
     this.authenticated = false;
     this.adminRole = false;
   }
-
-//   getUserInfo(uid: string): User {
-//     return this.user();
-// }
 
 }

@@ -9,17 +9,18 @@ import {
   withState
 } from '@ngrx/signals';
 // import { User } from '@prisma/client';
+import { IUserLogged } from './features/auth/auth.model';
 import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
 
 // type AppState = {};
 type AppState = {
-  // user: IUserLogged | undefined,
+  user: IUserLogged | undefined,
   authToken: string | undefined
 };
 
 const initialState: AppState = {
-  // user: undefined,
+  user: undefined,
   authToken: undefined
 };
 
@@ -28,6 +29,7 @@ export const AppStore = signalStore(
   withState(initialState),
   withComputed((store, authService = inject(AuthService)) => ({
     user: computed(() => authService.user()),
+    authToken: computed(() => authService.authToken()),
   })),
   withMethods(
     (
@@ -52,7 +54,7 @@ export const AppStore = signalStore(
           console.log("user after login: ", loginResponse);
 
           patchState(store, {
-            // user: loginResponse.user,
+            user: loginResponse.user,
             authToken: loginResponse.access_token});
 
           router.navigate(['/dashboard']);
