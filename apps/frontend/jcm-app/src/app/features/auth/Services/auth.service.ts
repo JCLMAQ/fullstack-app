@@ -3,7 +3,7 @@ import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { jwtDecode } from "jwt-decode";
 import { firstValueFrom } from "rxjs";
-import { ICurrentUser, IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../auth.model";
+import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../auth.model";
 
 const USER_STORAGE_KEY = 'user';
 
@@ -12,20 +12,19 @@ const USER_STORAGE_KEY = 'user';
 })
 export class AuthService {
 
-  #userSignal = signal<IUserLogged | undefined>(undefined);
+  httpClient = inject(HttpClient);
+  router = inject(Router);
 
+  #userSignal = signal<IUserLogged | undefined>(undefined);
   user = this.#userSignal.asReadonly();
+
+  #authTokenSignal= signal<string | undefined>(undefined);
+  authToken = this.#authTokenSignal.asReadonly();
 
   isLoggedIn = computed(() => !!this.user());
 
   private authenticated = false;
   private adminRole = false;
-
-  authToken: string;
-
-  httpClient = inject(HttpClient);
-
-  router = inject(Router);
 
   constructor() {
     this.loadUserFromStorage();
@@ -37,7 +36,7 @@ export class AuthService {
       }
     });
 
-    this.authToken = localStorage["authJwtToken"] || '';
+    this.#authTokenSignal.set(localStorage["authJwtToken"] || undefined ) ; //this.#authToken = localStorage["authJwtToken"] || '';
 
   }
 
@@ -57,6 +56,10 @@ export class AuthService {
       email,
       password});
     const response = await firstValueFrom(login$);
+
+    this.#authTokenSignal.set(response.access_token);
+    localStorage.setItem("authJwtToken", response.access_token);
+
     console.log("User logged: ", response)
 
     const userLogged = await this.fetchUser();
@@ -104,17 +107,23 @@ export class AuthService {
   async fetchUser(): Promise<IUserLogged | null> {
 
     //  get user data from backend with authToken
-    if (this.authToken) {
-      const decodedJwt: IJwt = jwtDecode(this.authToken);
+    const authToken = this.authToken();
+    if (authToken) {
+      const decodedJwt: IJwt = jwtDecode(authToken);
       console.log("Decoded JWT: ", decodedJwt);
       const emailToCheck = decodedJwt.username; // username = email
-      const { user, fullName } = await firstValueFrom(
-        this.httpClient.post<ICurrentUser>('api/auths/checkCredential/', {
-          emailToCheck,
-        }),
+      if (emailToCheck) {
+      const response = await firstValueFrom(
+        this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/checkCredential/${emailToCheck}`)
       );
+      if ('success' in response) {
+        console.error(response.message);
+        return null;
+      }
+      const { user, fullName } = response;
       if (user) {
-        return { email: user.email,
+        return {
+          email: user.email,
           lastName: user.lastName,
           firstName: user.firstName,
           nickName: user.nickName,
@@ -125,12 +134,11 @@ export class AuthService {
           Language: user.Language,
           photoUrl: user.photoUrl ?? ''
         };
-      } else {
-        return null;
       }
-    } else {
-      return null;
+
+      }
     }
+    return null;
   }
 
   isAuthenticated() {

@@ -1,13 +1,21 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export function LoggingInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
+  console.log(req.url);
+  return next(req);
+}
 
-    intercept(req: HttpRequest<unknown>,
-        next: HttpHandler): Observable<HttpEvent<unknown>> {
+// @Injectable()
+// export function AuthInterceptor(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+//   const authJwtToken = localStorage.getItem('authJwtToken');
+//   const authReq = req.clone({
+//     setHeaders: { Authorization: `Bearer ${authJwtToken}` }
+//   });
+//   return next.handle(authReq);
+// }
 
+export function AuthInterceptor (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
         const authJwtToken = localStorage.getItem('authJwtToken');
         if (authJwtToken) {
             const cloned = req.clone({
@@ -15,10 +23,13 @@ export class AuthInterceptor implements HttpInterceptor {
                     .set('Authorization',`Bearer ${authJwtToken}`)
             });
 
-            return next.handle(cloned);
+            return next(cloned);
         }
         else {
-            return next.handle(req);
+            return next(req);
         }
     }
-}
+
+
+
+

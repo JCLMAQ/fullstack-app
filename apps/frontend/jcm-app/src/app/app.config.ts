@@ -4,9 +4,12 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
+
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRoutes } from './app.routes';
+import { AuthInterceptor, LoggingInterceptor } from './features/auth/auth.interceptor';
+
 
 // export function httpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 //   return new TranslateHttpLoader(http);
@@ -23,9 +26,13 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(),
       withInterceptors([
-        //loadingInterceptor
-      ])
+        LoggingInterceptor,
+        AuthInterceptor,
+      ]),
+
     ),
+
+
     provideTranslateService({
       loader: {
         provide: TranslateLoader,
