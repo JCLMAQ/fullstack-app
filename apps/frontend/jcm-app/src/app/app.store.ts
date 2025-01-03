@@ -9,9 +9,9 @@ import {
   withState
 } from '@ngrx/signals';
 // import { User } from '@prisma/client';
+import { MessagesService } from '@fe/messages';
 import { IUserLogged } from './features/auth/models/auth.model';
 import { AuthService } from './features/auth/Services/auth.service';
-import { MessagesService } from './shared/messages/messages.service';
 
 type AppState = {
   user: IUserLogged | undefined,

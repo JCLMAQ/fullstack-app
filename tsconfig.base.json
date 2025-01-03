@@ -39,13 +39,13 @@
       "@fe/error-field": ["libs/frontend/ui/error-field/src/index.ts"],
       "@fe/geolocation": ["libs/frontend/ui/geolocation/src/index.ts"],
       "@fe/home": ["libs/frontend/ui/pages/src/index.ts"],
+      "@fe/messages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/image-uploader": ["libs/frontend/ui/image-uploader/src/index.ts"],
       "@fe/language-selector": ["libs/frontend/ui/i18n/src/index.ts"],
       "@fe/loading-indicator": [
         "libs/frontend/ui/loading-indicator/src/index.ts"
       ],
       "@fe/material": ["libs/frontend/material/src/index.ts"],
-      "@fe/messages": ["libs/frontend/ui/messages/src/index.ts"],
       "@fe/post": ["libs/frontend/post/src/index.ts"],
       "@fe/simpledialog": ["libs/frontend/ui/simpledialog/src/index.ts"],
       "@fe/theme-selector": [
