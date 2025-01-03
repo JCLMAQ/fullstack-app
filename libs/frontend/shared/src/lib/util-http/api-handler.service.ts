@@ -1,10 +1,11 @@
 
-
+// Create an interface for strong typing. also for intellisense.
+// from: https://medium.com/@zeeshankhan8838/best-practice-to-use-http-service-1f4378145620
 
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { tap } from "rxjs/internal/operators/tap";
-import { responseMessage } from "../constants/response.constant";
+import { responseMessage } from "../../constants/response.constant";
 import { IApiBaseActions, ParamsType } from "./api-base-actions.interface";
 
 @Injectable({
@@ -47,6 +48,8 @@ export class ApiHandlerService implements IApiBaseActions {
   HandleResponse(response: any) {
     if (response.Status === 500) {
       alert(responseMessage.serverError);
+    } else if (response.Status === 401) {
+      alert(responseMessage.unauthorized);
     }
   }
 

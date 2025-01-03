@@ -1,4 +1,31 @@
 /*
+If you use the new HttpClientModule, you can use the following code to provide the interceptor:
+!!! The order of the interceptors is important. The interceptors will be applied in the order they are provided.
+providers: [
+...
+provideHttpClient(
+      withFetch(),
+      withInterceptors([
+        AuthInterceptor,
+        ErrorInterceptor
+        LoggingInterceptor,
+        HeadersInterceptor,
+        LoadingInterceptor,
+        TimeoutInterceptor,
+        BaseUrlInterceptor,
+        RetryInterceptor,
+        OfflineModeInterceptor,
+        JwtRefreshInterceptor,
+        RequestTimingInterceptor,
+        LocalizationInterceptor,
+        CspInterceptor,
+        CompressionInterceptor,
+      ]),
+    ),
+],
+
+
+If you still use the ng module, you can use the following code to provide the interceptor:
 To use interceptors in your Angular application, you need to
 provide them in your app’s root module.
 Here’s an example of how to do this:

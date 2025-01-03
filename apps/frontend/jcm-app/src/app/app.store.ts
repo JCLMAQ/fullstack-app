@@ -13,7 +13,6 @@ import { IUserLogged } from './features/auth/auth.model';
 import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
 
-// type AppState = {};
 type AppState = {
   user: IUserLogged | undefined,
   authToken: string | undefined
@@ -23,6 +22,11 @@ const initialState: AppState = {
   user: undefined,
   authToken: undefined
 };
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+// type AppState = {};
+
+// const initialState: AppState = {};
 
 export const AppStore = signalStore(
   { providedIn: 'root' },
@@ -65,10 +69,10 @@ export const AppStore = signalStore(
             horizontalPosition: 'right',
           });
           console.error(error);
-          messagesService.showMessage(
-            "Login failed, please try again",
-            "error"
-          )
+          // messagesService.showMessage(
+          //   "Login failed, please try again",
+          //   "error"
+          // )
         }
       },
 

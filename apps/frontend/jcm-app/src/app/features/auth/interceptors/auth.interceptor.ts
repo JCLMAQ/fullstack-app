@@ -1,8 +1,11 @@
 import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AppStore } from '../../../app.store';
 
 export function AuthInterceptor (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
-    const authJwtToken = localStorage.getItem('authJwtToken');
+    const authJwtTokenbis = localStorage.getItem('authJwtToken');
+    const authJwtToken = inject(AppStore).authToken();
     if (authJwtToken) {
         const cloned = request.clone({
             headers: request.headers

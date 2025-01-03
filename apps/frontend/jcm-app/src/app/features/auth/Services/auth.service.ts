@@ -64,7 +64,7 @@ export class AuthService {
     const response = await firstValueFrom(login$);
 
     this.#authTokenSignal.set(response.access_token);
-    // localStorage.setItem("authJwtToken", response.access_token);
+    localStorage.setItem("authJwtToken", response.access_token);
 
     console.log("User logged: ", response)
 

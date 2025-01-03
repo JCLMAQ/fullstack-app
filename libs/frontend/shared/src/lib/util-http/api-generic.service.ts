@@ -1,5 +1,7 @@
 // Inheriting the base service or using Dependency injection. finally, we have a generic service
 // for CRUD operation that is used throughout the application.
+// Create an interface for strong typing. also for intellisense.
+// from: https://medium.com/@zeeshankhan8838/best-practice-to-use-http-service-1f4378145620
 
 import { Injectable, inject } from '@angular/core';
 import { ApiHandlerService } from './api-handler.service';
@@ -10,11 +12,6 @@ import { ApiHandlerService } from './api-handler.service';
 export class GenericService {
   private apiService = inject(ApiHandlerService);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {
-  }
   get(endpoint:string){
     return this.apiService.Get(`${AppSettings}`+endpoint)
   }

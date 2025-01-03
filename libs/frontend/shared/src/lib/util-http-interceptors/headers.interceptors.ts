@@ -6,11 +6,9 @@ to set headers like ‘Content-Type’ or include API keys.
 
 import {
   HttpEvent,
-  HttpHandler,
   HttpHandlerFn,
   HttpHeaders,
-  HttpInterceptor,
-  HttpRequest,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -26,4 +24,4 @@ export function HeadersInterceptor (request: HttpRequest<unknown>, next: HttpHan
     const headersRequest = request.clone({ headers });
     return next(headersRequest);
   }
-}
+

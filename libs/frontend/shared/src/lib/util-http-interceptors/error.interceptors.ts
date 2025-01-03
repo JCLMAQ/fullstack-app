@@ -18,4 +18,4 @@ export function ErrorInterceptor (request: HttpRequest<unknown>, next: HttpHandl
       })
     );
   }
-}
+

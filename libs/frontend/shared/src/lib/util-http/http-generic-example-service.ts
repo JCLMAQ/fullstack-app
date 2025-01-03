@@ -32,9 +32,6 @@ export class PostService extends ResourceService<Post>{
 export class CommentService extends ResourceService<Comment>{
   protected override httpClient: HttpClient;
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
 
   constructor() {
     const httpClient = inject(HttpClient);

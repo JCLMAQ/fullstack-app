@@ -9,11 +9,6 @@ export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
 export class BrowserStorageService {
   storage = inject<Storage>(BROWSER_STORAGE);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
-
   get(key: string) {
     return this.storage.getItem(key);
   }
