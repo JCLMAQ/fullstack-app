@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
-import { ICurrentUser, IJwt, ILoginResponse } from '../auth.model';
+import { ICurrentUser, IJwt, ILoginResponse } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root'

@@ -9,7 +9,7 @@ import {
   withState
 } from '@ngrx/signals';
 // import { User } from '@prisma/client';
-import { IUserLogged } from './features/auth/auth.model';
+import { IUserLogged } from './features/auth/models/auth.model';
 import { AuthService } from './features/auth/Services/auth.service';
 import { MessagesService } from './shared/messages/messages.service';
 

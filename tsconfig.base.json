@@ -47,7 +47,7 @@
       "@fe/material": ["libs/frontend/material/src/index.ts"],
       "@fe/messages": ["libs/frontend/ui/messages/src/index.ts"],
       "@fe/post": ["libs/frontend/post/src/index.ts"],
-      "@fe/shared": ["libs/frontend/shared/src/index.ts"],
+      "@fe/utilities": ["libs/frontend/utilities/src/index.ts"],
       "@fe/simpledialog": ["libs/frontend/ui/simpledialog/src/index.ts"],
       "@fe/theme-selector": [
         "libs/frontend/ui/theming/theme-selector/src/index.ts"
