@@ -44,5 +44,9 @@
     },
     "MainPage": {
       "Content": "Contenu"
+    },
+    "Image-uploader": {
+      "ACTIONS.UPLOAD_PLACEHOLDER": "Faire glisser et relacher une image ici ou clicker pour un selectionner une.",
+      "ACTIONS.REMOVE": "Retirer"
     }
 }

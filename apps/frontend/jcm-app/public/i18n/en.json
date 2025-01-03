@@ -45,6 +45,9 @@
   },
   "MainPage": {
     "Content": "Content"
+  },
+  "Image-uploader": {
+    "ACTIONS.UPLOAD_PLACEHOLDER": "Drag and drop an image here or click to select one.",
+    "ACTIONS.REMOVE": "Remove"
   }
-
 }
