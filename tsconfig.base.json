@@ -47,7 +47,6 @@
       "@fe/material": ["libs/frontend/material/src/index.ts"],
       "@fe/messages": ["libs/frontend/ui/messages/src/index.ts"],
       "@fe/post": ["libs/frontend/post/src/index.ts"],
-      "@fe/utilities": ["libs/frontend/utilities/src/index.ts"],
       "@fe/simpledialog": ["libs/frontend/ui/simpledialog/src/index.ts"],
       "@fe/theme-selector": [
         "libs/frontend/ui/theming/theme-selector/src/index.ts"
@@ -56,6 +55,7 @@
       "@fe/translate": ["libs/frontend/ui/translate/src/index.ts"],
       "@fe/ui/pages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
+      "@fe/utilities": ["libs/frontend/utilities/src/index.ts"],
       "@prisma/prisma": ["libs/prisma/src/index.ts"]
     }
   },
