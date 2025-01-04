@@ -56,7 +56,8 @@
       "@fe/ui/pages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
       "@fe/utilities": ["libs/frontend/utilities/src/index.ts"],
-      "@prisma/prisma": ["libs/prisma/src/index.ts"]
+      "@prisma/prisma": ["libs/prisma/src/index.ts"],
+      "@fe/environment": ["apps/frontend/jcm-app/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]

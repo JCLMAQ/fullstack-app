@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { firstValueFrom } from "rxjs";
 import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../models/auth.model";
 
+
 const USER_STORAGE_KEY = 'user';
 const AUTH_TOKEN_STORAGE_KEY = 'authJwtToken';
 
@@ -56,6 +57,7 @@ export class AuthService {
 
   async login(email:string, password:string): Promise<ILoginResponse> {
 
+    // const pathUrl = environment.apiRoot + "api/auths/auth/loginwithpwd";
     const pathUrl = "api/auths/auth/loginwithpwd";
     const login$ = this.httpClient.post<ILoginResponse>(`${pathUrl}`, {
       // const login$ = this.httpClient.post<User>(`${environment.apiRoot}/login`, {
@@ -66,7 +68,7 @@ export class AuthService {
     this.#authTokenSignal.set(response.access_token);
     localStorage.setItem("authJwtToken", response.access_token);
 
-    console.log("User logged: ", response)
+    // console.log("User logged: ", response)
 
     const userLogged = await this.fetchUser();
     if (userLogged) {
@@ -112,15 +114,30 @@ export class AuthService {
     // await this.router.navigateByUrl('/login');
   }
 
-  async fetchUser(): Promise<IUserLogged | null> {
+  async fetchUser(): Promise<IUserLogged | undefined | null> {
 
     //  get user data from backend with authToken
+    const apiUrl = "api/auths/auth/loggedUser/";
     const authToken = this.authToken();
     if (authToken) {
       const decodedJwt: IJwt = jwtDecode(authToken);
       console.log("Decoded JWT: ", decodedJwt);
       const emailToCheck = decodedJwt.username; // username = email
       if (emailToCheck) {
+
+        // const response = resource({
+        //   request: () => ({id: emailToCheck}),
+        //   loader: ({request}) => fetch(apiUrl + request.id).then(response => response.json())
+        // });
+
+
+        //     console.log(response.status()); // Prints: 2 (which means "Loading")
+
+        //     // After the fetch resolves
+
+        //     console.log(response.status()); // Prints: 4 (which means "Resolved")
+        //     console.log(response.value()); // Prints: { "id": 1 , ... }
+
       const response = await firstValueFrom(
         this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/loggedUser/${emailToCheck}`)
       );
@@ -143,7 +160,8 @@ export class AuthService {
       //     photoUrl: user.photoUrl ?? ''
       //   };
       // }
-      return response.user;
+      return response;
+      // return response.value();
 
       }
     }
