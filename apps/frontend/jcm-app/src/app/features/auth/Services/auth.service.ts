@@ -160,7 +160,7 @@ export class AuthService {
       //     photoUrl: user.photoUrl ?? ''
       //   };
       // }
-      return response;
+      return response.user;
       // return response.value();
 
       }
