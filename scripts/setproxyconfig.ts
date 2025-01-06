@@ -9,7 +9,7 @@ require('dotenv-expand').expand(require('dotenv').config());
 // dotenvExpand.expand(config);
 
 // Verify that all variables are provided
-if (!process.env.NEST_SERVER_HOST || !process.env.NEST_SERVER_PORT || !process.env.NEST_SERVER_SECURE || !process.env.NEST_SERVER_PATHREWRITE || !process.env.NEST_SERVER_LOGLEVEL || !process.env.NEST_SERVER_CHANGEORIGINE) {
+if (!process.env.API_BACKEND || !process.env.API_BACKEND_PORT || !process.env.NEST_SERVER_SECURE || !process.env.NEST_SERVER_PATHREWRITE || !process.env.NEST_SERVER_LOGLEVEL || !process.env.NEST_SERVER_CHANGEORIGINE) {
   console.error('All the required proxy variables were not provided!');
   process.exit(-1);
 }
@@ -21,7 +21,7 @@ const proxyconfPath = 'proxy.config.json';
 const proxyFileContent = `
   {
     "/api": {
-    "target": "http://${process.env.NEST_SERVER_HOST}:${process.env.NEST_SERVER_PORT}",
+    "target": "http://${process.env.API_BACKEND}:${process.env.API_BACKEND_PORT}",
     "secure": ${process.env.NEST_SERVER_SECURE},
     "pathRewrite": ${process.env.NEST_SERVER_PATHREWRITE},
     "logLevel": "${process.env.NEST_SERVER_LOGLEVEL}",
