@@ -92247,7 +92247,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -92366,7 +92366,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -92472,7 +92472,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -92584,7 +92584,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -93299,7 +93299,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -93395,7 +93395,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -93490,7 +93490,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -93595,7 +93595,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -93693,7 +93693,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -93841,7 +93841,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -96528,7 +96528,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -96635,7 +96635,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -96730,7 +96730,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -96831,7 +96831,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -96924,7 +96924,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -97032,7 +97032,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -97130,7 +97130,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -97225,7 +97225,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -97316,7 +97316,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -97411,7 +97411,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -97502,7 +97502,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -97614,7 +97614,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -97716,7 +97716,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -97815,7 +97815,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -97911,7 +97911,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -98044,7 +98044,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
@@ -98153,7 +98153,7 @@ components:
         - attributes
       properties:
         id:
-          type: string
+          type: integer
         type:
           type: string
         attributes:
@@ -98282,7 +98282,7 @@ components:
             - attributes
           properties:
             id:
-              type: string
+              type: integer
             type:
               type: string
             attributes:
