@@ -6,6 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AppStore } from '../../app.store';
+import LoadingContainerComponent from '../../shared/components/loading-container/loading-container.component';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { AppStore } from '../../app.store';
     MatIcon,
     MatButtonModule,
     FormsModule,
+    LoadingContainerComponent
   ],
   template: `
     <div
@@ -76,8 +78,13 @@ import { AppStore } from '../../app.store';
             <mat-error> Password is required </mat-error>
             }
           </mat-form-field>
+          <button class="mt-3" mat-flat-button [disabled]="appStore.loading()">
+            <app-loading-container [loading]="appStore.loading()" [size]="20">
+              <span>Login</span>
+            </app-loading-container>
+          </button>
 
-          <button mat-flat-button class="w-full mt-3">Login</button>
+          <!-- <button mat-flat-button class="w-full mt-3">Login</button> -->
         </form>
       </div>
       <!-- <app-login-info /> -->

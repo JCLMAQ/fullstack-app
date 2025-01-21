@@ -1,14 +1,22 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import Chart from 'chart.js/auto';
+import LoadingContainerComponent from '../../../shared/components/loading-container/loading-container.component';
 
 @Component({
     selector: 'app-channel-analytics',
-    imports: [MatButtonModule],
+    imports: [MatButtonModule, LoadingContainerComponent],
     template: `
-    <div class="h-[calc(100%-100px)] w-full">
+    <!-- <div class="h-[calc(100%-100px)] w-full">
       <canvas #chart></canvas>
-    </div>
+    </div> -->
+
+    <app-loading-container
+      [loading]="loading()"
+      class="h-[calc(100%-100px)] w-full"
+    >
+      <canvas #chart></canvas>
+    </app-loading-container>
 
     <button mat-raised-button class="mt-4">Go to channel analytics</button>
   `,
@@ -18,7 +26,22 @@ import Chart from 'chart.js/auto';
 export default class ChannelAnalyticsComponent {
   chart = viewChild.required<ElementRef>('chart');
 
+  loading = signal(false);
+
   ngOnInit() {
+
+    this.loading.set(true);
+
+    setTimeout(() => {
+      this.loading.set(false);
+    }, 2000);
+  }
+
+  renderChart = effect(() => {
+    const chart = this.chart();
+    if (!chart) return;
+
+
     new Chart(this.chart().nativeElement, {
       type: 'line',
       data: {
@@ -42,5 +65,5 @@ export default class ChannelAnalyticsComponent {
         },
       },
     });
-  }
+  });
 }
