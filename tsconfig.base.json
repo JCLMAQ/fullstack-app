@@ -36,16 +36,17 @@
         "libs/frontend/ui/confirmation-dialog/src/index.ts"
       ],
       "@fe/dashboard": ["libs/frontend/dashboard/src/index.ts"],
+      "@fe/environment": ["apps/frontend/jcm-app/index.ts"],
       "@fe/error-field": ["libs/frontend/ui/error-field/src/index.ts"],
       "@fe/geolocation": ["libs/frontend/ui/geolocation/src/index.ts"],
       "@fe/home": ["libs/frontend/ui/pages/src/index.ts"],
-      "@fe/messages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/image-uploader": ["libs/frontend/ui/image-uploader/src/index.ts"],
       "@fe/language-selector": ["libs/frontend/ui/i18n/src/index.ts"],
       "@fe/loading-indicator": [
         "libs/frontend/ui/loading-indicator/src/index.ts"
       ],
       "@fe/material": ["libs/frontend/material/src/index.ts"],
+      "@fe/messages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/post": ["libs/frontend/post/src/index.ts"],
       "@fe/simpledialog": ["libs/frontend/ui/simpledialog/src/index.ts"],
       "@fe/theme-selector": [
@@ -56,8 +57,7 @@
       "@fe/ui/pages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
       "@fe/utilities": ["libs/frontend/utilities/src/index.ts"],
-      "@prisma/prisma": ["libs/prisma/src/index.ts"],
-      "@fe/environment": ["apps/frontend/jcm-app/index.ts"],
+      "@prisma/prisma": ["libs/prisma/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
