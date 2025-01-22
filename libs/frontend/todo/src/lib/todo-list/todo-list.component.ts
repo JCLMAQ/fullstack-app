@@ -10,11 +10,11 @@ import { TodoService } from '../services/todo.service';
   styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
-  private readonly todosService = inject(TodoService);
+  private readonly todoService = inject(TodoService);
 
   todos = resource<Todo[], string>({
     loader: () => {
-   return this.todosService.getAllTodos();
+    return this.todoService.getAllTodos();
   },
     });
 

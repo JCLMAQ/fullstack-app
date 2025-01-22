@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class TasksService {
+export class TaskService {
   private readonly http = inject(HttpClient);
   private baseUrl = 'api';
 
