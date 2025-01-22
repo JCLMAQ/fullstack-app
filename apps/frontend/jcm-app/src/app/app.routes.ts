@@ -53,6 +53,16 @@ export const appRoutes: Routes = [
         loadComponent: () =>
           import('../app/features/home/home.component'),
       },
+      {
+        path: 'tasks',
+        loadComponent: () =>
+          import('@fe/task').then(m => m.TaskComponent),
+      },
+      {
+        path: 'todos',
+        loadComponent: () =>
+          import('@fe/todo').then(m => m.TodoComponent),
+      },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
 
       { path: '**', loadComponent: () => import('@fe/ui/pages').then(m => m.PageNotFoundComponent) },

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, resource, signal } from '@angular/core';
+import { Component, inject, resource, signal } from '@angular/core';
 import { Todo } from '@prisma/client';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'lib-todo-list',
@@ -9,17 +10,16 @@ import { Todo } from '@prisma/client';
   styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
+  private readonly todosService = inject(TodoService);
+
+  todos = resource<Todo[], string>({
+    loader: () => {
+   return this.todosService.getAllTodos();
+  },
+    });
+
 
     searchQuery = signal('');
-
-    users = resource<Todo[],unknown>({
-    // request:()=>this.searchQuery(),
-    loader: async()=> {
-
-      const todos = fetch(`https://jsonplaceholder.typicode.com/users?name=${request}`);
-      return (await todos).json();
-    }
-  });
 
 //   searchQuery = signal('');
 //   public readonly users =  resource<Todo[],{searchQuery:string}>({

@@ -12,6 +12,16 @@ export const menuItems: MenuItem[] = [
     route: 'home',
   },
   {
+    icon: 'apps', // apps
+    label: 'SideNavMenu.Todos',
+    route: 'todos',
+  },
+  {
+    icon: 'task',
+    label: 'SideNavMenu.Tasks',
+    route: 'tasks',
+  },
+  {
     icon: 'dashboard',
     label: 'SideNavMenu.Dashboard',
     route: 'dashboard',

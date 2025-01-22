@@ -27,7 +27,20 @@ export class TodoService {
   private apiUrl = `api/`;
   private baseUrl = `${this.apiUrl}`;
 
+  async getAllTodos() {
 
+    const response = await fetch(`${this.baseUrl}/alltodos`, {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+    }});
+
+    if (!response.ok) throw new Error("Unable to load todos!");
+    const todos = await response.json();
+
+    return todos;
+
+  }
 
   load(): Promise<TodoInterface[]> {
     return this.findAsPromise();

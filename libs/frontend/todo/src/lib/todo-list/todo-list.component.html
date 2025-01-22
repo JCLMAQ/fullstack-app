@@ -1,7 +1,7 @@
 <p>todo-list works!</p>
 
 
-@if(users.isLoading()){
+<!-- @if(users.isLoading()){
   <h2>Loading...</h2>
 }
 
@@ -17,4 +17,21 @@
   }@empty {
     <li>Nothing to show</li>
   }
+</ul> -->
+
+<ul>
+  @let error = todos.error();
+  @if (error) {
+    <p>{{ error }}</p>
+  }
+
+  @if (todos.isLoading()) {
+    <p>Loading todos...</p>
+  }
+
+@for (task of todos.value(); track task.id) {
+  <li>{{task.title }} {{ task.id }}</li>
+}  @empty {
+  <p>No todos!</p>
+}
 </ul>

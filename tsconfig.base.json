@@ -57,6 +57,7 @@
       "@fe/ui/pages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
       "@fe/utilities": ["libs/frontend/utilities/src/index.ts"],
+      "@fe/task": ["libs/frontend/task/src/index.ts"],
       "@prisma/prisma": ["libs/prisma/src/index.ts"]
     }
   },
