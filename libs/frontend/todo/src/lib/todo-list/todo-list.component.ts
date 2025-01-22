@@ -14,7 +14,7 @@ export class TodoListComponent {
 
   todos = resource<Todo[], string>({
     loader: () => {
-    return this.todoService.getAllTodos();
+    return this.todoService.getItems();
   },
     });
 

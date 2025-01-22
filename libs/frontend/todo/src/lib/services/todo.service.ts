@@ -27,7 +27,7 @@ export class TodoService {
   private apiUrl = `api/`;
   private baseUrl = `${this.apiUrl}`;
 
-  async getAllTodos() {
+  async getAllTodos(): Promise<TodoInterface[]> {
 
     const response = await fetch(`${this.baseUrl}/alltodos`, {
       method: 'get',
@@ -102,13 +102,17 @@ export class TodoService {
   //   return this.http.delete(`${this.baseUrl}/${value?.id}`);
   // }
 
-  getItems(): Promise<TodoInterface[]>{
-    const todos = lastValueFrom(this.http
-      .get<TodoInterface[]>(`${this.baseUrl}/todos`, httpOptions)
-      .pipe(
-        catchError(this.handleError)));
-        console.log("GetItems for Todos: ", todos)
-    return todos
+  async getItems(): Promise<TodoInterface[]>{
+    const response = await fetch(`${this.baseUrl}/alltodos`, {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+    }});
+
+    if (!response.ok) throw new Error("Unable to load todos!");
+    const todos = await response.json();
+
+    return todos;
   }
 
   getItem(id: string): Promise<TodoInterface> {

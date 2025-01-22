@@ -1,19 +1,13 @@
 
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable, inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 
-const httpOptions = {
-	headers: new HttpHeaders({
-		'Content-Type': 'application/json',
-    // Authorization: 'my-auth-token'
-	})
-};
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService {
-  private readonly http = inject(HttpClient);
+export class TasksService {
+
   private baseUrl = 'api';
 
   async getAllTasks() {

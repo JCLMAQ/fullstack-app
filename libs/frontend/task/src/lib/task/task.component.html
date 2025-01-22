@@ -1,1 +1,18 @@
-<p>Task works!</p>
+<p>task works!</p>
+
+<ul>
+  @let error = tasks.error();
+  @if (error) {
+    <p>{{ error }}</p>
+  }
+
+  @if (tasks.isLoading()) {
+    <p>Loading Tasks...</p>
+  }
+
+@for (task of tasks.value(); track task.id) {
+  <li>{{task.title }} {{ task.id }}</li>
+}  @empty {
+  <p>No Tasks!</p>
+}
+</ul>
