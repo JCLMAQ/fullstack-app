@@ -5,17 +5,17 @@ import { displayErrorEffect, ToastService } from "@fe/shared";
 import { signalStore, type, withHooks, withProps, withState } from "@ngrx/signals";
 import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
-import { TodoInterface } from "./todo.model";
+import { ItemInterface } from "./todo.model";
 
 export interface TodoStateInterface {
-  items: TodoInterface[],
+  items: ItemInterface[],
   filter: {
     ownerId: string | null
     orgId: string | null,
   },
   selectedId: string | null,
   selectedIds: string[],
-  selection: SelectionModel<TodoInterface>,
+  selection: SelectionModel<ItemInterface>,
   todoLoaded: boolean;
 };
 
@@ -28,19 +28,19 @@ export const initialTodoState: TodoStateInterface = {
   },
   selectedId: null,
   selectedIds: [],
-  selection: new SelectionModel<TodoInterface>(true, []),
+  selection: new SelectionModel<ItemInterface>(true, []),
   todoLoaded: false
 };
 
-const todoConfig = entityConfig({
-  entity: type<TodoInterface>(),
+const storeConfig = entityConfig({
+  entity: type<ItemInterface>(),
   collection: 'todo'
 });
 
 export const TodoStore = signalStore(
   { providedIn: 'root' },
   withDevtools('todo'),
-  withEntities(todoConfig),
+  withEntities(storeConfig),
   withCallState({collection: 'todo'}),
   withUndoRedo({
     maxStackSize: 100, // limit of undo/redo steps - `100` by default
@@ -50,24 +50,24 @@ export const TodoStore = signalStore(
   }),
   withState(initialTodoState),
   withProps(() => ({
-    _todoService: inject(TodoService),
+    _itemService: inject(TodoService),
     _toastService: inject(ToastService),
   })),
   withProps((store) => {
-    const _todosResource = resource<TodoInterface[], string>({
+    const _itemsResource = resource<ItemInterface[], string>({
       loader: () => {
-        return store._todoService.getItems();
+        return store._itemService.getItems();
       },
     });
-    return { _todosResource };
+    return { _itemsResource };
   }),
   withProps((store) => ({
-    todosResource: store._todosResource.asReadonly(),
+    todosResource: store._itemsResource.asReadonly(),
   })),
   withHooks({
     onInit(store) {
       const toastService = store._toastService;
-      const todosError = store._todosResource.error;
+      const todosError = store._itemsResource.error;
 
       displayErrorEffect(todosError, toastService);
     },

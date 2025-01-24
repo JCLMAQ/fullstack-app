@@ -1,37 +1,36 @@
 <p>todo-list works!</p>
 
-
-<!-- @if(users.isLoading()){
-  <h2>Loading...</h2>
-}
-
-@if(users.error()){
-  <h2>Something went wrong</h2>
-}
-
-<button (click)="todos.reload()">Reload</button>
-
+<div>
+  <span>Direct database access: </span>
+</div>
 <ul>
-  @for(todo of todos.value();track todo.id){
-    <li>{{todo.name}}</li>
-  }@empty {
-    <li>Nothing to show</li>
-  }
-</ul> -->
-
-<ul>
-  @let error = todos.error();
-  @if (error) {
-    <p>{{ error }}</p>
+  <!-- @let error = #store.error() ; -->
+  @if (errorLoading()) {
+    <p>{{ errorLoading() }}</p>
   }
 
   @if (todos.isLoading()) {
     <p>Loading todos...</p>
   }
 
-@for (task of todos.value(); track task.id) {
-  <li>{{task.title }} {{ task.id }}</li>
+  @for (todo of todos.value(); track todo.id) {
+    <li>{{todo.title }} - id: {{ todo.id }}</li>
+  }  @empty {
+    <p>No todos!</p>
+  }
+  </ul>
+  <br>
+  <div>
+    <span>Store access: </span>
+  </div>
+  <ul>
+<ul>
+@for (item of items.value(); track item.id) {
+  <li>{{item.title }} {{ item.id }}</li>
 }  @empty {
   <p>No todos!</p>
+}
+@if (items.value()?.length === 0 && !loading()) {
+  <p class="text-lg">Sorry, no items found.</p>
 }
 </ul>

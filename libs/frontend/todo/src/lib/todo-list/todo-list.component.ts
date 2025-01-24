@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, resource, signal } from '@angular/core';
+import { Component, inject, resource } from '@angular/core';
 import { Todo } from '@prisma/client';
 import { TodoService } from '../services/todo.service';
+import { TodoStore } from '../store/todo.state';
 
 @Component({
   selector: 'lib-todo-list',
@@ -10,40 +11,21 @@ import { TodoService } from '../services/todo.service';
   styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
-  private readonly todoService = inject(TodoService);
 
+// Data access through store
+  #store = inject(TodoStore);
+
+  items = this.#store.todosResource;
+  loading = this.#store.todosResource.isLoading;
+  errorLoading = this.#store.todosResource.error;
+
+
+  private readonly todoService = inject(TodoService);
+// Direct access to DB
   todos = resource<Todo[], string>({
     loader: () => {
     return this.todoService.getItems();
   },
     });
-
-
-    searchQuery = signal('');
-
-//   searchQuery = signal('');
-//   public readonly users =  resource<Todo[],{searchQuery:string}>({
-//   request:()=>this.searchQuery(),
-//   loader: async({request,abortSignal})=> {
-//     const users = fetch(`https://jsonplaceholder.typicode.com/users?name=${request}`,{
-//       signal:abortSignal
-//     });
-//     return (await users).json();
-//   }
-// });
-
-
-
-// searchQuery = signal('');
-//     users = resource<User[],unknown>({
-//     request:()=>this.searchQuery(),
-//     loader: async({request,abortSignal})=> {
-//       const abortController = new AbortController();
-//       const users = fetch(`https://jsonplaceholder.typicode.com/users?name=${request}`,{
-//         signal:abortController.signal
-//       });
-//       return (await users).json();
-//     }
-//   });
 
 }
