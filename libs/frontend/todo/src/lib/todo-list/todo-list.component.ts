@@ -28,4 +28,22 @@ export class TodoListComponent {
   },
     });
 
+  canUndo = this.#store.canUndo; // use in template or in ts
+  canRedo = this.#store.canRedo; // use in template or in ts
+  clearUndoRedoStack = this.#store.clearStack; // use in template or in ts
+
+  undo(): void {
+    if (!this.canUndo()) return;
+    this.#store.undo();
+  }
+
+  redo(): void {
+    if (!this.canRedo()) return;
+    this.#store.redo();
+  }
+
+  clearStack(): void {
+    this.#store.clearStack();
+  }
+
 }
