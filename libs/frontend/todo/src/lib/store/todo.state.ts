@@ -1,13 +1,13 @@
 import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/ngrx-toolkit';
 import { SelectionModel } from "@angular/cdk/collections";
-import { inject, resource } from "@angular/core";
+import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
-import { signalStore, type, withHooks, withProps, withState } from "@ngrx/signals";
+import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
 import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
 import { ItemInterface } from "./todo.model";
 
-export interface TodoStateInterface {
+export interface ItemStateInterface {
   items: ItemInterface[],
   filter: {
     ownerId: string | null
@@ -20,7 +20,7 @@ export interface TodoStateInterface {
 };
 
 
-export const initialTodoState: TodoStateInterface = {
+export const initialTodoState: ItemStateInterface = {
   items: [],
   filter: {
     ownerId: "test",
@@ -63,6 +63,11 @@ export const TodoStore = signalStore(
   }),
   withProps((store) => ({
     todosResource: store._itemsResource.asReadonly(),
+  })),
+  withComputed((store) => ({
+    loading: computed(() =>
+      store._itemsResource.isLoading()
+)
   })),
   withHooks({
     onInit(store) {

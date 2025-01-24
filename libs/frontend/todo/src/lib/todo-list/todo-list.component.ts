@@ -16,7 +16,7 @@ export class TodoListComponent {
   #store = inject(TodoStore);
 
   items = this.#store.todosResource;
-  loading = this.#store.todosResource.isLoading;
+  loading = this.#store.loading;
   errorLoading = this.#store.todosResource.error;
 
 
