@@ -1,9 +1,9 @@
 import { patchState, signalStoreFeature, type, withMethods, withState } from "@ngrx/signals";
-import { TodoStateInterface } from "./todo.state";
+import { ItemStateInterface } from "./todo.state";
 
 export function withNavigationMethods() {
   return signalStoreFeature(
-    { state: type<TodoStateInterface>() },
+    { state: type<ItemStateInterface>() },
     withState(
       {
         currentPosition: 0,
@@ -18,11 +18,11 @@ export function withNavigationMethods() {
     ),
     withMethods(
       (store) => ({
-        initNavButton(initialTodoId: string) {
+        initNavButton(initialItemId: string) {
           let currentPosition = 0;
           let lastPosition = 0;
           if(store.selection().selected.length <= 1 ) { // no selected items
-            currentPosition = store.items().findIndex(p => p.id === initialTodoId);
+            currentPosition = store.items().findIndex(p => p.id === initialItemId);
             if ( currentPosition === -1) {
               currentPosition = 0;
             }
@@ -31,14 +31,14 @@ export function withNavigationMethods() {
               lastPosition = 0;
             }
           } else {
-            currentPosition = store.selection().selected.findIndex(p => p.id === initialTodoId);
+            currentPosition = store.selection().selected.findIndex(p => p.id === initialItemId);
             lastPosition = store.selection().selected.length - 1;
           }
           if(lastPosition < 0 ) { lastPosition = 0; }
           if(lastPosition < currentPosition ) { lastPosition = currentPosition; }
           this.navStateMgt(currentPosition, lastPosition);
           patchState(store, {
-            selectedId: initialTodoId
+            selectedId: initialItemId
           });
 
         },

@@ -1,7 +1,7 @@
 import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/ngrx-toolkit';
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
-import { displayErrorEffect, ToastService } from "@fe/shared";
+import { ToastService } from "@fe/shared";
 import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
 import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
@@ -20,7 +20,7 @@ export interface ItemStateInterface {
 };
 
 
-export const initialTodoState: ItemStateInterface = {
+export const initialItemState: ItemStateInterface = {
   items: [],
   filter: {
     ownerId: "test",
@@ -48,7 +48,8 @@ export const TodoStore = signalStore(
     keys: [], // non-entity based keys to track - `[]` by default
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
-  withState(initialTodoState),
+  withState(initialItemState),
+  // withItemsSelectors(),
   withProps(() => ({
     _itemService: inject(TodoService),
     _toastService: inject(ToastService),
@@ -69,12 +70,14 @@ export const TodoStore = signalStore(
       store._itemsResource.isLoading()
 )
   })),
+  //  withItemsSelectors(),
+
   withHooks({
     onInit(store) {
       const toastService = store._toastService;
       const todosError = store._itemsResource.error;
-
-      displayErrorEffect(todosError, toastService);
+      store['initSelectedID']()
+      // displayErrorEffect(todosError, toastService);
     },
     onDestroy() {
       console.log('on destroy');
