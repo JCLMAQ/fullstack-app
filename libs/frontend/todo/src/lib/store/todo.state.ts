@@ -2,7 +2,7 @@ import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/n
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { ToastService } from "@fe/shared";
-import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
+import { patchState, signalStore, type, withComputed, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
 import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
 import { ItemInterface } from "./todo.model";
@@ -49,7 +49,55 @@ export const TodoStore = signalStore(
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
   withState(initialItemState),
-  // withItemsSelectors(),
+  withMethods((store) => ({
+    initSelectedID() {
+            const firstIndex = store.items().at(0)?.id;
+            patchState(store, { selectedId: firstIndex })
+          },
+
+          itemIdSelectedId(selectedRowId: string) {
+            patchState(store, { selectedId: selectedRowId })
+          },
+
+          toggleSelected( selectedRowId: string) {
+            const allSelectedRowId = store.selectedIds();
+            const existSelectedRowId = allSelectedRowId.filter( item => item === selectedRowId)
+            if(existSelectedRowId.length === 0) {
+              patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] })
+              patchState(store, { selectedId: selectedRowId })
+            } else {
+              const updateSelectedRowId = allSelectedRowId.filter( item => item !== selectedRowId)
+              patchState(store, { selectedIds: updateSelectedRowId })
+              patchState(store, { selectedId: "" })
+            }
+          },
+          newSelectedSelectionItem(newSelectedSelectionItemIndex: number) {
+            const newSelectedSelectionItem = store.selection().selected[newSelectedSelectionItemIndex]
+            // const selectedId = store.selectedIds()[newSelectedItemIndex]
+            patchState(store,{ selectedId: newSelectedSelectionItem.id })
+          },
+
+          newSelectedItem(newSelectedItemIndex: number) {
+            const selectedItem = store.items()[newSelectedItemIndex]
+            patchState(store,{ selectedId: selectedItem.id })
+          },
+
+          selectedItemUpdate(selectedRowId: string){
+            const allSelectedRowId = store.selectedIds();
+            if(allSelectedRowId.length > 0 ) {
+              const existSelectedRowId = allSelectedRowId.filter( item => item === selectedRowId);
+              if(existSelectedRowId.length === 0) {
+                patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] })
+              };
+              patchState(store, { selectedIds: [ ...store.selectedIds()] })
+              patchState(store,{ selectedId: selectedRowId })
+            } else {
+              patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] });
+              patchState(store,{ selectedId: selectedRowId })
+            }
+          }
+        })
+      ),
   withProps(() => ({
     _itemService: inject(TodoService),
     _toastService: inject(ToastService),
@@ -70,13 +118,13 @@ export const TodoStore = signalStore(
       store._itemsResource.isLoading()
 )
   })),
-  //  withItemsSelectors(),
+  // withItemsSelectionMethods(),
 
   withHooks({
     onInit(store) {
       const toastService = store._toastService;
       const todosError = store._itemsResource.error;
-      store['initSelectedID']()
+      store.initSelectedID();
       // displayErrorEffect(todosError, toastService);
     },
     onDestroy() {

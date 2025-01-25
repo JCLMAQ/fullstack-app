@@ -21,12 +21,22 @@ export class TodoListComponent {
   readonly router = inject(Router)
   routeToDetail = "todos/todo";
 
+  // Material table configuration
+  columnsToDisplay: string[] = ['select', 'numSeq','title'];
+  // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
+  expandedElement!: ItemInterface | null;
+
+  mode: 'Edit' | 'View' | 'Update' | undefined ;
+  master = false; // true : button is disable
+  owner = false; // true button is disable
+
 // Data access through store
-  #store = inject(TodoStore);
-  items = this.#store.todosResource;
-  itemsEntities = this.#store.todoEntities;
-  loading = this.#store.loading;
-  errorLoading = this.#store.todosResource.error;
+  itemStore = inject(TodoStore);
+  items = this.itemStore.todosResource;
+  itemsEntities = this.itemStore.todoEntities;
+  loading = this.itemStore.loading;
+  errorLoading = this.itemStore.todosResource.error;
 
 // Material table configuration
 dataSource = new MatTableDataSource<ItemInterface>;
@@ -54,47 +64,47 @@ fetchData(): void {
     });
 
 // Undo and redo stack
-  canUndo = this.#store.canUndo; // use in template or in ts
-  canRedo = this.#store.canRedo; // use in template or in ts
-  clearUndoRedoStack = this.#store.clearStack; // use in template or in ts
+  canUndo = this.itemStore.canUndo; // use in template or in ts
+  canRedo = this.itemStore.canRedo; // use in template or in ts
+  clearUndoRedoStack = this.itemStore.clearStack; // use in template or in ts
 
   undo(): void {
     if (!this.canUndo()) return;
-    this.#store.undo();
+    this.itemStore.undo();
   }
 
   redo(): void {
     if (!this.canRedo()) return;
-    this.#store.redo();
+    this.itemStore.redo();
   }
 
   clearStack(): void {
-    this.#store.clearStack();
+    this.itemStore.clearStack();
   }
 
    // Selection
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
-    const numSelected = this.#store.selection().selected.length;
+    const numSelected = this.itemStore.selection().selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
       if (this.isAllSelected()) {
-         this.#store.selection().clear();
+        this.itemStore.selection().clear();
       } else {
-         this.dataSource.data.forEach(row => this.#store.selection().select(row));
+        this.dataSource.data.forEach(row => this.itemStore.selection().select(row));
       }
       // Update
-      this.dataSource.data.forEach(row => this.#store.toggleSelected(row.id));
+      this.dataSource.data.forEach(row => this.itemStore['toggleSelected'](row.id));
 }
 
   checkboxLabel(row: ItemInterface): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.#store.selection().isSelected(row) ? 'deselect' : 'select'}`;
+    return `${this.itemStore.selection().isSelected(row) ? 'deselect' : 'select'}`;
   }
 
   applyFilter(event: Event) {
@@ -106,8 +116,8 @@ fetchData(): void {
   }
 
   navigateButton( id: string, mode: string ) {
-    this.#store.todoIdSelectedId(id);
-    this.#store.initNavButton(id);
+    this.itemStore['todoIdSelectedId'](id);
+    this.itemStore['initNavButton'](id);
     this.router.navigate([this.routeToDetail, id, mode]);
   }
 
