@@ -16,17 +16,20 @@ export class AuthenticationGuard implements CanActivate {
   private readonly authTypeGuardMap: Record<
     AuthType,
     CanActivate | CanActivate[]
-  > = {
-    [AuthType.Bearer]: this.accessTokenGuard,
-    [AuthType.ApiKey]: this.apiKeyGuard,
-    [AuthType.None]: { canActivate: () => true },
-  };
+  >;
 
   constructor(
     private readonly reflector: Reflector,
     private readonly accessTokenGuard: AccessTokenGuard,
     private readonly apiKeyGuard: ApiKeyGuard,
-  ) {}
+  ) {
+    this.authTypeGuardMap = {
+      [AuthType.Bearer]: this.accessTokenGuard,
+      [AuthType.ApiKey]: this.apiKeyGuard,
+      [AuthType.None]: { canActivate: () => true },
+    };
+  }
+
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const authTypes = this.reflector.getAllAndOverride<AuthType[]>(
