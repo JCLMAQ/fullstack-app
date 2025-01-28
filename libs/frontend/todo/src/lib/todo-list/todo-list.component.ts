@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, resource, viewChild } from '@angular/core';
+import { Component, effect, inject, resource, viewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,7 +20,13 @@ export class TodoListComponent {
   // Router configuration
   readonly router = inject(Router)
   routeToDetail = "todos/todo";
-
+constructor() {
+  effect(()=> {
+    this.fetchData();
+    // const state = getState(this.todoStore);
+  });
+  this.itemStore.initSelectedID();
+}
   // Material table configuration
   columnsToDisplay: string[] = ['select', 'numSeq','title'];
   // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
@@ -45,6 +51,7 @@ readonly paginator = viewChild(MatPaginator);
 readonly sort = viewChild(MatSort);
 
 fetchData(): void {
+  this.items = this.itemStore.todosResource;
   this.dataSource = new MatTableDataSource(this.itemsEntities());
   this.dataSource.paginator = this.paginator()!;
   this.dataSource.sort = this.sort()!;

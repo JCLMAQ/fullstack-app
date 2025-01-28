@@ -38,7 +38,7 @@ const storeConfig = entityConfig({
 });
 
 export const TodoStore = signalStore(
-  { providedIn: 'root' },
+  { providedIn: 'root'},
   withDevtools('todo'),
   withEntities(storeConfig),
   withCallState({collection: 'todo'}),
@@ -49,55 +49,58 @@ export const TodoStore = signalStore(
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
   withState(initialItemState),
+//  withItemsSelectionMethods(),
   withMethods((store) => ({
     initSelectedID() {
             const firstIndex = store.items().at(0)?.id;
             patchState(store, { selectedId: firstIndex })
           },
 
-          itemIdSelectedId(selectedRowId: string) {
-            patchState(store, { selectedId: selectedRowId })
-          },
+    itemIdSelectedId(selectedRowId: string) {
+      patchState(store, { selectedId: selectedRowId })
+    },
 
-          toggleSelected( selectedRowId: string) {
-            const allSelectedRowId = store.selectedIds();
-            const existSelectedRowId = allSelectedRowId.filter( item => item === selectedRowId)
-            if(existSelectedRowId.length === 0) {
-              patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] })
-              patchState(store, { selectedId: selectedRowId })
-            } else {
-              const updateSelectedRowId = allSelectedRowId.filter( item => item !== selectedRowId)
-              patchState(store, { selectedIds: updateSelectedRowId })
-              patchState(store, { selectedId: "" })
-            }
-          },
-          newSelectedSelectionItem(newSelectedSelectionItemIndex: number) {
-            const newSelectedSelectionItem = store.selection().selected[newSelectedSelectionItemIndex]
-            // const selectedId = store.selectedIds()[newSelectedItemIndex]
-            patchState(store,{ selectedId: newSelectedSelectionItem.id })
-          },
+    toggleSelected( selectedRowId: string) {
+      const allSelectedRowId = store.selectedIds();
+      const existSelectedRowId = allSelectedRowId.filter( item => item === selectedRowId)
+      if(existSelectedRowId.length === 0) {
+        patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] })
+        patchState(store, { selectedId: selectedRowId })
+      } else {
+        const updateSelectedRowId = allSelectedRowId.filter( item => item !== selectedRowId)
+        patchState(store, { selectedIds: updateSelectedRowId })
+        patchState(store, { selectedId: "" })
+      }
+    },
+    newSelectedSelectionItem(newSelectedSelectionItemIndex: number) {
+      const newSelectedSelectionItem = store.selection().selected[newSelectedSelectionItemIndex]
+      // const selectedId = store.selectedIds()[newSelectedItemIndex]
+      patchState(store,{ selectedId: newSelectedSelectionItem.id })
+    },
 
-          newSelectedItem(newSelectedItemIndex: number) {
-            const selectedItem = store.items()[newSelectedItemIndex]
-            patchState(store,{ selectedId: selectedItem.id })
-          },
+    newSelectedItem(newSelectedItemIndex: number) {
+      const selectedItem = store.items()[newSelectedItemIndex]
+      patchState(store,{ selectedId: selectedItem.id })
+    },
 
-          selectedItemUpdate(selectedRowId: string){
-            const allSelectedRowId = store.selectedIds();
-            if(allSelectedRowId.length > 0 ) {
-              const existSelectedRowId = allSelectedRowId.filter( item => item === selectedRowId);
-              if(existSelectedRowId.length === 0) {
-                patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] })
-              };
-              patchState(store, { selectedIds: [ ...store.selectedIds()] })
-              patchState(store,{ selectedId: selectedRowId })
-            } else {
-              patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] });
-              patchState(store,{ selectedId: selectedRowId })
-            }
-          }
-        })
-      ),
+    selectedItemUpdate(selectedRowId: string){
+      const allSelectedRowId = store.selectedIds();
+      if(allSelectedRowId.length > 0 ) {
+        const existSelectedRowId = allSelectedRowId.filter( item => item === selectedRowId);
+        if(existSelectedRowId.length === 0) {
+          patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] })
+        };
+        patchState(store, { selectedIds: [ ...store.selectedIds()] })
+        patchState(store,{ selectedId: selectedRowId })
+      } else {
+        patchState(store, { selectedIds: [ ...store.selectedIds(), selectedRowId] });
+        patchState(store,{ selectedId: selectedRowId })
+      }
+    }
+  })
+),
+
+
   withProps(() => ({
     _itemService: inject(TodoService),
     _toastService: inject(ToastService),
