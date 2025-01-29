@@ -135,8 +135,8 @@ ngAfterViewInit(): void {
   }
 
   navigateButton( id: string, mode: string ) {
-    this.itemStore['todoIdSelectedId'](id);
-    this.itemStore['initNavButton'](id);
+    this.itemStore.itemIdSelectedId(id);
+    this.itemStore.initNavButton(id);
     this.router.navigate([this.routeToDetail, id, mode]);
   }
 

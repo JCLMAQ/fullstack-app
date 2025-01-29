@@ -16,12 +16,21 @@ export function withNavigationMethods() {
         }
       }
     ),
+    /*
+updateRating: (id: number, rating: number) => {
+      store._ratingsResource.update(ratings => ({
+        ...ratings,
+        [id]: rating,
+      }));
+    },
+    */
     withMethods(
       (store) => ({
         initNavButton(initialItemId: string) {
           let currentPosition = 0;
           let lastPosition = 0;
-          if(store.selection().selected.length <= 1 ) { // no selected items
+          if(store.selection.isEmpty() ) { // no selected items
+          // if(store.selection().selected.length <= 1 ) { // no selected items
             currentPosition = store.items().findIndex(p => p.id === initialItemId);
             if ( currentPosition === -1) {
               currentPosition = 0;
@@ -37,9 +46,8 @@ export function withNavigationMethods() {
           if(lastPosition < 0 ) { lastPosition = 0; }
           if(lastPosition < currentPosition ) { lastPosition = currentPosition; }
           this.navStateMgt(currentPosition, lastPosition);
-          patchState(store, {
-            selectedId: initialItemId
-          });
+          // patchState(store, items => ({ ...items, selectedId: initialItemId }));
+          patchState(store, { selectedId: initialItemId });
 
         },
 

@@ -121,41 +121,30 @@
     </mat-card-footer>
   </mat-card>
 
-<!--
-<div>
-  @if (itemStore.selection().selected.length) {
-    <span class="selected-text"> ({{itemStore.selection().selected.length}} items selected)</span>
-    <span> {{itemStore.selection().selected | json}}  </span>
-  }
-  <br>
-  <span> {{dataSource.data.length}} data length </span>
-  <br>
-  <span> Selected Items: {{itemStore['selectedItems']()}} | json </span>
-  <span> Selected Entries {{itemStore.selection().selected.entries }} | json </span>
-  <br>
-  <span>Initial Selected ID: {{ itemStore.selectedId() }} </span>
-  <br>
-  <span> Initial selected Item: {{ itemStore['selectedItem']() | json }} </span>
 
+<!-- <div>
+  <span class="selected-text"> ({{itemStore.selection().selected.length}} items selected)</span>
 </div> -->
 
 
-  <!-- <div>
-    @if (itemStore.selection().selected.length) {
-      <span class="selected-text"> ({{itemStore.selection().selected.length}} items selected)</span>
-      <span> {{itemStore.selection().selected | json}}  </span>
+  <div>
+    @if (itemStore.selection.hasValue()) {
+      <span class="selected-text"> ({{itemStore.selection.selected.length}} items selected)</span>
+      <!-- <span> {{itemStore.selection().selected | json}}  </span> -->
+      <!-- <span class="selected-text"> ({{itemStore.selection().selected.length}} items selected)</span>
+      <span> {{itemStore.selection().selected | json}}  </span> -->
     }
     <br>
     <span> {{dataSource.data.length}} data length </span>
     <br>
-    <span> Selected Items: {{itemStore['selectedItems']()}} | json </span>
+    <!-- <span> Selected Items: {{itemStore.selectedItems()}} | json </span>
     <span> Selected Entries {{itemStore.selection().selected.entries }} | json </span>
     <br>
     <span>Initial Selected ID: {{ itemStore.selectedId() }} </span>
     <br>
-    <span> Initial selected Item: {{ itemStore['selectedItem']() | json }} </span>
+    <span> Initial selected Item: {{ itemStore.selectedItem() | json }} </span> -->
 
-  </div> -->
+  </div>
 
 
 
