@@ -39,7 +39,7 @@
           }
         }
 
-        <!-- <ng-container matColumnDef="expand">
+        <ng-container matColumnDef="expand">
           <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
           <td mat-cell *matCellDef="let element">
             <button mat-icon-button aria-label="expand row"
@@ -51,41 +51,46 @@
               }
             </button>
           </td>
-        </ng-container> -->
+        </ng-container>
 
         <ng-container matColumnDef="tools">
           <th mat-header-cell *matHeaderCellDef aria-label="row actions">Tools </th>
           <td mat-cell *matCellDef="let element">
+
             <button mat-icon-button aria-label="expand row"
-            (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-            @if (expandedElement === element) {
-              <mat-icon>keyboard_arrow_up</mat-icon>
-            } @else {
-              <mat-icon>keyboard_arrow_down</mat-icon>
-            }
-          </button>
+              (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+              @if (expandedElement === element) {
+                <mat-icon>keyboard_arrow_up</mat-icon>
+              } @else {
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              }
+            </button>
 
             <button mat-icon-button  (click)="itemStore.selection().toggle(element)"
-                                                            (click)="itemStore['toggleSelected'](element.id)"
-                                                            (click)="navigateButton(element.id, 'update')">
+              (click)="itemStore['toggleSelected'](element.id)"
+              (click)="navigateButton(element.id, 'update')">
               <mat-icon>edit</mat-icon>
             </button>
-              <button mat-icon-button
 
-                                                              (click)="navigateButton(element.id, 'view')">
+            <button mat-icon-button
+              (click)="navigateButton(element.id, 'view')">
               <mat-icon>remove_red_eye</mat-icon>
             </button>
+
             <button mat-icon-button   (click)="virtualRemove(element.id)">
               <mat-icon>delete</mat-icon>
             </button>
+
             @if (owner) {
               <button mat-icon-button  [disabled]=owner (click)="virtualRemove(element)">
                 <mat-icon>delete</mat-icon>
               </button>
             }
+
             <button mat-icon-button aria-label="expand row" [disabled]=master (click)="remove(element)">
-                <mat-icon>delete_forever</mat-icon>
-              </button>
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+
             </td>
         </ng-container>
 
@@ -101,15 +106,17 @@
             </div>
           </td>
         </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand; sticky: true"></tr>
-        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="element-row"
-            [class.example-expanded-row]="expandedElement === element"
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+            class="element-row"
+            [class.expanded-row]="expandedElement === element"
             (click)="expandedElement = expandedElement === element ? null : element">
         </tr>
         <tr mat-row *matRowDef="let element; columns: ['expandedDetail']" class="detail-row"></tr>
 
         <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
+        <tr mat-row *matNoDataRow>
           <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
         </tr>
 
@@ -122,6 +129,28 @@
       </button> -->
     </mat-card-footer>
   </mat-card>
+
+</div>
+
+<!--
+<div>
+  @if (itemStore.selection().selected.length) {
+    <span class="selected-text"> ({{itemStore.selection().selected.length}} items selected)</span>
+    <span> {{itemStore.selection().selected | json}}  </span>
+  }
+  <br>
+  <span> {{dataSource.data.length}} data length </span>
+  <br>
+  <span> Selected Items: {{itemStore['selectedItems']()}} | json </span>
+  <span> Selected Entries {{itemStore.selection().selected.entries }} | json </span>
+  <br>
+  <span>Initial Selected ID: {{ itemStore.selectedId() }} </span>
+  <br>
+  <span> Initial selected Item: {{ itemStore['selectedItem']() | json }} </span>
+
+</div> -->
+
+
   <!-- <div>
     @if (itemStore.selection().selected.length) {
       <span class="selected-text"> ({{itemStore.selection().selected.length}} items selected)</span>
@@ -130,12 +159,49 @@
     <br>
     <span> {{dataSource.data.length}} data length </span>
     <br>
-    <span> Selected Items: {{itemStore.selectedItems()}} | json </span>
+    <span> Selected Items: {{itemStore['selectedItems']()}} | json </span>
     <span> Selected Entries {{itemStore.selection().selected.entries }} | json </span>
     <br>
     <span>Initial Selected ID: {{ itemStore.selectedId() }} </span>
     <br>
-    <span> Initial selected Item: {{ itemStore.selectedItem() | json }} </span>
+    <span> Initial selected Item: {{ itemStore['selectedItem']() | json }} </span>
 
   </div> -->
-</div>
+
+
+
+<p>todo-list works! with item</p>
+
+<ul>
+  @let error = items.error();
+  @if (error) {
+    <p>{{ error }}</p>
+  }
+
+  @if (items.isLoading()) {
+    <p>Loading Tasks...</p>
+  }
+
+@for (item of items.value(); track item.id) {
+  <li>{{item.title }} {{ item.id }}</li>
+}  @empty {
+  <p>No Todo!</p>
+}
+</ul>
+<br>
+<ul>
+  @let errortodo = todos.error();
+  @if (errortodo) {
+    <p>{{ errortodo }}</p>
+  }
+
+  @if (todos.isLoading()) {
+    <p>Loading Tasks...</p>
+  }
+
+@for (todo of todos.value(); track todo.id) {
+  <li>{{todo.title }} {{ todo.id }}</li>
+}  @empty {
+  <p>No Todo!</p>
+}
+</ul>

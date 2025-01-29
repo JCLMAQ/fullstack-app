@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject, resource, viewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, inject, Resource, resource, viewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,7 +16,7 @@ import { TodoStore } from '../store/todo.state';
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss',
 })
-export class TodoListComponent {
+export class TodoListComponent implements AfterViewInit {
   // Router configuration
   readonly router = inject(Router)
   routeToDetail = "todos/todo";
@@ -29,20 +29,24 @@ constructor() {
 }
   // Material table configuration
   columnsToDisplay: string[] = ['select', 'numSeq','title'];
-  // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
+  // columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
   expandedElement!: ItemInterface | null;
 
   mode: 'Edit' | 'View' | 'Update' | undefined ;
   master = false; // true : button is disable
   owner = false; // true button is disable
 
+
+
+
 // Data access through store
   itemStore = inject(TodoStore);
-  items = this.itemStore.todosResource;
+  // test = this.itemStore.selection.selected().length
+  items:Resource<ItemInterface[] | undefined> = this.itemStore.itemsResource;
   itemsEntities = this.itemStore.todoEntities;
   loading = this.itemStore.loading;
-  errorLoading = this.itemStore.todosResource.error;
+  errorLoading = this.itemStore.itemsResource.error;
 
 // Material table configuration
 dataSource = new MatTableDataSource<ItemInterface>;
@@ -51,15 +55,15 @@ readonly paginator = viewChild(MatPaginator);
 readonly sort = viewChild(MatSort);
 
 fetchData(): void {
-  this.items = this.itemStore.todosResource;
-  this.dataSource = new MatTableDataSource(this.itemsEntities());
+  this.items = this.itemStore.itemsResource;
+  this.dataSource = new MatTableDataSource(this.items.value());
   this.dataSource.paginator = this.paginator()!;
   this.dataSource.sort = this.sort()!;
 }
 
-// ngAfterViewInit(): void {
-//   this.fetchData();
-// }
+ngAfterViewInit(): void {
+  this.fetchData();
+}
 
 
 // Data access through service / Direct access to DB
@@ -104,7 +108,7 @@ fetchData(): void {
         this.dataSource.data.forEach(row => this.itemStore.selection().select(row));
       }
       // Update
-      this.dataSource.data.forEach(row => this.itemStore['toggleSelected'](row.id));
+      this.dataSource.data.forEach(row => this.itemStore.toggleSelected(row.id));
 }
 
   checkboxLabel(row: ItemInterface): string {
