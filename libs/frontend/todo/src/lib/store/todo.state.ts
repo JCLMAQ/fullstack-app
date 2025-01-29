@@ -73,7 +73,7 @@ export const TodoStore = signalStore(
 
   withProps((store) => ({
 
-    itemsResource: store._itemsResource,
+    itemsResource: store._itemsResource.asReadonly(),
   })),
 
   withNavigationMethods(),
