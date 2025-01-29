@@ -1,5 +1,3 @@
-
-
 <div class="main-div">
   <mat-card class="mat-elevation-z8" >
     <mat-card-content>
@@ -25,7 +23,7 @@
                   </th>
                   <td mat-cell *matCellDef="let element">
                     <mat-checkbox (click)="$event.stopPropagation()"
-                                  (click)="itemStore['toggleSelected'](element.id)"
+                                  (click)="itemStore.toggleSelected(element.id)"
                                   (change)="$event ? itemStore.selection().toggle(element) : null"
                                   [checked]="itemStore.selection().isSelected(element)">
                     </mat-checkbox>
@@ -56,41 +54,36 @@
         <ng-container matColumnDef="tools">
           <th mat-header-cell *matHeaderCellDef aria-label="row actions">Tools </th>
           <td mat-cell *matCellDef="let element">
-
             <button mat-icon-button aria-label="expand row"
-              (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-              @if (expandedElement === element) {
-                <mat-icon>keyboard_arrow_up</mat-icon>
-              } @else {
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              }
-            </button>
+            (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+            @if (expandedElement === element) {
+              <mat-icon>keyboard_arrow_up</mat-icon>
+            } @else {
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            }
+          </button>
 
             <button mat-icon-button  (click)="itemStore.selection().toggle(element)"
-              (click)="itemStore['toggleSelected'](element.id)"
-              (click)="navigateButton(element.id, 'update')">
+                                                            (click)="itemStore.toggleSelected(element.id)"
+                                                            (click)="navigateButton(element.id, 'update')">
               <mat-icon>edit</mat-icon>
             </button>
+              <button mat-icon-button
 
-            <button mat-icon-button
-              (click)="navigateButton(element.id, 'view')">
+                                                              (click)="navigateButton(element.id, 'view')">
               <mat-icon>remove_red_eye</mat-icon>
             </button>
-
             <button mat-icon-button   (click)="virtualRemove(element.id)">
               <mat-icon>delete</mat-icon>
             </button>
-
             @if (owner) {
               <button mat-icon-button  [disabled]=owner (click)="virtualRemove(element)">
                 <mat-icon>delete</mat-icon>
               </button>
             }
-
             <button mat-icon-button aria-label="expand row" [disabled]=master (click)="remove(element)">
-              <mat-icon>delete_forever</mat-icon>
-            </button>
-
+                <mat-icon>delete_forever</mat-icon>
+              </button>
             </td>
         </ng-container>
 
@@ -106,17 +99,15 @@
             </div>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand; sticky: true"></tr>
-        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
-            class="element-row"
-            [class.expanded-row]="expandedElement === element"
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="element-row"
+            [class.example-expanded-row]="expandedElement === element"
             (click)="expandedElement = expandedElement === element ? null : element">
         </tr>
         <tr mat-row *matRowDef="let element; columns: ['expandedDetail']" class="detail-row"></tr>
 
         <!-- Row shown when there is no matching data. -->
-        <tr mat-row *matNoDataRow>
+        <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
         </tr>
 
@@ -124,13 +115,11 @@
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </mat-card-content>
     <mat-card-footer>
-      <!-- <button mat-icon-button (click)="addOne()">
+      <button mat-icon-button (click)="addOne()">
         <mat-icon>add</mat-icon>
-      </button> -->
+      </button>
     </mat-card-footer>
   </mat-card>
-
-</div>
 
 <!--
 <div>

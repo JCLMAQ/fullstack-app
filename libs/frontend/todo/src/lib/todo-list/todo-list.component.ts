@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, effect, inject, Resource, resource, viewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,6 +15,13 @@ import { TodoStore } from '../store/todo.state';
   selector: 'lib-todo-list',
   imports: [CommonModule, ...MATERIAL],
   templateUrl: './todo-list.component.html',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
   styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent implements AfterViewInit {
@@ -29,8 +37,8 @@ constructor() {
 }
   // Material table configuration
   columnsToDisplay: string[] = ['select', 'numSeq','title'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
-  // columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
+  // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
   expandedElement!: ItemInterface | null;
 
   mode: 'Edit' | 'View' | 'Update' | undefined ;
