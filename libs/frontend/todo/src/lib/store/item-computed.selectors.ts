@@ -2,7 +2,7 @@ import { computed } from '@angular/core';
 import { signalStoreFeature, type, withComputed } from '@ngrx/signals';
 import { ItemStateInterface } from './todo.state';
 
-export function withItemsSelectors() {
+export function withItemsComputedSelectors() {
   return signalStoreFeature(
     { state: type<ItemStateInterface>() },
     withComputed(({ items, selection, selectedId, selectedIds }) => ({
@@ -10,17 +10,6 @@ export function withItemsSelectors() {
       selectedItemIndex: computed(()=> selectedIds().findIndex((x) => x === selectedId()) ),
       selectedItems: computed(() => selection().selected.entries),
       lastPositionIndex: computed(() => items().length - 1),
-      doneCount: computed(() => items().filter((x) => x.todoState === 'DONE').length),
-      undoneCount: computed(() => items().filter((x) => x.todoState !== 'DONE').length),
-      percentageDone: computed(() => {
-        const done = items().filter((x) => x.todoState = 'DONE').length;
-        const total = items().length;
-        if (total === 0) {
-          return 0;
-        }
-        return (done / total) * 100;
       })
-    }
-    ))
-  );
+    ));
 }

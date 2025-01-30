@@ -1,4 +1,9 @@
 import { Route } from '@angular/router';
-import { TodoComponent } from './todo/todo.component';
 
-export const todoRoutes: Route[] = [{ path: '', component: TodoComponent }];
+export const todoRoutes: Route[] = [
+  // { path: 'tododetail/:id/:mode', loadComponent: () => import('./todo-page/todo-page.component').then(m => m.TodoPageComponent) },
+  // { path: 'todo/:id/:mode', loadComponent: () => import('./todo-page/todo-page.component').then(m => m.TodoPageComponent), canDeactivate: [hasUnsavedChangesGuard] },
+  { path: 'todo/:id/:mode', loadComponent: () => import('./todo-page/todo-page.component').then(m => m.TodoPageComponent) },
+  { path: '', loadComponent: () => import('./todo/todo.component').then(m => m.TodoComponent) },
+  // { path: '', component: TodoComponent }
+];

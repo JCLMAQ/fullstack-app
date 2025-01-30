@@ -64,13 +64,12 @@
           </button>
 
             <button mat-icon-button  (click)="itemStore.selection().toggle(element)"
-                                                            (click)="itemStore.toggleSelected(element.id)"
-                                                            (click)="navigateButton(element.id, 'update')">
+              (click)="itemStore.toggleSelected(element.id)"
+              (click)="navigateButton(element.id, 'update')">
               <mat-icon>edit</mat-icon>
             </button>
-              <button mat-icon-button
-
-                                                              (click)="navigateButton(element.id, 'view')">
+            <button mat-icon-button
+              (click)="navigateButton(element.id, 'view')">
               <mat-icon>remove_red_eye</mat-icon>
             </button>
             <button mat-icon-button   (click)="virtualRemove(element.id)">

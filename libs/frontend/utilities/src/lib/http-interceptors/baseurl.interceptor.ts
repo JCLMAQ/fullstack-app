@@ -5,8 +5,8 @@ simplifying the configuration of API endpoints.
 */
 
 import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { environment } from '@fe/environment';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 
 export function BaseUrlInterceptor (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
 

@@ -60,8 +60,8 @@ export const appRoutes: Routes = [
       },
       {
         path: 'todos',
-        loadComponent: () =>
-          import('@fe/todo').then(m => m.TodoComponent),
+        loadChildren: () =>
+          import('@fe/todo').then(m => m.todoRoutes),
       },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
 

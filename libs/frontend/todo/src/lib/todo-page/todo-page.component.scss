@@ -1,0 +1,40 @@
+.todo-card {
+  margin: 10px 10px;
+  width: 100%;
+  display: flex;
+}
+
+.todo-actions {
+  text-align: center;
+}
+
+.form-val {
+margin-top: 10px;
+width: 100%;
+// text-align: center;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.todo-form {
+  min-width: 150px;
+  // max-width: 800px;
+  width: 100%;
+}
+
+.todo-field {
+  // margin: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.todo-text-area {
+  width: 100%;
+  hight: 100%;
+  min-height: 100px;
+  max-height: 400px;
+}
