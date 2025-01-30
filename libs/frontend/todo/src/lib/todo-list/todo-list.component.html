@@ -1,4 +1,12 @@
 <div class="main-div">
+  @if (itemStore.itemLoaded()) {
+    <h2>Loading...</h2>
+    <mat-progress-bar
+    mode="indeterminate"
+    class="loader">
+    </mat-progress-bar>
+  }
+
   <mat-card class="mat-elevation-z8" >
     <mat-card-content>
 
@@ -127,6 +135,7 @@
 
 
   <div>
+    <span> {{itemStore.todoEntities().length}} todoitems  </span>
     <!-- @if (itemStore.selection.hasValue()) {
       <span class="selected-text"> ({{itemStore.selection.selected.length}} items selected)</span> -->
       <!-- <span> {{itemStore.selection().selected | json}}  </span> -->

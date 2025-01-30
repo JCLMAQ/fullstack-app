@@ -2,8 +2,8 @@ import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/n
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
-import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
-import { entityConfig, withEntities } from '@ngrx/signals/entities';
+import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
+import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
 import { withItemsComputedSelectors } from './item-computed.selectors';
 import { withNavigationMethods } from './item-navigation.methods';
@@ -69,11 +69,18 @@ export const TodoStore = signalStore(
         return store._itemService.getItems();
       },
     });
+    // patchState(store, { itemLoaded: true }, setLoaded('todo'));
+    const items = _itemsResource.value() ?? [];
+
+      patchState(store, (state) => ({
+        ...state,
+        ...setAllEntities(items),
+      }));
+
     return { _itemsResource };
   }),
 
   withProps((store) => ({
-
     itemsResource: store._itemsResource.asReadonly(),
   })),
 

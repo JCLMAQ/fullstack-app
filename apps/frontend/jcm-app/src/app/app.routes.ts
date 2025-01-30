@@ -55,8 +55,8 @@ export const appRoutes: Routes = [
       },
       {
         path: 'tasks',
-        loadComponent: () =>
-          import('@fe/task').then(m => m.TaskComponent),
+        loadChildren: () =>
+          import('@fe/task').then(m => m.taskRoutes),
       },
       {
         path: 'todos',
