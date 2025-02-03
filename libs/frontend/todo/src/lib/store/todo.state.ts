@@ -2,10 +2,9 @@ import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/n
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
-import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
-import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
+import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
+import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
-import { withItemsComputedSelectors } from './item-computed.selectors';
 import { withNavigationMethods } from './item-navigation.methods';
 import { withItemsSelectionMethods } from './item-selection.methods';
 import { withTodoComputed } from './todo-computed.selectors';
@@ -37,20 +36,22 @@ export const initialItemState: ItemStateInterface = {
   itemLoaded: false
 };
 
+
+const entityName = 'todo';
+
 const storeConfig = entityConfig({
   entity: type<ItemInterface>(),
-  collection: 'todo'
+  collection: entityName
 });
 
 export const TodoStore = signalStore(
   { providedIn: 'root' },
   // { providedIn: 'root' , protectedState: false},
-
   withState(initialItemState),
   withTodoComputed(),
-  withDevtools('todo'),
+  withDevtools(entityName),
   withEntities(storeConfig),
-  withCallState({collection: 'todo'}),
+  withCallState({collection: entityName}),
   withUndoRedo({
     maxStackSize: 100, // limit of undo/redo steps - `100` by default
     collections: [] as never[], // entity collections to keep track of - unnamed collection is tracked by default
@@ -70,12 +71,7 @@ export const TodoStore = signalStore(
       },
     });
     // patchState(store, { itemLoaded: true }, setLoaded('todo'));
-    const items = _itemsResource.value() ?? [];
 
-      patchState(store, (state) => ({
-        ...state,
-        ...setAllEntities(items),
-      }));
 
     return { _itemsResource };
   }),
@@ -83,11 +79,21 @@ export const TodoStore = signalStore(
   withProps((store) => ({
     itemsResource: store._itemsResource.asReadonly(),
   })),
+  withComputed((store) => ({
+    items: computed(() => store.itemsResource.value()),
 
-  withItemsComputedSelectors(),
+  })),
+  // withMethods((store) => ({
+  // entityLoadind(){
+  //   const items = store.itemsResource.value() ?? [];
+  //   // patchState(store, { items },  setLoaded( entityName ));
+  //   patchState(store, setAllEntities(items, storeConfig));
+  // },
+  // })),
   withItemsSelectionMethods(),
   withNavigationMethods(),
   withTodoComputed(),
+  // withItemsComputedSelectors(),
   withComputed((store) => ({
     loading: computed(() =>
       store.itemsResource.isLoading()

@@ -135,7 +135,20 @@
 
 
   <div>
+    <span> {{ loading()}} loading  </span>
+    <br>
+    <span> {{statute()}} statute </span>
+    <br>
+    <span> {{errorLoading()}} error loading  </span>
+    <br>
+    <span> {{hasValue}} hasValue  </span>
+    <br>
     <span> {{itemStore.todoEntities().length}} todoitems  </span>
+    <br>
+    <span> {{itemStore.todoEntityMap() | json }} Items Todo </span>
+    <br>
+    <span> {{itemsTodo | json }} Items Todo </span>
+    <span> {{itemStore.todoEntities().values()| json }} todo Entities  </span>
     <!-- @if (itemStore.selection.hasValue()) {
       <span class="selected-text"> ({{itemStore.selection.selected.length}} items selected)</span> -->
       <!-- <span> {{itemStore.selection().selected | json}}  </span> -->

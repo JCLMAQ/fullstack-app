@@ -19,9 +19,13 @@
   <mat-card class="todo-card mat-elevation-z10">
     <mat-card-header>
       <mat-card-title>Todo</mat-card-title>
-      <mat-card-subtitle>Todo Id : {{todoId}}</mat-card-subtitle>
+      <mat-card-subtitle>Todo Id : {{itemId}}</mat-card-subtitle>
     </mat-card-header>
       <mat-card-content>
+        <mat-form-field class="todo-field">
+          <mat-label>Id</mat-label>
+          <input matInput placeholder="Todo Id" formControlName="id">
+        </mat-form-field>
         <mat-form-field class="todo-field">
           <mat-label>Title</mat-label>
           <input matInput placeholder="Todo Title" formControlName="title">
@@ -99,13 +103,13 @@
     </mat-card-footer>
   </mat-card>
 </div>
-<!-- <div>Current Position : {{itemStore.currentPosition()}}</div>
-<div>Last Position : {{itemStore.lastPosition()}}</div> -->
-<!-- <div>selected id : {{itemStore.selectedId()}}</div>
+<div>Current Position : {{itemStore.currentPosition()}}</div>
+<div>Last Position : {{itemStore.lastPosition()}}</div>
+<div>selected id : {{itemStore.selectedId()}}</div>
 <div>Selected Item: {{itemStore.selectedItem() | json}}</div>
 <div>If selection: </div>
-<div>Selection Items: {{itemStore.selection().selected.length}}</div>
+<div>Selected Items: {{itemStore.selection().selected.length}}</div>
 <div>Selection : {{itemStore.selection().selected | json}}</div>
 <div>SelectedItem Selection Index: {{itemStore.selectedItemIndex()}}</div>
 <div>Selection selected entries : {{itemStore.selection().selected.entries.length }}</div>
-<div>SelectedRowIds from selection: {{itemStore.selectedIds() | json}}</div> -->
+<div>SelectedRowIds from selection: {{itemStore.selectedIds() | json}}</div>

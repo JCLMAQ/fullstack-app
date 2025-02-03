@@ -37,8 +37,8 @@ constructor() {
 }
   // Material table configuration
   columnsToDisplay: string[] = ['select', 'numSeq','title'];
-  // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
+  // columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
   expandedElement!: ItemInterface | null;
 
   mode: 'Edit' | 'View' | 'Update' | undefined ;
@@ -46,14 +46,21 @@ constructor() {
   owner = false; // true button is disable
 
 
-
-
 // Data access through store
   itemStore = inject(TodoStore);
   // test = this.itemStore.selection.selected().length
-  items:Resource<ItemInterface[] | undefined> = this.itemStore.itemsResource;
-  itemsEntities = this.itemStore.todoEntities;
-  loading = this.itemStore.loading;
+  items: Resource<ItemInterface[] | undefined> = this.itemStore.itemsResource;
+
+  itemsTodo: ItemInterface[] | undefined;
+  itemsEntities = this.itemStore.todoEntities();
+
+  // loading = this.itemStore.loading;
+
+  loading = this.itemStore.itemsResource.isLoading;
+  statute = this.itemStore.itemsResource.status;
+
+  hasValue = this.itemStore.itemsResource.hasValue;
+
   errorLoading = this.itemStore.itemsResource.error;
 
 // Material table configuration
@@ -63,7 +70,11 @@ readonly paginator = viewChild(MatPaginator);
 readonly sort = viewChild(MatSort);
 
 fetchData(): void {
-  this.items = this.itemStore.itemsResource;
+  // this.items = this.itemStore.itemsResource;
+
+  this.itemsTodo = this.items.value();
+  // this.itemsTodo = this.items.value();
+
   this.dataSource = new MatTableDataSource(this.items.value());
   this.dataSource.paginator = this.paginator()!;
   this.dataSource.sort = this.sort()!;

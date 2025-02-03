@@ -39,13 +39,13 @@ export class TodoPageComponent implements OnInit {
 
     readonly itemStore = inject(TodoStore);
 
-    public todo: Partial<ItemInterface> | undefined | null;
+    public item: Partial<ItemInterface> | undefined | null;
 
     formGroup: FormGroup;
 
-    todoId!: string | undefined // | null;
-    todoItem: ItemInterface | undefined;
-    todoItems: ItemInterface[] | undefined;
+    itemId!: string | undefined // | null;
+    itemItem: ItemInterface | undefined;
+    itemItems: ItemInterface[] | undefined;
 
     submitted = false;
     mode: 'create' | 'update' | 'view' | undefined;
@@ -60,12 +60,12 @@ export class TodoPageComponent implements OnInit {
 
     constructor(  // private alertService: AlertService,
     ) {
-      this.todoId = this.route.snapshot.params['id'];
+      this.itemId = this.route.snapshot.params['id'];
       this.mode = this.route.snapshot.params['mode'];
       // this.form = this.fb.group(this.formControls);
 
-      if((this.todoId === undefined )|| (this.todoId === null)){
-        this.todoId = this.itemStore.items().at(0)?.id;
+      if((this.itemId === undefined )|| (this.itemId === null)){
+        this.itemId = this.itemStore.items().at(0)?.id;
       }
       if(this.mode === undefined || this.mode === null) {
         this.mode = 'view';
@@ -75,12 +75,13 @@ export class TodoPageComponent implements OnInit {
     }
 
     fetchData(): void {
-      this.todoItems = this.itemStore.todoEntities();
+      // this.itemItems = this.itemStore.todoEntities();
+      this.itemItems = this.itemStore.items();
     }
 
     ngOnInit(): void {
       // this.formGroup = this.formBuilder.group(this.formControlsInit);
-      this.reload(this.todoId!);
+      this.reload(this.itemId!);
     }
 
 
@@ -139,28 +140,28 @@ export class TodoPageComponent implements OnInit {
     next() {
       this.itemStore.next();
       this.itemStore.newSelectedItem(this.itemStore.currentPosition());
-      this.todoId = this.itemStore.selectedId()!;
+      this.itemId = this.itemStore.selectedId()!;
       this.reload(this.itemStore.selectedId()!);
     }
 
     last() {
       this.itemStore.last();
       this.itemStore.newSelectedItem(this.itemStore.currentPosition());
-      this.todoId = this.itemStore.selectedId()!;
+      this.itemId = this.itemStore.selectedId()!;
       this.reload(this.itemStore.selectedId()!);
     }
 
     first() {
       this.itemStore.first();
       this.itemStore.newSelectedItem(this.itemStore.currentPosition());
-      this.todoId = this.itemStore.selectedId()!;
+      this.itemId = this.itemStore.selectedId()!;
       this.reload(this.itemStore.selectedId()!);
     }
 
     previous() {
       this.itemStore.previous();
       this.itemStore.newSelectedItem(this.itemStore.currentPosition());
-      this.todoId = this.itemStore.selectedId()!;
+      this.itemId = this.itemStore.selectedId()!;
       this.reload(this.itemStore.selectedId()!);
     }
 
