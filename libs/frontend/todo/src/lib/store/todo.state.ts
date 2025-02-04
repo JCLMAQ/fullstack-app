@@ -2,8 +2,8 @@ import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/n
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
-import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
-import { entityConfig, withEntities } from '@ngrx/signals/entities';
+import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
+import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
 import { withNavigationMethods } from './item-navigation.methods';
 import { withItemsSelectionMethods } from './item-selection.methods';
@@ -67,29 +67,24 @@ export const TodoStore = signalStore(
   withProps((store) => {
     const _itemsResource = resource<ItemInterface[], string>({
       loader: () => {
-        return store._itemService.getItems();
+        const itemsLoaded = store._itemService.getItems();
+        return itemsLoaded;
       },
     });
-    // patchState(store, { itemLoaded: true }, setLoaded('todo'));
-
-
+    const items = _itemsResource.value();
+    if (items) {
+      patchState(store, setAllEntities(items, storeConfig));
+    }
     return { _itemsResource };
   }),
 
   withProps((store) => ({
     itemsResource: store._itemsResource.asReadonly(),
   })),
+
   withComputed((store) => ({
     items: computed(() => store.itemsResource.value()),
-
   })),
-  // withMethods((store) => ({
-  // entityLoadind(){
-  //   const items = store.itemsResource.value() ?? [];
-  //   // patchState(store, { items },  setLoaded( entityName ));
-  //   patchState(store, setAllEntities(items, storeConfig));
-  // },
-  // })),
   withItemsSelectionMethods(),
   withNavigationMethods(),
   withTodoComputed(),
@@ -106,7 +101,7 @@ export const TodoStore = signalStore(
     onInit(store) {
       const toastService = store._toastService;
       const itemsError = store._itemsResource.error;
-      store.initSelectedID();
+      // store.initSelectedID();
       displayErrorEffect(itemsError, toastService);
     },
     onDestroy() {
