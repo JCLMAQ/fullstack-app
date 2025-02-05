@@ -8,6 +8,7 @@ import {
 import { ItemStateInterface } from './todo.state';
 
 // Based on: https://www.angulararchitects.io/blog/the-new-ngrx-signal-store-for-angular-2-1-flavors/
+// This is a feature that is used to handle the selection of items in a list.
 
 export function withItemsSelectionMethods() {
   return signalStoreFeature(

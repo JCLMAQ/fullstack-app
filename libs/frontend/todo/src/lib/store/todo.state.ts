@@ -51,7 +51,14 @@ export const TodoStore = signalStore(
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
   withTodoComputed(),
+<<<<<<< HEAD
   // withDevtools(entityName),
+=======
+      // doneCount
+      // undoneCount
+      // percentageDone
+  withDevtools(entityName),
+>>>>>>> 21a87ad (Cleaning state todo)
   withEntities(storeConfig),
   withCallState({collection: entityName}),
   withUndoRedo({
@@ -62,6 +69,13 @@ export const TodoStore = signalStore(
   }),
 
   withItemsComputedSelectors(),
+    // withComputed(({ items, selection, selectedId, selectedIds }) => ({
+    //   selectedItem: computed(() => items().find((x) => x.id === selectedId())),
+    //   selectedItemIndex: computed(()=> selectedIds().findIndex((x) => x === selectedId()) ),
+    //   selectedItems: computed(() => selection().selected.entries),
+    //   lastPositionIndex: computed(() => items().length - 1),
+    //   })
+
 
   withProps(() => ({
     _itemService: inject(TodoService),
@@ -93,8 +107,14 @@ export const TodoStore = signalStore(
   })),
   withItemsComputedSelectors(),
   withItemsSelectionMethods(),
+    // initSelectedID()
+    // itemIdSelectedId(selectedRowId: string)
+    // toggleSelected( selectedRowId: string)
+    // newSelectedSelectionItem(newSelectedSelectionItemIndex: number)
+    // newSelectedItem(newSelectedItemIndex: number)
+    // selectedItemUpdate(selectedRowId: string)
+
   withNavigationMethods(),
-  withTodoComputed(),
   withComputed((store) => ({
     loading: computed(() =>
       store.itemsResource.isLoading()
@@ -104,7 +124,6 @@ export const TodoStore = signalStore(
     onInit(store) {
       const toastService = store._toastService;
       const itemsError = store._itemsResource.error;
-      // store.initSelectedID();
       displayErrorEffect(itemsError, toastService);
     },
     onDestroy() {
