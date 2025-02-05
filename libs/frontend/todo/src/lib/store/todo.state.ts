@@ -61,6 +61,8 @@ export const TodoStore = signalStore(
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
 
+  withItemsComputedSelectors(),
+
   withProps(() => ({
     _itemService: inject(TodoService),
     _toastService: inject(ToastService),
@@ -76,6 +78,8 @@ export const TodoStore = signalStore(
     const items = _itemsResource.value();
     if (items) {
       patchState(store, setAllEntities(items, storeConfig));
+      patchState(store, { items });
+      patchState(store, { itemLoaded: true });
     }
     return { _itemsResource };
   }),
@@ -91,15 +95,11 @@ export const TodoStore = signalStore(
   withItemsSelectionMethods(),
   withNavigationMethods(),
   withTodoComputed(),
-  // withItemsComputedSelectors(),
   withComputed((store) => ({
     loading: computed(() =>
       store.itemsResource.isLoading()
 )
   })),
-
-
-
   withHooks({
     onInit(store) {
       const toastService = store._toastService;
