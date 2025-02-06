@@ -5,6 +5,7 @@ import { displayErrorEffect, ToastService } from "@fe/shared";
 import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
 import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
+import { withItemsComputedSelectors } from './item-computed.selectors';
 import { withNavigationMethods } from './item-navigation.methods';
 import { withItemsSelectionMethods } from './item-selection.methods';
 import { withTodoComputed } from './todo-computed.selectors';
@@ -41,7 +42,8 @@ const entityName = 'todo';
 
 const storeConfig = entityConfig({
   entity: type<ItemInterface>(),
-  collection: entityName
+  collection: entityName,
+  // selectId: (item: ItemInterface) => item.id
 });
 
 export const TodoStore = signalStore(
@@ -85,6 +87,7 @@ export const TodoStore = signalStore(
   withComputed((store) => ({
     items: computed(() => store.itemsResource.value()),
   })),
+  withItemsComputedSelectors(),
   withItemsSelectionMethods(),
   withNavigationMethods(),
   withTodoComputed(),
