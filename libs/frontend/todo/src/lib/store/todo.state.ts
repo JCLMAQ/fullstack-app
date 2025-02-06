@@ -1,4 +1,4 @@
-import { withCallState, withUndoRedo } from '@angular-architects/ngrx-toolkit';
+import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/ngrx-toolkit';
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
@@ -50,15 +50,11 @@ export const TodoStore = signalStore(
   { providedIn: 'root' },
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
-  withTodoComputed(),
-<<<<<<< HEAD
-  // withDevtools(entityName),
-=======
-      // doneCount
-      // undoneCount
-      // percentageDone
+
+  withTodoComputed(),       // doneCount - undoneCount - percentageDone
+
+
   withDevtools(entityName),
->>>>>>> 21a87ad (Cleaning state todo)
   withEntities(storeConfig),
   withCallState({collection: entityName}),
   withUndoRedo({
@@ -67,15 +63,6 @@ export const TodoStore = signalStore(
     keys: [], // non-entity based keys to track - `[]` by default
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
-
-  withItemsComputedSelectors(),
-    // withComputed(({ items, selection, selectedId, selectedIds }) => ({
-    //   selectedItem: computed(() => items().find((x) => x.id === selectedId())),
-    //   selectedItemIndex: computed(()=> selectedIds().findIndex((x) => x === selectedId()) ),
-    //   selectedItems: computed(() => selection().selected.entries),
-    //   lastPositionIndex: computed(() => items().length - 1),
-    //   })
-
 
   withProps(() => ({
     _itemService: inject(TodoService),
@@ -91,9 +78,8 @@ export const TodoStore = signalStore(
     });
     const items = _itemsResource.value();
     if (items) {
+      patchState(store, { items, itemLoaded: true });
       patchState(store, setAllEntities(items, storeConfig));
-      patchState(store, { items });
-      patchState(store, { itemLoaded: true });
     }
     return { _itemsResource };
   }),
@@ -101,29 +87,25 @@ export const TodoStore = signalStore(
   withProps((store) => ({
     itemsResource: store._itemsResource.asReadonly(),
   })),
+  // withItemsComputedSelectors(),
+  withItemsSelectionMethods(), // initSelectedId - itemIdSelectedId - toggleSelected - newSelectedSelectionItem - newSelectedItem - selectedItemUpdate
 
-  withComputed((store) => ({
-    items: computed(() => store.itemsResource.value()),
-  })),
-  withItemsComputedSelectors(),
-  withItemsSelectionMethods(),
-    // initSelectedID()
-    // itemIdSelectedId(selectedRowId: string)
-    // toggleSelected( selectedRowId: string)
-    // newSelectedSelectionItem(newSelectedSelectionItemIndex: number)
-    // newSelectedItem(newSelectedItemIndex: number)
-    // selectedItemUpdate(selectedRowId: string)
-
+  // withTodoComputed(),
+  withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
   withNavigationMethods(),
   withComputed((store) => ({
     loading: computed(() =>
       store.itemsResource.isLoading()
 )
   })),
+
+
+
   withHooks({
     onInit(store) {
       const toastService = store._toastService;
       const itemsError = store._itemsResource.error;
+      store.initSelectedID(); // Init selected Id
       displayErrorEffect(itemsError, toastService);
     },
     onDestroy() {
