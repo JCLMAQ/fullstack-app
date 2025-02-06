@@ -5,16 +5,9 @@ import {
   type,
   withMethods
 } from '@ngrx/signals';
-import { withItemsComputedSelectors } from './item-computed.selectors';
 import { ItemStateInterface } from './todo.state';
 
 // Based on: https://www.angulararchitects.io/blog/the-new-ngrx-signal-store-for-angular-2-1-flavors/
-
-
-// const itemConfig = entityConfig({
-//   entity: type<ItemInterface>(),
-//   collection: 'todo'
-// });
 
 export function withItemsSelectionMethods() {
   return signalStoreFeature(
@@ -68,8 +61,7 @@ export function withItemsSelectionMethods() {
           patchState(store,{ selectedId: selectedRowId })
         }
       }
-    })),
-    withItemsComputedSelectors()
+    }))
   )
 }
 
