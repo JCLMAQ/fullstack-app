@@ -1,4 +1,4 @@
-import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/ngrx-toolkit';
+import { withCallState, withUndoRedo } from '@angular-architects/ngrx-toolkit';
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
@@ -51,7 +51,7 @@ export const TodoStore = signalStore(
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
   withTodoComputed(),
-  withDevtools(entityName),
+  // withDevtools(entityName),
   withEntities(storeConfig),
   withCallState({collection: entityName}),
   withUndoRedo({
