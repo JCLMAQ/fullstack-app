@@ -2,7 +2,6 @@ import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/n
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
-
 import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
 import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
@@ -11,6 +10,7 @@ import { withNavigationMethods } from './item-navigation.methods';
 import { withItemsSelectionMethods } from './item-selection.methods';
 import { withTodoComputed } from './todo-computed.selectors';
 import { ItemInterface } from "./todo.model";
+
 
 export interface ItemStateInterface {
   items: ItemInterface[],
@@ -51,9 +51,8 @@ export const TodoStore = signalStore(
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
 
-  withTodoComputed(),
-  withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
-  withNavigationMethods(),
+  withTodoComputed(),       // doneCount - undoneCount - percentageDone
+
 
   withDevtools(entityName),
   withEntities(storeConfig),
@@ -64,9 +63,6 @@ export const TodoStore = signalStore(
     keys: [], // non-entity based keys to track - `[]` by default
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
-
-
-
 
   withProps(() => ({
     _itemService: inject(TodoService),
@@ -90,26 +86,20 @@ export const TodoStore = signalStore(
 
   withProps((store) => ({
     itemsResource: store._itemsResource.asReadonly(),
-    }
-  )),
-
-     // doneCount - undoneCount - percentageDone
+  })),
+  // withItemsComputedSelectors(),
   withItemsSelectionMethods(), // initSelectedId - itemIdSelectedId - toggleSelected - newSelectedSelectionItem - newSelectedItem - selectedItemUpdate
-  // withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
-  // withNavigationMethods(),
-
-  // withItemsSelectionMethods(), // initSelectedId - itemIdSelectedId - toggleSelected - newSelectedSelectionItem - newSelectedItem - selectedItemUpdate
 
   // withTodoComputed(),
-  // withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
-  // withNavigationMethods(),
+  withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
+  withNavigationMethods(),
   withComputed((store) => ({
     loading: computed(() =>
-      store.itemsResource.isLoading()) ,
-    loaded: computed(() =>
-      store.itemsResource.isLoading() === false && store.itemsResource.error() === null
-    ),
+      store.itemsResource.isLoading()
+)
   })),
+
+
 
   withHooks({
     onInit(store) {
