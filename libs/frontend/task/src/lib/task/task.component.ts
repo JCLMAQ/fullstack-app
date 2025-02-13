@@ -26,5 +26,8 @@ private readonly toastService = inject(ToastService);
     },
   });
 
+  reloadItemsResource() {
+    this.#store.itemsResource.reload();
+  }
 
 }

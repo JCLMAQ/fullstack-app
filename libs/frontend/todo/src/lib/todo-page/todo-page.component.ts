@@ -6,7 +6,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MATERIAL } from '@fe/material'; // Ensure MATERIAL is an array of NgModules
 // import { DirtyComponent } from '@fe/utilities';
 import { ItemInterface } from '../store/todo.model';
-import { TodoStore } from '../store/todo.state';
+import { TodoStore } from '../store/todo.store';
 
 // Typed forms based on:  https://offering.solutions/blog/articles/2022/07/09/getting-started-with-angular-strictly-typed-reactive-forms/
 

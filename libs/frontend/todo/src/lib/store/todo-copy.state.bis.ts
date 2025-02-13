@@ -3,17 +3,15 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
 
-import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
-import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
+import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
+import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
-import { withItemsComputedSelectors } from './item-computed.selectors';
 import { withNavigationMethods } from './item-navigation.methods';
 import { withItemsSelectionMethods } from './item-selection.methods';
-import { withTodoComputed } from './todo-computed.selectors';
 import { ItemInterface } from "./todo.model";
 
 export interface ItemStateInterface {
-  items: ItemInterface[],
+  itemsBis: ItemInterface[],
   filter: {
     ownerId: string | null
     orgId: string | null,
@@ -26,7 +24,7 @@ export interface ItemStateInterface {
 
 
 export const initialItemState: ItemStateInterface = {
-  items: [],
+  itemsBis: [],
   filter: {
     ownerId: "test",
     orgId: "test"
@@ -36,7 +34,6 @@ export const initialItemState: ItemStateInterface = {
   selection: new SelectionModel<ItemInterface>(true, []), // true for multiple selection and [ ] for the initial selection
   itemLoaded: false
 };
-
 
 const entityName = 'todo';
 
@@ -51,8 +48,8 @@ export const TodoStore = signalStore(
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
 
-  withTodoComputed(),
-  withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
+  // withTodoComputed(),      // doneCount - undoneCount - percentageDone
+  // withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
   withNavigationMethods(),
 
   withDevtools(entityName),
@@ -65,9 +62,6 @@ export const TodoStore = signalStore(
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
 
-
-
-
   withProps(() => ({
     _itemService: inject(TodoService),
     _toastService: inject(ToastService),
@@ -76,38 +70,29 @@ export const TodoStore = signalStore(
   withProps((store) => {
     const _itemsResource = resource<ItemInterface[], string>({
       loader: () => {
-        const itemsLoaded = store._itemService.getItems();
-        return itemsLoaded;
+        return store._itemService.getItems();
       },
     });
-    const items = _itemsResource.value();
-    if (items) {
-      patchState(store, { items, itemLoaded: true });
-      patchState(store, setAllEntities(items, storeConfig));
-    }
+    // const items = _itemsResource.value();
+    // if (items) {
+    //   patchState(store, { itemsBis: items, itemLoaded: true });
+    //   patchState(store, setAllEntities(items, storeConfig));
+    // }
     return { _itemsResource };
   }),
 
-  withProps((store) => ({
-    itemsResource: store._itemsResource.asReadonly(),
-    }
-  )),
+  withProps((store) => {
+    const itemsResource = store._itemsResource.asReadonly();
+    return { itemsResource };
+  }),
 
-     // doneCount - undoneCount - percentageDone
+
   withItemsSelectionMethods(), // initSelectedId - itemIdSelectedId - toggleSelected - newSelectedSelectionItem - newSelectedItem - selectedItemUpdate
-  // withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
-  // withNavigationMethods(),
 
-  // withItemsSelectionMethods(), // initSelectedId - itemIdSelectedId - toggleSelected - newSelectedSelectionItem - newSelectedItem - selectedItemUpdate
-
-  // withTodoComputed(),
-  // withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
-  // withNavigationMethods(),
   withComputed((store) => ({
-    loading: computed(() =>
-      store.itemsResource.isLoading()) ,
-    loaded: computed(() =>
-      store.itemsResource.isLoading() === false && store.itemsResource.error() === null
+    items: computed(() => store._itemsResource.value() || []),
+    loading: computed(() => store.itemsResource.isLoading()) ,
+    loaded: computed(() => store.itemsResource.isLoading() === false && store.itemsResource.error() === null
     ),
   })),
 

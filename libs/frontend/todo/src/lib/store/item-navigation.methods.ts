@@ -1,8 +1,9 @@
 import { patchState, signalStoreFeature, type, withMethods, withState } from "@ngrx/signals";
-import { ItemStateInterface } from "./todo.state";
+import { ItemStateInterface } from "./todo.store";
 
 export function withNavigationMethods() {
   return signalStoreFeature(
+
     { state: type<ItemStateInterface>() },
     withState(
       {
@@ -16,14 +17,6 @@ export function withNavigationMethods() {
         }
       }
     ),
-    /*
-updateRating: (id: number, rating: number) => {
-      store._ratingsResource.update(ratings => ({
-        ...ratings,
-        [id]: rating,
-      }));
-    },
-    */
     withMethods(
       (store) => ({
         initNavButton(initialItemId: string) {
@@ -31,11 +24,11 @@ updateRating: (id: number, rating: number) => {
           let lastPosition = 0;
           if(store.selection.isEmpty() ) { // no selected items
           // if(store.selection().selected.length <= 1 ) { // no selected items
-            currentPosition = store.items().findIndex(p => p.id === initialItemId);
+            currentPosition = store.itemsBis().findIndex(p => p.id === initialItemId);
             if ( currentPosition === -1) {
               currentPosition = 0;
             }
-            lastPosition = store.items().length - 1;
+            lastPosition = store.itemsBis().length - 1;
             if ( lastPosition < 0 || lastPosition < currentPosition ) {
               lastPosition = 0;
             }
