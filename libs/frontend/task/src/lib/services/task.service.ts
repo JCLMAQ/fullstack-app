@@ -11,6 +11,7 @@ export class TasksService {
   private baseUrl = 'api';
 
   async getAllTasks() {
+    // async getAllTasks(): Promise<ItemInterface[]> {
 
     const response = await fetch(`${this.baseUrl}/alltasks`, {
       method: 'get',
@@ -20,12 +21,16 @@ export class TasksService {
 
     if (!response.ok) throw new Error("Unable to load tasks!");
     const tasks = await response.json();
+    // const tasks: ItemInterface[] = await response.json();
 
     return tasks;
 
   }
 
 
+    // findPromise(filter: DessertFilter, abortSignal?: AbortSignal): Promise<Dessert[]> {
+    //   return toPromise(this.find(filter), abortSignal);
+    // }
 
   // private handleError(error: HttpErrorResponse) {
   //   if (error.error instanceof ErrorEvent) {
