@@ -31,7 +31,6 @@ export class TodoListComponent implements AfterViewInit {
 constructor() {
   effect(()=> {
     this.fetchData();
-    // const state = getState(this.todoStore);
   });
   this.itemStore.initSelectedID();
 }
@@ -70,10 +69,7 @@ readonly paginator = viewChild(MatPaginator);
 readonly sort = viewChild(MatSort);
 
 fetchData(): void {
-  // this.items = this.itemStore.itemsResource;
-
   this.itemsTodo = this.items.value();
-  // this.itemsTodo = this.items.value();
 
   this.dataSource = new MatTableDataSource(this.items.value());
   this.dataSource.paginator = this.paginator()!;
