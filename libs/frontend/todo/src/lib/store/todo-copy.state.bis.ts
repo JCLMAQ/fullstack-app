@@ -2,18 +2,16 @@ import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/n
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
-import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
-import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
+
+import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
+import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
-import { withItemsComputedSelectors } from './item-computed.selectors';
 import { withNavigationMethods } from './item-navigation.methods';
 import { withItemsSelectionMethods } from './item-selection.methods';
-import { withTodoComputed } from './todo-computed.selectors';
 import { ItemInterface } from "./todo.model";
 
-
 export interface ItemStateInterface {
-  items: ItemInterface[],
+  itemsBis: ItemInterface[],
   filter: {
     ownerId: string | null
     orgId: string | null,
@@ -26,7 +24,7 @@ export interface ItemStateInterface {
 
 
 export const initialItemState: ItemStateInterface = {
-  items: [],
+  itemsBis: [],
   filter: {
     ownerId: "test",
     orgId: "test"
@@ -37,19 +35,23 @@ export const initialItemState: ItemStateInterface = {
   itemLoaded: false
 };
 
-
 const entityName = 'todo';
 
 const storeConfig = entityConfig({
   entity: type<ItemInterface>(),
-  collection: entityName
+  collection: entityName,
+  // selectId: (item: ItemInterface) => item.id
 });
 
 export const TodoStore = signalStore(
   { providedIn: 'root' },
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
-  withTodoComputed(),
+
+  // withTodoComputed(),      // doneCount - undoneCount - percentageDone
+  // withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
+  withNavigationMethods(),
+
   withDevtools(entityName),
   withEntities(storeConfig),
   withCallState({collection: entityName}),
@@ -60,8 +62,6 @@ export const TodoStore = signalStore(
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
 
-  withItemsComputedSelectors(),
-
   withProps(() => ({
     _itemService: inject(TodoService),
     _toastService: inject(ToastService),
@@ -70,36 +70,37 @@ export const TodoStore = signalStore(
   withProps((store) => {
     const _itemsResource = resource<ItemInterface[], string>({
       loader: () => {
-        const itemsLoaded = store._itemService.getItems();
-        return itemsLoaded;
+        return store._itemService.getItems();
       },
     });
-    const items = _itemsResource.value();
-    if (items) {
-      patchState(store, setAllEntities(items, storeConfig));
-      patchState(store, { items });
-      patchState(store, { itemLoaded: true });
-    }
+    // const items = _itemsResource.value();
+    // if (items) {
+    //   patchState(store, { itemsBis: items, itemLoaded: true });
+    //   patchState(store, setAllEntities(items, storeConfig));
+    // }
     return { _itemsResource };
   }),
 
-  withProps((store) => ({
-    itemsResource: store._itemsResource.asReadonly(),
+  withProps((store) => {
+    const itemsResource = store._itemsResource.asReadonly();
+    return { itemsResource };
+  }),
+
+
+  withItemsSelectionMethods(), // initSelectedId - itemIdSelectedId - toggleSelected - newSelectedSelectionItem - newSelectedItem - selectedItemUpdate
+
+  withComputed((store) => ({
+    items: computed(() => store._itemsResource.value() || []),
+    loading: computed(() => store.itemsResource.isLoading()) ,
+    loaded: computed(() => store.itemsResource.isLoading() === false && store.itemsResource.error() === null
+    ),
   })),
 
-  withItemsSelectionMethods(),
-  withNavigationMethods(),
-  withTodoComputed(),
-  withComputed((store) => ({
-    loading: computed(() =>
-      store.itemsResource.isLoading()
-)
-  })),
   withHooks({
     onInit(store) {
       const toastService = store._toastService;
       const itemsError = store._itemsResource.error;
-      // store.initSelectedID();
+      store.initSelectedID(); // Init selected Id
       displayErrorEffect(itemsError, toastService);
     },
     onDestroy() {

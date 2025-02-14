@@ -1,4 +1,13 @@
 <p>task works!</p>
+<span>Store status: {{items.status()}} </span>
+<br>
+<span>Store loading: {{items.isLoading()}} </span>
+<br>
+<span>Store error: {{items.error()}} </span>
+<br>
+<!-- <span>is loading: {{itemsLoading}} </span> -->
+<br>
+
 
 <ul>
   @let error = tasks.error();
@@ -10,7 +19,25 @@
     <p>Loading Tasks...</p>
   }
 
+<br>
+  <span>Tasks - from items resource within store</span>
+  @for (item of items.value(); track item.id) {
+    <li>{{item.title }} {{ item.id }}</li>
+  }  @empty {
+    <p>No Tasks!</p>
+  }
+<br>
+<span>Tasks - from resource within component</span>
 @for (task of tasks.value(); track task.id) {
+  <li>{{task.title }} {{ task.id }}</li>
+}  @empty {
+  <p>No Tasks!</p>
+}
+</ul>
+<br>
+<ul>
+  <span>Tasks - from itemsBis within component</span>
+@for (task of itemsBis(); track task.id) {
   <li>{{task.title }} {{ task.id }}</li>
 }  @empty {
   <p>No Tasks!</p>

@@ -5,7 +5,7 @@ CREATE TYPE "TaskState" AS ENUM ('CREATION', 'STANDBY', 'RUNNING', 'DONE');
 CREATE TYPE "TodoState" AS ENUM ('CREATION', 'STANDBY', 'RUNNING', 'DONE');
 
 -- CreateEnum
-CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMELE', 'UNKNOWN');
+CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMELE', 'UNKNOWN', 'NONE');
 
 -- CreateEnum
 CREATE TYPE "Title" AS ENUM ('Mr', 'Mme', 'Dct');
@@ -95,6 +95,7 @@ CREATE TABLE "User" (
     "Gender" "Gender" DEFAULT 'UNKNOWN',
     "social" JSON,
     "Language" "Language" DEFAULT 'en',
+    "photoUrl" TEXT,
     "dob" TIMESTAMP(3),
     "address" JSON,
     "isValidated" TIMESTAMP(3),

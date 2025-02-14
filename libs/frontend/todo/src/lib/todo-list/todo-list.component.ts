@@ -9,7 +9,7 @@ import { MATERIAL } from '@fe/material';
 import { Todo } from '@prisma/client';
 import { TodoService } from '../services/todo.service';
 import { ItemInterface } from '../store/todo.model';
-import { TodoStore } from '../store/todo.state';
+import { TodoStore } from '../store/todo.store';
 
 @Component({
   selector: 'lib-todo-list',

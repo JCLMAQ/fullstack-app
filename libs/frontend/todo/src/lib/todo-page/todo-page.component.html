@@ -81,7 +81,6 @@
       </button>
       <button mat-icon-button matTooltip="Next record"
                                   [disabled]="!itemStore.navigation.hasNext()"
-
                                   (click)="next()">
         <mat-icon>skip_next</mat-icon>
       </button>
@@ -105,11 +104,21 @@
 </div>
 <div>Current Position : {{itemStore.currentPosition()}}</div>
 <div>Last Position : {{itemStore.lastPosition()}}</div>
-<!-- <div>selected id : {{itemStore.selectedId()}}</div>
-<div>Selected Item: {{itemStore.selectedItem() | json}}</div>
-<div>If selection: </div>
+<br>
+<div>Item to view id : {{itemStore.selectedId()}}</div>
+<div>Items to view : {{itemStore.selectedItems() | json}}</div>
+<!-- <div>Item to view selected id: {{itemStore.itemIdSelectedId(itemStore.selectedId()!)}}</div> -->
+<br>
+<div>Items to view : {{itemStore.items() | json}}</div>
+<div>Item to view : {{itemStore.selectedItem()| json}}</div>
+<br>
+<div>If Row selection: </div>
 <div>Selected Items: {{itemStore.selection().selected.length}}</div>
+<br>
 <div>Selection : {{itemStore.selection().selected | json}}</div>
+<br>
 <div>SelectedItem Selection Index: {{itemStore.selectedItemIndex()}}</div>
+<br>
 <div>Selection selected entries : {{itemStore.selection().selected.entries.length }}</div>
-<div>SelectedRowIds from selection: {{itemStore.selectedIds() | json}}</div> -->
+<br>
+<div>SelectedRowIds from selection: {{itemStore.selectedIds() | json}}</div>
