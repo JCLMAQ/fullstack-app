@@ -157,7 +157,7 @@ withMethods(
     initNavButton(initialItemId: string) {
       let currentPosition = 0;
       let lastPosition = 0;
-      if(store.selection.isEmpty() ) { // no selected items
+      if(store.selection().isEmpty() ) { // no selected items
       // if(store.selection().selected.length <= 1 ) { // no selected items
         currentPosition = store.items().findIndex(p => p.id === initialItemId);
         if ( currentPosition === -1) {
