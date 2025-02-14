@@ -73,11 +73,6 @@ export const TodoStore = signalStore(
         return store._itemService.getItems();
       },
     });
-    // const items = _itemsResource.value();
-    // if (items) {
-    //   patchState(store, { itemsBis: items, itemLoaded: true });
-    //   patchState(store, setAllEntities(items, storeConfig));
-    // }
     return { _itemsResource };
   }),
 

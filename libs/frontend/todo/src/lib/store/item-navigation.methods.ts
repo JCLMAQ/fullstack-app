@@ -1,11 +1,21 @@
 import { patchState, signalStoreFeature, type, withMethods, withState } from "@ngrx/signals";
 import { ItemStateInterface } from "./todo.store";
 
+export type NavigationState = {
+  currentPosition: number;
+  lastPosition: number;
+  navigation: {
+    hasNext: boolean;
+    hasPrevious: boolean;
+    isFirst: boolean;
+    isLast: boolean
+  }
+}
 export function withNavigationMethods() {
   return signalStoreFeature(
 
     { state: type<ItemStateInterface>() },
-    withState(
+    withState<NavigationState>(
       {
         currentPosition: 0,
         lastPosition: 0,
@@ -22,7 +32,7 @@ export function withNavigationMethods() {
         initNavButton(initialItemId: string) {
           let currentPosition = 0;
           let lastPosition = 0;
-          if(store.selection.isEmpty() ) { // no selected items
+          if(store.selection().isEmpty() ) { // no selected items
           // if(store.selection().selected.length <= 1 ) { // no selected items
             currentPosition = store.itemsBis().findIndex(p => p.id === initialItemId);
             if ( currentPosition === -1) {

@@ -1,14 +1,10 @@
-import { withCallState, withDevtools, withUndoRedo } from '@angular-architects/ngrx-toolkit';
+import { withCallState, withDevtools, withUndoRedo } from "@angular-architects/ngrx-toolkit";
 import { SelectionModel } from "@angular/cdk/collections";
 import { computed, inject, resource } from "@angular/core";
 import { displayErrorEffect, ToastService } from "@fe/shared";
-import { patchState, signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
-import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
+import { signalStore, type, withComputed, withHooks, withProps, withState } from "@ngrx/signals";
+import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { TodoService } from "../services/todo.service";
-import { withItemsComputedSelectors } from './item-computed.selectors';
-import { withNavigationMethods } from './item-navigation.methods';
-import { withItemsSelectionMethods } from './item-selection.methods';
-import { withTodoComputed } from './todo-computed.selectors';
 import { ItemInterface } from "./todo.model";
 
 
@@ -21,7 +17,6 @@ export interface ItemStateInterface {
   selectedId: string | null,
   selectedIds: string[],
   selection: SelectionModel<ItemInterface>,
-  itemLoaded: boolean;
 };
 
 
@@ -34,7 +29,6 @@ export const initialItemState: ItemStateInterface = {
   selectedId: null,
   selectedIds: [],
   selection: new SelectionModel<ItemInterface>(true, []), // true for multiple selection and [ ] for the initial selection
-  itemLoaded: false
 };
 
 
@@ -51,8 +45,24 @@ export const TodoStore = signalStore(
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
 
-  withTodoComputed(),       // doneCount - undoneCount - percentageDone
+  withProps(() => ({
+    _itemService: inject(TodoService),
+    _toastService: inject(ToastService),
+  })),
 
+  withProps((store) => {
+    const _itemsResource = resource<ItemInterface[], string>({
+      loader: () => {
+        return store._itemService.getItems();
+      },
+    });
+    return { _itemsResource };
+  }),
+
+  withProps((store) => {
+    const itemsResource = store._itemsResource.asReadonly();
+    return { itemsResource };
+  }),
 
   withDevtools(entityName),
   withEntities(storeConfig),
@@ -64,49 +74,17 @@ export const TodoStore = signalStore(
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
 
-  withItemsComputedSelectors(),
-
-  withProps(() => ({
-    _itemService: inject(TodoService),
-    _toastService: inject(ToastService),
-  })),
-
-  withProps((store) => {
-    const _itemsResource = resource<ItemInterface[], string>({
-      loader: () => {
-        const itemsLoaded = store._itemService.getItems();
-        return itemsLoaded;
-      },
-    });
-    const items = _itemsResource.value();
-    if (items) {
-      patchState(store, { items, itemLoaded: true });
-      patchState(store, setAllEntities(items, storeConfig));
-      patchState(store, { items });
-      patchState(store, { itemLoaded: true });
-    }
-    return { _itemsResource };
-  }),
-
-  withProps((store) => ({
-    itemsResource: store._itemsResource.asReadonly(),
-  })),
-  // withItemsComputedSelectors(),
-  withItemsSelectionMethods(), // initSelectedId - itemIdSelectedId - toggleSelected - newSelectedSelectionItem - newSelectedItem - selectedItemUpdate
-
-  // withTodoComputed(),
-  withItemsComputedSelectors(), // selectItem - selectedItemIndex - selectedItems - lastPositionIndex
-  withNavigationMethods(),
   withComputed((store) => ({
-    loading: computed(() =>
-      store.itemsResource.isLoading()
-)
+    items: computed(() => store._itemsResource.value() || []),
+    itemsLoading: computed(() => store._itemsResource.isLoading()),
+    itemsLoadingError: computed(() => store._itemsResource.error()),
   })),
+
+
   withHooks({
     onInit(store) {
       const toastService = store._toastService;
       const itemsError = store._itemsResource.error;
-      store.initSelectedID(); // Init selected Id
       displayErrorEffect(itemsError, toastService);
     },
     onDestroy() {
