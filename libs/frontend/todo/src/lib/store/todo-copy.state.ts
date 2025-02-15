@@ -9,7 +9,7 @@ import { ItemInterface } from "./todo.model";
 
 
 export interface ItemStateInterface {
-  items: ItemInterface[],
+  // items: ItemInterface[],
   filter: {
     ownerId: string | null
     orgId: string | null,
@@ -21,7 +21,7 @@ export interface ItemStateInterface {
 
 
 export const initialItemState: ItemStateInterface = {
-  items: [],
+  // items: [],
   filter: {
     ownerId: "test",
     orgId: "test"
@@ -40,7 +40,7 @@ const storeConfig = entityConfig({
   // selectId: (item: ItemInterface) => item.id
 });
 
-export const TodoStore = signalStore(
+export const TodoStoreBis = signalStore(
   { providedIn: 'root' },
   // { providedIn: 'root' , protectedState: false},
   withState(initialItemState),
@@ -64,6 +64,13 @@ export const TodoStore = signalStore(
     return { itemsResource };
   }),
 
+ withComputed((store) => ({
+    items: computed(() => store.itemsResource.value() || []),
+    itemsLoading: computed(() => store.itemsResource.isLoading()),
+    itemsLoadingError: computed(() => store.itemsResource.error()),
+  })),
+
+
   withDevtools(entityName),
   withEntities(storeConfig),
   withCallState({collection: entityName}),
@@ -73,12 +80,6 @@ export const TodoStore = signalStore(
     keys: [], // non-entity based keys to track - `[]` by default
     skip: 0, // number of initial state changes to skip - `0` by default
   }),
-
-  withComputed((store) => ({
-    items: computed(() => store._itemsResource.value() || []),
-    itemsLoading: computed(() => store._itemsResource.isLoading()),
-    itemsLoadingError: computed(() => store._itemsResource.error()),
-  })),
 
 
   withHooks({
