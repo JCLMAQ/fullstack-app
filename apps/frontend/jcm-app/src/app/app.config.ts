@@ -1,5 +1,5 @@
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, isDevMode, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -7,9 +7,6 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAppErrorHandler } from '@fe/shared';
-import { provideEffects } from '@ngrx/effects';
-import { provideStore } from '@ngrx/store';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRoutes } from './app.routes';
@@ -27,15 +24,15 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideEffects(),
-    provideStore({}),
-    provideStoreDevtools({
-      maxAge: 25,
-      logOnly: !isDevMode(),
-      autoPause: true,
-      trace: false,
-      traceLimit: 75,
-    }),
+    // provideEffects(),
+    // provideStore({}),
+    // provideStoreDevtools({
+    //   maxAge: 25,
+    //   logOnly: !isDevMode(),
+    //   autoPause: true,
+    //   trace: false,
+    //   traceLimit: 75,
+    // }),
     provideAnimationsAsync(),
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(

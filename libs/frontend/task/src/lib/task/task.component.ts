@@ -16,7 +16,8 @@ export class TaskComponent {
 private readonly toastService = inject(ToastService);
   #store = inject(TasksStore);
 
-  items = this.#store.itemsResource;
+  // items = this.#store.itemsResource;
+  items = this.#store.items;
   // isLoading = this.#store.isLoading();
   itemsBis = this.#store.items;
 

@@ -1,10 +1,10 @@
 <p>task works!</p>
-<span>Store status: {{items.status()}} </span>
+<!-- <span>Store status: {{items.status()}} </span>
 <br>
 <span>Store loading: {{items.isLoading()}} </span>
 <br>
 <span>Store error: {{items.error()}} </span>
-<br>
+<br> -->
 <!-- <span>is loading: {{itemsLoading}} </span> -->
 <br>
 
@@ -21,7 +21,7 @@
 
 <br>
   <span>Tasks - from items resource within store</span>
-  @for (item of items.value(); track item.id) {
+  @for (item of items(); track item.id) {
     <li>{{item.title }} {{ item.id }}</li>
   }  @empty {
     <p>No Tasks!</p>

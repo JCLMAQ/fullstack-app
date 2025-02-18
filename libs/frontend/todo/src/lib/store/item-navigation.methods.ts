@@ -34,11 +34,11 @@ export function withNavigationMethods() {
           let lastPosition = 0;
           if(store.selection().isEmpty() ) { // no selected items
           // if(store.selection().selected.length <= 1 ) { // no selected items
-            currentPosition = store.itemsBis().findIndex(p => p.id === initialItemId);
+            currentPosition = store.items().findIndex(p => p.id === initialItemId);
             if ( currentPosition === -1) {
               currentPosition = 0;
             }
-            lastPosition = store.itemsBis().length - 1;
+            lastPosition = store.items().length - 1;
             if ( lastPosition < 0 || lastPosition < currentPosition ) {
               lastPosition = 0;
             }

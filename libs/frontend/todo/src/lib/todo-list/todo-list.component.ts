@@ -51,7 +51,7 @@ constructor() {
   items: Resource<ItemInterface[] | undefined> = this.itemStore.itemsResource;
 
   itemsTodo: ItemInterface[] | undefined;
-  itemsEntities = this.itemStore.todoEntities();
+  itemsEntities = this.itemStore.todosEntities();
 
   // loading = this.itemStore.loading;
 
