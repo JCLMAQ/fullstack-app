@@ -32,7 +32,7 @@ constructor() {
   effect(()=> {
     this.fetchData();
   });
-  this.itemStore.initSelectedID();
+  // this.itemStore.initSelectedID();
 }
   // Material table configuration
   columnsToDisplay: string[] = ['select', 'numSeq','title'];

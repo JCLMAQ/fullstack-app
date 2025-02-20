@@ -1,0 +1,121 @@
+import { withDevtools } from "@angular-architects/ngrx-toolkit";
+import { computed, effect, inject, resource } from "@angular/core";
+import { displayErrorEffect, ToastService } from "@fe/shared";
+import { getState, patchState, signalStore, type, watchState, withComputed, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
+import { entityConfig } from "@ngrx/signals/entities";
+import { TasksService } from "../services/task.service";
+import { ItemInterface } from "./task.model";
+import { initialItemsSlice } from "./task.slice";
+
+
+const entityName = 'tasks';
+
+const storeConfig = entityConfig({
+  entity: type<ItemInterface>(),
+  selectId: (task: ItemInterface) => task.id || '',
+  collection: entityName
+})
+
+
+export const TasksStore = signalStore(
+
+  { providedIn: 'root' },
+  withDevtools('TasksStore'),
+  withState(initialItemsSlice),
+  // withEntities(storeConfig),
+
+
+
+  withProps(() => ({
+    _itemService: inject(TasksService),
+    _toastService: inject(ToastService),
+  })),
+
+  withProps((store) => {
+      const _itemsResource = resource<ItemInterface[], string>({
+        loader: () => {
+          return store._itemService.getAllTasks();
+        },
+      });
+      patchState(store, { tasks: _itemsResource.value() });
+      return { _itemsResource };
+    }),
+  withMethods((store)=> ({
+    load()  {
+
+
+    patchState(store, { tasks: store._itemsResource.value() });
+    // patchState(store, setAllEntities( items: _itemsR.value(), storeConfig.collection));
+},
+
+
+
+
+})),
+  withProps((store) => {
+    const itemsResource = store._itemsResource.asReadonly();
+    patchState(store, { tasks: itemsResource.value() });
+    const items = itemsResource.value() || [];
+    if (items.length > 0) {
+      patchState(store, {tasks: items});
+      // patchState(store, setAllEntities(items, storeConfig));
+    }
+
+
+
+    return { itemsResource };
+  }),
+
+  withComputed((store) => ({
+    tasks: computed(() => store._itemsResource.value() || []),
+    itemsLoading: computed(() => store._itemsResource.isLoading()),
+    itemsLoadingError: computed(() => store._itemsResource.error()),
+  })),
+
+
+
+// withHooks(store => ({
+//   onInit() {
+//     patchState(store, { items: store.itemsResource.value() });
+//     patchState(store, setAllEntities(store.items(), storeConfig));
+
+//     const toastService = store._toastService;
+//     const itemsError = store._itemsResource.error;
+//     displayErrorEffect(itemsError, toastService);
+//   },
+//   onDestroy() {
+//     console.log('on destroy');
+//   },
+// })
+// )
+  withHooks({
+    onInit:(store) =>{
+
+        store.load();
+        // store.initSelectedID();
+
+      // patchState(store, { items: store.itemsResource.value() });
+      // const items = store.itemsResource.value() || [];
+      // if(items.length > 0) {
+      //   patchState(store, setAllEntities(items, storeConfig));
+      // }
+      // patchState(store, { items: store._itemsResource.value() });
+          // patchState(store, setAllEntities(store._itemsResource, storeConfig));
+      const toastService = store._toastService;
+      const itemsError = store._itemsResource.error;
+      displayErrorEffect(itemsError, toastService);
+      watchState(store, (state) => {
+        console.log('[watchState] tasks state', state);
+      }); // logs: { count: 0 }, { count: 1 }, { count: 2 }
+
+      effect(() => {
+        console.log('[effect] counter state', getState(store));
+      }); // logs: { count: 2 }
+
+    },
+    onDestroy() {
+      console.log('on destroy');
+    },
+  })
+
+);
