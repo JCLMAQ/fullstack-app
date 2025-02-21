@@ -21,6 +21,9 @@ private readonly toastService = inject(ToastService);
 items: Signal<ItemInterface[]> = this.#store.items;
 itemsEntitites: Signal<ItemInterface[]> = this.#store.tasksEntities;
 itemsResource = this.#store.itemsResource;
+itemsLoading = this.#store.tasksLoading;
+itemsLoaded = this.#store.tasksLoaded;
+itemsError = this.#store.tasksError;
 
   // ngOnInit() {
   //  this.#store.load();

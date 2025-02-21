@@ -19,6 +19,15 @@
     <p>Loading Tasks...</p>
   }
 
+  @if (itemsLoading()) {
+    <p>Loading Items...</p>
+  }
+
+  @if (itemsLoaded()) {
+    <p>Items Loaded</p>
+  }
+
+
   <br>
   <span>Tasks - from entities within store</span>
   @for (item of itemsEntitites() ; track item.id) {

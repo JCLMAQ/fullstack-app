@@ -1,7 +1,7 @@
-import { withCallState, withDevtools } from "@angular-architects/ngrx-toolkit";
-import { computed, inject, resource } from "@angular/core";
+import { setLoaded, setLoading, withCallState, withDevtools } from "@angular-architects/ngrx-toolkit";
+import { effect, inject, resource } from "@angular/core";
 import { ToastService } from "@fe/shared";
-import { patchState, signalStore, type, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
+import { getState, patchState, signalStore, type, watchState, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
 import { entityConfig, setAllEntities, withEntities } from "@ngrx/signals/entities";
 import { TasksService } from "../services/task.service";
 import { ItemInterface } from "./task.model";
@@ -20,10 +20,9 @@ const storeConfig = entityConfig({
 export const TasksStore = signalStore(
 
   { providedIn: 'root' },
-
+  withState(initialItemsSlice),
   withDevtools('TasksStore'),
   withCallState(storeConfig),
-  withState(initialItemsSlice),
   withEntities(storeConfig),
   withProps(() => ({
     _itemService: inject(TasksService),
@@ -31,27 +30,47 @@ export const TasksStore = signalStore(
   })),
   withProps((store) => {
     const _itemsResource = resource<ItemInterface[], string>({
-      loader: () => {
-        return store._itemService.getAllTasks();
+      loader: async () => {
+        return await store._itemService.getAllTasks();
       },
     });
+  //  store.itemsbis = linkedSignal(() => _itemsResource.value() ?? {});
+    //   patchState(store, { items });
+    //   if (items) {
+    //     patchState(store, setAllEntities(items.filter(Boolean), storeConfig));
+    //   }
+
     return {
       _itemsResource,
       itemsResource: _itemsResource.asReadonly(),
-      itemsBis: computed(() => store.itemsResource),
     };
+    // if (!_itemsResource.isLoading()) {
+    //   const items = _itemsResource.value();
+    //   patchState(store, { items });
+    //   patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
+    // };
   }),
   withMethods((store) => ({
     async load() {
-        const items = await store._itemService.getAllTasks();
-        patchState(store, { items  });
-        patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
+      patchState(store, setLoading('tasks'));
+      const items = await store._itemService.getAllTasks();
+      patchState(store, { items });
+      patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
+      patchState(store, setLoaded('tasks'));
     },
 
     })),
   withHooks({
     onInit(store) {
-        store.load();
+      watchState(store, (state) => {
+        console.log('[watchState] Task state', state);
+      });
+
+      effect(() => {
+        console.log('[effect] Task state', getState(store));
+      });
+    // Items loading
+      store.load();
     }
   })
 

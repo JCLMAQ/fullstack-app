@@ -1,5 +1,6 @@
 
 export * from './logger.feature';
+export * from './request-status.feature';
 export * from './selected-entity.feature';
 
 // export {
