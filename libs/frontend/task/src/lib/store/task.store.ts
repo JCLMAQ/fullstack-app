@@ -1,4 +1,4 @@
-import { withDevtools } from "@angular-architects/ngrx-toolkit";
+import { withCallState, withDevtools } from "@angular-architects/ngrx-toolkit";
 import { computed, inject, resource } from "@angular/core";
 import { ToastService } from "@fe/shared";
 import { patchState, signalStore, type, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
@@ -22,7 +22,7 @@ export const TasksStore = signalStore(
   { providedIn: 'root' },
 
   withDevtools('TasksStore'),
-
+  withCallState(storeConfig),
   withState(initialItemsSlice),
   withEntities(storeConfig),
   withProps(() => ({
@@ -30,35 +30,29 @@ export const TasksStore = signalStore(
     _toastService: inject(ToastService),
   })),
   withProps((store) => {
-      const _itemsResource = resource<ItemInterface[], string>({
-        loader: () => {
-          return store._itemService.getAllTasks();
-        },
-      });
-      return {
-        _itemsResource,
-        itemsResource: _itemsResource.asReadonly(),
-        itemsBis: computed(() => store.itemsResource),
-      };
-
-    }),
-
-    withMethods((store) => ({
-
-      async load() {
-          const items = await store._itemService.getAllTasks();
-          patchState(store, { items  });
-          patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
-
+    const _itemsResource = resource<ItemInterface[], string>({
+      loader: () => {
+        return store._itemService.getAllTasks();
       },
+    });
+    return {
+      _itemsResource,
+      itemsResource: _itemsResource.asReadonly(),
+      itemsBis: computed(() => store.itemsResource),
+    };
+  }),
+  withMethods((store) => ({
+    async load() {
+        const items = await store._itemService.getAllTasks();
+        patchState(store, { items  });
+        patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
+    },
 
     })),
-
-
-    withHooks({
-        onInit(store) {
-            store.load();
-        }
-    })
+  withHooks({
+    onInit(store) {
+        store.load();
+    }
+  })
 
 );
