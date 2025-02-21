@@ -34,21 +34,11 @@ export const TasksStore = signalStore(
         return await store._itemService.getAllTasks();
       },
     });
-  //  store.itemsbis = linkedSignal(() => _itemsResource.value() ?? {});
-    //   patchState(store, { items });
-    //   if (items) {
-    //     patchState(store, setAllEntities(items.filter(Boolean), storeConfig));
-    //   }
 
     return {
       _itemsResource,
       itemsResource: _itemsResource.asReadonly(),
     };
-    // if (!_itemsResource.isLoading()) {
-    //   const items = _itemsResource.value();
-    //   patchState(store, { items });
-    //   patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
-    // };
   }),
   withMethods((store) => ({
     async load() {
