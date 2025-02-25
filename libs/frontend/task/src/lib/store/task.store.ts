@@ -34,7 +34,7 @@ export const TasksStore = signalStore(
         return await store._itemService.getAllTasks();
       },
     });
-
+    // patchState(store, { itemsResource: _itemsResource }); // Add this line
     return {
       _itemsResource,
       itemsResource: _itemsResource.asReadonly(),
@@ -48,7 +48,6 @@ export const TasksStore = signalStore(
       patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
       patchState(store, setLoaded('tasks'));
     },
-
     })),
   withHooks({
     onInit(store) {

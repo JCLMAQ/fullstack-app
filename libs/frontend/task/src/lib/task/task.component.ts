@@ -20,6 +20,7 @@ private readonly toastService = inject(ToastService);
   #store = inject(TasksStore);
 items: Signal<ItemInterface[]> = this.#store.items;
 itemsEntitites: Signal<ItemInterface[]> = this.#store.tasksEntities;
+itemsResource01 = this.#store.itemsResource01;
 itemsResource = this.#store.itemsResource;
 itemsLoading = this.#store.tasksLoading;
 itemsLoaded = this.#store.tasksLoaded;

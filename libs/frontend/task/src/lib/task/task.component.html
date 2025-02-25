@@ -46,7 +46,7 @@
   }
 <br>
 <ul>
-  <span>Tasks - from itemsResource within component</span>
+  <span>Tasks - from itemsResource from props within component</span>
 @for (task of itemsResource.value(); track task.id) {
   <li>{{task.title }} {{ task.id }}</li>
 }  @empty {
