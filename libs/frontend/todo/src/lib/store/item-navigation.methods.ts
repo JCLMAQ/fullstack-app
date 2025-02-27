@@ -1,5 +1,6 @@
 import { patchState, signalStoreFeature, type, withMethods, withState } from "@ngrx/signals";
-import { ItemStateInterface } from "./todo.store";
+import { ItemStateInterface } from "./todo.slice";
+
 
 export type NavigationState = {
   currentPosition: number;

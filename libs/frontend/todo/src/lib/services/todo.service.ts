@@ -27,7 +27,7 @@ export class TodoService {
   private apiUrl = `api/`;
   private baseUrl = `${this.apiUrl}`;
 
-  async getAllTodos(): Promise<ItemInterface[]> {
+  async getAllItems(): Promise<ItemInterface[]> {
 
     const response = await fetch(`${this.baseUrl}/alltodos`, {
       method: 'get',

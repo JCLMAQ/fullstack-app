@@ -1,15 +1,16 @@
 import { computed } from '@angular/core';
 import { signalStoreFeature, type, withComputed } from '@ngrx/signals';
-import { ItemStateInterface } from './todo.store';
+import { ItemInterface } from './todo.model';
+import { ItemStateInterface } from './todo.slice';
 
 export function withItemsComputedSelectors() {
   return signalStoreFeature(
     { state: type<ItemStateInterface>() },
-    withComputed(({ itemsBis, selection, selectedId, selectedIds }) => ({
-      selectedItem: computed(() => itemsBis().find((x) => x.id === selectedId())),
-      selectedItemIndex: computed(()=> selectedIds().findIndex((x) => x === selectedId()) ),
+    withComputed(({ items, selection, selectedId, selectedIds }) => ({
+      selectedItem: computed<ItemInterface | undefined>(() => items().find((x) => x.id === selectedId())),
+      selectedItemIndex: computed<number>(()=> selectedIds().findIndex((x) => x === selectedId()) ),
       selectedItems: computed(() => selection().selected.entries),
-      lastPositionIndex: computed(() => itemsBis().length - 1),
+      lastPositionIndex: computed<number>(() => items().length - 1),
       })
     ));
 }

@@ -5,7 +5,8 @@ import {
   type,
   withMethods
 } from '@ngrx/signals';
-import { ItemStateInterface } from './todo.store';
+import { ItemStateInterface } from './todo.slice';
+
 
 // Based on: https://www.angulararchitects.io/blog/the-new-ngrx-signal-store-for-angular-2-1-flavors/
 // This is a feature that is used to handle the selection of items in a list.
@@ -16,7 +17,7 @@ export function withItemsSelectionMethods() {
     withMethods((store) => ({
 
       initSelectedID() {
-        const firstIndex = store.itemsBis().at(0)?.id;
+        const firstIndex = store.items().at(0)?.id;
         patchState(store, { selectedId: firstIndex })
       },
 
@@ -44,7 +45,7 @@ export function withItemsSelectionMethods() {
       },
 
       newSelectedItem(newSelectedItemIndex: number) {
-        const selectedItem = store.itemsBis()[newSelectedItemIndex]
+        const selectedItem = store.items()[newSelectedItemIndex]
         patchState(store,{ selectedId: selectedItem.id })
       },
 
