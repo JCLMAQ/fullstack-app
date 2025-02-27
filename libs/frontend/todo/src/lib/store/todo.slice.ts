@@ -10,7 +10,7 @@ export interface ItemStateInterface {
   selectedId: string | null,
   selectedIds: string[],
   selection: SelectionModel<ItemInterface>,
-  itemLoaded: boolean,
+  entityName: string,
 
 };
 
@@ -24,5 +24,5 @@ export const initialItemState: ItemStateInterface = {
   selectedId: null,
   selectedIds: [],
   selection: new SelectionModel<ItemInterface>(true, []), // true for multiple selection and [ ] for the initial selection
-  itemLoaded: false
+  entityName: 'todos',
 };

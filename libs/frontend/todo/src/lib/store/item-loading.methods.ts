@@ -1,20 +1,19 @@
 // import { setLoaded, setLoading, withCallState, withUndoRedo } from '@fe/shared/util-signal-store';
+import { setLoaded, setLoading } from '@angular-architects/ngrx-toolkit';
 import {
   patchState,
   signalStoreFeature,
   type,
   withMethods
 } from '@ngrx/signals';
-import { ItemStateInterface } from './todo.slice';
 import { setAllEntities } from '@ngrx/signals/entities';
-import { setLoaded, setLoading } from '@angular-architects/ngrx-toolkit';
-import { storeConfig } from './todo.storeconfig';
 import { ItemInterface } from './todo.model';
+import { ItemStateInterface } from './todo.slice';
+import { storeConfig } from './todo.storeconfig';
 
 export function withItemsLoadingMethods() {
   return signalStoreFeature(
-    { state: type<ItemStateInterface>(),
-      props:
+    { state: type<ItemStateInterface>()
      },
     withMethods((store) => ({
       async load() {

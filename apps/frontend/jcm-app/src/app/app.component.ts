@@ -1,7 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AppStore } from './app.store';
+import { AppStore } from './appstore/app.store';
 
 
 @Component({

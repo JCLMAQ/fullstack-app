@@ -10,8 +10,10 @@ import { provideAppErrorHandler } from '@fe/shared';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRoutes } from './app.routes';
+import { DICTIONARIES } from './data/dictionaries';
 import { AuthInterceptor } from './features/auth/interceptors/auth.interceptor';
 import { LoggingInterceptor } from './features/auth/interceptors/loggind.interceptors';
+import { DICTIONARIES_TOKEN } from './tokens/dictionaries.token';
 
 
 // export function httpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -24,15 +26,6 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // provideEffects(),
-    // provideStore({}),
-    // provideStoreDevtools({
-    //   maxAge: 25,
-    //   logOnly: !isDevMode(),
-    //   autoPause: true,
-    //   trace: false,
-    //   traceLimit: 75,
-    // }),
     provideAnimationsAsync(),
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(
@@ -52,6 +45,8 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     }),
+    { provide: DICTIONARIES_TOKEN, useValue: DICTIONARIES },
+
     provideNativeDateAdapter(),
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes, withComponentInputBinding(),),

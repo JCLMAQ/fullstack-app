@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { AppStore } from '../../../app.store';
+import { AppStore } from '../../../appstore/app.store';
 import { ResponsiveService } from '../../services/responsive.service';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { menuItems } from './menu-items';

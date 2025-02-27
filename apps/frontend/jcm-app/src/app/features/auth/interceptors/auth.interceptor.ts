@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AppStore } from '../../../app.store';
+import { AppStore } from '../../../appstore/app.store';
 
 export function AuthInterceptor (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
     const authJwtTokenbis = localStorage.getItem('authJwtToken');

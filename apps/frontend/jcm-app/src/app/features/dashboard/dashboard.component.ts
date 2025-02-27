@@ -6,7 +6,7 @@ import {
 import { Component, ElementRef, inject, viewChild } from '@angular/core';
 import { wrapGrid } from 'animate-css-grid';
 import Chart from 'chart.js/auto';
-import { AppStore } from '../../app.store';
+import { AppStore } from '../../appstore/app.store';
 import { WidgetComponent } from '../../shared/components/widget/widget.component';
 import { ResponsiveService } from '../../shared/services/responsive.service';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';

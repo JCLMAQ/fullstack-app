@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { AppStore } from '../../../app.store';
+import { AppStore } from '../../../appstore/app.store';
 
 @Component({
   selector: 'app-login',

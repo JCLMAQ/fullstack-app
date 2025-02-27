@@ -7,7 +7,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { AppStore } from '../../../app.store';
+import { AppStore } from '../../../appstore/app.store';
 import { ResponsiveService } from '../../services/responsive.service';
 
 @Component({

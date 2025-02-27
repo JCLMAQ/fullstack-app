@@ -1,5 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { AppStore } from '../../../../app.store';
+import { AppStore } from '../../../../appstore/app.store';
 
 @Component({
   selector: 'app-sidenav-header',
