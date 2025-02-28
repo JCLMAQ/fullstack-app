@@ -2,29 +2,20 @@ import { inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { MessagesService } from "@fe/home";
-import { patchState, signalStoreFeature, type, withMethods, withProps } from "@ngrx/signals";
+import { patchState, SignalStoreFeature, signalStoreFeature, withMethods, withProps } from "@ngrx/signals";
 import { AuthService } from "../features/auth/Services/auth.service";
-import { AppSlice } from "./app.slice";
+import { initialAppSlice } from "./app.slice";
 
-
-export function withAppAuthMethods() {
+/* tslint:disable:object-literal-type */
+export function withAppAuthMethods(): SignalStoreFeature{
   return signalStoreFeature(
-    {
-      state: type<AppSlice>(),
-      props: {
-        _messagesService: MessagesService,
-        _authService: AuthService,
-        _router: Router,
-        _snackbar: MatSnackBar,},
-      methods: {}
-    },
+    { state: initialAppSlice },
     withProps(() => ({
-      _messagesService: inject(MessagesService),
-      _authService: inject(AuthService),
-      _router: inject(Router),
-      _snackbar: inject(MatSnackBar)
-    })),
-
+        _messagesService: inject(MessagesService),
+        _authService: inject(AuthService),
+        _router: inject(Router),
+        _snackbar: inject(MatSnackBar)
+      })),
     withMethods((store) => ({
       login: async (email: string, password: string) => {
 

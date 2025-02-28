@@ -38,7 +38,7 @@ export const AppStore = signalStore(
     user: computed(() => store._authService.user()),
     authToken: computed(() => store._authService.authToken()),
   })),
-
+//  withAppAuthMethods(),
   withMethods((store) => ({
     login: async (email: string, password: string) => {
 
