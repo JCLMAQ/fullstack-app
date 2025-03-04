@@ -6,8 +6,9 @@ import { patchState, SignalStoreFeature, signalStoreFeature, withMethods, withPr
 import { AuthService } from "../features/auth/Services/auth.service";
 import { initialAppSlice } from "./app.slice";
 
+
 /* tslint:disable:object-literal-type */
-export function withAppAuthMethods(): SignalStoreFeature{
+export function withAppAuthFeatures(): SignalStoreFeature{
   return signalStoreFeature(
     { state: initialAppSlice },
     withProps(() => ({
@@ -16,7 +17,7 @@ export function withAppAuthMethods(): SignalStoreFeature{
         _router: inject(Router),
         _snackbar: inject(MatSnackBar)
       })),
-    withMethods((store) => ({
+      withMethods((store) => ({
       login: async (email: string, password: string) => {
 
               try {

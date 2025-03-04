@@ -13,7 +13,7 @@ import { storeConfig } from './todo.storeconfig';
 
 export function withItemsLoadingMethods() {
   return signalStoreFeature(
-    { state: type<ItemStateInterface>()
+    { state: type<ItemStateInterface>(),
      },
     withMethods((store) => ({
       async load() {

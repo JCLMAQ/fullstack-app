@@ -31,8 +31,9 @@ export const AppStore = signalStore(
         _messagesService: inject(MessagesService),
         _authService: inject(AuthService),
         _router: inject(Router),
-        _snackbar: inject(MatSnackBar)
-      })),
+        _snackbar: inject(MatSnackBar),
+        _dictionaries: inject(DICTIONARIES_TOKEN)
+            })),
 
   withComputed((store) => ({
     user: computed(() => store._authService.user()),
@@ -121,10 +122,10 @@ export const AppStore = signalStore(
  // Languages part
 
   withComputed(store => {
-    const dictionaries = inject(DICTIONARIES_TOKEN);
+    // const dictionaries = inject(DICTIONARIES_TOKEN);
     return {
         selectedDictionary: computed(() =>
-            getDictionary(store.selectedLanguage(), dictionaries))
+            getDictionary(store.selectedLanguage(), store._dictionaries))
     }
   }),
   withMethods(store => {
