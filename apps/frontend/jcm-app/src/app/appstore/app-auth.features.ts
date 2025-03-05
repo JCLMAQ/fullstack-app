@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { MessagesService } from "@fe/home";
-import { patchState, SignalStoreFeature, signalStoreFeature, withMethods, withProps } from "@ngrx/signals";
+import { patchState, SignalStoreFeature, signalStoreFeature, withMethods, withProps, withState } from "@ngrx/signals";
 import { AuthService } from "../features/auth/Services/auth.service";
 import { initialAppSlice } from "./app.slice";
 
@@ -10,7 +10,7 @@ import { initialAppSlice } from "./app.slice";
 /* tslint:disable:object-literal-type */
 export function withAppAuthFeatures(): SignalStoreFeature{
   return signalStoreFeature(
-    { state: initialAppSlice },
+    withState(initialAppSlice),
     withProps(() => ({
         _messagesService: inject(MessagesService),
         _authService: inject(AuthService),

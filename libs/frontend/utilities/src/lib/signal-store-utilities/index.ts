@@ -1,8 +1,8 @@
 
+export * from './clipboard.feature';
 export * from './logger.feature';
 export * from './request-status.feature';
 export * from './selected-entity.feature';
-
 // export {
 //   Action, patchState,
 //   updateState, withDevtools
