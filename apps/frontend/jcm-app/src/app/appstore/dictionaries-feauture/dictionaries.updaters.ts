@@ -1,7 +1,7 @@
 import { PartialStateUpdater } from "@ngrx/signals";
-import { AppSlice } from "./app.slice";
+import { DictionariesSlice } from "./dictionaries.slice";
 
-export function changeLanguage(languages: string[]): PartialStateUpdater<AppSlice> {
+export function changeLanguage(languages: string[]): PartialStateUpdater<DictionariesSlice> {
     return state => {
         const index = languages.indexOf(state.selectedLanguage) ?? -1;
         const nextIndex = (index + 1) % languages.length;

@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 import { MessagesService } from '@fe/home';
 import { AuthService } from '../features/auth/Services/auth.service';
 import { DICTIONARIES_TOKEN } from '../tokens/dictionaries.token';
-import { withAppAuthFeatures } from './app-auth.features';
 import { initialAppSlice } from './app.slice';
-import { withDictionariesFeatures } from './dictionaries.features';
+import { withAppAuthFeatures } from './authentication.features';
+import { withDictionariesFeatures } from './dictionaries-feauture/dictionaries.features';
 
 export const AppStore = signalStore(
   { providedIn: 'root' },

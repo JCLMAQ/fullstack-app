@@ -1,14 +1,14 @@
 import { computed, inject } from "@angular/core";
 import { patchState, signalStoreFeature, SignalStoreFeature, withComputed, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
-import { DICTIONARIES_TOKEN } from "../tokens/dictionaries.token";
-import { getDictionary } from "./app.helpers";
-import { initialAppSlice } from "./app.slice";
-import { changeLanguage } from "./app.updaters";
+import { DICTIONARIES_TOKEN } from "../../tokens/dictionaries.token";
+import { getDictionary } from "../app.helpers";
+import { initialDictionariesSlice } from "./dictionaries.slice";
+import { changeLanguage } from "./dictionaries.updaters";
 
 
 export function withDictionariesFeatures(): SignalStoreFeature{
   return signalStoreFeature(
-    withState(initialAppSlice),
+    withState(initialDictionariesSlice),
     withProps(() => ({
         _dictionaries: inject(DICTIONARIES_TOKEN)
     })),
