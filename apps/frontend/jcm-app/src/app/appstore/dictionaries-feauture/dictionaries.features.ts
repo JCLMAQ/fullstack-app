@@ -1,7 +1,7 @@
 import { computed, inject } from "@angular/core";
 import { patchState, signalStoreFeature, SignalStoreFeature, withComputed, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
 import { DICTIONARIES_TOKEN } from "../../tokens/dictionaries.token";
-import { getDictionary } from "../app.helpers";
+import { getDictionary } from "./dictionaries.helpers";
 import { initialDictionariesSlice } from "./dictionaries.slice";
 import { changeLanguage } from "./dictionaries.updaters";
 

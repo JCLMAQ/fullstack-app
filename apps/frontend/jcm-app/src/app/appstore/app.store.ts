@@ -32,9 +32,9 @@ export const AppStore = signalStore(
   })),
 
   // Auth part
-  withAppAuthFeatures(),
+  withAppAuthFeatures(), // Add: login(), logout(), register()
 
  // Languages part
-  withDictionariesFeatures()
+  withDictionariesFeatures() // Add  selectedLanguage, possibleLanguages, selectedDictionary, changeLanguage()
 
 );
