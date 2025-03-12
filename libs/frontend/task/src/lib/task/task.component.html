@@ -9,7 +9,7 @@
 <br>
 <!-- <button (click)="reloadItemsResource()">Load Tasks</button> -->
 
-<ul>
+<!-- <ul>
   @let error = tasks.error();
   @if (error) {
     <p>{{ error }}</p>
@@ -17,7 +17,7 @@
 
   @if (tasks.isLoading()) {
     <p>Loading Tasks...</p>
-  }
+  } -->
 
   @if (itemsLoading()) {
     <p>Loading Items...</p>
@@ -37,29 +37,29 @@
   }
 <br>
 
-<br>
+<!-- <br>
   <span>Tasks - from items within store</span>
   @for (item of items(); track item.id) {
     <li>{{item.title }} {{ item.id }}</li>
   }  @empty {
     <p>No Tasks!</p>
   }
-<br>
-<ul>
-  <span>Tasks - from itemsResource from props within component</span>
+<br> -->
+<!-- <ul>
+  <span>Tasks - from itemsResource from props</span>
 @for (task of itemsResource.value(); track task.id) {
   <li>{{task.title }} {{ task.id }}</li>
 }  @empty {
   <p>No Tasks!</p>
 }
-</ul>
-<br>
+</ul> -->
+<!-- <br>
 <span>Tasks - from resource within component</span>
 @for (task of tasks.value(); track task.id) {
   <li>{{task.title }} {{ task.id }}</li>
 }  @empty {
   <p>No Tasks!</p>
 }
-</ul>
+</ul> -->
 <br>
 

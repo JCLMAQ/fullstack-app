@@ -1,5 +1,5 @@
 import { setLoaded, setLoading, withCallState, withDevtools } from "@angular-architects/ngrx-toolkit";
-import { effect, inject, resource } from "@angular/core";
+import { effect, inject } from "@angular/core";
 import { ToastService } from "@fe/shared";
 import { getState, patchState, signalStore, type, watchState, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
 import { entityConfig, setAllEntities, withEntities } from "@ngrx/signals/entities";
@@ -28,25 +28,25 @@ export const TasksStore = signalStore(
     _itemService: inject(TasksService),
     _toastService: inject(ToastService),
   })),
-  withProps((store) => {
-    const _itemsResource = resource<ItemInterface[], string>({
-      loader: async () => {
-        return await store._itemService.getAllTasks();
-      },
-    });
-    // patchState(store, { itemsResource: _itemsResource }); // Add this line
-    return {
-      _itemsResource,
-      itemsResource: _itemsResource.asReadonly(),
-    };
-  }),
+  // withProps((store) => {
+  //   const _itemsResource = resource<ItemInterface[], string>({
+  //     loader: async () => {
+  //       return await store._itemService.getAllTasks();
+  //     },
+  //   });
+  //   // patchState(store, { itemsResource: _itemsResource }); // Add this line
+  //   return {
+  //     _itemsResource,
+  //     itemsResource: _itemsResource.asReadonly(),
+  //   };
+  // }),
   withMethods((store) => ({
     async load() {
-      patchState(store, setLoading('tasks'));
+      patchState(store, setLoading(storeConfig.collection));
       const items = await store._itemService.getAllTasks();
-      patchState(store, { items });
+      // patchState(store, { items });
       patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
-      patchState(store, setLoaded('tasks'));
+      patchState(store, setLoaded(storeConfig.collection));
     },
     })),
   withHooks({
