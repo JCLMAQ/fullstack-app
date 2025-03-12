@@ -19,7 +19,7 @@ const storeConfig = entityConfig({
 
 export const TasksStore = signalStore(
 
-  { providedIn: 'root' },
+  // { providedIn: 'root' },
   withState(initialItemsSlice),
   withDevtools('TasksStore'),
   withCallState(storeConfig),

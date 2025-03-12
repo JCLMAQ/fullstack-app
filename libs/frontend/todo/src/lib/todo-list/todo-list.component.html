@@ -181,14 +181,14 @@
     <p>Loading Tasks...</p>
   }
 
-@for (item of items.value(); track item.id) {
+<!-- @for (item of items.value(); track item.id) {
   <li>{{item.title }} {{ item.id }}</li>
 }  @empty {
   <p>No Todo!</p>
 }
-</ul>
+</ul> -->
 <br>
-<ul>
+<!-- <ul>
   @let errortodo = todos.error();
   @if (errortodo) {
     <p>{{ errortodo }}</p>
@@ -203,16 +203,17 @@
 }  @empty {
   <p>No Todo!</p>
 }
-</ul>
+</ul> -->
 <br>
 <div>If Row selection: </div>
 <div>Selected Items: {{itemStore.selection().selected.length}}</div>
-<div>Store selection Items: {{itemStore.selection().isEmpty()}}</div>
+<div>Store selection Items isEmpty: {{itemStore.selection().isEmpty()}}</div>
+<br>
+<div>SelectedRowIds from selection: {{itemStore.selectedIds() | json}}</div>
 <br>
 <div>Selection : {{itemStore.selection().selected | json}}</div>
 <br>
 <div>SelectedItem Selection Index: {{itemStore.selectedItemIndex()}}</div>
-<br>
+
 <div>Selection selected entries : {{itemStore.selection().selected.entries.length }}</div>
-<br>
-<div>SelectedRowIds from selection: {{itemStore.selectedIds() | json}}</div>
+

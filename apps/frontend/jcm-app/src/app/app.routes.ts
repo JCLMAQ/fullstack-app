@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { TasksStore } from '@fe/task';
+import { TodoStore } from '@fe/todo';
 import { isUserAuthenticated } from './shared/guards/auth.guard';
 // import { redirectDashboardIfAuthenticated, redirectHomeIfNotAuthenticated, redirectLoginIfNotAuthenticated } from './shared/guards/auth-bis.guards';
 
@@ -57,11 +59,13 @@ export const appRoutes: Routes = [
         path: 'tasks',
         loadChildren: () =>
           import('@fe/task').then(m => m.taskRoutes),
+        providers: [TasksStore],
       },
       {
         path: 'todos',
         loadChildren: () =>
           import('@fe/todo').then(m => m.todoRoutes),
+        providers: [TodoStore],
       },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
 

@@ -43,9 +43,21 @@ export function withNavigationMethods() {
             if ( lastPosition < 0 || lastPosition < currentPosition ) {
               lastPosition = 0;
             }
-          } else {
-            currentPosition = store.selection().selected.findIndex(p => p.id === initialItemId);
-            lastPosition = store.selection().selected.length - 1;
+          } else { // Selection is not empty
+
+
+            if(store.selection().selected.findIndex(p => p.id === initialItemId) === -1) {
+              // InitialItemID is not part of the selected items
+              lastPosition = 0;
+              currentPosition = 0;
+            } else {
+              currentPosition = store.selection().selected.findIndex(p => p.id === initialItemId);
+              lastPosition = store.selection().selected.length - 1;
+            }
+
+
+            // currentPosition = store.selection().selected.findIndex(p => p.id === initialItemId);
+            // lastPosition = store.selection().selected.length - 1;
           }
           if(lastPosition < 0 ) { lastPosition = 0; }
           if(lastPosition < currentPosition ) { lastPosition = currentPosition; }

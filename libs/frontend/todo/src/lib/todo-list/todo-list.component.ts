@@ -35,9 +35,9 @@ constructor() {
   // this.itemStore.initSelectedID();
 }
   // Material table configuration
-  columnsToDisplay: string[] = ['select', 'numSeq','title'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
-  // columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
+  columnsToDisplay: string[] = ['select', 'numSeq', 'orderTodo','title'];
+  // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand',  'tools'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay,  'tools'];
   expandedElement!: ItemInterface | null;
 
   mode: 'Edit' | 'View' | 'Update' | undefined ;

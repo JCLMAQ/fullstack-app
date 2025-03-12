@@ -55,7 +55,8 @@ export class TodoPageComponent implements OnInit {
       title: ['', []],
       content: ['', []],
       todoState: ['', []],
-      orderTodo: [0, []]
+      orderTodo: [0, []],
+      numSeq: [0, []]
     };
 
     constructor(  // private alertService: AlertService,
@@ -96,7 +97,8 @@ export class TodoPageComponent implements OnInit {
           title: this.itemStore.selectedItem()?.title,
           content: this.itemStore.selectedItem()?.content,
           todoState: this.itemStore.selectedItem()?.todoState,
-          orderTodo: this.itemStore.selectedItem()?.orderTodo
+          orderTodo: this.itemStore.selectedItem()?.orderTodo,
+          numSeq: this.itemStore.selectedItem()?.numSeq
         });
       } else if (this.mode == 'create') {
         this.formGroup = this.formBuilder.group({

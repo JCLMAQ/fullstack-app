@@ -38,15 +38,21 @@ export function withItemsSelectionMethods() {
         }
       },
 
-      newSelectedSelectionItem(newSelectedSelectionItemIndex: number) {
-        const newSelectedSelectionItem = store.selection().selected[newSelectedSelectionItemIndex]
-        // const selectedId = store.selectedIds()[newSelectedItemIndex]
-        patchState(store,{ selectedId: newSelectedSelectionItem.id })
-      },
+      // newSelectedSelectionItem(newSelectedSelectionItemIndex: number) {
+      //   const newSelectedSelectionItem = store.selection().selected[newSelectedSelectionItemIndex]
+      //   // const selectedId = store.selectedIds()[newSelectedItemIndex]
+      //   patchState(store,{ selectedId: newSelectedSelectionItem.id })
+      // },
 
       newSelectedItem(newSelectedItemIndex: number) {
-        const selectedItem = store.items()[newSelectedItemIndex]
-        patchState(store,{ selectedId: selectedItem.id })
+        if(store.selectedIds().length > 0) {
+          const newSelectedSelectionItem = store.selection().selected[newSelectedItemIndex];
+          patchState(store,{ selectedId: newSelectedSelectionItem.id })
+        } else {
+          const selectedItem = store.items()[newSelectedItemIndex]
+          patchState(store,{ selectedId: selectedItem.id })
+        }
+
       },
 
       selectedItemUpdate(selectedRowId: string){

@@ -15,7 +15,7 @@ import { storeConfig } from "./todo.storeconfig";
 
 
 export const TodoStore = signalStore(
-  { providedIn: 'root' },
+  // { providedIn: 'root' },
   // { providedIn: 'root' , protectedState: false},
 
   withState(initialItemState),
@@ -38,10 +38,6 @@ export const TodoStore = signalStore(
       _itemsResource,
       itemsResource: _itemsResource.asReadonly(),
     };
-  }),
-  withProps((store) => {
-    const itemsResource = store._itemsResource.asReadonly();
-    return { itemsResource };
   }),
   withMethods((store) => ({
       async load() {
