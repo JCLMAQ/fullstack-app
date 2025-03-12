@@ -74,9 +74,9 @@
     "@ngrx/store-devtools": "^19.0.1",
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
-    "@prisma/client": "^6.4.1",
-    "@zenstackhq/runtime": "^2.12.1",
-    "@zenstackhq/server": "^2.12.1",
+    "@prisma/client": "^6.5.0",
+    "@zenstackhq/runtime": "^2.12.2",
+    "@zenstackhq/server": "^2.12.2",
     "animate-css-grid": "^1.5.1",
     "axios": "^1.8.1",
     "bcrypt": "^5.1.1",
@@ -184,7 +184,7 @@
     "@types/swagger-ui-express": "^4.1.8",
     "@typescript-eslint/utils": "^8.26.0",
     "@vendure/ngx-translate-extract": "^9.4.0",
-    "@zenstackhq/openapi": "^2.12.1",
+    "@zenstackhq/openapi": "^2.12.2",
     "angular-eslint": "19.2.1",
     "autoprefixer": "^10.4.20",
     "dotenv": "^16.4.7",
@@ -199,7 +199,7 @@
     "nx": "20.5.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
-    "prisma": "^6.4.1",
+    "prisma": "^6.5.0",
     "prisma-dbml-generator": "^0.12.0",
     "prisma-docs-generator": "^0.8.0",
     "prisma-json-schema-generator": "^5.1.5",
@@ -211,6 +211,6 @@
     "typescript-eslint": "^8.26.0",
     "typesync": "0.14.1",
     "webpack-cli": "^6.0.1",
-    "zenstack": "^2.12.1"
+    "zenstack": "^2.12.2"
   }
 }
