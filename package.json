@@ -165,7 +165,6 @@
     "@types/bootstrap": "^5.2.10",
     "@types/cookie-parser": "^1.4.8",
     "@types/eslint-config-prettier": "^6.11.3",
-    "@types/eslint__js": "^8.42.3",
     "@types/express": "5.0.0",
     "@types/express-serve-static-core": "5.0.6",
     "@types/fs-extra": "^11.0.4",
