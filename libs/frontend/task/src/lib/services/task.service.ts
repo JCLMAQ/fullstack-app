@@ -21,7 +21,8 @@ export class TasksService implements DataService<ItemInterface,{ ownerId: string
   private baseUrl = `${this.apiUrl}`;
 
   async load(filter: TasksFilter): Promise<ItemInterface[]> {
-    const tasks = await fetch(`${this.baseUrl}/tasks?ownerId=${filter.ownerId}&orgId=${filter.orgId}`);
+    const tasks = await fetch(`${this.baseUrl}/alltasks`);
+    // const tasks = await fetch(`${this.baseUrl}/tasks?ownerId=${filter.ownerId}&orgId=${filter.orgId}`);
     return tasks.json();
   }
 
