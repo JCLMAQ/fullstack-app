@@ -1,103 +1,66 @@
 
-import { Injectable } from "@angular/core";
+import { DataService } from "@angular-architects/ngrx-toolkit";
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { EntityId } from "@ngrx/signals/entities";
+import { ItemInterface } from "../store/task.model";
 
-
+export type TasksFilter = {
+  ownerId: string;
+  orgId: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class TasksService {
+export class TasksService implements DataService<ItemInterface,{ ownerId: string, orgId: string }> {
 
-  private baseUrl = 'api';
+  private readonly http = inject(HttpClient);
 
-  async getAllTasks() {
-    // async getAllTasks(): Promise<ItemInterface[]> {
+  private apiUrl = `api`;
+  private baseUrl = `${this.apiUrl}`;
 
-    const response = await fetch(`${this.baseUrl}/alltasks`, {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-    }});
-
-    if (!response.ok) throw new Error("Unable to load tasks!");
-    const tasks = await response.json();
-    // const tasks: ItemInterface[] = await response.json();
-
-    return tasks;
-
+  async load(filter: TasksFilter): Promise<ItemInterface[]> {
+    const tasks = await fetch(`${this.baseUrl}/tasks?ownerId=${filter.ownerId}&orgId=${filter.orgId}`);
+    return tasks.json();
   }
 
+  async loadById(id: EntityId): Promise<ItemInterface> {
+    const task = await fetch(`${this.baseUrl}/tasks/${id}`);
+    return task.json();
+  }
 
-    // findPromise(filter: DessertFilter, abortSignal?: AbortSignal): Promise<Dessert[]> {
-    //   return toPromise(this.find(filter), abortSignal);
-    // }
+  async create(item: ItemInterface): Promise<ItemInterface> {
+    // implementation for creating a new task
+    // const newItem = await // votre code pour créer une nouvelle tâche
+    // return newItem;
+    throw new Error("Method not implemented.");
+  }
 
-  // private handleError(error: HttpErrorResponse) {
-  //   if (error.error instanceof ErrorEvent) {
-  //     // A client-side or network error occured. Handle it accordingly
-  //     console.error('An error occured:', error.error.message);
-  //   } else {
-  //     // The backend returned an unsuccessful respone code.
-  //     // The response body may contain clues as to what was wrong
-  //     console.log(
-  //       `Backend returned code ${error.status}, body was: ${error.status}`
-  //     );
-  //   }
-  //   // return an observable wuth a user-facing error message
-  //   return throwError(() => new Error('Something bad happened; please try again later.'));
-  // }
+  async update(item: ItemInterface): Promise<ItemInterface> {
+    // implementation for updating a task
+    // const updatedItem = await // votre code pour mettre à jour une tâche
+    // return updatedItem;
+    throw new Error("Method not implemented.");
+  }
 
-  // getTasks(): Observable<TaskInterface[]> {
-  //     return this.http
-  //       .get<TaskInterface[]>(this.baseUrl, httpOptions)
-  //    .pipe(
+  async updateAll(entities: ItemInterface[]): Promise<ItemInterface[]> {
+    // implementation pour mettre à jour plusieurs tâches
+    // const updatedEntities = await // votre code pour mettre à jour plusieurs tâches
+    // return updatedEntities;
 
-  //     catchError(this.handleError)
-  //    )
-  // }
+    throw new Error("Method not implemented.");
+  }
 
-// To be tested
-
-  // getAllTaskItems(): Observable<TaskInterface[]> {
-  //   return this.http
-  //     .get<TaskInterface[]>(this.baseUrl, httpOptions)
-  //     .pipe(
-  //       map((results: any) => results.tasks),
-  //       catchError(this.handleError));
-  // }
-
-  // getTaskById(taskId: string): Observable<TaskInterface> {
-  //   const url = `${this.baseUrl}/${taskId}`;
-  //   return this.http
-  //   .get<TaskInterface>(url, httpOptions)
-  //   .pipe(catchError(this.handleError));
-  // }
-
-  // createTask(userData: TaskInterface): Observable<TaskInterface> {
-  //   return this.http
-  //     .post<TaskInterface>(this.baseUrl, userData, httpOptions)
-  //     .pipe(catchError(this.handleError));
-  // }
-
-  // updateTask(taskId: string, taskData: TaskInterface): Observable<TaskInterface> {
-  //   const url = `${this.baseUrl}/${taskId}`;
-  //   return this.http
-  //     .patch<TaskInterface>(url, taskData, httpOptions)
-  //     .pipe(catchError(this.handleError));
-  // }
-
-  // createOrUpdateTask(taskId: string, taskData: TaskInterface): Observable<TaskInterface> {
-  //   const url = `${this.baseUrl}/${taskId}`;
-  //   return this.http
-  //     .put<TaskInterface>(url, taskData, httpOptions)
-  //     .pipe(catchError(this.handleError));
-  // }
-
-  // deleteTask(taskId: string): Observable<never> {
-  //   const url = `${this.baseUrl}/${taskId}`; // DELETE api/tasks/42-5c-...
-  //   return this.http
-  //     .delete<never>(url, httpOptions)
-  //     .pipe(catchError(this.handleError));
-  // }
+  async delete(entity: ItemInterface): Promise<void> {
+    const response = await fetch(`${this.baseUrl}/tasks/${entity.id}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    if (!response.ok) throw new Error("Unable to delete task!");
+  }
 }
+
 

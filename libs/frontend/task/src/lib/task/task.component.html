@@ -37,6 +37,16 @@
   }
 <br>
 
+
+<br>
+<span>Tasks - from entities within store</span>
+@for (item of test() ; track item.id) {
+  <li>{{item.title }} {{ item.id }}</li>
+}  @empty {
+  <p>No Tasks!</p>
+}
+<br>
+
 <!-- <br>
   <span>Tasks - from items within store</span>
   @for (item of items(); track item.id) {

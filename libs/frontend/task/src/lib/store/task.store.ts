@@ -1,12 +1,11 @@
-import { setLoaded, setLoading, withCallState, withDevtools } from "@angular-architects/ngrx-toolkit";
-import { effect, inject } from "@angular/core";
+import { withCallState, withDataService, withDevtools, withUndoRedo } from "@angular-architects/ngrx-toolkit";
+import { effect, inject, Type } from "@angular/core";
+
 import { ToastService } from "@fe/shared";
-import { getState, patchState, signalStore, type, watchState, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
-import { entityConfig, setAllEntities, withEntities } from "@ngrx/signals/entities";
+import { getState, signalStore, type, watchState, withHooks, withProps } from "@ngrx/signals";
+import { entityConfig, withEntities } from "@ngrx/signals/entities";
 import { TasksService } from "../services/task.service";
 import { ItemInterface } from "./task.model";
-import { initialItemsSlice } from "./task.slice";
-
 
 const entityName = 'tasks';
 
@@ -20,7 +19,7 @@ const storeConfig = entityConfig({
 export const TasksStore = signalStore(
 
   // { providedIn: 'root' },
-  withState(initialItemsSlice),
+  // withState(initialItemsSlice),
   withDevtools('TasksStore'),
   withCallState(storeConfig),
   withEntities(storeConfig),
@@ -28,27 +27,12 @@ export const TasksStore = signalStore(
     _itemService: inject(TasksService),
     _toastService: inject(ToastService),
   })),
-  // withProps((store) => {
-  //   const _itemsResource = resource<ItemInterface[], string>({
-  //     loader: async () => {
-  //       return await store._itemService.getAllTasks();
-  //     },
-  //   });
-  //   // patchState(store, { itemsResource: _itemsResource }); // Add this line
-  //   return {
-  //     _itemsResource,
-  //     itemsResource: _itemsResource.asReadonly(),
-  //   };
-  // }),
-  withMethods((store) => ({
-    async load() {
-      patchState(store, setLoading(storeConfig.collection));
-      const items = await store._itemService.getAllTasks();
-      // patchState(store, { items });
-      patchState(store, setAllEntities(items as ItemInterface[], storeConfig));
-      patchState(store, setLoaded(storeConfig.collection));
-    },
-    })),
+  withDataService({
+    dataServiceType: TasksService as Type<TasksService>,
+    filter: {  ownerId: "", orgId: "" },
+    collection: storeConfig.collection,
+  }),
+  withUndoRedo({collections: [ storeConfig.collection ]}),
   withHooks({
     onInit(store) {
       watchState(store, (state) => {
@@ -59,7 +43,7 @@ export const TasksStore = signalStore(
         console.log('[effect] Task state', getState(store));
       });
     // Items loading
-      store.load();
+     store.loadTasksEntities();
     }
   })
 

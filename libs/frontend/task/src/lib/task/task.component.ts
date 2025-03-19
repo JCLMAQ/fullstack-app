@@ -23,7 +23,7 @@ itemsEntitites: Signal<ItemInterface[]> = this.#store.tasksEntities;
 itemsLoading = this.#store.tasksLoading;
 itemsLoaded = this.#store.tasksLoaded;
 itemsError = this.#store.tasksError;
-
+test = this.#store.tasksEntities;
   // ngOnInit() {
   //  this.#store.load();
   // }

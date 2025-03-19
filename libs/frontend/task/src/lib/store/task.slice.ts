@@ -1,6 +1,4 @@
 
-
-
 export type ItemsSlice = {
   // readonly items: ItemInterface[];
   readonly filter: { query: string; order: 'asc' | 'desc' };
