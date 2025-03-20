@@ -1,4 +1,11 @@
 import { Route } from '@angular/router';
-import { PostComponent } from './post/post.component';
 
-export const postRoutes: Route[] = [{ path: '', component: PostComponent }];
+export const postRoutes: Route[] = [
+  { path: 'todo/:id/:mode',
+    loadComponent: () => import('./post-page/post-page.component').then(m => m.PostPageComponent),
+    },
+
+  { path: '',
+    loadComponent: () => import('./post/post.component').then(m => m.PostComponent),
+  }
+];

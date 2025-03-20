@@ -1,0 +1,65 @@
+<p>task-list works!</p>
+
+<!-- <span>Store status: {{items.status()}} </span>
+<br>
+<span>Store loading: {{items.isLoading()}} </span>
+<br>
+<span>Store error: {{items.error()}} </span>
+<br> -->
+<!-- <span>is loading: {{itemsLoading}} </span> -->
+<br>
+<!-- <button (click)="reloadItemsResource()">Load Tasks</button> -->
+
+<!-- <ul>
+  @let error = tasks.error();
+  @if (error) {
+    <p>{{ error }}</p>
+  }
+
+  @if (tasks.isLoading()) {
+    <p>Loading Tasks...</p>
+  } -->
+
+  @if (itemsLoading()) {
+    <p>Loading Items...</p>
+  }
+
+  @if (itemsLoaded()) {
+    <p>Items Loaded</p>
+  }
+
+
+  <br>
+  <span>Tasks - from entities within store</span>
+  @for (item of itemsEntitites() ; track item.id) {
+    <li>{{item.title }} {{ item.id }}</li>
+  }  @empty {
+    <p>No Tasks!</p>
+  }
+<br>
+
+<!-- <br>
+  <span>Tasks - from items within store</span>
+  @for (item of items(); track item.id) {
+    <li>{{item.title }} {{ item.id }}</li>
+  }  @empty {
+    <p>No Tasks!</p>
+  }
+<br> -->
+<!-- <ul>
+  <span>Tasks - from itemsResource from props</span>
+@for (task of itemsResource.value(); track task.id) {
+  <li>{{task.title }} {{ task.id }}</li>
+}  @empty {
+  <p>No Tasks!</p>
+}
+</ul> -->
+<!-- <br>
+<span>Tasks - from resource within component</span>
+@for (task of tasks.value(); track task.id) {
+  <li>{{task.title }} {{ task.id }}</li>
+}  @empty {
+  <p>No Tasks!</p>
+}
+</ul> -->
+<br>
