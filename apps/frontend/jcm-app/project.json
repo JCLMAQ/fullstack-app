@@ -13,10 +13,7 @@
         "outputPath": "dist/apps/frontend/jcm-app",
         "index": "apps/frontend/jcm-app/src/index.html",
         "browser": "apps/frontend/jcm-app/src/main.ts",
-        "polyfills": [
-
-          "@angular/localize/init"
-        ],
+        "polyfills": ["@angular/localize/init"],
         "tsConfig": "apps/frontend/jcm-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -66,7 +63,8 @@
           "buildTarget": "jcm-app:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "continuous": true
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
