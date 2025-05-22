@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AppStore } from '../../../appstore/app.store';
 import { ResponsiveService } from '../../services/responsive.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
     selector: 'app-header',
@@ -25,6 +26,8 @@ import { ResponsiveService } from '../../services/responsive.service';
       <h1 class="flex-1">{{"SITETITLE" | translate }}</h1>
 
       <div class="flex-1"></div>
+
+      <!-- DarkMode Menu selection -->
       <button mat-icon-button (click)="darkMode.set(!darkMode())">
         @if (darkMode()) {
         <mat-icon>light_mode</mat-icon>
@@ -33,6 +36,26 @@ import { ResponsiveService } from '../../services/responsive.service';
         }
       </button>
 
+<!-- Theme Menu selection -->
+
+<button mat-icon-button [matMenuTriggerFor]="themeMenu">
+        <mat-icon>format_color_fill</mat-icon>
+      </button>
+      <mat-menu #themeMenu="matMenu">
+        @for (theme of themeService.getThemes(); track theme.id) {
+        <button mat-menu-item (click)="themeService.setTheme(theme.id)">
+          <div class="theme-menu-item">
+            <div
+              class="color-preview"
+              [style.background-color]="theme.primary"
+            ></div>
+            <span>{{ theme.displayName }}</span>
+          </div>
+        </button>
+        }
+      </mat-menu>
+
+<!-- Menu language selectection -->
       <button
           mat-icon-button
           [matMenuTriggerFor]="menulanguage"
@@ -101,7 +124,7 @@ import { ResponsiveService } from '../../services/responsive.service';
     </mat-toolbar>
   `,
     styles: `
-
+  @use '@angular/material' as mat;
     mat-toolbar {
         position: relative;
         z-index: 5;
@@ -109,9 +132,34 @@ import { ResponsiveService } from '../../services/responsive.service';
         --mat-toolbar-container-background-color: var(--sys-surface-container-low);
     }
 
+    @include mat.toolbar-overrides((
+        container-background-color: var(--mat-sys-primary),
+        container-text-color: var(--mat-sys-on-primary),
+      ));
+
+      @include mat.icon-button-overrides((
+        icon-color: var(--mat-sys-on-primary),
+      ));
+
+
+
+    .theme-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .color-preview {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
   `
 })
 export class HeaderComponent {
+
+  themeService = inject(ThemeService);
   translate = inject(TranslateService);
   responsiveService = inject(ResponsiveService);
   appStore = inject(AppStore);
