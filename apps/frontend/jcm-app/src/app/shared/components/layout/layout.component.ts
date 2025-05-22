@@ -48,6 +48,10 @@ import { HeaderComponent } from '../header/header.component';
   .content {
         padding: 24px;
         box-sizing: border-box;
+
+        background-color: var(--mat-sys-background);
+        color: var(--mat-sys-on-background);
+
       }
 
       mat-sidenav-container {

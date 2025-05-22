@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, effect, inject, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
@@ -13,7 +14,14 @@ import { ThemeService } from '../../services/theme.service';
 
 @Component({
     selector: 'app-header',
-    imports: [MatToolbar, MatIcon, MatButtonModule, MatMenuModule, MatDivider,TranslatePipe],
+    imports: [
+      MatToolbar,
+      MatIcon,
+      MatButtonModule,
+      MatMenuModule,
+      MatDivider,
+      TitleCasePipe,
+      TranslatePipe],
     template: `
     <mat-toolbar class="mat-elevation-z3 relative z-10">
       <button mat-icon-button (click)="toggleMenu()">
@@ -38,7 +46,26 @@ import { ThemeService } from '../../services/theme.service';
 
 <!-- Theme Menu selection -->
 
-<button mat-icon-button [matMenuTriggerFor]="themeMenu">
+    <button mat-icon-button [mat-menu-trigger-for]="themeMenu">
+        <mat-icon>{{ themeService.selectedTheme()?.icon }}</mat-icon>
+      </button>
+      <mat-menu #themeMenu="matMenu">
+        @for (theme of themeService.getThemes(); track theme.name) {
+        <button
+          [class.selected-theme]="
+            themeService.selectedTheme()?.name === theme.name
+          "
+          mat-menu-item
+          (click)="themeService.setTheme(theme.name)"
+        >
+          <mat-icon>{{ theme.icon }}</mat-icon>
+          <span>{{ theme.name | titlecase }}</span>
+        </button>
+        }
+      </mat-menu>
+
+
+<!-- <button mat-icon-button [matMenuTriggerFor]="themeMenu">
         <mat-icon>format_color_fill</mat-icon>
       </button>
       <mat-menu #themeMenu="matMenu">
@@ -53,7 +80,7 @@ import { ThemeService } from '../../services/theme.service';
           </div>
         </button>
         }
-      </mat-menu>
+      </mat-menu> -->
 
 <!-- Menu language selectection -->
       <button
@@ -142,18 +169,26 @@ import { ThemeService } from '../../services/theme.service';
       ));
 
 
-
-    .theme-menu-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .selected-theme {
+      @include mat.menu-overrides(
+        (
+          item-icon-color: var(--mat-sys-primary),
+          item-label-text-color: var(--mat-sys-primary),
+        )
+      );
     }
 
-    .color-preview {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-    }
+    // .theme-menu-item {
+    //   display: flex;
+    //   align-items: center;
+    //   gap: 12px;
+    // }
+
+    // .color-preview {
+    //   width: 24px;
+    //   height: 24px;
+    //   border-radius: 50%;
+    // }
 
   `
 })

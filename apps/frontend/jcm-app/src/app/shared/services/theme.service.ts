@@ -1,43 +1,85 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 
-export interface Theme {
-  id: string;
-  primary: string;
-  displayName: string;
+// export interface Theme {
+//   id: string;
+//   primary: string;
+//   displayName: string;
+// }
+
+
+export interface AppTheme {
+  name:  'light' | 'dark' | 'system';
+  icon: string;
 }
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly themes: Theme[] = [
-    {
-      id: 'deep-blue-dark',
-      primary: '#1976D2',
-      displayName: 'Deep Blue Dark',
-    },
-    { id: 'green', primary: '#00796B', displayName: 'Green' },
-    { id: 'orange', primary: '#E65100', displayName: 'Orange' },
-    { id: 'purple', primary: '#6200EE', displayName: 'Purple' },
-    { id: 'red', primary: '#C2185B', displayName: 'Red' },
+
+  private appTheme = signal<'light' | 'dark' | 'system'>('system');
+
+  private themes: AppTheme[] = [
+    { name: 'light', icon: 'light_mode' },
+    { name: 'dark', icon: 'dark_mode' },
+    { name: 'system', icon: 'desktop_windows' },
   ];
 
-  currentTheme = signal<Theme>(this.themes[0]);
+  selectedTheme = computed(() =>
+    this.themes.find((t) => t.name === this.appTheme())
+  );
 
-  getThemes(): Theme[] {
+  getThemes() {
     return this.themes;
   }
 
-  setTheme(themeId: string): void {
-    const theme = this.themes.find((t) => t.id === themeId);
-    if (theme) {
-      this.currentTheme.set(theme);
-    }
+  setTheme(theme: 'light' | 'dark' | 'system') {
+    this.appTheme.set(theme);
   }
 
-  updateThemeClass = effect(() => {
-    const theme = this.currentTheme();
-    document.body.classList.remove(...this.themes.map((t) => `${t.id}-theme`));
-    document.body.classList.add(`${theme.id}-theme`);
-  });
+  constructor() {
+    effect(() => {
+      const appTheme = this.appTheme();
+      const colorScheme = appTheme === 'system' ? 'light dark' : appTheme;
+      document.body.style.setProperty('color-scheme', colorScheme);
+    });
+  }
+
+
+
+
+
+
+
+  // private readonly themes: Theme[] = [
+  //   {
+  //     id: 'deep-blue-dark',
+  //     primary: '#1976D2',
+  //     displayName: 'Deep Blue Dark',
+  //   },
+  //   { id: 'green', primary: '#00796B', displayName: 'Green' },
+  //   { id: 'orange', primary: '#E65100', displayName: 'Orange' },
+  //   { id: 'purple', primary: '#6200EE', displayName: 'Purple' },
+  //   { id: 'red', primary: '#C2185B', displayName: 'Red' },
+  // ];
+
+  // currentTheme = signal<Theme>(this.themes[0]);
+
+  // getThemes(): Theme[] {
+  //   return this.themes;
+  // }
+
+  // setTheme(themeId: string): void {
+  //   const theme = this.themes.find((t) => t.id === themeId);
+  //   if (theme) {
+  //     this.currentTheme.set(theme);
+  //   }
+  // }
+
+  // updateThemeClass = effect(() => {
+  //   const theme = this.currentTheme();
+  //   document.body.classList.remove(...this.themes.map((t) => `${t.id}-theme`));
+  //   document.body.classList.add(`${theme.id}-theme`);
+  // });
 }
