@@ -157,7 +157,7 @@ import { ThemeService } from '../../services/theme.service';
         z-index: 5;
         justify-content: space-between;
         --mat-toolbar-container-background-color: var(--sys-surface-container-low);
-    }
+
 
     @include mat.toolbar-overrides((
         container-background-color: var(--mat-sys-primary),
@@ -167,7 +167,7 @@ import { ThemeService } from '../../services/theme.service';
       @include mat.icon-button-overrides((
         icon-color: var(--mat-sys-on-primary),
       ));
-
+  }
 
     .selected-theme {
       @include mat.menu-overrides(
