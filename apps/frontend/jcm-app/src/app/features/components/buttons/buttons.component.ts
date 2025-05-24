@@ -34,6 +34,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
         MatSliderModule,
     ],
     template: `
+
+    <div class="flex-row">
+          <button mat-flat-button>Open Dialog</button>
+          <button class="accent" mat-flat-button>Accent button</button>
+          <button class="warn" mat-flat-button>Warn button</button>
+        </div>
+
     <button mat-stroked-button>Stroked Button</button>
 
     <button mat-raised-button><mat-icon>person</mat-icon>Raised Button</button>
@@ -68,6 +75,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     align-items: center;
     gap: 24px;
   }
+
+  .content {
+      padding: 32px;
+      min-height: 100vh;
+
+      background-color: var(--mat-sys-background);
+      color: var(--mat-sys-on-background);
+    }
 
   `
 })
