@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, effect, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
@@ -36,13 +36,13 @@ import { ThemeService } from '../../services/theme.service';
       <div class="flex-1"></div>
 
       <!-- DarkMode Menu selection -->
-      <button mat-icon-button (click)="darkMode.set(!darkMode())">
+      <!-- <button mat-icon-button (click)="darkMode.set(!darkMode())">
         @if (darkMode()) {
         <mat-icon>light_mode</mat-icon>
         } @else {
         <mat-icon>dark_mode</mat-icon>
         }
-      </button>
+      </button> -->
 
 <!-- Theme Menu selection -->
 
@@ -205,11 +205,11 @@ export class HeaderComponent {
   collapsed = this.responsiveService.isCollapsed;
   barOpen = this.responsiveService.isMenuBarOpen;
 
-  darkMode = signal(false);
+  // darkMode = signal(false);
 
-  setDarkModeClass = effect(() => {
-    document.documentElement.classList.toggle('dark', this.darkMode());
-  });
+  // setDarkModeClass = effect(() => {
+  //   document.documentElement.classList.toggle('dark', this.darkMode());
+  // });
 
 
   toggleMenu() {
