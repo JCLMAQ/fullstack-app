@@ -12,6 +12,7 @@ import { AppStore } from '../../../appstore/app.store';
 import { ResponsiveService } from '../../services/responsive.service';
 import { ThemeService } from '../../services/theme.service';
 
+
 @Component({
     selector: 'app-header',
     imports: [
@@ -35,31 +36,39 @@ import { ThemeService } from '../../services/theme.service';
 
       <div class="flex-1"></div>
 
-      <!-- DarkMode Menu selection -->
-      <!-- <button mat-icon-button (click)="darkMode.set(!darkMode())">
-        @if (darkMode()) {
-        <mat-icon>light_mode</mat-icon>
-        } @else {
-        <mat-icon>dark_mode</mat-icon>
-        }
-      </button> -->
-
-<!-- Theme Menu selection -->
-
-    <button mat-icon-button [mat-menu-trigger-for]="themeMenu">
-        <mat-icon>{{ themeService.selectedTheme()?.icon }}</mat-icon>
+<!--  Light-Dark Theme Menu -->
+      <button mat-icon-button [mat-menu-trigger-for]="themeLightDarkMenu">
+        <mat-icon>{{ themeService.selectedLightDarkTheme()?.icon }}</mat-icon>
       </button>
-      <mat-menu #themeMenu="matMenu">
-        @for (theme of themeService.getThemes(); track theme.name) {
+      <mat-menu #themeLightDarkMenu="matMenu">
+        @for (theme of themeService.getLightDarkThemes(); track theme.name) {
         <button
           [class.selected-theme]="
-            themeService.selectedTheme()?.name === theme.name
+            themeService.selectedLightDarkTheme()?.name === theme.name
           "
           mat-menu-item
-          (click)="themeService.setTheme(theme.name)"
+          (click)="themeService.setLightDarkTheme(theme.name)"
         >
           <mat-icon>{{ theme.icon }}</mat-icon>
           <span>{{ theme.name | titlecase }}</span>
+        </button>
+        }
+      </mat-menu>
+
+<!-- Color Theme Menu -->
+      <button mat-icon-button [matMenuTriggerFor]="themeColorMenu">
+        <mat-icon>format_color_fill</mat-icon>
+      </button>
+      <mat-menu #themeColorMenu="matMenu">
+        @for (theme of themeService.getColorThemes(); track theme.id) {
+        <button mat-menu-item (click)="themeService.setColorTheme(theme.id)">
+          <div class="theme-menu-item">
+            <div
+              class="color-preview"
+              [style.background-color]="theme.primary"
+            ></div>
+            <span>{{ theme.displayName }}</span>
+          </div>
         </button>
         }
       </mat-menu>
@@ -184,11 +193,11 @@ import { ThemeService } from '../../services/theme.service';
     //   gap: 12px;
     // }
 
-    // .color-preview {
-    //   width: 24px;
-    //   height: 24px;
-    //   border-radius: 50%;
-    // }
+    .color-preview {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
 
   `
 })

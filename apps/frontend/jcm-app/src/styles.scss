@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use "./app/themes/themes.scss";
+
 @use "./app/styles/material.scss";
-
-@use "./app/styles/colors.scss";
-
-@use "./app/styles/tailwind.scss";
 
 @use "./app/styles/custom.scss";
 
-// @use "./app/shared/themes/theme.scss";
+@use "./app/styles/tailwind.scss";
+
+@use "./app/styles/colors.scss";
+
