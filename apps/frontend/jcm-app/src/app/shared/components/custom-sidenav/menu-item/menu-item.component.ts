@@ -8,7 +8,12 @@ import { MenuItem } from '../menu-items';
 
 @Component({
   selector: 'app-menu-item',
-  imports: [RouterModule, RouterLinkActive, MatListModule, MatIconModule, TranslatePipe],
+  imports: [
+    RouterModule,
+    RouterLinkActive,
+    MatListModule,
+    MatIconModule,
+    TranslatePipe],
   template: `
     <a
       mat-list-item

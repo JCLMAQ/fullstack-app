@@ -31,15 +31,7 @@ import { HeaderComponent } from '../header/header.component';
       <mat-sidenav-content class="content" [style.margin-left]="responsiveService.styleMarginLeft()">
         <app-messages />
         <router-outlet></router-outlet>
-        <!-- <a
-          mat-fab
-          extended
-          class="!fixed bottom-5 right-10"
-          href="https://zoaibkhan.lemonsqueezy.com/buy/4bc3b34d-4980-44be-80bc-bde1dc5b71e9"
-          target="_blank"
-        >
-          <mat-icon>code</mat-icon>Get the code</a
-        > -->
+
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,

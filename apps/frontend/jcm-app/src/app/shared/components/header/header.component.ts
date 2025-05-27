@@ -73,24 +73,6 @@ import { ThemeService } from '../../services/theme.service';
         }
       </mat-menu>
 
-
-<!-- <button mat-icon-button [matMenuTriggerFor]="themeMenu">
-        <mat-icon>format_color_fill</mat-icon>
-      </button>
-      <mat-menu #themeMenu="matMenu">
-        @for (theme of themeService.getThemes(); track theme.id) {
-        <button mat-menu-item (click)="themeService.setTheme(theme.id)">
-          <div class="theme-menu-item">
-            <div
-              class="color-preview"
-              [style.background-color]="theme.primary"
-            ></div>
-            <span>{{ theme.displayName }}</span>
-          </div>
-        </button>
-        }
-      </mat-menu> -->
-
 <!-- Menu language selectection -->
       <button
           mat-icon-button
