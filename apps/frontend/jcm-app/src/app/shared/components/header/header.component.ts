@@ -88,6 +88,7 @@ import { ThemeService } from '../../services/theme.service';
           }
         </mat-menu>
 
+<!-- Login Menu -->
       @if (appStore.user(); as user) {
         <button mat-icon-button [mat-menu-trigger-for]="profileMenu">
           <img
@@ -107,37 +108,39 @@ import { ThemeService } from '../../services/theme.service';
         </button>
       }
 
+
+<!-- Pages selection menu -->
       <button class="menu-button" mat-icon-button [matMenuTriggerFor]="submenu">
         <mat-icon>more_vert</mat-icon>
       </button>
 
-    <mat-menu #submenu="matMenu">
+      <mat-menu #submenu="matMenu">
 
-      <button mat-menu-item (click)="navigate('picto')">
-        <mat-icon>picture_in_picture</mat-icon>
-        <span>{{"ToolBarMenu.Pictos" | translate}}</span>
-      </button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item (click)="navigate('carousselpicture')">
-          <mat-icon>camera</mat-icon>
-          <span>{{"ToolBarMenu.Carrousel" | translate}}</span>
+        <button mat-menu-item (click)="navigate('picto')">
+          <mat-icon>picture_in_picture</mat-icon>
+          <span>{{"ToolBarMenu.Pictos" | translate}}</span>
         </button>
         <mat-divider></mat-divider>
-      <button mat-menu-item (click)="navigate('picture')">
-          <mat-icon>camera_alt</mat-icon>
-          <span>{{"ToolBarMenu.Images" | translate}}</span>
-        </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item (click)="navigate('users')">
-            <mat-icon>supervised_user_circle</mat-icon>
-            <span>{{"ToolBarMenu.Users" | translate}}</span>
+        <button mat-menu-item (click)="navigate('carousselpicture')">
+            <mat-icon>camera</mat-icon>
+            <span>{{"ToolBarMenu.Carrousel" | translate}}</span>
           </button>
           <mat-divider></mat-divider>
-        <button mat-menu-item (click)="navigate('choice')">
-          <mat-icon>tune</mat-icon>
-          <span>{{"ToolBarMenu.Choices" | translate}}</span>
-        </button>
-    </mat-menu>
+        <button mat-menu-item (click)="navigate('picture')">
+            <mat-icon>camera_alt</mat-icon>
+            <span>{{"ToolBarMenu.Images" | translate}}</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="navigate('users')">
+              <mat-icon>supervised_user_circle</mat-icon>
+              <span>{{"ToolBarMenu.Users" | translate}}</span>
+            </button>
+            <mat-divider></mat-divider>
+          <button mat-menu-item (click)="navigate('choice')">
+            <mat-icon>tune</mat-icon>
+            <span>{{"ToolBarMenu.Choices" | translate}}</span>
+          </button>
+      </mat-menu>
 
     </mat-toolbar>
   `,
@@ -146,7 +149,7 @@ import { ThemeService } from '../../services/theme.service';
     mat-toolbar {
         position: relative;
         z-index: 5;
-        justify-content: space-between;
+        // justify-content: space-between;
         --mat-toolbar-container-background-color: var(--sys-surface-container-low);
 
 
@@ -169,11 +172,11 @@ import { ThemeService } from '../../services/theme.service';
       );
     }
 
-    // .theme-menu-item {
-    //   display: flex;
-    //   align-items: center;
-    //   gap: 12px;
-    // }
+    .theme-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
     .color-preview {
       width: 24px;

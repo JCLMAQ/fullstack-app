@@ -13,7 +13,8 @@ import { MenuItem } from '../menu-items';
     RouterLinkActive,
     MatListModule,
     MatIconModule,
-    TranslatePipe],
+    TranslatePipe
+  ],
   template: `
     <a
       mat-list-item
