@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, inject, viewChild } from '@angular/core';
+import { Component, effect, inject, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
@@ -35,6 +35,15 @@ import { ThemeService } from '../../services/theme.service';
       <h1 class="flex-1">{{"SITETITLE" | translate }}</h1>
 
       <div class="flex-1"></div>
+
+      <!-- Test -->
+      <button mat-icon-button (click)="darkMode.set(!darkMode())">
+        @if (darkMode()) {
+        <mat-icon>light_mode</mat-icon>
+        } @else {
+        <mat-icon>dark_mode</mat-icon>
+        }
+      </button>
 
 <!--  Light-Dark Theme Menu -->
       <button mat-icon-button [mat-menu-trigger-for]="themeLightDarkMenu">
@@ -227,5 +236,12 @@ export class HeaderComponent {
   navigate(route: string) {
     this.router.navigate([`/${route}`]);
   }
+
+
+   darkMode = signal(false);
+
+  setDarkModeClass = effect(() => {
+    document.documentElement.classList.toggle('dark', this.darkMode());
+  });
 
 }
