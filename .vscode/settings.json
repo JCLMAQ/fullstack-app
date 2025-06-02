@@ -24,5 +24,6 @@
         "libs/frontend/ui/messages",
         "libs/frontend/ui/i18n/src/lib/i18n",
         "libs/frontend/ui/messages/src/lib/messages"
-    ]
+    ],
+    "nxConsole.generateAiAgentRules": true
 }
