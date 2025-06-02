@@ -88,7 +88,6 @@
     "class-validator": "^0.14.2",
     "cookie-parser": "^1.4.7",
     "express": "5.1.0",
-    "firebase": "^11.7.1",
     "flag-icons": "^7.3.2",
     "fs-extra": "^11.3.0",
     "handlebars": "^4.7.8",

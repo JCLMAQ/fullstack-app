@@ -1,8 +1,10 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { MessagesComponent } from "@fe/messages";
+import { AppStore } from '../../../appstore/app.store';
 import { ResponsiveService } from '../../services/responsive.service';
 import { CustomSidenavComponent } from '../custom-sidenav/custom-sidenav.component';
 import { HeaderComponent } from '../header/header.component';
@@ -16,9 +18,13 @@ import { HeaderComponent } from '../header/header.component';
     RouterOutlet,
     MatButtonModule,
     MessagesComponent,
+    MatProgressBar
   ],
   template: `
     <app-header />
+    @if (appStore.loading()) {
+    <mat-progress-bar class="absolute! top-[64px] z-10" mode="indeterminate" />
+    }
     <mat-sidenav-container  (backdropClick)="backDrop()">
       <mat-sidenav
           (keydown.escape)="backDrop()"
@@ -67,6 +73,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 export default class LayoutComponent {
 
+  appStore = inject(AppStore);
   responsiveService = inject(ResponsiveService);
 
   readonly sidenav = viewChild.required(MatSidenav);
