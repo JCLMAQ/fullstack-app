@@ -78,11 +78,12 @@ import LoadingContainerComponent from '../../shared/components/loading-container
             <mat-error> Password is required </mat-error>
             }
           </mat-form-field>
-          <button class="mt-3" mat-flat-button [disabled]="appStore.loading()">
+          <!-- <button class="mt-3" mat-flat-button [disabled]="appStore.loading()">
             <app-loading-container [loading]="appStore.loading()" [size]="20">
               <span>Login</span>
             </app-loading-container>
-          </button>
+          </button> -->
+
 
           <!-- <button mat-flat-button class="w-full mt-3">Login</button> -->
         </form>

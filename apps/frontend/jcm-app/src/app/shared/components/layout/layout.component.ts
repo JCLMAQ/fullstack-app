@@ -22,9 +22,9 @@ import { HeaderComponent } from '../header/header.component';
   ],
   template: `
     <app-header />
-    @if (appStore.loading()) {
+    <!-- @if (appStore.loading()) {
     <mat-progress-bar class="absolute! top-[64px] z-10" mode="indeterminate" />
-    }
+    } -->
     <mat-sidenav-container  (backdropClick)="backDrop()">
       <mat-sidenav
           (keydown.escape)="backDrop()"

@@ -1,5 +1,5 @@
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -27,7 +27,7 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideHttpClient(
       withFetch(),
       withInterceptors([
@@ -48,7 +48,6 @@ export const appConfig: ApplicationConfig = {
     { provide: DICTIONARIES_TOKEN, useValue: DICTIONARIES },
 
     provideNativeDateAdapter(),
-    // provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes, withComponentInputBinding(),),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
