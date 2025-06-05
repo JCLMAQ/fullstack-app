@@ -4,6 +4,7 @@ import { DateAdapter } from '@angular/material/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MATERIAL } from '@fe/material'; // Ensure MATERIAL is an array of NgModules
 // import { DirtyComponent } from '@fe/utilities';
+import { CommonModule } from '@angular/common';
 import { ItemInterface } from '../store/todo.model';
 import { TodoStore } from '../store/todo.store';
 
@@ -20,7 +21,7 @@ export type TodoForm = FormGroup<{
 @Component({
   selector: 'lib-todo-page',
   imports: [
-
+    CommonModule,
     ...MATERIAL,
     RouterModule,
     FormsModule,

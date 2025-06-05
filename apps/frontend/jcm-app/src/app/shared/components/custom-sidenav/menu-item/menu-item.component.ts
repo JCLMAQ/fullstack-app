@@ -19,9 +19,10 @@ import { MenuItem } from '../menu-items';
     <a
       mat-list-item
       [style.--mat-list-list-item-leading-icon-start-space]="indentation()"
+      class="menu-item"
       [routerLink]="routeHistory() + '/' + item().route"
       (click)="nestedItemOpen.set(!nestedItemOpen())"
-      routerLinkActive
+      routerLinkActive="selected-menu-item"
       #rla="routerLinkActive"
       [activated]="rla.isActive"
     >
@@ -59,6 +60,16 @@ import { MenuItem } from '../menu-items';
       transition-property: margin-inline-start, opacity, height;
       transition-duration: 500ms;
       transition-timing-function: ease-in-out;
+    }
+    .menu-item {
+      border-left: 5px solid;
+      border-left-color: rgba(0, 0, 0, 0);
+    }
+
+    //Active style - primary color css variable will be set in theming section
+    .selected-menu-item {
+      border-left-color: var(--primary-color);
+      background: rgba(0, 0, 0, 0.05);
     }
   `,
   animations: [

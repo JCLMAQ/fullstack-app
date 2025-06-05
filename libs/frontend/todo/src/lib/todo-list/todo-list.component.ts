@@ -1,4 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, effect, inject, Resource, resource, viewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,7 +13,10 @@ import { TodoStore } from '../store/todo.store';
 
 @Component({
   selector: 'lib-todo-list',
-  imports: [ ...MATERIAL],
+  imports: [
+    CommonModule,
+    ...MATERIAL
+  ],
   templateUrl: './todo-list.component.html',
   animations: [
     trigger('detailExpand', [
