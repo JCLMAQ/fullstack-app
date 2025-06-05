@@ -32,27 +32,30 @@ import { MenuItem } from '../menu-items';
         >{{ item().icon }}</mat-icon
       >
       @if(!collapsed()) {
-      <span matListItemTitle>{{ item().label | translate }}</span>
-      } @if(item().subItems) {
-      <span matListItemMeta>
-        @if(nestedItemOpen()) {
-        <mat-icon>expand_less</mat-icon>
-        } @else {
-        <mat-icon>expand_more</mat-icon>
-        }
-      </span>
+        <span matListItemTitle>{{ item().label | translate }}</span>
+      }
+
+      @if(item().subItems) {
+        <span matListItemMeta>
+          @if(nestedItemOpen()) {
+          <mat-icon>expand_less</mat-icon>
+          } @else {
+          <mat-icon>expand_more</mat-icon>
+          }
+        </span>
       }
     </a>
+
     @if (nestedItemOpen() ) {
-    <div @expandContractMenu>
-      @for(subItem of item().subItems; track subItem.route) {
-      <app-menu-item
-        [item]="subItem"
-        [routeHistory]="routeHistory() + '/' + item().route"
-        [collapsed]="collapsed()"
-      />
-      }
-    </div>
+      <div @expandContractMenu>
+        @for(subItem of item().subItems; track subItem.route) {
+          <app-menu-item
+            [item]="subItem"
+            [routeHistory]="routeHistory() + '/' + item().route"
+            [collapsed]="collapsed()"
+          />
+        }
+      </div>
     }
   `,
   styles: `
@@ -68,7 +71,13 @@ import { MenuItem } from '../menu-items';
 
     //Active style - primary color css variable will be set in theming section
     .selected-menu-item {
-      border-left-color: var(--primary-color);
+      border-left-color: var(--mat-sys-primary);
+      mat-icon {
+        color: var(--mat-sys-primary);
+      };
+      mat-list-item-title {
+        color: var(--mat-sys-primary);
+      }
       background: rgba(0, 0, 0, 0.05);
     }
   `,
