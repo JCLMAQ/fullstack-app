@@ -1,6 +1,5 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { MessagesComponent } from "@fe/messages";
@@ -18,7 +17,7 @@ import { HeaderComponent } from '../header/header.component';
     RouterOutlet,
     MatButtonModule,
     MessagesComponent,
-    MatProgressBar
+    // MatProgressBar
   ],
   template: `
     <app-header />

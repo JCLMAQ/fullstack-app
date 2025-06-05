@@ -21,8 +21,11 @@
   >
     <mat-icon>upload</mat-icon>
     <p>{{ "ACTIONS.UPLOAD_PLACEHOLDER" | translate }}</p>
-    <div *ngIf="imageName()">
-      <div *ngIf="selectedFile || imagePreview">
+    @if(imageName()) {
+    <div >
+      @if(selectedFile || imagePreview()) {
+        <!-- Display the image preview and file name -->
+      <div class="image-preview-container">
         <img
           [src]="imagePreview()"
           alt="Image Preview"
@@ -42,7 +45,10 @@
           delete
         </mat-icon>
       </div>
+    }
     </div>
+  }
+
   </div>
 </div>
 <!-- <div
