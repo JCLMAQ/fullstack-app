@@ -102,6 +102,7 @@ import { ThemeService } from '../../services/theme.service';
         <button mat-icon-button [mat-menu-trigger-for]="profileMenu">
           <img
             [src]="user?.photoUrl ?? 'person-placeholder.png'"
+            alt="User profile picture"
             class="w-[40px] h-[40px] object-cover rounded-full"
           />
         </button>
