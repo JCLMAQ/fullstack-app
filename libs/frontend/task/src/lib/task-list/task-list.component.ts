@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, Signal } from '@angular/core';
 
 import { MATERIAL } from '@fe/material';
@@ -9,7 +8,7 @@ import { TasksStore } from '../store/task.store';
 
 @Component({
   selector: 'lib-task-list',
-  imports: [CommonModule, ...MATERIAL],
+  imports: [ ...MATERIAL],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })

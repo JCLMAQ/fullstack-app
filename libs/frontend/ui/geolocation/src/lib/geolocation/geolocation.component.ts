@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { GeolocationService } from '../geolocation.service';
 
 @Component({
   selector: 'lib-geolocation',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './geolocation.component.html',
   styleUrl: './geolocation.component.scss',
 })

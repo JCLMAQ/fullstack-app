@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'lib-image-uploader',
   standalone: true,
   imports: [
-    CommonModule,
+
     MatIcon,
     TranslateModule
   ],

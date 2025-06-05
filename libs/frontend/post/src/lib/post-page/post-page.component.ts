@@ -1,9 +1,9 @@
+import { } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-post-page',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.scss',
 })

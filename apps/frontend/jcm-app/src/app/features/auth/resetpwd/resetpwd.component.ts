@@ -1,9 +1,9 @@
+import { } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-resetpwd',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './resetpwd.component.html',
   styleUrl: './resetpwd.component.scss',
 })

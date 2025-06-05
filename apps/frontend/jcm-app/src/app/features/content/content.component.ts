@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-content',
-    imports: [CommonModule, RouterOutlet, MatTabsModule, RouterModule],
+    imports: [ RouterOutlet, MatTabsModule, RouterModule],
     template: `
     <h2 class="text-2xl mb-4">Browse your content</h2>
 

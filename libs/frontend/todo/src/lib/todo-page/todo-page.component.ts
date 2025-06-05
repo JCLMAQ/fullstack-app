@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
@@ -21,7 +20,7 @@ export type TodoForm = FormGroup<{
 @Component({
   selector: 'lib-todo-page',
   imports: [
-    CommonModule,
+
     ...MATERIAL,
     RouterModule,
     FormsModule,

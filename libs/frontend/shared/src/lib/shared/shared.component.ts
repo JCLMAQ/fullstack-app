@@ -1,9 +1,9 @@
+import { } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-shared',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './shared.component.html',
   styleUrl: './shared.component.scss',
 })

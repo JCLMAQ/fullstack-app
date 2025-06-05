@@ -1,10 +1,10 @@
+import { } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })

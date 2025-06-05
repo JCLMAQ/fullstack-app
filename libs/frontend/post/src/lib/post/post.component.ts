@@ -1,10 +1,10 @@
+import { } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-post',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })

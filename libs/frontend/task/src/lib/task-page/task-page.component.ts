@@ -1,9 +1,9 @@
+import { } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-task-page',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './task-page.component.html',
   styleUrl: './task-page.component.scss',
 })
