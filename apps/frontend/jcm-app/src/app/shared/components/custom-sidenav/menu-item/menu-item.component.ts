@@ -67,6 +67,7 @@ import { MenuItem } from '../menu-items';
     .menu-item {
       border-left: 5px solid;
       border-left-color: rgba(0, 0, 0, 0);
+
     }
 
     //Active style - primary color css variable will be set in theming section
@@ -75,10 +76,11 @@ import { MenuItem } from '../menu-items';
       mat-icon {
         color: var(--mat-sys-primary);
       };
-      mat-list-item-title {
+      mat-menu {
         color: var(--mat-sys-primary);
       }
       background: rgba(0, 0, 0, 0.05);
+      // list-item-focus-label-text-color: var(--mat-sys-on-primary);
     }
   `,
   animations: [

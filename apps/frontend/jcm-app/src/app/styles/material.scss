@@ -9,7 +9,7 @@ body {
 
 body {
   font-family: Inter, "Helvetica Neue", sans-serif;
-  --primary-color: var(--sys-primary);
+  --primary-color: var(--mat-sys-on-primary);
 }
 
 $custom-theme: mat.define-theme(
