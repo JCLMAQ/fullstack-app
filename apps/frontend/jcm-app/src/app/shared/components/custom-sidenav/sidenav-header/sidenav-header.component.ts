@@ -11,6 +11,7 @@ import { AppStore } from '../../../../appstore/app.store';
         [width]="profilePicSize()"
         [height]="profilePicSize()"
         [src]="appStore.user()?.photoUrl ?? 'person-placeholder.png'"
+         alt="User profile picture"
       />
       <div
         class="text-center mb-2 h-[3rem] {{
