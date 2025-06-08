@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, effect, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
@@ -36,17 +36,13 @@ import { ThemeService } from '../../services/theme.service';
 
       <div class="flex-1"></div>
 
-      <!-- Test -->
-      <button mat-icon-button (click)="darkMode.set(!darkMode())">
-        @if (darkMode()) {
-        <mat-icon>light_mode</mat-icon>
-        } @else {
-        <mat-icon>dark_mode</mat-icon>
-        }
-      </button>
+    <!-- Light-Dark Theme Toggle Button -->
+    <button mat-icon-button (click)="themeService.switchLightDarkTheme()">
+        <mat-icon>{{ themeService.selectedLightDarkTheme()?.icon }}</mat-icon>
+    </button>
 
 <!--  Light-Dark Theme Menu -->
-      <button mat-icon-button [mat-menu-trigger-for]="themeLightDarkMenu">
+      <!-- <button mat-icon-button [mat-menu-trigger-for]="themeLightDarkMenu">
         <mat-icon>{{ themeService.selectedLightDarkTheme()?.icon }}</mat-icon>
       </button>
       <mat-menu #themeLightDarkMenu="matMenu">
@@ -62,7 +58,7 @@ import { ThemeService } from '../../services/theme.service';
           <span>{{ theme.name | titlecase }}</span>
         </button>
         }
-      </mat-menu>
+      </mat-menu> -->
 
 <!-- Color Theme Menu -->
       <button mat-icon-button [matMenuTriggerFor]="themeColorMenu">
@@ -209,13 +205,6 @@ export class HeaderComponent {
   collapsed = this.responsiveService.isCollapsed;
   barOpen = this.responsiveService.isMenuBarOpen;
 
-  // darkMode = signal(false);
-
-  // setDarkModeClass = effect(() => {
-  //   document.documentElement.classList.toggle('dark', this.darkMode());
-  // });
-
-
   toggleMenu() {
     if(!this.barOpen()){
       this.barOpen.set(!this.barOpen());
@@ -238,11 +227,8 @@ export class HeaderComponent {
     this.router.navigate([`/${route}`]);
   }
 
-
-   darkMode = signal(false);
-
-  setDarkModeClass = effect(() => {
-    document.documentElement.classList.toggle('dark', this.darkMode());
-  });
+  toggleDarkMode() {
+    this.themeService.switchLightDarkTheme();
+  }
 
 }
