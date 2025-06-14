@@ -5,6 +5,7 @@ import { getDictionary } from "./dictionaries.helpers";
 import { initialDictionariesSlice } from "./dictionaries.slice";
 import { changeLanguage } from "./dictionaries.updaters";
 
+// Base on Koby-Hary-Udemy NGRX Signals Courses
 
 export function withDictionariesFeatures(): SignalStoreFeature{
   return signalStoreFeature(
