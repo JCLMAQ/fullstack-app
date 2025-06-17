@@ -25,5 +25,11 @@
         "libs/frontend/ui/i18n/src/lib/i18n",
         "libs/frontend/ui/messages/src/lib/messages"
     ],
-    "nxConsole.generateAiAgentRules": true
+    "nxConsole.generateAiAgentRules": true,
+    "angular-schematics.schematicsDefaultOptions": {
+        "angular-*": {
+            "style": "scss",
+            "externalTemplate": true
+        }
+    }
 }
