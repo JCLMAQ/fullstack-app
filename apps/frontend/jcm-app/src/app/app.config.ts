@@ -1,4 +1,4 @@
-import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -7,8 +7,8 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAppErrorHandler } from '@fe/shared';
-import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRoutes } from './app.routes';
 import { DICTIONARIES } from './data/dictionaries';
 import { AuthInterceptor } from './features/auth/interceptors/auth.interceptor';
@@ -20,8 +20,6 @@ import { DICTIONARIES_TOKEN } from './tokens/dictionaries.token';
 //   return new TranslateHttpLoader(http);
 // }
 
-const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
-  new TranslateHttpLoader(http, './i18n/', '.json');
 
 
 export const appConfig: ApplicationConfig = {
@@ -37,14 +35,16 @@ export const appConfig: ApplicationConfig = {
 
     ),
 
-
     provideTranslateService({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
+          fallbackLang: 'en',
+          loader: provideTranslateHttpLoader({
+            prefix:"i18n/",
+            suffix:".json",
+            enforceLoading: true,
+            useHttpBackend: true,
+          }),
+        }),
+
     { provide: DICTIONARIES_TOKEN, useValue: DICTIONARIES },
 
     provideNativeDateAdapter(),
