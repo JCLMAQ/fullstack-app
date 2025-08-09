@@ -54,7 +54,7 @@ constructor() {
   items: Resource<ItemInterface[] | undefined> = this.itemStore.itemsResource;
 
   itemsTodo: ItemInterface[] | undefined;
-  itemsEntities = this.itemStore.todoEntities;
+  itemsEntities = this.itemStore.todosEntities;
 
   // loading = this.itemStore.loading;
 
@@ -93,23 +93,23 @@ ngAfterViewInit(): void {
     });
 
 // Undo and redo stack
-  canUndo = this.itemStore.canUndo; // use in template or in ts
-  canRedo = this.itemStore.canRedo; // use in template or in ts
-  clearUndoRedoStack = this.itemStore.clearStack; // use in template or in ts
+  // canUndo = this.itemStore.canUndo; // use in template or in ts
+  // canRedo = this.itemStore.canRedo; // use in template or in ts
+  // clearUndoRedoStack = this.itemStore.clearStack; // use in template or in ts
 
-  undo(): void {
-    if (!this.canUndo()) return;
-    this.itemStore.undo();
-  }
+  // undo(): void {
+  //   if (!this.canUndo()) return;
+  //   this.itemStore.undo();
+  // }
 
-  redo(): void {
-    if (!this.canRedo()) return;
-    this.itemStore.redo();
-  }
+  // redo(): void {
+  //   if (!this.canRedo()) return;
+  //   this.itemStore.redo();
+  // }
 
-  clearStack(): void {
-    this.itemStore.clearStack();
-  }
+  // clearStack(): void {
+  //   this.itemStore.clearStack();
+  // }
 
    // Selection
   /** Whether the number of selected elements matches the total number of rows. */

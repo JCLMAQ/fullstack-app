@@ -9,7 +9,10 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider               = "prisma-client"
+  output                 = "../generated/prisma_new_client"
+  generatedFileExtension = "ts"
+  importFileExtension    = "ts"
 }
 
 generator types {
