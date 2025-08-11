@@ -20,57 +20,6 @@ generator types {
   global = true
 }
 
-// generator Prisma_Code_Generator {
-// // Depraciated
-// // "@ariana-germany/prisma-code-generator"
-//   provider = "Prisma_Code_Generator"
-//   output   = "../gen"
-// }
-
-
-// generator docs {
-//   provider = "node node_modules/prisma-docs-generator"
-//   output = "../doc"
-//   // output = "/Users/jcl.maquinay/MonoRepo/my-app/zmodel/doc"
-//  // /Users/jcl.maquinay/MonoRepo/my-app/zmodel/doc
-// }
-
-// generator jsonSchema {
-//     provider = "prisma-json-schema-generator"
-//     keepRelationScalarFields = "true"
-//     schemaId = "jcm"
-// }
-
-// generator dbml {
-//     provider = "prisma-dbml-generator"
-// }
-
-// generator crud {
-//     provider = "prisma-crud-generator"
-//     output = "./generated/#{model}"
-//     strict = true
-// }
-// generator crud {
-//   provider = "prisma-crud-generator"
-//   output = "./generated/#{model}"
-
-//   # dryRun = true / false
-//   # strict = true / false
-// }
-
-// generator nestjsDto {
-//     provider = "prisma-generator-nestjs-dto"
-//     output = "../libs/api-interfaces/src/lib/nestjs-dto"
-//     outputToNestJsResourceStructure = "true"
-//     exportRelationModifierClasses = "true"
-//     reExport = "false"
-//     createDtoPrefix = "Create"
-//     updateDtoPrefix = "Update"
-//     dtoSuffix = "Dto"
-//     entityPrefix = ""
-//     entitySuffix = ""
-//     fileNamingStyle = "camel"
-// }
 
 plugin openapi {
   provider = '@zenstackhq/openapi'
