@@ -9,14 +9,24 @@ datasource db {
 
 generator client {
     provider = "prisma-client"
-    output   = "../generated/prisma_new_client"
+    output   = "../generated/prisma_client"
     generatedFileExtension = "ts"
     importFileExtension    = "ts"
 }
 
 generator types {
   provider = "prisma-type-generator"
+  output   = "../generated/types"
+  global = true
 }
+
+// generator Prisma_Code_Generator {
+// // Depraciated
+// // "@ariana-germany/prisma-code-generator"
+//   provider = "Prisma_Code_Generator"
+//   output   = "../gen"
+// }
+
 
 // generator docs {
 //   provider = "node node_modules/prisma-docs-generator"
