@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MATERIAL } from '@fe/material';
-import { Todo } from '@prisma/client';
+import { Todo } from '@prisma/prisma-client-new';
 import { TodoService } from '../services/todo.service';
 import { ItemInterface } from '../store/todo.model';
 import { TodoStore } from '../store/todo.store';

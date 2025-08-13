@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
-import { Prisma } from "@prisma/client";
 import { pbkdf2Sync, randomBytes } from "crypto";
+import { Prisma } from '../prisma_new/schema.prisma/client.ts';
 import { fakeOrg } from "./org";
 
 export const fakeUser = (orgId?: string): Prisma.UserCreateInput => {

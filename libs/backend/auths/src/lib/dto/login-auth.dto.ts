@@ -1,5 +1,5 @@
 
-import { Role } from "@prisma/client";
+import { Role } from '@prisma/prisma-client-new';
 import { AuthDto } from "./auth.dto";
 
 

@@ -1,6 +1,6 @@
 
 
-import { Gender, Language, Role } from "@prisma/client";
+import { Gender, Language, Role } from '@prisma/prisma-client-new';
 import { IsString } from "class-validator";
 import * as Joi from 'joi';
 
