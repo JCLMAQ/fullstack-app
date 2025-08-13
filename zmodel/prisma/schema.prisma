@@ -5,9 +5,7 @@
 
 datasource db {
   provider = "postgresql"
-  url = "postgresql://SUPER:super@localhost:5432/postgresDB3100?schema=fullstack_app_monorepo_DB"
-  // url = env("DATABASE_URL")
-
+  url      = env("DATABASE_URL")
 }
 
 generator client {
