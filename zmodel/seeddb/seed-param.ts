@@ -7,7 +7,6 @@ const prisma = new PrismaClient();
 
 async function main() {
 
-
   await prisma.configParam.createMany({
     data: [
       {

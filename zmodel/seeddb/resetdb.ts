@@ -1,6 +1,6 @@
 
-const { PrismaClient } = require('@prisma/client');
-
+// const { PrismaClient } = require('@prisma/client');
+ import { PrismaClient } from '../prisma_new/schema.prisma/client.ts';
 const prisma = new PrismaClient();
 
 async function main() {
