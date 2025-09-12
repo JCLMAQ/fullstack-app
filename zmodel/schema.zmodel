@@ -14,11 +14,11 @@ generator client {
     importFileExtension    = "ts"
 }
 
-generator types {
-  provider = "prisma-type-generator"
-  output   = "../generated/types"
-  global = true
-}
+// generator types {
+//   provider = "prisma-type-generator"
+//   output   = "../generated/types"
+//   global = true
+// }
 
 
 plugin openapi {
