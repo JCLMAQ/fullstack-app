@@ -1,4 +1,10 @@
 onlyBuiltDependencies:
   - '@nestjs/core'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@swc/core'
+  - '@tailwindcss/oxide'
   - nx
+  - oxc-resolver
+  - prisma
   - zenstack
