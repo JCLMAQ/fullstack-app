@@ -1,7 +1,7 @@
 import { DbConfigService } from '@be/db-config';
 import { HttpException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { User, UserSecret } from '@prisma/prisma-client-new';
+import { User, UserSecret } from '@prisma/prisma-client';
 import { pbkdf2Sync } from 'crypto';
 import { I18nService } from 'nestjs-i18n';
 import { TokenService } from './services/token.service';

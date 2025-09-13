@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Post, Prisma } from '@prisma/prisma-client-new';
+import { Post, Prisma } from '@prisma/prisma-client';
 import { fakePost } from "./post";
 
 

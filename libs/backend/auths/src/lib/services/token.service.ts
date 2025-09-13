@@ -3,7 +3,7 @@ import { TimeUtilService } from '@be/time-util';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '@prisma/prisma';
-import { Token, TokenType } from '@prisma/prisma-client-new';
+import { Token, TokenType } from '@prisma/prisma-client';
 // import * as MilliSecond from 'ms';
 import MilliSecond = require("ms");
 

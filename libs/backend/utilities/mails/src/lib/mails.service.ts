@@ -3,7 +3,7 @@ import { DbConfigService } from '@be/db-config';
 import { HttpException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '@prisma/prisma';
-import { AppEmailDomain, Prisma } from '@prisma/prisma-client-new';
+import { AppEmailDomain, Prisma } from '@prisma/prisma-client';
 import { I18nService } from 'nestjs-i18n';
 import * as nodemailer from 'nodemailer';
 import SMTPTransport = require('nodemailer/lib/smtp-transport');

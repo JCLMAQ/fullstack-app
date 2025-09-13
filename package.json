@@ -4,8 +4,7 @@
   "license": "MIT",
   "type": "commonjs",
   "prisma": {
-    "seed": " npx tsx zmodel/seeddb/seed.ts",
-    "schema": "./zmodel/prisma/schema.prisma"
+    "seed": " npx tsx zmodel/seeddb/seed.ts"
   },
   "scripts": {
     "start fe:jcm-app": "nx serve jcm-app --port 4210",

@@ -1,5 +1,5 @@
 import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
-import { ApiKey, ChangesTracking, Gender, Group, Language, PermissionClaim, Post, Prisma, Profile, Role, Task, Title, Token, User, UserSecret } from '@prisma/prisma-client-new';
+import { ApiKey, ChangesTracking, Gender, Group, Language, PermissionClaim, Post, Prisma, Profile, Role, Task, Title, Token, User, UserSecret } from '@prisma/prisma-client';
 import { Exclude } from 'class-transformer';
 
 export class UserEntity implements User {

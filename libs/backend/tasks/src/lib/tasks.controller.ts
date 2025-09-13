@@ -1,7 +1,7 @@
 import { Public } from '@be/common';
 import { Auth, AuthType } from '@be/iam';
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { Prisma, Task } from '@prisma/prisma-client-new';
+import { Prisma, Task } from '@prisma/prisma-client';
 import { TasksService } from './tasks.service';
 
 @Controller()

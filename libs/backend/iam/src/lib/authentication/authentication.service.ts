@@ -8,7 +8,7 @@ import {
 import { ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '@prisma/prisma';
-import { User } from '@prisma/prisma-client-new';
+import { User } from '@prisma/prisma-client';
 import { randomUUID } from 'crypto';
 
 

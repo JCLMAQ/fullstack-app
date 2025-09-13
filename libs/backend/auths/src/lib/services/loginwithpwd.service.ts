@@ -10,7 +10,7 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '@prisma/prisma';
-import { Prisma, Role, Token, TokenType, User } from '@prisma/prisma-client-new';
+import { Prisma, Role, Token, TokenType, User } from '@prisma/prisma-client';
 import { randomBytes } from 'crypto';
 import { I18nService } from 'nestjs-i18n';
 import { AuthsService } from '../auths.service';

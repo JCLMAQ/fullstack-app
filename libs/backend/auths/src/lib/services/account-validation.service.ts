@@ -2,7 +2,7 @@ import { DbConfigService } from '@be/db-config';
 import { MailsService } from '@be/mails';
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@prisma/prisma';
-import { Token, TokenType, User } from '@prisma/prisma-client-new';
+import { Token, TokenType, User } from '@prisma/prisma-client';
 import { I18nService } from 'nestjs-i18n';
 import { EmailAuthDto } from '../dto/email-auth.dto';
 import { TokenService } from './token.service';

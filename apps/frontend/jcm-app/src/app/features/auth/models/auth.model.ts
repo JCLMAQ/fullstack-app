@@ -1,4 +1,4 @@
-import { Gender, Language, Role, Title, User } from '@prisma/prisma-client-new';
+import { Gender, Language, Role, Title, User } from '@prisma/prisma-client';
 
 export interface IUserRegister {
   email: string;

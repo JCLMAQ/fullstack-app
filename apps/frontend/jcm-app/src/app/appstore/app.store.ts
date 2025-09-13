@@ -5,7 +5,7 @@ import {
     withProps,
     withState
 } from '@ngrx/signals';
-// import { User } from '@prisma/prisma-client-new';
+// import { User } from '@prisma/prisma-client';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MessagesService } from '@fe/home';

@@ -1,4 +1,4 @@
-import { Todo } from '@prisma/prisma-client-new';
+import { Todo } from '@prisma/prisma-client';
 
 export interface ItemInterface extends Todo {}
 // export interface ItemInterface extends Todo { Users: true, Tasks: true, SubTodos: true}

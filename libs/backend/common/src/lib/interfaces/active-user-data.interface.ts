@@ -1,4 +1,4 @@
-import { PermissionClaim, Role } from '@prisma/prisma-client-new';
+import { PermissionClaim, Role } from '@prisma/prisma-client';
 
 export interface ActiveUserData {
   /**

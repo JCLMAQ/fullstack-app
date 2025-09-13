@@ -1,4 +1,4 @@
-import { PermissionClaim } from '@prisma/prisma-client-new';
+import { PermissionClaim } from '@prisma/prisma-client';
 
 export const Permission = {
     ...PermissionClaim,
