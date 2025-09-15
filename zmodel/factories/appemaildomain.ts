@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Prisma } from '../prisma_new/schema.prisma/client.ts';
+import { Prisma } from '../prisma_new/client.ts';
 
 
 export const fakeAppEmailDomain = (): Prisma.AppEmailDomainCreateInput => ({

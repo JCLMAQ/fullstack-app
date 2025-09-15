@@ -1,22 +1,22 @@
 import {
-  fakeCategory,
-  fakeComment,
-  fakeGroup,
-  fakeImage,
-  fakeOrg,
-  fakeOrgDomain,
-  fakeOrgEmail,
-  fakeOrgEmailUseTo,
-  fakePost,
-  fakePostLike,
-  fakeProfile,
-  fakeStory,
-  fakeTask,
-  fakeUser,
-  fakeUserFollower,
-  fakeUserTaskLink
+    fakeCategory,
+    fakeComment,
+    fakeGroup,
+    fakeImage,
+    fakeOrg,
+    fakeOrgDomain,
+    fakeOrgEmail,
+    fakeOrgEmailUseTo,
+    fakePost,
+    fakePostLike,
+    fakeProfile,
+    fakeStory,
+    fakeTask,
+    fakeUser,
+    fakeUserFollower,
+    fakeUserTaskLink
 } from "../factories";
-import { Organization, Post, PrismaClient, Task, User } from '../prisma_new/schema.prisma/client.ts';
+import { Organization, Post, PrismaClient, Task, User } from '../prisma_new/client.ts';
 
 const prisma = new PrismaClient();
 

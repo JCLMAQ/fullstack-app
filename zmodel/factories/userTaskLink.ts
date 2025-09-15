@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Prisma, Task, User } from '../prisma_new/schema.prisma/client.ts';
+import { Prisma, Task, User } from '../prisma_new/client.ts';
 
 // alternatively can make both as optional, and create new relations if absent
 const comment= faker.lorem.paragraph();
