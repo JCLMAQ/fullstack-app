@@ -31,5 +31,6 @@
             "style": "scss",
             "externalTemplate": true
         }
-    }
+    },
+    "vs-browser.url": "http://localhost:4210"
 }
