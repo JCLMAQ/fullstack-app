@@ -6,6 +6,7 @@ export default defineConfig({
   schema: path.join("zmodel/prisma", "schema.prisma"),
   migrations: {
     path: path.join("zmodel", "migrations"),
+    seed: "tsx zmodel/seeddb/seed.ts",
   },
   views: {
     path: path.join("zmodel/views", "views"),
