@@ -2,7 +2,6 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +23,6 @@ import { DICTIONARIES_TOKEN } from './tokens/dictionaries.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideAnimationsAsync(),
     provideZonelessChangeDetection(),
     provideHttpClient(
       withFetch(),

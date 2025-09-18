@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+// import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, computed, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -47,14 +47,16 @@ import { MenuItem } from '../menu-items';
     </a>
 
     @if (nestedItemOpen() ) {
-      <div @expandContractMenu>
+      <div class="sub-menu" animate-enter="expand-anim" animate.leave="contract-anim">
+        <div>
         @for(subItem of item().subItems; track subItem.route) {
-          <app-menu-item
-            [item]="subItem"
-            [routeHistory]="routeHistory() + '/' + item().route"
-            [collapsed]="collapsed()"
-          />
+        <app-menu-item
+          [item]="subItem"
+          [routeHistory]="routeHistory() + '/' + item().route"
+          [collapsed]="collapsed()"
+        />
         }
+        </div>
       </div>
     }
   `,
@@ -82,18 +84,45 @@ import { MenuItem } from '../menu-items';
       background: rgba(0, 0, 0, 0.05);
       // list-item-focus-label-text-color: var(--mat-sys-on-primary);
     }
+
+    .sub-menu {
+      display: grid;
+    }
+
+    .sub-menu > div {
+      overflow: hidden;
+    }
+
+
+    .expand-anim {
+      animation: expand-in 500ms ease-in-out;
+    }
+    .contract-anim {
+      animation: expand-in 500ms ease-in-out reverse;
+    }
+    @keyframes expand-in {
+      from {
+        opacity: 0;
+        grid-template-rows: 0fr;
+      }
+      to {
+        opacity: 1;
+        grid-template-rows: 1fr;
+      }
+    }
+
   `,
-  animations: [
-    trigger('expandContractMenu', [
-      transition(':enter', [
-        style({ opacity: 0, height: '0px' }),
-        animate('500ms ease-in-out', style({ opacity: 1, height: '*' })),
-      ]),
-      transition(':leave', [
-        animate('500ms ease-in-out', style({ opacity: 0, height: '0px' })),
-      ]),
-    ]),
-  ],
+  // animations: [
+  //   trigger('expandContractMenu', [
+  //     transition(':enter', [
+  //       style({ opacity: 0, height: '0px' }),
+  //       animate('500ms ease-in-out', style({ opacity: 1, height: '*' })),
+  //     ]),
+  //     transition(':leave', [
+  //       animate('500ms ease-in-out', style({ opacity: 0, height: '0px' })),
+  //     ]),
+  //   ]),
+  // ],
 })
 export class MenuItemComponent {
 

@@ -35,6 +35,18 @@ export const menuItems: MenuItem[] = [
         icon: 'touch_app',
         label: 'Buttons',
         route: 'buttons',
+        subItems: [
+          {
+            icon: 'radio_button_checked',
+            label: 'ButtonTypes',
+            route: 'button-types',
+          },
+          {
+            icon: 'toggle_on',
+            label: 'ButtonToggle',
+            route: 'button-toggle',
+          },
+        ]
       },
       {
         icon: 'question_answer',
