@@ -4,6 +4,7 @@ onlyBuiltDependencies:
   - '@prisma/engines'
   - '@swc/core'
   - '@tailwindcss/oxide'
+  - esbuild
   - nx
   - oxc-resolver
   - prisma

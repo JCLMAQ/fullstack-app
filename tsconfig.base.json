@@ -35,7 +35,6 @@
       "@fe/confirmation-dialog": [
         "libs/frontend/ui/confirmation-dialog/src/index.ts"
       ],
-
       "@fe/dashboard": ["libs/frontend/dashboard/src/index.ts"],
       "@fe/environment": ["apps/frontend/jcm-app/index.ts"],
       "@fe/environnement": ["apps/frontend/jcm-app/environments/index.ts"],
