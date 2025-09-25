@@ -51,7 +51,7 @@ Below are 40 custom validators:
 
 // 1. Email Domain Validator: Checks if an email address belongs to a specific domain
 
-function emailDomainValidator(domain: string): ValidatorFn {
+export function emailDomainValidator(domain: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const email = control.value as string;
     if (email.endsWith(`@${domain}`)) {
@@ -70,7 +70,7 @@ const form = new FormGroup({
 
 // 2. Password Strength Validator: Check for strong password criteria
 
-function passwordStrengthValidator(): ValidatorFn {
+export function passwordStrengthValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control.value as string;
     // Define your password strength criteria here.
@@ -92,7 +92,7 @@ const form = new FormGroup({
 
 // 3. Phone Number Validator: Validate phone numbers
 
-function phoneNumberValidator(): ValidatorFn {
+export function phoneNumberValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const phoneNumber = control.value as string;
     // Define your phone number validation criteria here.
@@ -114,7 +114,7 @@ const form = new FormGroup({
 
 // 4. URL Validator: Ensure that a field contains a valid URL
 
-function urlValidator(): ValidatorFn {
+export function urlValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const url = control.value as string;
     // Define your URL validation criteria here.
@@ -136,7 +136,7 @@ const form = new FormGroup({
 
 // 5. Date Format Validator: Verify if a date is in a specific format
 
-function dateFormatValidator(format: string): ValidatorFn {
+export function dateFormatValidator(format: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const date = control.value as string;
     // Define your date format validation criteria here.
@@ -158,7 +158,7 @@ const form = new FormGroup({
 
 // 6. Credit Card Validator: Validate credit card numbers
 
-function creditCardValidator(): ValidatorFn {
+export function creditCardValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const cardNumber = control.value as string;
     // Define your credit card validation criteria here.
@@ -180,7 +180,7 @@ const form = new FormGroup({
 
 // 7. Numeric Validator: Ensure that the input contains only numbers
 
-function numericValidator(): ValidatorFn {
+export function numericValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
     // Define your numeric validation criteria here.
@@ -202,7 +202,7 @@ const form = new FormGroup({
 
 // 8. Alphanumeric Validator: Validate alphanumeric characters
 
-function alphanumericValidator(): ValidatorFn {
+export function alphanumericValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
     // Define your alphanumeric validation criteria here.
@@ -224,7 +224,7 @@ const form = new FormGroup({
 
 // 9. Regular Expression Validator: Create custom regex-based validation
 
-function customRegexValidator(pattern: RegExp): ValidatorFn {
+export function customRegexValidator(pattern: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
 
@@ -244,7 +244,7 @@ const form = new FormGroup({
 
 // 10. Equality Validator: Compare two fields for equality
 
-function equalityValidator(controlName: string): ValidatorFn {
+export function equalityValidator(controlName: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
     const otherControl = control.parent?.get(controlName);
@@ -266,7 +266,7 @@ const form = new FormGroup({
 
 // 11. Unique Value Validator: Check if a value is unique
 
-function uniqueValueValidator(existingValues: string[]): ValidatorFn {
+export function uniqueValueValidator(existingValues: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
 
@@ -287,7 +287,7 @@ const form = new FormGroup({
 
 // 12. Custom Error Message Validator: Provide custom error messages
 
-function customErrorMessageValidator(errorMessage: string): ValidatorFn {
+export function customErrorMessageValidator(errorMessage: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     return { 'customErrorMessage': errorMessage }; // Always returns the specified custom error message.
   };
@@ -301,7 +301,7 @@ const form = new FormGroup({
 
 // 13. API-based Validator: Validate against an API endpoint
 
-function apiValidator(http: HttpClient, endpoint: string): ValidatorFn {
+export function apiValidator(http: HttpClient, endpoint: string): ValidatorFn {
   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     const value = control.value as string;
 
@@ -323,7 +323,7 @@ const form = new FormGroup({
 
 // 14. Range Validator: Ensure a value is within a specific range
 
-function rangeValidator(min: number, max: number): ValidatorFn {
+export function rangeValidator(min: number, max: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = +control.value; // Convert to a number.
 
@@ -343,7 +343,7 @@ const form = new FormGroup({
 
 // 15. Conditional Validator: Apply validation conditionally
 
-function conditionalValidator(dependentControlName: string): ValidatorFn {
+export function conditionalValidator(dependentControlName: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
     const dependentControl = control.parent?.get(dependentControlName);
@@ -365,7 +365,7 @@ const form = new FormGroup({
 
 // 16. File Type Validator: Validate file types for file uploads
 
-function fileTypeValidator(allowedTypes: string[]): ValidatorFn {
+export function fileTypeValidator(allowedTypes: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const file = control.value as File;
     if (file) {
@@ -386,7 +386,7 @@ const form = new FormGroup({
 
 // 17. File Size Validator: Ensure file size is within a specified limit
 
-function fileSizeValidator(maxSizeInBytes: number): ValidatorFn {
+export function fileSizeValidator(maxSizeInBytes: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const file = control.value as File;
     if (file && file.size <= maxSizeInBytes) {
@@ -406,7 +406,7 @@ const form = new FormGroup({
 
 // 18. Forbidden Words Validator: Check for specific words
 
-function forbiddenWordsValidator(forbiddenWords: string[]): ValidatorFn {
+export function forbiddenWordsValidator(forbiddenWords: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
     const foundForbiddenWords = forbiddenWords.filter(word => value.includes(word));
@@ -427,7 +427,7 @@ const form = new FormGroup({
 
 // 19. Custom Character Set Validator: Validate against a custom character set
 
-function customCharacterSetValidator(characterSet: RegExp): ValidatorFn {
+export function customCharacterSetValidator(characterSet: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
 
@@ -447,7 +447,7 @@ const form = new FormGroup({
 
 // 20. CAPTCHA Validator: Implement CAPTCHA-like validation
 
-function captchaValidator(captchaInput: string): ValidatorFn {
+export function captchaValidator(captchaInput: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const userInput = control.value as string;
 
@@ -470,7 +470,7 @@ const form = new FormGroup({
 
 // import IBAN from 'iban';
 
-// function ibanValidator(): ValidatorFn {
+// export function ibanValidator(): ValidatorFn {
 //   return (control: AbstractControl): ValidationErrors | null => {
 //     const iban = control.value as string;
 
@@ -490,7 +490,7 @@ const form = new FormGroup({
 
 // 22. VIN Validator: Validate Vehicle Identification Numbers
 
-function vinValidator(): ValidatorFn {
+export function vinValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const vin = control.value as string;
     // Define your VIN validation criteria here.
@@ -512,7 +512,7 @@ const form = new FormGroup({
 
 // 23. **Color Code Validator:** Validate color codes (HEX, RGB, etc.)
 
-function isbnValidator(): ValidatorFn {
+export function isbnValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const isbn = control.value as string;
     // Define your ISBN validation criteria here.
@@ -534,7 +534,7 @@ const form = new FormGroup({
 
 // 25. Geolocation Validator: Validate latitude and longitude coordinates
 
-function geolocationValidator(): ValidatorFn {
+export function geolocationValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
     // Define your geolocation validation criteria here.
@@ -556,7 +556,7 @@ const form = new FormGroup({
 
 // 26. Slug Validator: Validate URL slugs
 
-function slugValidator(): ValidatorFn {
+export function slugValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const slug = control.value as string;
     // Define your slug validation criteria here.
@@ -578,7 +578,7 @@ const form = new FormGroup({
 
 // 27. Currency Validator: Validate currency format
 
-function currencyValidator(): ValidatorFn {
+export function currencyValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const currency = control.value as string;
     // Define your currency validation criteria here.
@@ -600,7 +600,7 @@ const form = new FormGroup({
 
 // 28. IPv4 Validator: Validate IPv4 addresses
 
-function ipv4Validator(): ValidatorFn {
+export function ipv4Validator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const ipAddress = control.value as string;
     // Define your IPv4 validation criteria here.
@@ -622,7 +622,7 @@ const form = new FormGroup({
 
 // 29. IPv6 Validator: Validate IPv6 addresses
 
-function ipv6Validator(): ValidatorFn {
+export function ipv6Validator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const ipAddress = control.value as string;
     // Define your IPv6 validation criteria here.
@@ -644,7 +644,7 @@ const form = new FormGroup({
 
 // 30. Time Format Validator: Verify if a time is in a specific format
 
-function timeFormatValidator(): ValidatorFn {
+export function timeFormatValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const time = control.value as string;
     // Define your time format validation criteria here.
@@ -666,7 +666,7 @@ const form = new FormGroup({
 
 // 31. Age Validator: Check if the input is a valid age
 
-function ageValidator(minAge: number, maxAge: number): ValidatorFn {
+export function ageValidator(minAge: number, maxAge: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const age = control.value as number;
 
@@ -686,7 +686,7 @@ const form = new FormGroup({
 
 // 32. Gender Validator: Validate gender input
 
-function genderValidator(): ValidatorFn {
+export function genderValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const gender = control.value as string;
     // Define your gender validation criteria here.
@@ -708,7 +708,7 @@ const form = new FormGroup({
 
 // 33. Username Validator: Validate usernames
 
-function usernameValidator(): ValidatorFn {
+export function usernameValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const username = control.value as string;
     // Define your username validation criteria here.
@@ -730,7 +730,7 @@ const form = new FormGroup({
 
 // 34. Address Validator: Validate addresses
 
-function addressValidator(): ValidatorFn {
+export function addressValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const address = control.value as string;
     // Define your address validation criteria here.
@@ -752,7 +752,7 @@ const form = new FormGroup({
 
 // 35. Country Code Validator: Validate country codes
 
-function countryCodeValidator(): ValidatorFn {
+export function countryCodeValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const countryCode = control.value as string;
     // Define your country code validation criteria here.
@@ -774,7 +774,7 @@ const form = new FormGroup({
 
 // 36. Passport Number Validator: Validate passport numbers
 
-function passportNumberValidator(): ValidatorFn {
+export function passportNumberValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const passportNumber = control.value as string;
     // Define your passport number validation criteria here.
@@ -796,7 +796,7 @@ const form = new FormGroup({
 
 // 37. Custom Pattern Validator: Implement any custom pattern validation
 
-function customPatternValidator(pattern: RegExp): ValidatorFn {
+export function customPatternValidator(pattern: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
 
@@ -816,7 +816,7 @@ const form = new FormGroup({
 
 // 38. Postal Code Validator: Validate postal codes based on specific country formats, ensuring they adhere to the correct structure and patterns
 
-function postalCodeValidator(countryCode: string): ValidatorFn {
+export function postalCodeValidator(countryCode: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const postalCode = control.value as string;
     // Define your postal code validation criteria based on the country code here.
@@ -845,7 +845,7 @@ const form = new FormGroup({
 
 // import { UserService } from './user.service'; // Import your user service to check availability.
 
-// function usernameAvailabilityValidator(userService: UserService): ValidatorFn {
+// export function usernameAvailabilityValidator(userService: UserService): ValidatorFn {
 //   return (control: AbstractControl): Promise<ValidationErrors | null> | null => {
 //     const username = control.value as string;
 
@@ -870,7 +870,7 @@ const form = new FormGroup({
 
 // import { ContentService } from './content.service'; // Import your content service to check slug uniqueness.
 
-// function slugUniquenessValidator(contentService: ContentService): ValidatorFn {
+// export function slugUniquenessValidator(contentService: ContentService): ValidatorFn {
 //   return (control: AbstractControl): Promise<ValidationErrors | null> | null => {
 //     const slug = control.value as string;
 
