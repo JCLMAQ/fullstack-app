@@ -18,8 +18,8 @@ export interface ItemStateInterface {
 export const initialItemState: ItemStateInterface = {
   items: [],
   filter: {
-    ownerId: "test",
-    orgId: "test"
+    ownerId: null,
+    orgId: null
   },
   selectedId: null,
   selectedIds: [],

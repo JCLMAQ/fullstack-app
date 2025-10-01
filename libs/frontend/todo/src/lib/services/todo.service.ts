@@ -1,5 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { ENVIRONMENTTOKEN } from '@fe/shared';
+
 import { Observable, catchError, firstValueFrom, lastValueFrom, throwError } from 'rxjs';
 import { ItemInterface, ItemPartialInterface } from '../store/todo.model';
 
@@ -23,8 +25,10 @@ export type TodoFilter = {
 export class TodoService {
   // export class TodoService implements DataService<ItemInterface, TodoFilter> {
   private readonly http = inject(HttpClient);
+  private readonly environment = inject(ENVIRONMENTTOKEN);
 
-  private apiUrl = `api/`;
+  // private apiUrl = `api`;
+  private apiUrl = this.environment.API_BACKEND_PREFIX;
   private baseUrl = `${this.apiUrl}`;
 
   async getAllItems(): Promise<ItemInterface[]> {

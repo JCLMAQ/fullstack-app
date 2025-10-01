@@ -14,13 +14,13 @@ import { TasksStore } from '../store/task.store';
 })
 export class TaskListComponent {
   private readonly tasksService = inject(TasksService);
-private readonly toastService = inject(ToastService);
+  private readonly toastService = inject(ToastService);
   #store = inject(TasksStore);
-// items: Signal<ItemInterface[]> = this.#store.items;
-itemsEntitites: Signal<ItemInterface[]> = this.#store.tasksEntities;
-// itemsResource = this.#store.itemsResource;
-itemsLoading = this.#store.tasksLoading;
-itemsLoaded = this.#store.tasksLoaded;
-itemsError = this.#store.tasksError;
+  // items: Signal<ItemInterface[]> = this.#store.items;
+  itemsEntitites: Signal<ItemInterface[]> = this.#store.tasksEntities;
+  // itemsResource = this.#store.itemsResource;
+  itemsLoading = this.#store.tasksLoading;
+  itemsLoaded = this.#store.tasksLoaded;
+  itemsError = this.#store.tasksError;
 
 }

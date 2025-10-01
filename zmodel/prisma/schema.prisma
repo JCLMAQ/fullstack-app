@@ -76,7 +76,7 @@ enum TokenType {
 }
 
 model Organization {
-  id           String         @id() @default(uuid())
+  id           String         @id() @default(uuid(7))
   numSeq       Int            @default(autoincrement())
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @default(now()) @updatedAt()
@@ -132,7 +132,7 @@ model OrgDomain {
 }
 
 model User {
-  id            String            @id() @default(uuid())
+  id            String            @id() @default(uuid(7))
   numSeq        Int               @default(autoincrement())
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @default(now()) @updatedAt()
@@ -227,7 +227,7 @@ model Group {
 }
 
 model Todo {
-  id          String         @id() @default(uuid())
+  id          String         @id() @default(uuid(7))
   numSeq      Int            @default(autoincrement())
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @default(now()) @updatedAt()
@@ -266,7 +266,7 @@ model UserTodoLink {
 }
 
 model Task {
-  id          String         @id() @default(uuid())
+  id          String         @id() @default(uuid(7))
   numSeq      Int            @default(autoincrement())
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @default(now()) @updatedAt()
@@ -306,7 +306,7 @@ model UserTaskLink {
 }
 
 model Post {
-  id          String       @id() @default(uuid())
+  id          String       @id() @default(uuid(7))
   numSeq      Int          @default(autoincrement())
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now()) @updatedAt()
@@ -328,7 +328,7 @@ model Post {
 }
 
 model Category {
-  id            String    @id() @default(uuid())
+  id            String    @id() @default(uuid(7))
   numSeq        Int       @default(autoincrement())
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @default(now()) @updatedAt()
@@ -342,7 +342,7 @@ model Category {
 }
 
 model Comment {
-  id           String    @id() @default(uuid())
+  id           String    @id() @default(uuid(7))
   numSeq       Int       @default(autoincrement())
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @default(now()) @updatedAt()
@@ -359,7 +359,7 @@ model Comment {
 }
 
 model File {
-  id          String       @id() @default(uuid())
+  id          String       @id() @default(uuid(7))
   numSeq      Int          @default(autoincrement())
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now()) @updatedAt()
@@ -403,7 +403,7 @@ model PostLike {
 }
 
 model Story {
-  id          String    @id() @default(uuid())
+  id          String    @id() @default(uuid(7))
   numSeq      Int       @default(autoincrement())
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now()) @updatedAt()
@@ -544,7 +544,7 @@ model ChangesTracking {
 }
 
 model AccountValidation {
-  id          String    @id() @default(uuid())
+  id          String    @id() @default(uuid(7))
   numSeq      Int       @default(autoincrement())
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now()) @updatedAt()

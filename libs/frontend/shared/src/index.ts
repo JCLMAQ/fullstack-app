@@ -6,5 +6,8 @@ export * from './lib/inject-cd-blink';
 export * from './lib/shared/shared.component';
 export * from './lib/to-promise';
 export * from './lib/toast';
+export * from './lib/tokens/environement.token';
+export * from './lib/tokens/environment.model';
+
 
 // Base on Angular-Architect dessert app -08b-details)

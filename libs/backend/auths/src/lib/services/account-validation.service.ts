@@ -59,7 +59,7 @@ async accountValidationEmail(result: string, email: string, lang: string): Promi
     if (tokenAccountValidation && tokenAccountValidation.emailToken) {
       // Config data for the email to send with the token
       const emailSender = await this.dbConfigService.searchConfigParam( "EMAIL_NOREPLY" );
-      const hostWebAddress = await this.dbConfigService.searchConfigParam( "API_URL_BACKEND");
+      const hostWebAddress = await this.dbConfigService.searchConfigParam( "API_BACKEND_URL");
 
       // Email data construction and translate
       const noreply = await this.i18n.translate("auths.NOREPLYEMAIL",{ lang: lang, })

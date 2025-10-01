@@ -11,7 +11,7 @@ const config = dotenv.config()
 const environment = process.env.NODE_ENV || 'dev';
 const isProduction = environment === 'prod';
 
-if ( !process.env.API_FRONTEND || !process.env.API_FRONTEND_PORT || !process.env.API_BACKEND || !process.env.API_BACKEND_PORT || !process.env.API_SECRET || !process.env.AUTO_REGISTRATION_ENABLE || !process.env.REGISTRATION_VALIDATION || !process.env.PWDLESS_LOGIN_ENABLE || !process.env.DEFAULT_LANGUAGE || !process.env.SUPPORTED_LANGUAGE) {
+if ( !process.env.API_FRONTEND || !process.env.API_FRONTEND_PORT || !process.env.API_BACKEND_URL || !process.env.API_BACKEND_PREFIX || !process.env.API_BACKEND || !process.env.API_BACKEND_PORT || !process.env.API_SECRET || !process.env.AUTO_REGISTRATION_ENABLE || !process.env.REGISTRATION_VALIDATION || !process.env.PWDLESS_LOGIN_ENABLE || !process.env.DEFAULT_LANGUAGE || !process.env.SUPPORTED_LANGUAGE) {
   console.error('All the required environment variables were not provided!');
   process.exit(-1);
 }
@@ -24,10 +24,11 @@ const targetPath = isProduction
 const environmentFileContent = `
     export const environment = {
         production: ${isProduction},
-        API_URL_BACKEND: "http://${process.env.API_BACKEND}:${process.env.API_BACKEND_PORT}",
-        API_URL_FRONTEND: "http://${process.env.API_FRONTEND}:${process.env.API_FRONTEND_PORT}",
+        API_BACKEND_URL: "http://${process.env.API_BACKEND}:${process.env.API_BACKEND_PORT}",
+        API_BACKEND_PREFIX: "${process.env.API_BACKEND_PREFIX}",
+        API_FRONTEND_URL: "http://${process.env.API_FRONTEND}:${process.env.API_FRONTEND_PORT}",
         API_FRONTEND: "${process.env.API_FRONTEND}",
-        API_PORT: "${process.env.API_PORT}",
+        API_FRONTEND_PORT: "${process.env.API_FRONTEND_PORT}",
         API_SECRET: "${process.env.API_SECRET}",
         AUTO_REGISTRATION_ENABLE: "${process.env.AUTO_REGISTRATION_ENABLE}",
         REGISTRATION_VALIDATION: "${process.env.REGISTRATION_VALIDATION}",

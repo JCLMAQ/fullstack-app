@@ -2,7 +2,7 @@ import 'schema'
 
 // Base model for all entites in a organization
 abstract model organizationBaseEntity {
-    id String @default(uuid()) @id()
+    id String @default(uuid(7)) @id()
     numSeq Int @default(autoincrement())
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now()) @updatedAt()
@@ -54,7 +54,7 @@ abstract model BaseInt {
 
 // Base model for Uuid Id
 abstract model BaseUuid {
-    id String @default(uuid()) @id()
+    id String @default(uuid(7)) @id()
     numSeq Int @default(autoincrement())
 
     createdAt DateTime @default(now())

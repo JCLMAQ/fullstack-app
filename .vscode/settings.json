@@ -32,5 +32,6 @@
             "externalTemplate": true
         }
     },
-    "vs-browser.url": "http://localhost:4210"
+    "vs-browser.url": "http://localhost:4210",
+    "postman.settings.dotenv-detection-notification-visibility": false
 }

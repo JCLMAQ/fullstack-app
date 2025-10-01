@@ -1,19 +1,19 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-
-import { ReactiveFormsModule } from '@angular/forms';
-import { provideAppErrorHandler } from '@fe/shared';
+import { ENVIRONMENTTOKEN, provideAppErrorHandler } from '@fe/shared';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from '../../environments/environment';
 import { appRoutes } from './app.routes';
 import { DICTIONARIES } from './data/dictionaries';
 import { AuthInterceptor } from './features/auth/interceptors/auth.interceptor';
 import { LoggingInterceptor } from './features/auth/interceptors/loggind.interceptors';
 import { DICTIONARIES_TOKEN } from './tokens/dictionaries.token';
-
 
 // export function httpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 //   return new TranslateHttpLoader(http);
@@ -24,6 +24,7 @@ import { DICTIONARIES_TOKEN } from './tokens/dictionaries.token';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
+    provideAnimations(),
     provideHttpClient(
       withFetch(),
       withInterceptors([
@@ -44,6 +45,7 @@ export const appConfig: ApplicationConfig = {
         }),
 
     { provide: DICTIONARIES_TOKEN, useValue: DICTIONARIES },
+    { provide: ENVIRONMENTTOKEN, useValue: environment},
 
     provideNativeDateAdapter(),
     provideRouter(appRoutes, withComponentInputBinding(),),
@@ -57,8 +59,7 @@ export const appConfig: ApplicationConfig = {
     },
     provideAppErrorHandler(),
     importProvidersFrom(ReactiveFormsModule),
-
-
   ],
 };
+
 
