@@ -5,7 +5,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { ENVIRONMENTTOKEN, provideAppErrorHandler } from '@fe/shared';
+import { ENVIRONMENT_TOKEN, provideAppErrorHandler } from '@fe/shared';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from '../../environments/environment';
@@ -45,7 +45,7 @@ export const appConfig: ApplicationConfig = {
         }),
 
     { provide: DICTIONARIES_TOKEN, useValue: DICTIONARIES },
-    { provide: ENVIRONMENTTOKEN, useValue: environment},
+    { provide: ENVIRONMENT_TOKEN, useValue: environment},
 
     provideNativeDateAdapter(),
     provideRouter(appRoutes, withComponentInputBinding(),),

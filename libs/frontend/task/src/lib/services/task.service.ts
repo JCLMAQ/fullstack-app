@@ -2,6 +2,7 @@
 import { DataService } from "@angular-architects/ngrx-toolkit";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { ENVIRONMENT_TOKEN } from "@fe/shared";
 import { EntityId } from "@ngrx/signals/entities";
 import { ItemInterface } from "../store/task.model";
 
@@ -16,8 +17,10 @@ export type TasksFilter = {
 export class TasksService implements DataService<ItemInterface,{ ownerId: string, orgId: string }> {
 
   private readonly http = inject(HttpClient);
+  private readonly environment = inject(ENVIRONMENT_TOKEN);
 
-  private apiUrl = `api`;
+  // private apiUrl = `api`;
+  private apiUrl = this.environment.API_BACKEND_PREFIX;
   private baseUrl = `${this.apiUrl}`;
 
   async load(filter: TasksFilter): Promise<ItemInterface[]> {

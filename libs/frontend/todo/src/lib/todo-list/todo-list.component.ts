@@ -155,13 +155,13 @@ ngAfterViewInit(): void {
   }
 
 // Delete the selected item
-  // async remove( id: string ) {
+  async remove( id: string ) {
 
-  // }
+  }
 
-  // virtualRemove(id: string) {
+  virtualRemove(id: string) {
 
-  // }
+  }
 // MatTable mgt
 // On click row action
   onRowClicked(row: number) {
