@@ -26,14 +26,14 @@ const config: runtime.GetPrismaClientConfig = {
       "fromEnvVar": null
     },
     "config": {
-      "generatedFileExtension": "ts",
       "importFileExtension": "ts",
+      "generatedFileExtension": "ts",
       "engineType": "library"
     },
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "darwin",
         "native": true
       }
     ],
@@ -48,6 +48,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
