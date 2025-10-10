@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@prisma/prisma';
 import { Prisma, Todo, UserTodoLink } from '@prisma/prisma-client';
+import { CreateTodoDto, CreateTodoWithUsersDto } from './dto/create-todo.dto';
+import { UpdateTodoDto } from './dto/update-todo.dto';
+import { TodoEntity } from './entities/todo.entity';
 import { TodosRepository } from './todos.repository';
 
 @Injectable()
@@ -121,6 +124,81 @@ export class TodosService {
 
 async getAllTodosWithTasks(): Promise<Todo[]>{
     return await this.repository.getAllTodosWithTasks();
+  }
+
+  // New methods using standardized DTOs
+  async createTodo(createTodoDto: CreateTodoDto, userId: string): Promise<TodoEntity> {
+    const data: Prisma.TodoCreateInput = {
+      title: createTodoDto.title,
+      content: createTodoDto.content,
+      orderTodo: createTodoDto.orderTodo,
+      todoState: createTodoDto.todoState,
+      owner: {
+        connect: {
+          id: userId
+        }
+      },
+      org: {
+        connect: {
+          id: createTodoDto.orgId
+        }
+      }
+    };
+
+    if (createTodoDto.mainTodoId) {
+      data.mainTodo = { connect: { id: createTodoDto.mainTodoId } };
+    }
+
+    const todo = await this.repository.createOneTodo({ data });
+    return new TodoEntity(todo);
+  }
+
+  async createTodoWithUsers(createTodoWithUsersDto: CreateTodoWithUsersDto, userId: string): Promise<TodoEntity> {
+    const { users, ...todoData } = createTodoWithUsersDto;
+
+    const data: Prisma.TodoCreateInput = {
+      title: todoData.title,
+      content: todoData.content,
+      orderTodo: todoData.orderTodo,
+      todoState: todoData.todoState,
+      owner: {
+        connect: {
+          id: userId
+        }
+      },
+      org: {
+        connect: {
+          id: todoData.orgId
+        }
+      },
+      Users: {
+        create: users.map(user => ({
+          userId: user.userId,
+          isAuthor: user.isAuthor ?? true,
+          isAssigned: user.isAssigned ?? true,
+          comment: user.comment ?? ''
+        }))
+      }
+    };
+
+    if (todoData.mainTodoId) {
+      data.mainTodo = { connect: { id: todoData.mainTodoId } };
+    }
+
+    const todo = await this.repository.createOneTodo({ data });
+    return new TodoEntity(todo);
+  }
+
+  async updateTodoWithDto(id: string, updateTodoDto: UpdateTodoDto): Promise<TodoEntity> {
+    const data: Prisma.TodoUpdateInput = {
+      ...updateTodoDto
+    };
+
+    const todo = await this.repository.updateTodo({
+      where: { id },
+      data
+    });
+    return new TodoEntity(todo);
   }
 
 

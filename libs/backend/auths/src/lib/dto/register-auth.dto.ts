@@ -1,52 +1,103 @@
 
-
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Gender, Language, Role } from '@prisma/prisma-client';
-import { IsString } from "class-validator";
-import * as Joi from 'joi';
-
+import {
+  IsArray,
+  IsEnum,
+  IsOptional,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength
+} from "class-validator";
 import { AuthDto } from "./auth.dto";
 
+export class RegisterAuthDto extends AuthDto {
+  @ApiProperty({
+    description: 'Password confirmation',
+    example: 'securePassword123'
+  })
+  @IsString()
+  @MinLength(6, { message: 'Verify password must be at least 6 characters long' })
+  verifyPassword!: string;
 
+  @ApiPropertyOptional({
+    description: 'User last name',
+    example: 'Doe',
+    minLength: 2,
+    maxLength: 50
+  })
+  @IsOptional()
+  @IsString()
+  @MinLength(2, { message: 'Last name must be at least 2 characters long' })
+  @MaxLength(50, { message: 'Last name must not exceed 50 characters' })
+  @Matches(/^[a-zA-ZÀ-ÿ\s-']+$/, { message: 'Last name can only contain letters, spaces, hyphens and apostrophes' })
+  lastName?: string;
 
-export class RegisterAuthDto extends (AuthDto) {
+  @ApiPropertyOptional({
+    description: 'User first name',
+    example: 'John',
+    minLength: 2,
+    maxLength: 50
+  })
+  @IsOptional()
   @IsString()
-  verifyPassword: string | undefined;
+  @MinLength(2, { message: 'First name must be at least 2 characters long' })
+  @MaxLength(50, { message: 'First name must not exceed 50 characters' })
+  @Matches(/^[a-zA-ZÀ-ÿ\s-']+$/, { message: 'First name can only contain letters, spaces, hyphens and apostrophes' })
+  firstName?: string;
+
+  @ApiPropertyOptional({
+    description: 'User nickname',
+    example: 'johndoe',
+    minLength: 3,
+    maxLength: 20
+  })
+  @IsOptional()
   @IsString()
-  lastName: string | undefined;
-  @IsString()
-  firstName: string | undefined;
-  @IsString()
-  nickName: string | undefined;
-  @IsString()
-  Gender: Gender | undefined;
-  // @IsJsonObject()
-  // @IsOptional()
-  // // social?: Prisma.InputJsonValue;
-  @IsString()
-  Language: Language | undefined;
-  @IsString()
-  Roles: Role[] | undefined;
-  // dob?: Date;
+  @MinLength(3, { message: 'Nickname must be at least 3 characters long' })
+  @MaxLength(20, { message: 'Nickname must not exceed 20 characters' })
+  @Matches(/^[a-zA-Z0-9_-]+$/, { message: 'Nickname can only contain letters, numbers, underscores and hyphens' })
+  nickName?: string;
+
+  @ApiPropertyOptional({
+    description: 'User gender',
+    enum: Gender,
+    example: Gender.MALE
+  })
+  @IsOptional()
+  @IsEnum(Gender, { message: 'Gender must be a valid value' })
+  Gender?: Gender;
+
+  @ApiPropertyOptional({
+    description: 'User preferred language',
+    enum: Language,
+    example: Language.en
+  })
+  @IsOptional()
+  @IsEnum(Language, { message: 'Language must be a valid value' })
+  Language?: Language;
+
+  @ApiPropertyOptional({
+    description: 'User roles',
+    type: [String],
+    enum: Role,
+    isArray: true
+  })
+  @IsOptional()
+  @IsArray()
+  @IsEnum(Role, { each: true, message: 'Each role must be a valid value' })
+  Roles?: Role[];
 }
 
-export class ChortRegisterAuthDto extends (AuthDto) {
+export class ChortRegisterAuthDto extends AuthDto {
+  @ApiProperty({
+    description: 'Password confirmation',
+    example: 'securePassword123'
+  })
   @IsString()
-  verifyPassword: string | undefined;
+  @MinLength(6, { message: 'Verify password must be at least 6 characters long' })
+  verifyPassword!: string;
 }
-// Joi Schema according : https://www.notion.so/jclmaq5510/Data-Validation-with-Joi-502789ddb6f349ea9d79d0447899cf3d?pvs=4
-export const registerSchema = Joi.object({
-  // username: Joi.string().alphanum().min(3).max(30).required(),
-  email: Joi.string().email({ minDomainSegments: 2}).required(),
-  password: Joi.string().min(6).required(),
-  verifyPassword: Joi.ref('password'),
-  lastName:Joi.string().alphanum().min(3).max(30),
-  firstName:Joi.string().alphanum().min(3).max(30),
-  nickName:Joi.string().alphanum().min(3).max(10),
-  Gender: Gender ,
-  // social: Joi.object({}).optional(),
-  Language: Language,
-  Roles: Role,
-  // dob: Date
-});
 
 

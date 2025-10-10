@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@prisma/prisma';
 import { Prisma, Task, UserTaskLink } from '@prisma/prisma-client';
+import { CreateTaskDto, CreateTaskWithUsersDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
+import { TaskEntity } from './entities/task.entity';
 import { TasksRepository } from './tasks.repository';
 
 @Injectable()
@@ -12,7 +15,7 @@ export class TasksService {
     private repository: TasksRepository
   ) {}
 
-   async createOneTask(params: {
+  async createOneTask(params: {
     content: Task[`content`];
     comment: UserTaskLink[`comment`];
     title: Task[`title`];
@@ -44,8 +47,8 @@ export class TasksService {
             }
           }
         };
-      if (mainTaskId !== "") {
-        data = { ...data, mainTask: { connect: { id: mainTaskId! } } }
+      if (mainTaskId !== "" && mainTaskId !== null) {
+        data = { ...data, mainTask: { connect: { id: mainTaskId } } }
       }
       const task = await this.repository.createOneTask({ data: data });
       return task;
@@ -118,5 +121,88 @@ export class TasksService {
 
 async getAllTasksWithTasks(): Promise<Task[]>{
     return await this.repository.getAllTasksWithTasks();
+  }
+
+  // New methods using standardized DTOs
+  async createTask(createTaskDto: CreateTaskDto, userId: string): Promise<TaskEntity> {
+    const data: Prisma.TaskCreateInput = {
+      title: createTaskDto.title,
+      content: createTaskDto.content,
+      orderTask: createTaskDto.orderTask,
+      taskState: createTaskDto.taskState,
+      owner: {
+        connect: {
+          id: userId
+        }
+      },
+      org: {
+        connect: {
+          id: createTaskDto.orgId
+        }
+      }
+    };
+
+    if (createTaskDto.mainTaskId) {
+      data.mainTask = { connect: { id: createTaskDto.mainTaskId } };
+    }
+
+    if (createTaskDto.todoId) {
+      data.todo = { connect: { id: createTaskDto.todoId } };
+    }
+
+    const task = await this.repository.createOneTask({ data });
+    return new TaskEntity(task);
+  }
+
+  async createTaskWithUsers(createTaskWithUsersDto: CreateTaskWithUsersDto, userId: string): Promise<TaskEntity> {
+    const { users, ...taskData } = createTaskWithUsersDto;
+
+    const data: Prisma.TaskCreateInput = {
+      title: taskData.title,
+      content: taskData.content,
+      orderTask: taskData.orderTask,
+      taskState: taskData.taskState,
+      owner: {
+        connect: {
+          id: userId
+        }
+      },
+      org: {
+        connect: {
+          id: taskData.orgId
+        }
+      },
+      Users: {
+        create: users.map(user => ({
+          userId: user.userId,
+          isAuthor: user.isAuthor ?? true,
+          isAssigned: user.isAssigned ?? true,
+          comment: user.comment ?? ''
+        }))
+      }
+    };
+
+    if (taskData.mainTaskId) {
+      data.mainTask = { connect: { id: taskData.mainTaskId } };
+    }
+
+    if (taskData.todoId) {
+      data.todo = { connect: { id: taskData.todoId } };
+    }
+
+    const task = await this.repository.createOneTask({ data });
+    return new TaskEntity(task);
+  }
+
+  async updateTaskWithDto(id: string, updateTaskDto: UpdateTaskDto): Promise<TaskEntity> {
+    const data: Prisma.TaskUpdateInput = {
+      ...updateTaskDto
+    };
+
+    const task = await this.repository.updateTask({
+      where: { id },
+      data
+    });
+    return new TaskEntity(task);
   }
 }

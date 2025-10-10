@@ -107,7 +107,6 @@ async checkCredential(@Param('emailCheck') emailCheck: string, @I18nLang() lang:
   }
   // Register - Sign-up
   @Post('auth/registerwithpwd')
-  // @UsePipes(new JoiValidationPipe(registerSchema)) // Joi Schema according : https://www.notion.so/jclmaq5510/Data-Validation-with-Joi-502789ddb6f349ea9d79d0447899cf3d?pvs=4
   async registerWithPwd(@Body() registerUserDto: RegisterAuthDto, @I18nLang() lang: string): Promise<IResponse> {
     const isRegistered = await this.loginWithPasswdService.registerWithPwd(registerUserDto, lang);
     switch(isRegistered) {

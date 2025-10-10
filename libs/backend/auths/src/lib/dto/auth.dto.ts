@@ -1,20 +1,24 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Gender, Language, Role, Title } from '@prisma/prisma-client';
-import { IsEmail, IsString } from "class-validator";
-import * as Joi from 'joi';
+import { IsEmail, IsString, MinLength } from "class-validator";
 
 export class AuthDto {
-    @IsEmail()
+    @ApiProperty({
+        description: 'User email address',
+        example: 'user@example.com'
+    })
+    @IsEmail({}, { message: 'Please provide a valid email address' })
     email!: string;
+
+    @ApiProperty({
+        description: 'User password',
+        example: 'securePassword123',
+        minLength: 6
+    })
     @IsString()
+    @MinLength(6, { message: 'Password must be at least 6 characters long' })
     password!: string;
 }
-
-export const signInSchema = Joi.object({
-  // Joi Schema according : https://www.notion.so/jclmaq5510/Data-Validation-with-Joi-502789ddb6f349ea9d79d0447899cf3d?pvs=4
-  // username: Joi.string().alphanum().min(3).max(30).required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().min(6).required(),
-});
 
 export interface IResponse {
   success: boolean;

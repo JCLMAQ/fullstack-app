@@ -1,6 +1,7 @@
 import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
 import { ApiKey, ChangesTracking, Gender, Group, Language, PermissionClaim, Post, Prisma, Profile, Role, Task, Title, Token, User, UserSecret } from '@prisma/prisma-client';
-import { Exclude } from 'class-transformer';
+import { Exclude, Type } from 'class-transformer';
+import { IsEmail, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class UserEntity implements User {
 
@@ -8,26 +9,78 @@ export class UserEntity implements User {
       Object.assign(this, partial);
     }
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt!: Date;
+  updatedAt!: Date;
 
+  @ApiProperty()
+  @IsUUID()
   id!: string;
-  numSeq: number;
+
+  @ApiProperty()
+  numSeq!: number;
+
   @ApiProperty({ required: true, nullable: false })
-  email: string;
+  @IsEmail({}, { message: 'Please provide a valid email address' })
+  email!: string;
+
+  @ApiProperty()
+  @IsString()
   lastName!: string;
+
+  @ApiProperty()
+  @IsString()
   firstName!: string;
-  title: Title;
-  nickName: string;
-  Gender: Gender;
-  social: Prisma.JsonValue;
-  Language: Language;
-  dob: Date;
-  address: Prisma.JsonValue;
-  isValidated: Date;
-  isSuspended: Date;
-  isDeletedDT: Date;
-  managerId: string | null;
+
+  @ApiProperty({ enum: Title })
+  @IsOptional()
+  @IsEnum(Title)
+  title!: Title;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  nickName!: string;
+
+  @ApiProperty({ enum: Gender })
+  @IsOptional()
+  @IsEnum(Gender)
+  Gender!: Gender;
+
+  @ApiProperty()
+  social!: Prisma.JsonValue;
+
+  @ApiProperty({ enum: Language })
+  @IsOptional()
+  @IsEnum(Language)
+  Language!: Language;
+
+  @ApiProperty()
+  @IsOptional()
+  @Type(() => Date)
+  dob!: Date;
+
+  @ApiProperty()
+  address!: Prisma.JsonValue;
+
+  @ApiProperty()
+  @IsOptional()
+  @Type(() => Date)
+  isValidated!: Date;
+
+  @ApiProperty()
+  @IsOptional()
+  @Type(() => Date)
+  isSuspended!: Date;
+
+  @ApiProperty()
+  @IsOptional()
+  @Type(() => Date)
+  isDeletedDT!: Date;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsUUID()
+  managerId!: string | null;
   @ApiProperty({ type: () => UserEntity })
   manager?: User  | null;
   @ApiProperty({ type: () => UserEntity })
@@ -51,17 +104,17 @@ export class UserEntity implements User {
   isTfaEnable!: boolean;
   @Exclude() // Used by the Nestjs ClassSerializerInterceptor to exclude the password field
   @ApiHideProperty()
-  tfaSecret: string | null;
+  tfaSecret!: string | null;
   @ApiProperty({ type: () => UserEntity })
   ApiKey?: ApiKey[] ;
   @ApiProperty({ type: () => UserEntity })
   UserSecret?: UserSecret  | null;
   @ApiHideProperty()
   @Exclude()
-  passWordFaker: string | null;
-  published: boolean;
-  isDeleted: number;
-  isPublic: boolean;
-  photoUrl: string;
+  passWordFaker!: string | null;
+  published!: boolean;
+  isDeleted!: number;
+  isPublic!: boolean;
+  photoUrl!: string;
 
 }
