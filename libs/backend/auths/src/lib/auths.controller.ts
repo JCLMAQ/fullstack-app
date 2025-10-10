@@ -47,14 +47,14 @@ export class AuthsController {
       const fullName: string | null | undefined = await this.userAuthService.generateFullName(user)
       const userLogged: IUserLogged = {
         email: user.email,
-        lastName: user.lastName || undefined,
-        firstName: user.firstName || undefined,
-        nickName: user.nickName || undefined,
-        title: user.title || undefined,
-        Gender: user.Gender || undefined,
-        Role: user.Roles || undefined,
-        Language: user.Language || undefined,
-        photoUrl: user.photoUrl || undefined
+        lastName: user.lastName ?? undefined,
+        firstName: user.firstName ?? undefined,
+        nickName: user.nickName ?? undefined,
+        title: user.title ?? undefined,
+        Gender: user.Gender ?? undefined,
+        Role: user.Roles ?? undefined,
+        Language: user.Language ?? undefined,
+        photoUrl: user.photoUrl ?? undefined
       }
 
       return {
@@ -76,9 +76,20 @@ async checkCredential(@Param('emailCheck') emailCheck: string, @I18nLang() lang:
         message: await this.i18n.translate("auths.EMAIL_NOT_FOUND",{ lang: lang, }) //'no email found'
       }
     }
-    const fullName: string | null | undefined = await this.userAuthService.generateFullName(user)
+    const fullName: string | null | undefined = await this.userAuthService.generateFullName(user);
+    const userLogged: IUserLogged = {
+      email: user.email,
+      lastName: user.lastName ?? undefined,
+      firstName: user.firstName ?? undefined,
+      nickName: user.nickName ?? undefined,
+      title: user.title ?? undefined,
+      Gender: user.Gender ?? undefined,
+      Role: user.Roles ?? undefined,
+      Language: user.Language ?? undefined,
+      photoUrl: user.photoUrl ?? undefined
+    };
     return {
-      user: user,
+      user: userLogged,
       fullName: fullName
     };
 }
