@@ -1,58 +1,34 @@
 import { UserEntity } from "@be/users";
 import { ApiProperty } from "@nestjs/swagger";
-import { Category, User } from '@prisma/prisma-client';
-import { Type } from 'class-transformer';
-import { IsBoolean, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
+import { Category, Comment, Post, User } from '@prisma/prisma-client';
 
-export class PostEntity {
-  @ApiProperty()
-  @IsUUID()
+export class PostEntity implements Post {
+
+  constructor(partial: Partial<PostEntity>) {
+    Object.assign(this, partial);
+  }
+
+  // Propriétés requises par l'interface Post de Prisma
   id!: string;
-
-  @ApiProperty()
-  @Type(() => Date)
+  numSeq!: number;
   createdAt!: Date;
-
-  @ApiProperty()
-  @Type(() => Date)
   updatedAt!: Date;
-
-  @ApiProperty({ required: false })
-  @IsOptional()
-  @IsNumber()
-  orderPost!: number | null;
-
-  @ApiProperty()
-  @IsBoolean()
   published!: boolean;
-
-  @ApiProperty()
-  @IsString()
+  isDeleted!: number;
+  isDeletedDT!: Date | null;
+  isPublic!: boolean;
+  ownerId!: string;
+  orgId!: string;
+  orderPost!: number | null;
   title!: string;
-
-  @ApiProperty({ required: false })
-  @IsOptional()
-  @IsString()
   content!: string | null;
-
+  authorId!: string;
+  
+  // Relations optionnelles
   @ApiProperty({ type: () => UserEntity })
   author?: User;
-
-  @ApiProperty()
-  @IsUUID()
-  authorId!: string;
-
+  
   @ApiProperty({ type: () => UserEntity })
   Category?: Category[];
-
   Comment?: Comment[];
-
-  @ApiProperty({ required: false })
-  @IsOptional()
-  @Type(() => Date)
-  isDeletedDT!: Date | null;
-
-  @ApiProperty()
-  @IsNumber()
-  isDeleted!: number;
 }

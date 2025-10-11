@@ -1,3 +1,4 @@
+export * from './lib/entities/todo.entity';
 export * from './lib/dto/create-todo.dto';
 export * from './lib/dto/update-todo.dto';
 export * from './lib/entities/todo.entity';
