@@ -7,7 +7,6 @@
     "seed": " npx tsx zmodel/seeddb/seed.ts"
   },
   "scripts": {
-    "start fe:jcm-app": "nx serve jcm-app --port 4210",
     "pnpm-instal": "pnpm install --no-frozen-lockfile",
     "pnpm-auto-update": "pnpm update",
     "pnpm approve-builds scripts": "pnpm approve-builds",
