@@ -82,19 +82,31 @@ export class AuthService {
   async register(email:string, password:string, confirmPassword:string): Promise<IRegisterResponse | Error> {
 
     const pathUrl = "api/auths/auth/registerwithpwd";
-    // const register$ = this.httpClient.post<User>(`${environment.apiRoot}/register`, {
-    const register$ = this.httpClient.post<IRegisterResponse>(`${pathUrl}`, {
+
+    const payload: {
+      email: string;
+      password: string;
+      verifyPassword: string;
+      Roles: string[];
+      Language: string;
+      lastName?: string;
+      firstName?: string;
+      nickName?: string;
+      Gender?: string;
+    } = {
       email,
       password,
       verifyPassword: confirmPassword,
-      lastName: '',
-      firstName: '',
-      nickName: '',
-      Gender: 'UNKNOWN',
-      Roles: "GUEST",
-      // title: 'Sir',
+      Roles: ["GUEST"],
       Language: "fr"
-    });
+    };
+
+    // N'ajouter les champs optionnels que s'ils ont des valeurs valides
+    // (évite les erreurs de validation sur chaînes vides)
+
+    console.log("Registering User Payload: ", payload);
+
+    const register$ = this.httpClient.post<IRegisterResponse>(`${pathUrl}`, payload);
     const response = await firstValueFrom(register$);
 
     console.log("Registering User Response: ", response)
@@ -117,7 +129,6 @@ export class AuthService {
   async fetchUser(): Promise<IUserLogged | undefined | null> {
 
     //  get user data from backend with authToken
-    const apiUrl = "api/auths/auth/loggedUser/";
     const authToken = this.authToken();
     if (authToken) {
       const decodedJwt: IJwt = jwtDecode(authToken);
