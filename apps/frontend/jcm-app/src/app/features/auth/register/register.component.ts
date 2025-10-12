@@ -1,12 +1,36 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AppStore } from '../../../appstore/app.store';
+
+// Interface pour le modèle de données du formulaire
+interface RegisterFormModel {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+// Validateur personnalisé pour la correspondance des mots de passe
+function passwordMatchValidator(control: AbstractControl) {
+  const password = control.get('password');
+  const confirmPassword = control.get('confirmPassword');
+
+  if (!password || !confirmPassword) {
+    return null;
+  }
+
+  return password.value === confirmPassword.value ? null : { passwordMismatch: true };
+}
 
 @Component({
   selector: 'app-register',
@@ -20,80 +44,96 @@ import { AppStore } from '../../../appstore/app.store';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
+
 export default class RegisterComponent {
-  appStore = inject(AppStore);
-  router = inject(Router);
+  private appStore = inject(AppStore);
+  private router = inject(Router);
 
+  // Signal d'état UI
   hidePassword = signal(true);
+  isSubmitting = signal(false);
 
-  // Signal Forms API - FormGroup avec des signaux
-  registerForm = new FormGroup({
-    email: new FormControl('user2@test.be', {
-      validators: [Validators.required, Validators.email],
-      nonNullable: true
-    }),
-    password: new FormControl('Pwd!123456', {
-      validators: [Validators.required, Validators.minLength(8)],
-      nonNullable: true
-    }),
-    confirmPassword: new FormControl('Pwd!123456', {
-      validators: [Validators.required],
-      nonNullable: true
-    })
+  // Création du formulaire avec FormBuilder et validations
+  private fb = inject(FormBuilder);
+
+  registerForm = this.fb.nonNullable.group({
+    email: ['user2@test.be', [Validators.required, Validators.email]],
+    password: ['Pwd!123456', [Validators.required, Validators.minLength(8)]],
+    confirmPassword: ['Pwd!123456', [Validators.required]]
+  }, {
+    validators: [passwordMatchValidator]
   });
 
-  // Signaux convertis à partir des observables du formulaire avec toSignal
-  email = toSignal(this.registerForm.controls.email.valueChanges, {
-    initialValue: this.registerForm.controls.email.value
-  });
-  password = toSignal(this.registerForm.controls.password.valueChanges, {
-    initialValue: this.registerForm.controls.password.value
-  });
-  confirmPassword = toSignal(this.registerForm.controls.confirmPassword.valueChanges, {
-    initialValue: this.registerForm.controls.confirmPassword.value
-  });
-
-  // Signal pour l'état de validation du formulaire
-  formStatus = toSignal(this.registerForm.statusChanges, {
-    initialValue: this.registerForm.status
-  });
-
-  // Signal pour toutes les valeurs du formulaire
-  formValue = toSignal(this.registerForm.valueChanges, {
+  // Signal Forms API - Conversion des observables en signaux
+  private formState = toSignal(this.registerForm.valueChanges, {
     initialValue: this.registerForm.value
   });
 
-  // Signal computed pour vérifier si les mots de passe correspondent
+  private formStatus = toSignal(this.registerForm.statusChanges, {
+    initialValue: this.registerForm.status
+  });
+
+  // Signal pour détecter les changements sur le formulaire
+  private formChangeCounter = signal(0);
+
+  // Signaux pour les valeurs individuelles des champs
+  email = computed(() => this.formState().email);
+  password = computed(() => this.formState().password);
+  confirmPassword = computed(() => this.formState().confirmPassword);
+
+  // Signaux computed pour la validation
+  isFormValid = computed(() =>
+    this.formStatus() === 'VALID'
+  );
+
+  isFormInvalid = computed(() =>
+    this.formStatus() === 'INVALID'
+  );
+
   passwordsMatch = computed(() => {
     const pwd = this.password();
     const confirmPwd = this.confirmPassword();
-    return pwd === confirmPwd && pwd.length > 0 && confirmPwd.length > 0;
+    return pwd && confirmPwd && pwd === confirmPwd && pwd.length > 0;
   });
 
-  // Signal computed pour l'état du formulaire
-  isFormValid = computed(() =>
-    this.formStatus() === 'VALID' && this.passwordsMatch()
-  );
+    // Signaux pour les erreurs de validation avec null safety
+  emailErrors = computed(() => {
+    const control = this.registerForm.get('email');
+    if (!control?.errors || !control.touched) return [];
 
-  // Signal computed pour les erreurs de validation
-  emailErrors = computed(() => ({
-    required: this.registerForm.controls.email.hasError('required'),
-    email: this.registerForm.controls.email.hasError('email')
-  }));
+    const errors = [];
+    if (control.errors['required']) errors.push('Email requis');
+    if (control.errors['email']) errors.push('Format email invalide');
+    return errors;
+  });
 
-  passwordErrors = computed(() => ({
-    required: this.registerForm.controls.password.hasError('required'),
-    minlength: this.registerForm.controls.password.hasError('minlength')
-  }));
+  passwordErrors = computed(() => {
+    const control = this.registerForm.get('password');
+    if (!control?.errors || !control.touched) return [];
 
-  confirmPasswordErrors = computed(() => ({
-    required: this.registerForm.controls.confirmPassword.hasError('required'),
-    mismatch: !this.passwordsMatch() && this.confirmPassword().length > 0
-  }));
+    const errors = [];
+    if (control.errors['required']) errors.push('Mot de passe requis');
+    if (control.errors['minlength']) errors.push('8 caractères minimum');
+    return errors;
+  });
+
+  confirmPasswordErrors = computed(() => {
+    const control = this.registerForm.get('confirmPassword');
+    if (!control?.errors || !control.touched) return [];
+
+    const errors = [];
+    if (control.errors['required']) errors.push('Confirmation requise');
+    if (this.registerForm.errors?.['passwordMismatch']) {
+      errors.push('Les mots de passe ne correspondent pas');
+    }
+    return errors;
+  });
 
   // Signal computed pour la force du mot de passe
   passwordStrength = computed(() => {
     const pwd = this.password();
+    if (!pwd) return { score: 0, label: 'Very Weak', color: 'red' };
+
     let strength = 0;
 
     if (pwd.length >= 8) strength++;
@@ -114,7 +154,7 @@ export default class RegisterComponent {
     isValid: this.isFormValid(),
     hasErrors: this.formStatus() === 'INVALID',
     passwordMatch: this.passwordsMatch(),
-    emailValid: !this.emailErrors().email && !this.emailErrors().required,
+    emailValid: this.emailErrors().length === 0,
     passwordStrong: this.passwordStrength().score >= 3,
     canSubmit: this.isFormValid()
   }));
@@ -122,10 +162,10 @@ export default class RegisterComponent {
   // Signal de debug (à supprimer en production)
   debugInfo = computed(() => ({
     formStatus: this.formStatus(),
-    formValue: this.formValue(),
+    formValue: this.formState(),
     emailValue: this.email(),
-    passwordValue: this.password().replace(/./g, '*'), // Masquer le mot de passe
-    confirmPasswordValue: this.confirmPassword().replace(/./g, '*'),
+    passwordValue: this.password()?.replace(/./g, '*') || '', // Masquer le mot de passe
+    confirmPasswordValue: this.confirmPassword()?.replace(/./g, '*') || '',
     passwordStrength: this.passwordStrength(),
     isValid: this.isFormValid(),
     errors: {
@@ -136,18 +176,55 @@ export default class RegisterComponent {
   }));
 
   constructor() {
-    // Charger le brouillon au démarrage
+    this.initializeForm();
     this.loadDraft();
 
-    // Sauvegarde automatique à chaque changement d'email
-    this.registerForm.controls.email.valueChanges.subscribe(() => {
-      this.saveDraft();
+    // Sauvegarde automatique du brouillon quand l'email change
+    effect(() => {
+      const email = this.email();
+      if (email && this.registerForm.get('email')?.valid) {
+        this.saveDraft();
+      }
     });
   }
 
-  register() {
-    if (this.isFormValid()) {
-      this.appStore.register(this.email(), this.password(), this.confirmPassword());
+  private initializeForm() {
+    // Charger le brouillon au démarrage
+    this.loadDraft();
+
+    // Configuration de la sauvegarde automatique
+    this.registerForm.controls.email.valueChanges.subscribe(() => {
+      this.saveDraft();
+      this.formChangeCounter.update(c => c + 1);
+    });
+
+    // Mettre à jour le compteur pour tous les changements du formulaire
+    this.registerForm.valueChanges.subscribe(() => {
+      this.formChangeCounter.update(c => c + 1);
+    });
+  }
+
+  async register() {
+    if (!this.isFormValid()) {
+      this.markAllAsTouched();
+      return;
+    }
+
+    this.isSubmitting.set(true);
+
+    try {
+      const email = this.email();
+      const password = this.password();
+      const confirmPassword = this.confirmPassword();
+
+      if (email && password && confirmPassword) {
+        await this.appStore.register(email, password, confirmPassword);
+        localStorage.removeItem('register-draft');
+      }
+    } catch (error) {
+      console.error('Registration failed:', error);
+    } finally {
+      this.isSubmitting.set(false);
     }
   }
 
@@ -174,18 +251,20 @@ export default class RegisterComponent {
     this.registerForm.markAllAsTouched();
   }
 
-  // Sauvegarde automatique du brouillon
-  saveDraft() {
-    const draft = {
-      email: this.email(),
-      // Ne pas sauvegarder les mots de passe pour des raisons de sécurité
-      timestamp: new Date().toISOString()
-    };
-    localStorage.setItem('register-draft', JSON.stringify(draft));
+  // Sauvegarde automatique du brouillon avec Signal Forms
+  private saveDraft() {
+    const email = this.email();
+    if (email) {
+      const draft = {
+        email,
+        timestamp: new Date().toISOString()
+      };
+      localStorage.setItem('register-draft', JSON.stringify(draft));
+    }
   }
 
   // Charger le brouillon sauvegardé
-  loadDraft() {
+  private loadDraft() {
     const saved = localStorage.getItem('register-draft');
     if (saved) {
       try {
@@ -197,6 +276,25 @@ export default class RegisterComponent {
         console.warn('Could not load draft:', error);
       }
     }
+  }
+
+  // Validation en temps réel avec signaux
+  validateField(fieldName: keyof RegisterFormModel) {
+    const control = this.registerForm.get(fieldName);
+    control?.markAsTouched();
+    control?.updateValueAndValidity();
+  }
+
+  // Reset spécifique d'un champ
+  resetField(fieldName: keyof RegisterFormModel) {
+    const control = this.registerForm.get(fieldName);
+    control?.reset();
+    control?.markAsUntouched();
+  }
+
+  // Vérification de la force du mot de passe en temps réel
+  checkPasswordStrength() {
+    return this.passwordStrength();
   }
 
   // Getters pour un accès facile aux contrôles (pour le template)

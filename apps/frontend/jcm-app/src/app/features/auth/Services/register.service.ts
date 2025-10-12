@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { User } from '@app/user/user.model';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class RegisterService {
 
-  constructor(private httpClient: HttpClient) {}
+  httpClient = inject(HttpClient);
 
   register(body: any): Promise<any> {
     return new Promise((resolve, reject) => {

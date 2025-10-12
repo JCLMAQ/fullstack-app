@@ -42,9 +42,6 @@ export class AuthService {
         localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, authToken);
       };
     });
-
-    // this.#authTokenSignal.set(localStorage["authJwtToken"] || undefined ) ; //this.#authToken = localStorage["authJwtToken"] || '';
-    // this.#authTokenSignal.set(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || undefined )
   }
 
   loadUserFromStorage() {
@@ -87,8 +84,8 @@ export class AuthService {
       email: string;
       password: string;
       verifyPassword: string;
-      Roles: string[];
-      Language: string;
+      Roles?: string[];
+      Language?: string;
       lastName?: string;
       firstName?: string;
       nickName?: string;
@@ -97,8 +94,8 @@ export class AuthService {
       email,
       password,
       verifyPassword: confirmPassword,
-      Roles: ["GUEST"],
-      Language: "fr"
+      // Roles: ["GUEST"],
+      // Language: "fr"
     };
 
     // N'ajouter les champs optionnels que s'ils ont des valeurs valides
@@ -119,6 +116,7 @@ export class AuthService {
     localStorage.removeItem("authJwtToken");
     this.#authTokenSignal.set(undefined);
     this.#userSignal.set(undefined);
+
     console.log("User: ", this.user)
 
     this.logoutAsUserOrAdmin();
@@ -156,23 +154,7 @@ export class AuthService {
         console.error(response.message);
         return null;
       }
-      // const { user, fullName } = response;
-      // if (user) {
-      //   return {
-      //     email: user.email,
-      //     lastName: user.lastName,
-      //     firstName: user.firstName,
-      //     nickName: user.nickName,
-      //     fullName,
-      //     title: user.title,
-      //     Gender: user.Gender,
-      //     Roles: user.Roles,
-      //     Language: user.Language,
-      //     photoUrl: user.photoUrl ?? ''
-      //   };
-      // }
       return response.user;
-      // return response.value();
 
       }
     }
