@@ -26,14 +26,14 @@ const config: runtime.GetPrismaClientConfig = {
       "fromEnvVar": null
     },
     "config": {
-      "generatedFileExtension": "ts",
       "importFileExtension": "ts",
+      "generatedFileExtension": "ts",
       "engineType": "library"
     },
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin",
+        "value": "darwin-arm64",
         "native": true
       }
     ],

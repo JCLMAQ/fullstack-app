@@ -37,7 +37,7 @@
       ],
       "@fe/dashboard": ["libs/frontend/dashboard/src/index.ts"],
       "@fe/environment": ["apps/frontend/jcm-app/environments/index.ts"],
-      "@fe/error-field": ["libs/frontend/ui/error-field/src/index.ts"],
+      "@fe/error-field": ["libs/frontend/utilities/src/lib/signalformutilities/index.ts"],
       "@fe/geolocation": ["libs/frontend/ui/geolocation/src/index.ts"],
       "@fe/home": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/image-uploader": ["libs/frontend/ui/image-uploader/src/index.ts"],

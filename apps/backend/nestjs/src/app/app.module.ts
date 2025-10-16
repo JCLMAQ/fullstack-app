@@ -24,7 +24,9 @@ import { AcceptLanguageResolver, HeaderResolver, I18nJsonLoader, I18nModule, Que
 import path = require('path');
 
 @Module({
-  imports: [ ClsModule.forRoot({
+  imports: [
+
+    ClsModule.forRoot({
     // Register the ClsModule and automatically mount the ClsMiddleware
     global: true,
     middleware: {
