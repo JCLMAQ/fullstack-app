@@ -71,6 +71,70 @@ export class AuthenticationService {
     }
   }
 
+  /**
+   * Extended sign up with additional profile information (compatible with AUTHS)
+   */
+  async signUpExtended(signUpDto: {
+    email: string;
+    password: string;
+    verifyPassword: string;
+    lastName?: string;
+    firstName?: string;
+    nickName?: string;
+    Gender?: any;
+    Language?: any;
+    Roles?: any[]
+  }) {
+    try {
+      // Verify password confirmation
+      if (signUpDto.password !== signUpDto.verifyPassword) {
+        throw new ConflictException('Passwords do not match');
+      }
+
+      const password = await this.hashingService.hash(signUpDto.password);
+      // Create the UserApiKey
+      const uuid = randomUUID();
+      const payload = await this.apiKeysService.createAndHash(uuid);
+      const key = payload.hashedKey;
+
+      const data = {
+        email: signUpDto.email.toLowerCase(),
+        lastName: signUpDto.lastName || null,
+        firstName: signUpDto.firstName || null,
+        nickName: signUpDto.nickName || null,
+        UserSecret: {
+          create: {
+            pwdHash: password,
+          }
+        },
+        ApiKey: {
+          create: {
+            key: key,
+            uuid: uuid,
+          }
+        },
+      }
+
+      // TODO: Add Gender, Language, and Roles after fixing Prisma types
+
+      const user = await this.prisma.user.create({ data });
+      const apiUserKey = payload.apiKey;
+
+      return {
+        user: user.id,
+        apiUserKey,
+        success: true
+      };
+
+    } catch (err: any) {
+      const pgUniqueViolationErrorCode = '23505';
+      if (err.code === pgUniqueViolationErrorCode) {
+        throw new ConflictException('User already exists');
+      }
+      throw err;
+    }
+  }
+
   async signIn(signInDto: SignInDto) {
     const user = await this.prisma.user.findUnique({
       where: {email: signInDto.email},

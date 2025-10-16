@@ -1,0 +1,80 @@
+🔍 1. Recherche des appels API '/auths/'
+=======================================
+apps/frontend/jcm-app/src/app/features/auth/Services/auth.service.ts
+apps/frontend/jcm-app/src/app/features/auth/Services/register.service.ts
+apps/frontend/jcm-app/src/app/features/auth/Services/old.auth.service.ts
+
+🎯 2. Endpoints AUTHS spécifiques trouvés :
+===========================================
+📍 Recherche de 'registerwithpwd' :
+apps/frontend/jcm-app/src/app/features/auth/Services/auth.service.ts:81:    const pathUrl = "api/auths/auth/registerwithpwd";
+apps/frontend/jcm-app/src/app/features/auth/Services/register.service.ts:27:    return this.httpClient.post<User>('api/auths/auth/registerwithpwd', user)
+
+📍 Recherche de 'loginwithpwd' :
+apps/frontend/jcm-app/src/app/features/auth/Services/auth.service.ts:57:    // const pathUrl = environment.apiRoot + "api/auths/auth/loginwithpwd";
+apps/frontend/jcm-app/src/app/features/auth/Services/auth.service.ts:58:    const pathUrl = "api/auths/auth/loginwithpwd";
+apps/frontend/jcm-app/src/app/features/auth/Services/old.auth.service.ts:62:      const { access_token, fullName , role } = await firstValueFrom(this.httpClient.post<ILoginResponse>('api/auths/auth/loginwithpwd', { email, password }));
+
+📍 Recherche de 'forgot-password' :
+
+📍 Recherche de 'new-email-validation-Account' :
+
+📍 Recherche de 'valid-account' :
+
+📍 Recherche de 'change-password' :
+
+📍 Recherche de 'check-credentials' :
+
+📍 Recherche de 'users/' :
+
+🔧 3. Services d'authentification :
+====================================
+apps/frontend/jcm-app/src/app/features/auth/Services/auth.service.ts
+apps/frontend/jcm-app/src/app/features/auth/Services/old.auth.service.ts
+apps/frontend/jcm-app/src/app/features/auth/Services/register.service.ts
+
+🧩 4. Composants utilisant l'authentification :
+===============================================
+apps/frontend/jcm-app/src/app/features/auth/login/login.component.ts
+apps/frontend/jcm-app/src/app/features/login/login.component.ts
+apps/frontend/jcm-app/src/app/features/login/login-info/login-info.component.ts
+apps/frontend/jcm-app/src/app/features/auth/register/register.component.ts
+
+📦 5. Imports liés à l'authentification :
+=========================================
+apps/frontend/jcm-app/src/app/appstore/app.store.ts:12:import { AuthService } from '../features/auth/Services/auth.service';
+apps/frontend/jcm-app/src/app/appstore/app.store.ts:15:import { withAppAuthFeatures } from './authentication.features';
+apps/frontend/jcm-app/src/app/appstore/app.slice.ts:1:import { IUserLogged } from "../features/auth/models/auth.model";
+apps/frontend/jcm-app/src/app/appstore/authentication.features.ts:5:import { AuthService } from "../features/auth/Services/auth.service";
+apps/frontend/jcm-app/src/app/app.routes.ts:4:import { isUserAuthenticated } from './shared/guards/auth.guard';
+apps/frontend/jcm-app/src/app/app.routes.ts:5:// import { redirectDashboardIfAuthenticated, redirectHomeIfNotAuthenticated, redirectLoginIfNotAuthenticated } from './shared/guards/auth-bis.guards';
+apps/frontend/jcm-app/src/app/app.routes.ts:10:    loadComponent: () => import('./features/auth/login/login.component'),
+apps/frontend/jcm-app/src/app/app.routes.ts:15:    loadComponent: () => import('./features/auth/register/register.component'),
+apps/frontend/jcm-app/src/app/app.routes.ts:27:      //   loadComponent: () => import('./features/auth/login/login.component'),
+apps/frontend/jcm-app/src/app/features/auth/forgotpwd/forgotpwd.component.ts:10:import { AuthService } from '../Services/old.auth.service';
+apps/frontend/jcm-app/src/app/features/auth/changepwd/changepwd.component.ts:13:import { AuthService } from '../Services/old.auth.service';
+apps/frontend/jcm-app/src/app/features/auth/Services/auth.service.ts:6:import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../models/auth.model";
+apps/frontend/jcm-app/src/app/features/auth/Services/auth.service.spec.ts:3:import { AuthService } from './auth.service';
+apps/frontend/jcm-app/src/app/features/auth/Services/old.auth.service.ts:5:import { ICurrentUser, IJwt, ILoginResponse } from '../models/auth.model';
+apps/frontend/jcm-app/src/app/shared/guards/auth.guard.ts:4:import { AuthService } from "../../features/auth/Services/auth.service";
+apps/frontend/jcm-app/src/app/shared/guards/examples.guards.ts:4:import { AuthService } from '../services/authbis.service'; // Simulated auth service
+apps/frontend/jcm-app/src/app/app.config.ts:14:import { AuthInterceptor } from './features/auth/interceptors/auth.interceptor';
+apps/frontend/jcm-app/src/app/app.config.ts:15:import { LoggingInterceptor } from './features/auth/interceptors/loggind.interceptors';
+
+📊 6. STATISTIQUES :
+===================
+📁 Total fichiers frontend :      115
+🎯 Fichiers avec appels AUTHS :        3
+📈 Pourcentage d'impact : 2%
+
+🚀 7. PLAN DE MIGRATION SUGGÉRÉ :
+==================================
+1. Créer un nouveau service Angular pour les endpoints IAM
+2. Migrer endpoint par endpoint :
+   - registerwithpwd → register-extended
+   - loginwithpwd → sign-in (déjà disponible)
+   - forgot-password → forgot-password
+   - etc...
+3. Tester chaque migration individuellement
+4. Supprimer les anciens appels AUTHS
+

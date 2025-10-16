@@ -4,6 +4,15 @@ import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { ICurrentUser, IJwt, ILoginResponse } from '../models/auth.model';
 
+/**
+ * @deprecated ⚠️ SERVICE LEGACY - À SUPPRIMER
+ *
+ * Ce service utilise les anciens endpoints AUTHS et sera supprimé.
+ * Utilisez IamAuthService à la place.
+ *
+ * Migration effectuée : ✅ Partiellement (endpoints critiques migrés)
+ * Prochaine étape : 🗑️ Suppression complète
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +42,9 @@ export class AuthService {
       // console.log("decodedJWT: ", decodedJwt);
       const emailToCheck = decodedJwt.username;
 
-      const { fullName } = await firstValueFrom(this.httpClient.post<ICurrentUser>('api/auths/checkCredential/', { emailToCheck }));
+      // 🆕 MIGRATION VERS ENDPOINT IAM
+      // ANCIEN: const { fullName } = await firstValueFrom(this.httpClient.post<ICurrentUser>('api/auths/checkCredential/', { emailToCheck }));
+      const { fullName } = await firstValueFrom(this.httpClient.post<ICurrentUser>('api/authentication/check-credentials/' + emailToCheck, {}));
       // console.log("fullName from fetch user: ", fullName);
       if (!fullName) {
         this.currentUser$.next(null);
@@ -59,7 +70,9 @@ export class AuthService {
     let isOK = false;
     try {
       // const { authJwtToken, user } = await this.httpClient.post<ILoginResponse>('api/auth/login/', { username, password }).toPromise();
-      const { access_token, fullName , role } = await firstValueFrom(this.httpClient.post<ILoginResponse>('api/auths/auth/loginwithpwd', { email, password }));
+      // 🆕 MIGRATION VERS ENDPOINT IAM
+      // ANCIEN: const { access_token, fullName , role } = await firstValueFrom(this.httpClient.post<ILoginResponse>('api/auths/auth/loginwithpwd', { email, password }));
+      const { access_token, fullName , role } = await firstValueFrom(this.httpClient.post<ILoginResponse>('api/authentication/sign-in', { email, password }));
 
       localStorage.authJwtToken = access_token;
       // isOK = (!!authJwtToken);

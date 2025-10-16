@@ -5,14 +5,25 @@ import { jwtDecode } from "jwt-decode";
 import { firstValueFrom } from "rxjs";
 import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../models/auth.model";
 
-
 const USER_STORAGE_KEY = 'user';
 const AUTH_TOKEN_STORAGE_KEY = 'authJwtToken';
 
+/**
+ * 🆕 SERVICE IAM MODERNE - Migration AUTHS → IAM
+ *
+ * Ce service utilise les nouveaux endpoints IAM (/api/authentication/*)
+ * au lieu des anciens endpoints AUTHS (/api/auths/*)
+ *
+ * Avantages :
+ * - 🔒 Sécurité renforcée avec Guards automatiques
+ * - ⚡ Architecture moderne et optimisée
+ * - 🧪 Testabilité améliorée
+ * - 🚀 Support 2FA et API Keys
+ */
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class IamAuthService {
 
   httpClient = inject(HttpClient);
   router = inject(Router);
@@ -20,7 +31,7 @@ export class AuthService {
   #userSignal = signal<IUserLogged | undefined>(undefined);
   user = this.#userSignal.asReadonly();
 
-  #authTokenSignal= signal<string | undefined>(undefined);
+  #authTokenSignal = signal<string | undefined>(undefined);
   authToken = this.#authTokenSignal.asReadonly();
 
   isLoggedIn = computed(() => !!this.user());
@@ -29,18 +40,17 @@ export class AuthService {
   private adminRole = false;
 
   constructor() {
-    this.#authTokenSignal.set(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || undefined )
+    this.#authTokenSignal.set(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || undefined);
     this.loadUserFromStorage();
     effect(() => {
       const user = this.user();
       if (user) {
-        localStorage.setItem(USER_STORAGE_KEY,
-          JSON.stringify(user));
-      };
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+      }
       const authToken = this.authToken();
       if (authToken) {
         localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, authToken);
-      };
+      }
     });
   }
 
@@ -52,20 +62,24 @@ export class AuthService {
     }
   }
 
-  async login(email:string, password:string): Promise<ILoginResponse> {
-
-    // 🆕 MIGRATION VERS ENDPOINT IAM
-    // ANCIEN: const pathUrl = "api/auths/auth/loginwithpwd";
+  /**
+   * 🔐 LOGIN avec nouvel endpoint IAM
+   * AUTHS: POST /api/auths/auth/loginwithpwd
+   * IAM:   POST /api/authentication/sign-in ✅
+   */
+  async login(email: string, password: string): Promise<ILoginResponse> {
+    // 🆕 Utilisation du nouvel endpoint IAM
     const pathUrl = "api/authentication/sign-in";
+
     const login$ = this.httpClient.post<ILoginResponse>(`${pathUrl}`, {
       email,
-      password});
+      password
+    });
+
     const response = await firstValueFrom(login$);
 
     this.#authTokenSignal.set(response.access_token);
     localStorage.setItem("authJwtToken", response.access_token);
-
-    // console.log("User logged: ", response)
 
     const userLogged = await this.fetchUser();
     if (userLogged) {
@@ -76,10 +90,13 @@ export class AuthService {
     return response;
   }
 
-  async register(email:string, password:string, confirmPassword:string): Promise<IRegisterResponse | Error> {
-
-    // 🆕 MIGRATION VERS ENDPOINT IAM
-    // ANCIEN: const pathUrl = "api/auths/auth/registerwithpwd";
+  /**
+   * 📝 REGISTER avec nouvel endpoint IAM étendu
+   * AUTHS: POST /api/auths/auth/registerwithpwd
+   * IAM:   POST /api/authentication/register-extended ✅
+   */
+  async register(email: string, password: string, confirmPassword: string): Promise<IRegisterResponse | Error> {
+    // 🆕 Utilisation du nouvel endpoint IAM étendu
     const pathUrl = "api/authentication/register-extended";
 
     const payload: {
@@ -96,19 +113,14 @@ export class AuthService {
       email,
       password,
       verifyPassword: confirmPassword,
-      // Roles: ["GUEST"],
-      // Language: "fr"
     };
 
-    // N'ajouter les champs optionnels que s'ils ont des valeurs valides
-    // (évite les erreurs de validation sur chaînes vides)
-
-    console.log("Registering User Payload: ", payload);
+    console.log("Registering User Payload (IAM): ", payload);
 
     const register$ = this.httpClient.post<IRegisterResponse>(`${pathUrl}`, payload);
     const response = await firstValueFrom(register$);
 
-    console.log("Registering User Response: ", response)
+    console.log("Registering User Response (IAM): ", response);
 
     return response;
   }
@@ -119,51 +131,65 @@ export class AuthService {
     this.#authTokenSignal.set(undefined);
     this.#userSignal.set(undefined);
 
-    console.log("User: ", this.user)
+    console.log("User logged out: ", this.user());
 
     this.logoutAsUserOrAdmin();
-
-    // await this.router.navigateByUrl('/login');
   }
 
+  /**
+   * 👤 FETCH USER avec nouvel endpoint IAM
+   * AUTHS: GET /api/auths/auth/loggedUser/:email
+   * IAM:   GET /api/authentication/user/:email ✅
+   */
   async fetchUser(): Promise<IUserLogged | undefined | null> {
-
-    //  get user data from backend with authToken
     const authToken = this.authToken();
     if (authToken) {
       const decodedJwt: IJwt = jwtDecode(authToken);
-      console.log("Decoded JWT: ", decodedJwt);
+      console.log("Decoded JWT (IAM): ", decodedJwt);
       const emailToCheck = decodedJwt.username; // username = email
+
       if (emailToCheck) {
+        try {
+          // 🆕 Utilisation du nouvel endpoint IAM
+          const response = await firstValueFrom(
+            this.httpClient.get<{ user: IUserLogged, fullName: string } | { success: boolean, message: string}>(`api/authentication/user/${emailToCheck}`)
+          );
 
-        // const response = resource({
-        //   request: () => ({id: emailToCheck}),
-        //   loader: ({request}) => fetch(apiUrl + request.id).then(response => response.json())
-        // });
+          if ('success' in response) {
+            console.error('Error fetching user (IAM):', response.message);
+            return null;
+          }
 
-
-        //     console.log(response.status()); // Prints: 2 (which means "Loading")
-
-        //     // After the fetch resolves
-
-        //     console.log(response.status()); // Prints: 4 (which means "Resolved")
-        //     console.log(response.value()); // Prints: { "id": 1 , ... }
-
-      // 🆕 MIGRATION VERS ENDPOINT IAM
-      // ANCIEN: api/auths/auth/loggedUser/${emailToCheck}
-      const response = await firstValueFrom(
-        this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/authentication/user/${emailToCheck}`)
-      );
-      if ('success' in response) {
-        console.error(response.message);
-        return null;
-      }
-      return response.user;
-
+          return response.user;
+        } catch (error) {
+          console.error('Error fetching user (IAM):', error);
+          return null;
+        }
       }
     }
     return null;
   }
+
+  /**
+   * ✅ VÉRIFICATION CREDENTIALS avec nouvel endpoint IAM
+   * AUTHS: POST /api/auths/checkCredential/ avec body { emailToCheck }
+   * IAM:   POST /api/authentication/check-credentials/:email ✅
+   */
+  async checkUserCredentials(email: string, password: string): Promise<boolean> {
+    try {
+      // 🆕 Utilisation du nouvel endpoint IAM
+      const response = await firstValueFrom(
+        this.httpClient.post<{ success: boolean, message: string }>(`api/authentication/check-credentials/${email}`, { password })
+      );
+
+      return response.success;
+    } catch (error) {
+      console.error('Error checking credentials (IAM):', error);
+      return false;
+    }
+  }
+
+  // === MÉTHODES COMPATIBILITÉ (identiques à auth.service.ts) ===
 
   isAuthenticated() {
     return this.authenticated;
@@ -181,10 +207,9 @@ export class AuthService {
   hasAdminRole() {
     return this.adminRole;
   }
-  // Log out the user
+
   logoutAsUserOrAdmin() {
     this.authenticated = false;
     this.adminRole = false;
   }
-
 }

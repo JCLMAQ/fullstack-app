@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from '@prisma/prisma';
+import { AccountValidationService } from './authentication/account-validation/account-validation.service';
 import { ApiKeysRepository } from './authentication/api-keys/api-key.repository';
 import { ApiKeysService } from './authentication/api-keys/api-keys.service';
 import { AuthenticationController } from './authentication/authentication.controller';
@@ -13,9 +14,11 @@ import { AccessTokenGuard } from './authentication/guards/access-token/access-to
 import { ApiKeyGuard } from './authentication/guards/api-key/api-key.guard';
 import { AuthenticationGuard } from './authentication/guards/authentication/authentication.guard';
 import { OtpAuthenticationService } from './authentication/otp-authentication/otp-authentication.service';
+import { PasswordResetService } from './authentication/password-reset/password-reset.service';
 import { InvalidatedRefreshTokenError } from './authentication/refresh-token-ids.storage/invalid-refresh-token.error';
 import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.storage/refresh-token-ids.storage';
 import { RefreshTokenIdsStorageService } from './authentication/refresh-token-ids.storage/refresh-token-ids.storage.service';
+import { UserProfileService } from './authentication/user-profile/user-profile.service';
 import { PermissionsGuard } from './authorization/guards/permissions/permissions.guard';
 import { PoliciesGuard } from './authorization/guards/polycies/policies.guard';
 import { RolesGuard } from './authorization/guards/roles/roles.guard';
@@ -65,6 +68,9 @@ import { PolicyHandlerStorage } from './authorization/policies/policy-handlers.s
     RefreshTokenIdsStorage,
     InvalidatedRefreshTokenError,
     OtpAuthenticationService,
+    AccountValidationService,
+    PasswordResetService,
+    UserProfileService,
   ],
   controllers: [AuthenticationController],
 })

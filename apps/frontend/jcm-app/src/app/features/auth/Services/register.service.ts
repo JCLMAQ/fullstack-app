@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { User } from '@app/user/user.model';
+import { User } from '@fe/user';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -24,6 +24,8 @@ export class RegisterService {
   }
 
   userRegister(user: User): Observable<User>{
-    return this.httpClient.post<User>('api/auths/auth/registerwithpwd', user)
+    // 🆕 MIGRATION VERS ENDPOINT IAM
+    // ANCIEN: return this.httpClient.post<User>('api/auths/auth/registerwithpwd', user)
+    return this.httpClient.post<User>('api/authentication/register-extended', user)
   }
 }
