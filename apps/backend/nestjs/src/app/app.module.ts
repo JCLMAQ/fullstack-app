@@ -5,11 +5,9 @@ import { ClsModule } from 'nestjs-cls';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { AuthsModule } from '@be/auths';
 import { CommonModule, CrudMiddleware } from '@be/common';
 import { DbConfigModule } from '@be/db-config';
 import { FilesModule } from '@be/files';
-// import { IamModule } from '@be/iam';
 import { IamModule } from '@be/iam';
 import { MailsModule } from '@be/mails';
 import { PostsModule } from '@be/posts';
@@ -85,7 +83,6 @@ import path = require('path');
     }),
     PrismaModule,
     IamModule,
-    AuthsModule,
     DbConfigModule,
     FilesModule,
     TimeUtilModule,

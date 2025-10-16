@@ -1,9 +1,8 @@
-import { JwtAuthGuard } from '@be/auths';
 import { Roles } from '@be/iam';
 
 import { Public } from '@be/common';
 import { Auth, AuthType } from '@be/iam';
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Prisma, Role, User } from '@prisma/prisma-client';
 import { UserEntity } from './entities/user.entity';
@@ -80,8 +79,8 @@ async updateUser(
 
   // GET
   // Get all users
-  // @UseGuards(JwtAuthGuard)
- // @Roles(Role.ADMIN)
+  @Auth(AuthType.Bearer)
+  @Roles(Role.ADMIN)
   @Get('users/allusers')
   @ApiOkResponse({ type: [UserEntity] })
   async getAllUsers(): Promise<User[]>{
@@ -99,7 +98,7 @@ async updateUser(
   }
 
   // GET with secret
-  //@UseGuards(JwtAuthGuard)
+  @Auth(AuthType.Bearer)
   @Roles(Role.ADMIN)
   @Get('alluserswithsecret')
   async getAllUsersAndSecret(): Promise<User[]>{
@@ -107,14 +106,14 @@ async updateUser(
     return users
   }
 
+  @Auth(AuthType.Bearer)
   @Roles(Role.ADMIN)
-  @UseGuards(JwtAuthGuard)
   @Get('userwithsecret/:id')
   async getOneUserByIdWithSecret(@Param('id') id: string): Promise<User | null> {
     return await this.usersService.getOneUserByUniqueWithSecret({ id: String(id) });
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Auth(AuthType.Bearer)
   @Roles(Role.ADMIN)
   @Get('useremailwithsecret/:email')
   async getOneUserByEmailWithSecret(@Param('email') email: string): Promise<User | null> {
@@ -122,7 +121,7 @@ async updateUser(
   }
 
 // GET User(s) with links
-  @UseGuards(JwtAuthGuard)
+  @Auth(AuthType.Bearer)
   @Get('alluserswithalllinks')
   async getAllUsersWithAllLinks(): Promise<User[]> {
     const users: User[] = await this.usersService.getAllUsersWithAllLinks()

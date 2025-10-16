@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "@bd/prisma": ["libs/prisma/src/index.ts"],
-      "@be/auths": ["libs/backend/auths/src/index.ts"],
       "@be/changestracking": [
         "libs/backend/utilities/changestracking/src/index.ts"
       ],

@@ -76,10 +76,10 @@ export default class RegisterComponent {
   // Signal pour détecter les changements sur le formulaire
   private formChangeCounter = signal(0);
 
-  // Signaux pour les valeurs individuelles des champs
-  email = computed(() => this.formState().email);
-  password = computed(() => this.formState().password);
-  confirmPassword = computed(() => this.formState().confirmPassword);
+  // Signaux pour les valeurs individuelles des champs avec null safety
+  email = computed(() => this.formState().email || '');
+  password = computed(() => this.formState().password || '');
+  confirmPassword = computed(() => this.formState().confirmPassword || '');
 
   // Signaux computed pour la validation
   isFormValid = computed(() =>
@@ -93,46 +93,59 @@ export default class RegisterComponent {
   passwordsMatch = computed(() => {
     const pwd = this.password();
     const confirmPwd = this.confirmPassword();
-    return pwd && confirmPwd && pwd === confirmPwd && pwd.length > 0;
+    return pwd.length > 0 && confirmPwd.length > 0 && pwd === confirmPwd;
   });
 
-    // Signaux pour les erreurs de validation avec null safety
+    // Signaux pour les erreurs de validation avec propriétés définies
   emailErrors = computed(() => {
     const control = this.registerForm.get('email');
-    if (!control?.errors || !control.touched) return [];
+    const hasErrors = control?.errors && control.touched;
 
-    const errors = [];
-    if (control.errors['required']) errors.push('Email requis');
-    if (control.errors['email']) errors.push('Format email invalide');
-    return errors;
+    return {
+      required: hasErrors && !!control?.errors?.['required'],
+      email: hasErrors && !!control?.errors?.['email'],
+      messages: hasErrors && control?.errors ? Object.keys(control.errors).map(key => {
+        if (key === 'required') return 'Email requis';
+        if (key === 'email') return 'Format email invalide';
+        return '';
+      }).filter(Boolean) : []
+    };
   });
 
   passwordErrors = computed(() => {
     const control = this.registerForm.get('password');
-    if (!control?.errors || !control.touched) return [];
+    const hasErrors = control?.errors && control.touched;
 
-    const errors = [];
-    if (control.errors['required']) errors.push('Mot de passe requis');
-    if (control.errors['minlength']) errors.push('8 caractères minimum');
-    return errors;
+    return {
+      required: hasErrors && !!control?.errors?.['required'],
+      minlength: hasErrors && !!control?.errors?.['minlength'],
+      messages: hasErrors && control?.errors ? Object.keys(control.errors).map(key => {
+        if (key === 'required') return 'Mot de passe requis';
+        if (key === 'minlength') return '8 caractères minimum';
+        return '';
+      }).filter(Boolean) : []
+    };
   });
 
   confirmPasswordErrors = computed(() => {
     const control = this.registerForm.get('confirmPassword');
-    if (!control?.errors || !control.touched) return [];
+    const hasErrors = control?.errors && control.touched;
+    const formHasPasswordMismatch = this.registerForm.errors?.['passwordMismatch'];
 
-    const errors = [];
-    if (control.errors['required']) errors.push('Confirmation requise');
-    if (this.registerForm.errors?.['passwordMismatch']) {
-      errors.push('Les mots de passe ne correspondent pas');
-    }
-    return errors;
+    return {
+      required: hasErrors && !!control?.errors?.['required'],
+      mismatch: formHasPasswordMismatch && control?.touched,
+      messages: [
+        ...(hasErrors && control?.errors?.['required'] ? ['Confirmation requise'] : []),
+        ...(formHasPasswordMismatch && control?.touched ? ['Les mots de passe ne correspondent pas'] : [])
+      ]
+    };
   });
 
   // Signal computed pour la force du mot de passe
   passwordStrength = computed(() => {
     const pwd = this.password();
-    if (!pwd) return { score: 0, label: 'Very Weak', color: 'red' };
+    if (pwd.length === 0) return { score: 0, label: 'Very Weak', color: 'red' };
 
     let strength = 0;
 
@@ -154,7 +167,7 @@ export default class RegisterComponent {
     isValid: this.isFormValid(),
     hasErrors: this.formStatus() === 'INVALID',
     passwordMatch: this.passwordsMatch(),
-    emailValid: this.emailErrors().length === 0,
+    emailValid: !this.emailErrors().required && !this.emailErrors().email,
     passwordStrong: this.passwordStrength().score >= 3,
     canSubmit: this.isFormValid()
   }));
@@ -164,8 +177,8 @@ export default class RegisterComponent {
     formStatus: this.formStatus(),
     formValue: this.formState(),
     emailValue: this.email(),
-    passwordValue: this.password()?.replace(/./g, '*') || '', // Masquer le mot de passe
-    confirmPasswordValue: this.confirmPassword()?.replace(/./g, '*') || '',
+    passwordValue: this.password().replace(/./g, '*'), // Masquer le mot de passe
+    confirmPasswordValue: this.confirmPassword().replace(/./g, '*'),
     passwordStrength: this.passwordStrength(),
     isValid: this.isFormValid(),
     errors: {
@@ -182,7 +195,7 @@ export default class RegisterComponent {
     // Sauvegarde automatique du brouillon quand l'email change
     effect(() => {
       const email = this.email();
-      if (email && this.registerForm.get('email')?.valid) {
+      if (email.length > 0 && this.registerForm.get('email')?.valid) {
         this.saveDraft();
       }
     });
@@ -217,7 +230,7 @@ export default class RegisterComponent {
       const password = this.password();
       const confirmPassword = this.confirmPassword();
 
-      if (email && password && confirmPassword) {
+      if (email.length > 0 && password.length > 0 && confirmPassword.length > 0) {
         await this.appStore.register(email, password, confirmPassword);
         localStorage.removeItem('register-draft');
       }
@@ -254,7 +267,7 @@ export default class RegisterComponent {
   // Sauvegarde automatique du brouillon avec Signal Forms
   private saveDraft() {
     const email = this.email();
-    if (email) {
+    if (email.length > 0) {
       const draft = {
         email,
         timestamp: new Date().toISOString()
