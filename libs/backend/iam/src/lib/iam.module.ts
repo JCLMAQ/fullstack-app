@@ -23,6 +23,9 @@ import { PermissionsGuard } from './authorization/guards/permissions/permissions
 import { PoliciesGuard } from './authorization/guards/polycies/policies.guard';
 import { RolesGuard } from './authorization/guards/roles/roles.guard';
 import { PolicyHandlerStorage } from './authorization/policies/policy-handlers.storage';
+import { AvatarBase64Controller } from './avatar/avatar-base64.controller';
+import { AvatarBase64Service } from './avatar/avatar-base64.service';
+import { UploadController } from './upload/upload.controller';
 // import { BcryptService } from './hashing/bcrypt.service';
 // import { HashingService } from './hashing/hashing.service';
 
@@ -71,7 +74,8 @@ import { PolicyHandlerStorage } from './authorization/policies/policy-handlers.s
     AccountValidationService,
     PasswordResetService,
     UserProfileService,
+    AvatarBase64Service,
   ],
-  controllers: [AuthenticationController],
+  controllers: [AuthenticationController, UploadController, AvatarBase64Controller],
 })
 export class IamModule {}

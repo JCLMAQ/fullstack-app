@@ -14471,6 +14471,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -15174,6 +15182,123 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/_errorResponse"
+  /apizen/user/{id}/avatarFile:
+    get:
+      operationId: fetch-User-related-avatarFile
+      description: Fetch the related "avatarFile" resource for "User"
+      tags:
+        - user
+      parameters:
+        - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/include"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/FileResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+  /apizen/user/{id}/relationships/avatarFile:
+    get:
+      operationId: fetch-User-relationship-avatarFile
+      description: Fetch the "avatarFile" relationships for a "User"
+      tags:
+        - user
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_toOneRelationshipResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+    put:
+      operationId: update-User-relationship-avatarFile-put
+      description: Update "avatarFile" relationship for a "User"
+      tags:
+        - user
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/_toOneRelationshipRequest"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_toOneRelationshipResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+    patch:
+      operationId: update-User-relationship-avatarFile-patch
+      description: Update "avatarFile" relationship for a "User"
+      tags:
+        - user
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/_toOneRelationshipRequest"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_toOneRelationshipResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
   /apizen/user/{id}/Orgs:
     get:
       operationId: fetch-User-related-Orgs
@@ -15693,6 +15818,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -16771,6 +16904,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -18065,6 +18206,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -19138,6 +19287,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -20315,6 +20472,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -21388,6 +21553,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -22565,6 +22738,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -23638,6 +23819,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -24815,6 +25004,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -25888,6 +26085,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -27065,6 +27270,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -28138,6 +28351,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -29315,6 +29536,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -30388,6 +30617,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -31565,6 +31802,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -32638,6 +32883,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -33815,6 +34068,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -34888,6 +35149,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -36065,6 +36334,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -37138,6 +37415,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -38315,6 +38600,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -39388,6 +39681,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -40565,6 +40866,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -41638,6 +41947,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -42815,6 +43132,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -43888,6 +44213,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -45065,6 +45398,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -46138,6 +46479,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -47315,6 +47664,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -48388,6 +48745,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -49682,6 +50047,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -50755,6 +51128,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -51932,6 +52313,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -53005,6 +53394,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -54182,6 +54579,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
         - name: filter[dob]
           required: false
           description: Equality filter for "dob"
@@ -55255,6 +55660,14 @@ paths:
         - name: filter[photoUrl$endsWith]
           required: false
           description: String endsWith filter for "photoUrl"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: filter[avatarFile]
+          required: false
+          description: Equality filter for "avatarFile"
           in: query
           style: form
           explode: false
@@ -81622,6 +82035,14 @@ paths:
           schema:
             type: string
             format: date-time
+        - name: filter[UserAvatar]
+          required: false
+          description: Equality filter for "UserAvatar"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: Successful operation
@@ -82576,6 +82997,14 @@ paths:
           schema:
             type: string
             format: date-time
+        - name: filter[UserAvatar]
+          required: false
+          description: Equality filter for "UserAvatar"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: Successful operation
@@ -83148,6 +83577,14 @@ paths:
           schema:
             type: string
             format: date-time
+        - name: filter[UserAvatar]
+          required: false
+          description: Equality filter for "UserAvatar"
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: Successful operation
@@ -83248,6 +83685,123 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: "#/components/schemas/_toManyRelationshipResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+  /apizen/file/{id}/UserAvatar:
+    get:
+      operationId: fetch-File-related-UserAvatar
+      description: Fetch the related "UserAvatar" resource for "File"
+      tags:
+        - file
+      parameters:
+        - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/include"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+  /apizen/file/{id}/relationships/UserAvatar:
+    get:
+      operationId: fetch-File-relationship-UserAvatar
+      description: Fetch the "UserAvatar" relationships for a "File"
+      tags:
+        - file
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_toOneRelationshipResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+    put:
+      operationId: update-File-relationship-UserAvatar-put
+      description: Update "UserAvatar" relationship for a "File"
+      tags:
+        - file
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/_toOneRelationshipRequest"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_toOneRelationshipResponse"
+        "403":
+          description: Request is forbidden
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+        "404":
+          description: Resource is not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_errorResponse"
+    patch:
+      operationId: update-File-relationship-UserAvatar-patch
+      description: Update "UserAvatar" relationship for a "File"
+      tags:
+        - file
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: "#/components/schemas/_toOneRelationshipRequest"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "#/components/schemas/_toOneRelationshipResponse"
         "403":
           description: Request is forbidden
           content:
@@ -92896,6 +93450,7 @@ components:
             - social
             - Language
             - photoUrl
+            - avatarFileId
             - dob
             - address
             - isValidated
@@ -92966,6 +93521,10 @@ components:
               oneOf:
                 - type: "null"
                 - type: string
+            avatarFileId:
+              oneOf:
+                - type: "null"
+                - type: string
             dob:
               oneOf:
                 - type: "null"
@@ -93010,6 +93569,10 @@ components:
         relationships:
           type: object
           properties:
+            avatarFile:
+              oneOf:
+                - type: "null"
+                - $ref: "#/components/schemas/_toOneRelationshipWithLinks"
             Orgs:
               $ref: "#/components/schemas/_toManyRelationshipWithLinks"
             manager:
@@ -93175,6 +93738,10 @@ components:
             relationships:
               type: object
               properties:
+                avatarFile:
+                  oneOf:
+                    - type: "null"
+                    - $ref: "#/components/schemas/_toOneRelationship"
                 Orgs:
                   $ref: "#/components/schemas/_toManyRelationship"
                 manager:
@@ -93341,6 +93908,10 @@ components:
             relationships:
               type: object
               properties:
+                avatarFile:
+                  oneOf:
+                    - type: "null"
+                    - $ref: "#/components/schemas/_toOneRelationship"
                 Orgs:
                   $ref: "#/components/schemas/_toManyRelationship"
                 manager:
@@ -93403,6 +93974,8 @@ components:
                 relationships:
                   type: object
                   properties: &a4
+                    avatarFile:
+                      $ref: "#/components/schemas/_toOneRelationship"
                     Orgs:
                       $ref: "#/components/schemas/_toManyRelationship"
                     manager:
@@ -95957,6 +96530,10 @@ components:
               $ref: "#/components/schemas/_toOneRelationshipWithLinks"
             groups:
               $ref: "#/components/schemas/_toManyRelationshipWithLinks"
+            UserAvatar:
+              oneOf:
+                - type: "null"
+                - $ref: "#/components/schemas/_toOneRelationshipWithLinks"
     FileCreateRequest:
       type: object
       description: Input for creating a "File"
@@ -96027,6 +96604,10 @@ components:
                   $ref: "#/components/schemas/_toOneRelationship"
                 groups:
                   $ref: "#/components/schemas/_toManyRelationship"
+                UserAvatar:
+                  oneOf:
+                    - type: "null"
+                    - $ref: "#/components/schemas/_toOneRelationship"
         meta:
           $ref: "#/components/schemas/_meta"
     FileUpdateRequest:
@@ -96099,6 +96680,10 @@ components:
                   $ref: "#/components/schemas/_toOneRelationship"
                 groups:
                   $ref: "#/components/schemas/_toManyRelationship"
+                UserAvatar:
+                  oneOf:
+                    - type: "null"
+                    - $ref: "#/components/schemas/_toOneRelationship"
         meta:
           $ref: "#/components/schemas/_meta"
     FileResponse:
@@ -96123,6 +96708,8 @@ components:
                       $ref: "#/components/schemas/_toOneRelationship"
                     groups:
                       $ref: "#/components/schemas/_toManyRelationship"
+                    UserAvatar:
+                      $ref: "#/components/schemas/_toOneRelationship"
         meta:
           $ref: "#/components/schemas/_meta"
         included:

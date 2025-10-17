@@ -6,4 +6,4 @@
 
 import { z } from 'zod';
 
-export const UserScalarFieldEnumSchema = z.enum(["id", "numSeq", "createdAt", "updatedAt", "published", "isPublic", "isDeleted", "isDeletedDT", "email", "lastName", "firstName", "title", "nickName", "Gender", "social", "Language", "photoUrl", "dob", "address", "isValidated", "isSuspended", "managerId", "Roles", "Permissions", "isTfaEnable", "tfaSecret", "passWordFaker"])
+export const UserScalarFieldEnumSchema = z.enum(["id", "numSeq", "createdAt", "updatedAt", "published", "isPublic", "isDeleted", "isDeletedDT", "email", "lastName", "firstName", "title", "nickName", "Gender", "social", "Language", "photoUrl", "avatarFileId", "dob", "address", "isValidated", "isSuspended", "managerId", "Roles", "Permissions", "isTfaEnable", "tfaSecret", "passWordFaker"])

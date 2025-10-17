@@ -149,6 +149,8 @@ model User {
   social        Json?             @db.Json()
   Language      Language?         @default(en)
   photoUrl      String?
+  avatarFile    File?             @relation("UserAvatar", fields: [avatarFileId], references: [id])
+  avatarFileId  String?           @unique()
   dob           DateTime?
   address       Json?             @db.Json()
   isValidated   DateTime?
@@ -378,6 +380,7 @@ model File {
   data        String?
   size        Int?
   isArchived  DateTime?
+  UserAvatar  User?        @relation("UserAvatar")
 }
 
 model UserFollower {

@@ -117,4 +117,9 @@ export class UserEntity implements User {
   isPublic!: boolean;
   photoUrl!: string;
 
+  @ApiProperty()
+  @IsOptional()
+  @IsUUID()
+  avatarFileId!: string | null;
+
 }

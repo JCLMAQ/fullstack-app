@@ -43,6 +43,7 @@ const relationSchema = z.object({
     owner: z.record(z.string(), z.unknown()),
     org: z.record(z.string(), z.unknown()),
     groups: z.array(z.unknown()).optional(),
+    UserAvatar: z.record(z.string(), z.unknown()).optional(),
 }
 );
 const fkSchema = z.object({

@@ -128,6 +128,9 @@ model User extends BaseUuid {
     social Json? @db.Json
     Language Language? @default(en)
     photoUrl String?
+    // Avatar stocké en base64 dans un File
+    avatarFile File? @relation("UserAvatar", fields: [avatarFileId], references: [id])
+    avatarFileId String? @unique
     dob DateTime?
     address Json?  @db.Json
     isValidated DateTime?
@@ -307,6 +310,8 @@ model File extends organizationBaseEntity {
     size Int?
     isArchived DateTime?
 
+    // Relation inverse pour les avatars utilisateur
+    UserAvatar User? @relation("UserAvatar")
 }
 
 model UserFollower {

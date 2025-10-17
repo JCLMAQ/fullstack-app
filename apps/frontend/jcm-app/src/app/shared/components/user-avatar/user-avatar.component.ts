@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { ApiConfigService } from '../../../core/services/api-config.service';
 
 @Component({
   selector: 'app-user-avatar',
@@ -35,6 +36,7 @@ export class UserAvatarComponent {
   alt = input<string>('User profile picture');
   cssClass = input<string>('w-[40px] h-[40px] rounded-full');
 
+  private apiConfigService = inject(ApiConfigService);
   private defaultImage = 'person-placeholder.png';
   private hasErrored = false;
 
@@ -66,7 +68,8 @@ export class UserAvatarComponent {
       return this.defaultImage;
     }
 
-    return url;
+    // Utiliser le service pour construire l'URL appropriée
+    return this.apiConfigService.getFileUrl(url);
   }
 
   onImageError(event: Event): void {

@@ -5,6 +5,7 @@
 
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 // import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -15,7 +16,11 @@ import { AppModule } from './app/app.module';
 
 async function bootstrap() {
 
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // Configuration des limites de taille pour les uploads Base64
+  app.use(require('express').json({ limit: '10mb' }));
+  app.use(require('express').urlencoded({ limit: '10mb', extended: true }));
 
   // Configuration CORS pour permettre les requêtes depuis le frontend
   app.enableCors({
@@ -23,6 +28,11 @@ async function bootstrap() {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
+  });
+
+  // Servir les fichiers statiques (avatars uploadés)
+  app.useStaticAssets('./files', {
+    prefix: '/files/',
   });
 
   const prismaService = app.get(PrismaService);

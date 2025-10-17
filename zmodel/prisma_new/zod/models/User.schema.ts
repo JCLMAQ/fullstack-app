@@ -70,6 +70,7 @@ const baseSchemaWithoutDefaults = z.object({
 }
 ).strict();
 const relationSchema = z.object({
+    avatarFile: z.record(z.string(), z.unknown()).optional(),
     Orgs: z.array(z.unknown()).optional(),
     manager: z.record(z.string(), z.unknown()).optional(),
     Team: z.array(z.unknown()).optional(),
@@ -93,6 +94,7 @@ const relationSchema = z.object({
 }
 );
 const fkSchema = z.object({
+    avatarFileId: z.string().nullish(),
     managerId: z.string().nullish(),
 }
 );

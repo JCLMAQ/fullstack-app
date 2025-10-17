@@ -173,7 +173,7 @@ export class AuthService {
         const profile = await firstValueFrom(
           this.httpClient.get<{user: any, fullName: string}>('http://localhost:3100/api/authentication/profile')
         );
-        
+
         console.log("Profil récupéré depuis l'API:", profile);
 
         const user: IUserLogged = {
@@ -192,7 +192,7 @@ export class AuthService {
         return user;
       } catch (error) {
         console.error('Erreur lors de la récupération du profil:', error);
-        
+
         // Fallback : utiliser les infos du JWT si l'API échoue
         const decodedJwt: IJwt = jwtDecode(authToken);
         console.log("Fallback - Decoded JWT: ", decodedJwt);
@@ -214,6 +214,19 @@ export class AuthService {
       }
     }
     return null;
+  }
+
+  // 🆕 Méthode pour actualiser le profil utilisateur et mettre à jour le signal
+  async refreshUserProfile(): Promise<void> {
+    try {
+      const updatedUser = await this.fetchUser();
+      if (updatedUser) {
+        this.#userSignal.set(updatedUser);
+        console.log('🔄 Profil utilisateur actualisé:', updatedUser);
+      }
+    } catch (error) {
+      console.error('⚠️ Erreur lors de l\'actualisation du profil utilisateur:', error);
+    }
   }
 
   isAuthenticated() {

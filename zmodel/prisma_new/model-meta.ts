@@ -367,6 +367,22 @@ const metadata: ModelMeta = {
                     name: "photoUrl",
                     type: "String",
                     isOptional: true,
+                }, avatarFile: {
+                    name: "avatarFile",
+                    type: "File",
+                    isDataModel: true,
+                    isOptional: true,
+                    attributes: [{ "name": "@relation", "args": [{ "name": "name", "value": "UserAvatar" }, { "name": "fields", "value": [null] }, { "name": "references", "value": [null] }] }],
+                    backLink: 'UserAvatar',
+                    isRelationOwner: true,
+                    foreignKeyMapping: { "id": "avatarFileId" },
+                }, avatarFileId: {
+                    name: "avatarFileId",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@unique", "args": [] }],
+                    isForeignKey: true,
+                    relationField: 'avatarFile',
                 }, dob: {
                     name: "dob",
                     type: "DateTime",
@@ -549,6 +565,9 @@ const metadata: ModelMeta = {
                 }, email: {
                     name: "email",
                     fields: ["email"]
+                }, avatarFileId: {
+                    name: "avatarFileId",
+                    fields: ["avatarFileId"]
                 },
             },
             attributes: [{ "name": "@@allow", "args": [{ "name": "operation", "value": "all" }, { "name": "condition" }] }, { "name": "@@deny", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "create" }, { "name": "condition", "value": true }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "all" }, { "name": "condition" }] }],
@@ -1454,7 +1473,7 @@ const metadata: ModelMeta = {
                     type: "User",
                     isDataModel: true,
                     attributes: [{ "name": "@relation", "args": [{ "name": "fields", "value": [null] }, { "name": "references", "value": [null] }, { "name": "onDelete" }] }],
-                    backLink: 'Files',
+                    backLink: 'avatarFile',
                     isRelationOwner: true,
                     onDeleteAction: 'Cascade',
                     foreignKeyMapping: { "id": "ownerId" },
@@ -1507,6 +1526,13 @@ const metadata: ModelMeta = {
                     name: "isArchived",
                     type: "DateTime",
                     isOptional: true,
+                }, UserAvatar: {
+                    name: "UserAvatar",
+                    type: "User",
+                    isDataModel: true,
+                    isOptional: true,
+                    attributes: [{ "name": "@relation", "args": [{ "name": "name", "value": "UserAvatar" }] }],
+                    backLink: 'avatarFile',
                 },
             }, uniqueConstraints: {
                 id: {

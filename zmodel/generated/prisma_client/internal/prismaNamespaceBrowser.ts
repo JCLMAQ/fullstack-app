@@ -164,6 +164,7 @@ export const UserScalarFieldEnum = {
   social: 'social',
   Language: 'Language',
   photoUrl: 'photoUrl',
+  avatarFileId: 'avatarFileId',
   dob: 'dob',
   address: 'address',
   isValidated: 'isValidated',
