@@ -1,4 +1,3 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
@@ -11,6 +10,7 @@ import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AppStore } from '../../../appstore/app.store';
 import { ResponsiveService } from '../../services/responsive.service';
 import { ThemeService } from '../../services/theme.service';
+import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
 
 
 @Component({
@@ -21,8 +21,8 @@ import { ThemeService } from '../../services/theme.service';
       MatButtonModule,
       MatMenuModule,
       MatDivider,
-      TitleCasePipe,
-      TranslatePipe],
+      TranslatePipe,
+      UserAvatarComponent],
     template: `
     <mat-toolbar class="mat-elevation-z3 relative z-10">
       <button mat-icon-button (click)="toggleMenu()">
@@ -96,10 +96,10 @@ import { ThemeService } from '../../services/theme.service';
 <!-- Login Menu -->
       @if (appStore.user(); as user) {
         <button mat-icon-button [mat-menu-trigger-for]="profileMenu">
-          <img
-            [src]="user?.photoUrl ?? 'person-placeholder.png'"
+          <app-user-avatar
+            [photoUrl]="user?.photoUrl"
             alt="User profile picture"
-            class="w-[40px] h-[40px] object-cover rounded-full"
+            cssClass="w-[40px] h-[40px] rounded-full"
           />
         </button>
         <mat-menu #profileMenu="matMenu">

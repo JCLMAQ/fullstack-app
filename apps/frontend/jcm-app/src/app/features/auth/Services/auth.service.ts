@@ -126,6 +126,33 @@ export class AuthService {
     // await this.router.navigateByUrl('/login');
   }
 
+  async updateUserPhoto(photoUrl: string): Promise<{success: boolean, message: string, photoUrl?: string}> {
+    try {
+      const response = await firstValueFrom(
+        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>('api/authentication/update-photo', {
+          photoUrl
+        })
+      );
+
+      if (response.success && response.photoUrl) {
+        // Mettre à jour l'utilisateur local
+        const currentUser = this.user();
+        if (currentUser) {
+          const updatedUser = { ...currentUser, photoUrl: response.photoUrl };
+          this.#userSignal.set(updatedUser);
+        }
+      }
+
+      return response;
+    } catch (error) {
+      console.error('Error updating photo:', error);
+      return {
+        success: false,
+        message: 'Failed to update photo'
+      };
+    }
+  }
+
   async fetchUser(): Promise<IUserLogged | undefined | null> {
     const authToken = this.authToken();
     if (authToken) {

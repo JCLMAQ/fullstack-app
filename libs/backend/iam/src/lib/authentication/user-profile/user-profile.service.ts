@@ -81,6 +81,31 @@ export class UserProfileService {
   }
 
   /**
+   * Update user photo/avatar
+   */
+  async updateUserPhoto(userId: string, photoUrl: string, lang = 'en'): Promise<AuthResponse & { photoUrl?: string }> {
+    try {
+      const updatedUser = await this.prisma.user.update({
+        where: { id: userId },
+        data: { photoUrl },
+        select: { photoUrl: true, email: true }
+      });
+
+      return {
+        success: true,
+        message: await this.i18n.translate('auths.PHOTO_UPDATED_SUCCESS', { lang }),
+        photoUrl: updatedUser.photoUrl || undefined
+      };
+    } catch (error) {
+      console.error('Error updating user photo:', error);
+      return {
+        success: false,
+        message: await this.i18n.translate('auths.PHOTO_UPDATE_FAILED', { lang })
+      };
+    }
+  }
+
+  /**
    * Check if user is still active (not deleted or suspended)
    */
   async isUserActive(email: string): Promise<boolean> {

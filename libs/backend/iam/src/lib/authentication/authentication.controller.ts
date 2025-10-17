@@ -1,5 +1,5 @@
 import { ActiveUser, ActiveUserData } from '@be/common';
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { I18nLang, I18nService } from 'nestjs-i18n';
 import { toFileStream } from 'qrcode';
@@ -7,19 +7,20 @@ import { AccountValidationService } from './account-validation/account-validatio
 import { AuthenticationService } from './authentication.service';
 import { Auth } from './decorators/auth.decorator';
 import {
-  AuthResponse,
-  RequestAccountValidationDto,
-  UserProfileResponse
+    AuthResponse,
+    RequestAccountValidationDto,
+    UserProfileResponse
 } from './dto/account-validation.dto/account-validation.dto';
 import { ExtendedSignUpDto } from './dto/extended-sign-up.dto/extended-sign-up.dto';
 import {
-  ChangePasswordDto,
-  ForgotPasswordDto,
-  ResetPasswordDto
+    ChangePasswordDto,
+    ForgotPasswordDto,
+    ResetPasswordDto
 } from './dto/password-management.dto/password-management.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto/refresh-token.dto';
 import { SignInDto } from './dto/sign-in.dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto/sign-up.dto';
+import { UpdatePhotoDto } from './dto/update-profile.dto/update-profile.dto';
 import { AuthType } from './enums/auth-type.enum';
 import { OtpAuthenticationService } from './otp-authentication/otp-authentication.service';
 import { PasswordResetService } from './password-reset/password-reset.service';
@@ -174,6 +175,19 @@ export class AuthenticationController {
     @I18nLang() lang: string
   ): Promise<AuthResponse> {
     return await this.passwordResetService.resetPassword(token, dto.newPassword, dto.verifyPassword, lang);
+  }
+
+  /**
+   * Update user profile photo (AUTHS compatible)
+   */
+  @Auth(AuthType.Bearer)
+  @Put('update-photo')
+  async updatePhoto(
+    @ActiveUser() activeUser: ActiveUserData,
+    @Body() dto: UpdatePhotoDto,
+    @I18nLang() lang: string
+  ): Promise<AuthResponse & { photoUrl?: string }> {
+    return await this.userProfileService.updateUserPhoto(activeUser.sub, dto.photoUrl, lang);
   }
 
   /**
