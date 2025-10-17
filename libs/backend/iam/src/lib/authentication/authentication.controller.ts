@@ -7,15 +7,15 @@ import { AccountValidationService } from './account-validation/account-validatio
 import { AuthenticationService } from './authentication.service';
 import { Auth } from './decorators/auth.decorator';
 import {
-    AuthResponse,
-    RequestAccountValidationDto,
-    UserProfileResponse
+  AuthResponse,
+  RequestAccountValidationDto,
+  UserProfileResponse
 } from './dto/account-validation.dto/account-validation.dto';
 import { ExtendedSignUpDto } from './dto/extended-sign-up.dto/extended-sign-up.dto';
 import {
-    ChangePasswordDto,
-    ForgotPasswordDto,
-    ResetPasswordDto
+  ChangePasswordDto,
+  ForgotPasswordDto,
+  ResetPasswordDto
 } from './dto/password-management.dto/password-management.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto/refresh-token.dto';
 import { SignInDto } from './dto/sign-in.dto/sign-in.dto';
@@ -94,12 +94,15 @@ export class AuthenticationController {
   @Post('register-extended')
   async registerExtended(@Body() registerDto: ExtendedSignUpDto, @I18nLang() lang: string): Promise<AuthResponse> {
     try {
-      await this.authService.signUpExtended(registerDto);
+      console.log('🔍 Register attempt:', { email: registerDto.email, hasPassword: !!registerDto.password });
+      const result = await this.authService.signUpExtended(registerDto);
+      console.log('✅ Registration successful:', { userId: result.user });
       return {
         success: true,
         message: await this.i18n.translate("auths.REGISTRATION_DONE", { lang })
       };
-    } catch {
+    } catch (error) {
+      console.error('❌ Registration failed:', error instanceof Error ? error.message : error);
       return {
         success: false,
         message: await this.i18n.translate("auths.REGISTRATION_FAIL", { lang })
