@@ -1,9 +1,9 @@
 import { ActiveUserData, HashingService } from '@be/common';
 import {
-    ConflictException,
-    Inject,
-    Injectable,
-    UnauthorizedException
+  ConflictException,
+  Inject,
+  Injectable,
+  UnauthorizedException
 } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -46,12 +46,12 @@ export class AuthenticationService {
 
       const data = {
         email: signUpDto.email,
-        UserSecret: {
+        userSecret: {
           create: {
             pwdHash: password,
           }
         },
-        ApiKey: {
+        ApiKeys: {
           create: {
             key: key,
             uuid: uuid,
@@ -102,12 +102,12 @@ export class AuthenticationService {
         lastName: signUpDto.lastName || null,
         firstName: signUpDto.firstName || null,
         nickName: signUpDto.nickName || null,
-        UserSecret: {
+        userSecret: {
           create: {
             pwdHash: password,
           }
         },
-        ApiKey: {
+        ApiKeys: {
           create: {
             key: key,
             uuid: uuid,

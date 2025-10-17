@@ -106,9 +106,9 @@ export class UserEntity implements User {
   @ApiHideProperty()
   tfaSecret!: string | null;
   @ApiProperty({ type: () => UserEntity })
-  ApiKey?: ApiKey[] ;
+  ApiKeys?: ApiKey[] ;
   @ApiProperty({ type: () => UserEntity })
-  UserSecret?: UserSecret  | null;
+  userSecret?: UserSecret  | null;
   @ApiHideProperty()
   @Exclude()
   passWordFaker!: string | null;
