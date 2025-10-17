@@ -143,7 +143,7 @@ export class AuthService {
         Roles: decodedJwt.role || [],
         Language: null,
         fullName: null,
-        photoUrl: ''
+        photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
       };
 
       return user;
