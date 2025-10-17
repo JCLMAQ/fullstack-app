@@ -70,7 +70,7 @@ export class UserProfileService {
   /**
    * Generate full name from first and last name
    */
-  private generateFullName(firstName?: string | null, lastName?: string | null): string | null {
+  public generateFullName(firstName?: string | null, lastName?: string | null): string | null {
     if (!firstName && !lastName) return null;
 
     const parts = [];

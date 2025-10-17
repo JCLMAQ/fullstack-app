@@ -170,27 +170,36 @@ export class ProfileEditorComponent {
 
   async save() {
     const photo = this.selectedPhoto();
-    if (!photo) return;
+    console.log('💾 Tentative de sauvegarde de la photo:', photo);
+
+    if (!photo) {
+      console.log('❌ Aucune photo sélectionnée, abandon');
+      return;
+    }
 
     this.saving.set(true);
 
     try {
+      console.log('🚀 Appel de updateUserPhoto avec:', photo);
       const result = await this.authService.updateUserPhoto(photo);
+      console.log('📡 Réponse du serveur:', result);
 
       if (result.success) {
+        console.log('✅ Mise à jour réussie');
         this.snackbar.open(result.message, 'Fermer', {
           duration: 3000,
           verticalPosition: 'top'
         });
         this.dialogRef.close(true);
       } else {
+        console.log('❌ Échec de la mise à jour:', result.message);
         this.snackbar.open(result.message, 'Fermer', {
           duration: 5000,
           verticalPosition: 'top'
         });
       }
     } catch (error) {
-      console.error('Error updating photo:', error);
+      console.error('💥 Erreur lors de la mise à jour:', error);
       this.snackbar.open('Erreur lors de la mise à jour', 'Fermer', {
         duration: 5000,
         verticalPosition: 'top'

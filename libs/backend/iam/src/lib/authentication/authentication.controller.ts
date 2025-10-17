@@ -1,5 +1,6 @@
 import { ActiveUser, ActiveUserData } from '@be/common';
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
+import { PrismaService } from '@prisma/prisma';
 import { Response } from 'express';
 import { I18nLang, I18nService } from 'nestjs-i18n';
 import { toFileStream } from 'qrcode';
@@ -9,6 +10,7 @@ import { Auth } from './decorators/auth.decorator';
 import {
     AuthResponse,
     RequestAccountValidationDto,
+    UserProfile,
     UserProfileResponse
 } from './dto/account-validation.dto/account-validation.dto';
 import { ExtendedSignUpDto } from './dto/extended-sign-up.dto/extended-sign-up.dto';
@@ -25,29 +27,29 @@ import { AuthType } from './enums/auth-type.enum';
 import { OtpAuthenticationService } from './otp-authentication/otp-authentication.service';
 import { PasswordResetService } from './password-reset/password-reset.service';
 import { UserProfileService } from './user-profile/user-profile.service';
-
 @Auth(AuthType.None) // This allows public routes
 @Controller('authentication')
 export class AuthenticationController {
   constructor(
-    private readonly authService: AuthenticationService,
-    private readonly otpAuthService: OtpAuthenticationService,
-    private readonly i18n: I18nService,
+    private readonly authenticationService: AuthenticationService,
     private readonly accountValidationService: AccountValidationService,
     private readonly passwordResetService: PasswordResetService,
-    private readonly userProfileService: UserProfileService
+    private readonly otpAuthenticationService: OtpAuthenticationService,
+    private readonly userProfileService: UserProfileService,
+    private readonly i18n: I18nService,
+    private readonly prisma: PrismaService
   ) {}
 
   @Post('sign-up')
   async signUp(@Body() signUpDto: SignUpDto) {
-    return await this.authService.signUp(signUpDto);
+    return await this.authenticationService.signUp(signUpDto);
   }
 
 
   @HttpCode(HttpStatus.OK) // by default @Post does 201, we wanted 200 - hence using @HttpCode(HttpStatus.OK)
   @Post('sign-in')
   async signIn(@Body() signInDto: SignInDto) {
-    return await this.authService.signIn(signInDto);
+    return await this.authenticationService.signIn(signInDto);
   }
 
   // Cookies approach
@@ -56,7 +58,7 @@ export class AuthenticationController {
   async signInCookie(
     @Res({ passthrough: true}) response: Response,
     @Body() signInDto: SignInDto) {
-    const accessToken = await this.authService.signIn(signInDto);
+    const accessToken = await this.authenticationService.signIn(signInDto);
     response.cookie('accessToken', accessToken, {
       secure: true,
       httpOnly: true,
@@ -68,7 +70,7 @@ export class AuthenticationController {
   @HttpCode(HttpStatus.OK) // changed since the default is 201
   @Post('refresh-tokens')
   refreshTokens(@Body() refreshTokenDto: RefreshTokenDto) {
-    return this.authService.refreshTokens(refreshTokenDto);
+    return this.authenticationService.refreshTokens(refreshTokenDto);
   }
 
   // 2fa QR code generate
@@ -79,10 +81,10 @@ export class AuthenticationController {
     @ActiveUser() activeUser: ActiveUserData,
     @Res() response: Response,
   ) {
-    const { secret, uri } = await this.otpAuthService.generateSecret(
-      activeUser.email,
+    const { secret, uri } = await this.otpAuthenticationService.generateSecret(
+      activeUser.email
     );
-    await this.otpAuthService.enableTfaForUser(activeUser.email, secret);
+    await this.otpAuthenticationService.enableTfaForUser(activeUser.email, secret);
     response.type('png');
     return toFileStream(response, uri);
   }
@@ -96,7 +98,7 @@ export class AuthenticationController {
   async registerExtended(@Body() registerDto: ExtendedSignUpDto, @I18nLang() lang: string): Promise<AuthResponse> {
     try {
       console.log('🔍 Register attempt:', { email: registerDto.email, hasPassword: !!registerDto.password });
-      const result = await this.authService.signUpExtended(registerDto);
+      const result = await this.authenticationService.signUpExtended(registerDto);
       console.log('✅ Registration successful:', { userId: result.user });
       return {
         success: true,
@@ -175,6 +177,57 @@ export class AuthenticationController {
     @I18nLang() lang: string
   ): Promise<AuthResponse> {
     return await this.passwordResetService.resetPassword(token, dto.newPassword, dto.verifyPassword, lang);
+  }
+
+  /**
+   * Get current user profile (authenticated user)
+   */
+  @Auth(AuthType.Bearer)
+  @Get('profile')
+  async getCurrentUserProfile(
+    @ActiveUser() activeUser: ActiveUserData,
+    @I18nLang() lang: string
+  ): Promise<UserProfileResponse | AuthResponse> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: activeUser.sub },
+      select: {
+        email: true,
+        firstName: true,
+        lastName: true,
+        nickName: true,
+        title: true,
+        Gender: true,
+        Language: true,
+        photoUrl: true,
+        Roles: true
+      }
+    });
+
+    if (!user) {
+      return {
+        success: false,
+        message: await this.i18n.translate('auths.USER_NOT_FOUND', { lang })
+      };
+    }
+
+    const userProfile: UserProfile = {
+      email: user.email,
+      lastName: user.lastName || undefined,
+      firstName: user.firstName || undefined,
+      nickName: user.nickName || undefined,
+      title: user.title || undefined,
+      Gender: user.Gender || undefined,
+      Role: user.Roles ? user.Roles.map(role => role.toString()) : undefined,
+      Language: user.Language || undefined,
+      photoUrl: user.photoUrl || undefined
+    };
+
+    const fullName = this.userProfileService.generateFullName(user.firstName, user.lastName);
+
+    return {
+      user: userProfile,
+      fullName
+    };
   }
 
   /**

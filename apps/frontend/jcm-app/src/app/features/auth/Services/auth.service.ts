@@ -128,11 +128,17 @@ export class AuthService {
 
   async updateUserPhoto(photoUrl: string): Promise<{success: boolean, message: string, photoUrl?: string}> {
     try {
+      console.log('🔐 Token d\'authentification:', this.authToken());
+      console.log('👤 Utilisateur actuel:', this.user());
+      console.log('📤 Données envoyées:', { photoUrl });
+
       const response = await firstValueFrom(
-        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>('api/authentication/update-photo', {
+        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>('http://localhost:3100/api/authentication/update-photo', {
           photoUrl
         })
       );
+
+      console.log('✅ Réponse complète du serveur:', response);
 
       if (response.success && response.photoUrl) {
         // Mettre à jour l'utilisateur local
@@ -140,15 +146,21 @@ export class AuthService {
         if (currentUser) {
           const updatedUser = { ...currentUser, photoUrl: response.photoUrl };
           this.#userSignal.set(updatedUser);
+          console.log('🔄 Utilisateur mis à jour localement:', updatedUser);
         }
       }
 
       return response;
     } catch (error) {
-      console.error('Error updating photo:', error);
+      console.error('💥 Erreur détaillée lors de la mise à jour de la photo:', error);
+      console.error('💥 Type d\'erreur:', typeof error);
+      console.error('💥 Message d\'erreur:', (error as any)?.message);
+      console.error('💥 Status de l\'erreur:', (error as any)?.status);
+      console.error('💥 Error object complet:', error);
+
       return {
         success: false,
-        message: 'Failed to update photo'
+        message: `Failed to update photo: ${(error as any)?.message || 'Unknown error'}`
       };
     }
   }
@@ -156,24 +168,50 @@ export class AuthService {
   async fetchUser(): Promise<IUserLogged | undefined | null> {
     const authToken = this.authToken();
     if (authToken) {
-      const decodedJwt: IJwt = jwtDecode(authToken);
-      console.log("Decoded JWT: ", decodedJwt);
+      try {
+        // Récupérer le profil complet depuis l'API
+        const profile = await firstValueFrom(
+          this.httpClient.get<{user: any, fullName: string}>('http://localhost:3100/api/authentication/profile')
+        );
+        
+        console.log("Profil récupéré depuis l'API:", profile);
 
-      // Créer un utilisateur basique à partir des informations du JWT
-      const user: IUserLogged = {
-        email: decodedJwt.email || '',
-        lastName: null,
-        firstName: null,
-        nickName: null,
-        title: null,
-        Gender: null,
-        Roles: decodedJwt.role || [],
-        Language: null,
-        fullName: null,
-        photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
-      };
+        const user: IUserLogged = {
+          email: profile.user.email || '',
+          lastName: profile.user.lastName || null,
+          firstName: profile.user.firstName || null,
+          nickName: profile.user.nickName || null,
+          title: profile.user.title || null,
+          Gender: profile.user.Gender || null,
+          Roles: profile.user.Role || [],
+          Language: profile.user.Language || null,
+          fullName: profile.fullName || null,
+          photoUrl: profile.user.photoUrl || ''  // ✅ Récupère la vraie photoUrl depuis la DB
+        };
 
-      return user;
+        return user;
+      } catch (error) {
+        console.error('Erreur lors de la récupération du profil:', error);
+        
+        // Fallback : utiliser les infos du JWT si l'API échoue
+        const decodedJwt: IJwt = jwtDecode(authToken);
+        console.log("Fallback - Decoded JWT: ", decodedJwt);
+
+        const user: IUserLogged = {
+          email: decodedJwt.email || '',
+          lastName: null,
+          firstName: null,
+          nickName: null,
+          title: null,
+          Gender: null,
+          Roles: decodedJwt.role || [],
+          Language: null,
+          fullName: null,
+          photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
+        };
+
+        return user;
+      }
     }
     return null;
   }
