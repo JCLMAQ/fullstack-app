@@ -600,10 +600,10 @@ export class ProfileEditorComponent {
         this.avatarBase64Service.uploadAvatarBase64(photo).subscribe({
           next: async () => {
             console.log('✅ Mise à jour base64 réussie');
-            
+
             // 🔄 Actualiser le profil utilisateur pour récupérer la nouvelle photoUrl
             await this.authService.refreshUserProfile();
-            
+
             this.saving.set(false);
             this.snackbar.open('Avatar sauvegardé en base de données avec succès !', 'Fermer', {
               duration: 3000,
