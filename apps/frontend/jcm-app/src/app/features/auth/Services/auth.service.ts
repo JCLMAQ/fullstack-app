@@ -62,8 +62,8 @@ export class AuthService {
       password});
     const response = await firstValueFrom(login$);
 
-    this.#authTokenSignal.set(response.access_token);
-    localStorage.setItem("authJwtToken", response.access_token);
+    this.#authTokenSignal.set(response.accessToken);
+    localStorage.setItem("authJwtToken", response.accessToken);
 
     // console.log("User logged: ", response)
 
@@ -127,40 +127,26 @@ export class AuthService {
   }
 
   async fetchUser(): Promise<IUserLogged | undefined | null> {
-
-    //  get user data from backend with authToken
     const authToken = this.authToken();
     if (authToken) {
       const decodedJwt: IJwt = jwtDecode(authToken);
       console.log("Decoded JWT: ", decodedJwt);
-      const emailToCheck = decodedJwt.username; // username = email
-      if (emailToCheck) {
 
-        // const response = resource({
-        //   request: () => ({id: emailToCheck}),
-        //   loader: ({request}) => fetch(apiUrl + request.id).then(response => response.json())
-        // });
+      // Créer un utilisateur basique à partir des informations du JWT
+      const user: IUserLogged = {
+        email: decodedJwt.email || '',
+        lastName: null,
+        firstName: null,
+        nickName: null,
+        title: null,
+        Gender: null,
+        Roles: decodedJwt.role || [],
+        Language: null,
+        fullName: null,
+        photoUrl: ''
+      };
 
-
-        //     console.log(response.status()); // Prints: 2 (which means "Loading")
-
-        //     // After the fetch resolves
-
-        //     console.log(response.status()); // Prints: 4 (which means "Resolved")
-        //     console.log(response.value()); // Prints: { "id": 1 , ... }
-
-      // 🆕 MIGRATION VERS ENDPOINT IAM
-      // ANCIEN: api/auths/auth/loggedUser/${emailToCheck}
-      const response = await firstValueFrom(
-        this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/authentication/user/${emailToCheck}`)
-      );
-      if ('success' in response) {
-        console.error(response.message);
-        return null;
-      }
-      return response.user;
-
-      }
+      return user;
     }
     return null;
   }

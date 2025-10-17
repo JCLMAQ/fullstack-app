@@ -38,19 +38,18 @@ export interface IRegisterResponse {
   message: string;
 }
 export interface ILoginResponse {
-  // authJwtToken: string;
-  user: IUserLogged;
-  access_token: string;
-  fullName: string;
-  role: Role[];
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface IJwt {
-  username?: string;
-  role?: string;
-  exp: string;
-  iat: string;
   sub: string;
+  email?: string;
+  role?: Role[];
+  exp: number;
+  iat: number;
+  aud: string;
+  iss: string;
 }
 
 export interface IForgotEmailResponse {
