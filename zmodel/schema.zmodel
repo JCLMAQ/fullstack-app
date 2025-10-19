@@ -127,14 +127,17 @@ model User extends BaseUuid {
     Gender Gender? @default(UNKNOWN)
     social Json? @db.Json
     Language Language? @default(en)
-    photoUrl String?
-    // Avatar stocké en base64 dans un File
-    avatarFile File? @relation("UserAvatar", fields: [avatarFileId], references: [id])
-    avatarFileId String? @unique
+
     dob DateTime?
     address Json?  @db.Json
     isValidated DateTime?
     isSuspended DateTime?
+
+     // Photo URL for external photo hosting or Emoji avatar
+    photoUrl String?
+    // Avatar stocké en base64 dans un File
+    avatarFile File? @relation("UserAvatar", fields: [avatarFileId], references: [id])
+    avatarFileId String? @unique
 
     Orgs Organization[] // Organization: one User could belong to multiple organizations
 
@@ -302,18 +305,6 @@ model Comment extends BaseUuid { // Linked 1 to n to Post - 1 to 1 to User (auth
     authorId String
 }
 
-model File extends organizationBaseEntity {
-    name String
-    storageName String @unique()
-    type String?
-    data String?
-    size Int?
-    isArchived DateTime?
-
-    // Relation inverse pour les avatars utilisateur
-    UserAvatar User? @relation("UserAvatar")
-}
-
 model UserFollower {
   user_id     String
   user        User     @relation("followers", fields: [user_id], references: [id])
@@ -341,6 +332,20 @@ model Story extends BaseUuid { // User's Stories
   user_id    String
   user       User     @relation(fields: [user_id], references: [id])
 }
+
+
+model File extends organizationBaseEntity {
+    name String
+    storageName String @unique()
+    type String?
+    data String?
+    size Int?
+    isArchived DateTime?
+
+    // Relation inverse pour les avatars utilisateur
+    UserAvatar User? @relation("UserAvatar")
+}
+
 
 model Image extends BaseInt {
   type          String
