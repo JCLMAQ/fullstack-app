@@ -363,6 +363,23 @@ const metadata: ModelMeta = {
                     type: "Language",
                     isOptional: true,
                     attributes: [{ "name": "@default", "args": [{ "name": "value" }] }],
+                }, dob: {
+                    name: "dob",
+                    type: "DateTime",
+                    isOptional: true,
+                }, address: {
+                    name: "address",
+                    type: "Json",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Json", "args": [] }],
+                }, isValidated: {
+                    name: "isValidated",
+                    type: "DateTime",
+                    isOptional: true,
+                }, isSuspended: {
+                    name: "isSuspended",
+                    type: "DateTime",
+                    isOptional: true,
                 }, photoUrl: {
                     name: "photoUrl",
                     type: "String",
@@ -383,23 +400,6 @@ const metadata: ModelMeta = {
                     attributes: [{ "name": "@unique", "args": [] }],
                     isForeignKey: true,
                     relationField: 'avatarFile',
-                }, dob: {
-                    name: "dob",
-                    type: "DateTime",
-                    isOptional: true,
-                }, address: {
-                    name: "address",
-                    type: "Json",
-                    isOptional: true,
-                    attributes: [{ "name": "@db.Json", "args": [] }],
-                }, isValidated: {
-                    name: "isValidated",
-                    type: "DateTime",
-                    isOptional: true,
-                }, isSuspended: {
-                    name: "isSuspended",
-                    type: "DateTime",
-                    isOptional: true,
                 }, Orgs: {
                     name: "Orgs",
                     type: "Organization",
@@ -1432,119 +1432,6 @@ const metadata: ModelMeta = {
             },
             attributes: [{ "name": "@@allow", "args": [{ "name": "operation", "value": "all" }, { "name": "condition" }] }, { "name": "@@deny", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }],
         },
-        file: {
-            name: 'File', fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    isId: true,
-                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }, { "name": "@id", "args": [] }],
-                }, numSeq: {
-                    name: "numSeq",
-                    type: "Int",
-                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }],
-                    isAutoIncrement: true,
-                }, createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }],
-                }, updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }, { "name": "@updatedAt", "args": [] }],
-                }, published: {
-                    name: "published",
-                    type: "Boolean",
-                    attributes: [{ "name": "@default", "args": [{ "name": "value", "value": true }] }],
-                }, isDeleted: {
-                    name: "isDeleted",
-                    type: "Int",
-                    attributes: [{ "name": "@default", "args": [{ "name": "value", "value": 0 }] }, { "name": "@omit", "args": [] }],
-                }, isDeletedDT: {
-                    name: "isDeletedDT",
-                    type: "DateTime",
-                    isOptional: true,
-                }, isPublic: {
-                    name: "isPublic",
-                    type: "Boolean",
-                    attributes: [{ "name": "@default", "args": [{ "name": "value", "value": false }] }],
-                }, owner: {
-                    name: "owner",
-                    type: "User",
-                    isDataModel: true,
-                    attributes: [{ "name": "@relation", "args": [{ "name": "fields", "value": [null] }, { "name": "references", "value": [null] }, { "name": "onDelete" }] }],
-                    backLink: 'avatarFile',
-                    isRelationOwner: true,
-                    onDeleteAction: 'Cascade',
-                    foreignKeyMapping: { "id": "ownerId" },
-                }, ownerId: {
-                    name: "ownerId",
-                    type: "String",
-                    isForeignKey: true,
-                    relationField: 'owner',
-                }, org: {
-                    name: "org",
-                    type: "Organization",
-                    isDataModel: true,
-                    attributes: [{ "name": "@relation", "args": [{ "name": "fields", "value": [null] }, { "name": "references", "value": [null] }, { "name": "onDelete" }] }],
-                    backLink: 'Files',
-                    isRelationOwner: true,
-                    onDeleteAction: 'Cascade',
-                    foreignKeyMapping: { "id": "orgId" },
-                }, orgId: {
-                    name: "orgId",
-                    type: "String",
-                    isForeignKey: true,
-                    relationField: 'org',
-                }, groups: {
-                    name: "groups",
-                    type: "Group",
-                    isDataModel: true,
-                    isArray: true,
-                    backLink: 'Files',
-                    isRelationOwner: true,
-                }, name: {
-                    name: "name",
-                    type: "String",
-                }, storageName: {
-                    name: "storageName",
-                    type: "String",
-                    attributes: [{ "name": "@unique", "args": [] }],
-                }, type: {
-                    name: "type",
-                    type: "String",
-                    isOptional: true,
-                }, data: {
-                    name: "data",
-                    type: "String",
-                    isOptional: true,
-                }, size: {
-                    name: "size",
-                    type: "Int",
-                    isOptional: true,
-                }, isArchived: {
-                    name: "isArchived",
-                    type: "DateTime",
-                    isOptional: true,
-                }, UserAvatar: {
-                    name: "UserAvatar",
-                    type: "User",
-                    isDataModel: true,
-                    isOptional: true,
-                    attributes: [{ "name": "@relation", "args": [{ "name": "name", "value": "UserAvatar" }] }],
-                    backLink: 'avatarFile',
-                },
-            }, uniqueConstraints: {
-                id: {
-                    name: "id",
-                    fields: ["id"]
-                }, storageName: {
-                    name: "storageName",
-                    fields: ["storageName"]
-                },
-            },
-            attributes: [{ "name": "@@allow", "args": [{ "name": "operation", "value": "all" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "create" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "update" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "read,delete" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }, { "name": "@@deny", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }],
-        },
         userFollower: {
             name: 'UserFollower', fields: {
                 user_id: {
@@ -1704,6 +1591,119 @@ const metadata: ModelMeta = {
                 },
             },
             attributes: [{ "name": "@@allow", "args": [{ "name": "operation", "value": "all" }, { "name": "condition" }] }, { "name": "@@deny", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }],
+        },
+        file: {
+            name: 'File', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }, { "name": "@id", "args": [] }],
+                }, numSeq: {
+                    name: "numSeq",
+                    type: "Int",
+                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }],
+                    isAutoIncrement: true,
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [{ "name": "value" }] }, { "name": "@updatedAt", "args": [] }],
+                }, published: {
+                    name: "published",
+                    type: "Boolean",
+                    attributes: [{ "name": "@default", "args": [{ "name": "value", "value": true }] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Int",
+                    attributes: [{ "name": "@default", "args": [{ "name": "value", "value": 0 }] }, { "name": "@omit", "args": [] }],
+                }, isDeletedDT: {
+                    name: "isDeletedDT",
+                    type: "DateTime",
+                    isOptional: true,
+                }, isPublic: {
+                    name: "isPublic",
+                    type: "Boolean",
+                    attributes: [{ "name": "@default", "args": [{ "name": "value", "value": false }] }],
+                }, owner: {
+                    name: "owner",
+                    type: "User",
+                    isDataModel: true,
+                    attributes: [{ "name": "@relation", "args": [{ "name": "fields", "value": [null] }, { "name": "references", "value": [null] }, { "name": "onDelete" }] }],
+                    backLink: 'avatarFile',
+                    isRelationOwner: true,
+                    onDeleteAction: 'Cascade',
+                    foreignKeyMapping: { "id": "ownerId" },
+                }, ownerId: {
+                    name: "ownerId",
+                    type: "String",
+                    isForeignKey: true,
+                    relationField: 'owner',
+                }, org: {
+                    name: "org",
+                    type: "Organization",
+                    isDataModel: true,
+                    attributes: [{ "name": "@relation", "args": [{ "name": "fields", "value": [null] }, { "name": "references", "value": [null] }, { "name": "onDelete" }] }],
+                    backLink: 'Files',
+                    isRelationOwner: true,
+                    onDeleteAction: 'Cascade',
+                    foreignKeyMapping: { "id": "orgId" },
+                }, orgId: {
+                    name: "orgId",
+                    type: "String",
+                    isForeignKey: true,
+                    relationField: 'org',
+                }, groups: {
+                    name: "groups",
+                    type: "Group",
+                    isDataModel: true,
+                    isArray: true,
+                    backLink: 'Files',
+                    isRelationOwner: true,
+                }, name: {
+                    name: "name",
+                    type: "String",
+                }, storageName: {
+                    name: "storageName",
+                    type: "String",
+                    attributes: [{ "name": "@unique", "args": [] }],
+                }, type: {
+                    name: "type",
+                    type: "String",
+                    isOptional: true,
+                }, data: {
+                    name: "data",
+                    type: "String",
+                    isOptional: true,
+                }, size: {
+                    name: "size",
+                    type: "Int",
+                    isOptional: true,
+                }, isArchived: {
+                    name: "isArchived",
+                    type: "DateTime",
+                    isOptional: true,
+                }, UserAvatar: {
+                    name: "UserAvatar",
+                    type: "User",
+                    isDataModel: true,
+                    isOptional: true,
+                    attributes: [{ "name": "@relation", "args": [{ "name": "name", "value": "UserAvatar" }] }],
+                    backLink: 'avatarFile',
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                }, storageName: {
+                    name: "storageName",
+                    fields: ["storageName"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "name": "operation", "value": "all" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "create" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "update" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "read,delete" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }, { "name": "@@allow", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }, { "name": "@@deny", "args": [{ "name": "operation", "value": "read" }, { "name": "condition" }] }],
         },
         image: {
             name: 'Image', fields: {
@@ -2317,7 +2317,7 @@ const metadata: ModelMeta = {
     },
     deleteCascade: {
         organization: ['Todo', 'Task', 'Post', 'File'],
-        user: ['UserSecret', 'Todo', 'UserTodoLink', 'Task', 'Post', 'Comment', 'File', 'PostLike', 'ApiKey', 'Token'],
+        user: ['UserSecret', 'Todo', 'UserTodoLink', 'Task', 'Post', 'Comment', 'PostLike', 'File', 'ApiKey', 'Token'],
         todo: ['UserTodoLink', 'Task'],
         post: ['Comment', 'PostLike'],
 

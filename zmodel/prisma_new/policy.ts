@@ -304,28 +304,6 @@ const policy: PolicyDef = {
             },
 
         },
-        file: {
-            modelLevel: {
-                read: { guard: File_read, },
-                create: { guard: File_create, },
-                update: { guard: File_update, },
-                postUpdate: {
-                    guard: File_postUpdate, preUpdateSelector: { "published": true, "owner": { "select": { "id": true } }, "org": { "select": { "Members": { "select": { "id": true } } } } },
-                },
-                delete: { guard: File_delete, }
-            },
-            fieldLevel: {
-                read:
-                {
-
-                },
-                update:
-                {
-
-                },
-            },
-
-        },
         userFollower: {
             modelLevel: {
                 read: { guard: UserFollower_read, },
@@ -373,6 +351,28 @@ const policy: PolicyDef = {
                 update: { guard: Story_update, },
                 postUpdate: { guard: Story_postUpdate, },
                 delete: { guard: Story_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
+        file: {
+            modelLevel: {
+                read: { guard: File_read, },
+                create: { guard: File_create, },
+                update: { guard: File_update, },
+                postUpdate: {
+                    guard: File_postUpdate, preUpdateSelector: { "published": true, "owner": { "select": { "id": true } }, "org": { "select": { "Members": { "select": { "id": true } } } } },
+                },
+                delete: { guard: File_delete, }
             },
             fieldLevel: {
                 read:
@@ -602,10 +602,10 @@ const policy: PolicyDef = {
         post: { hasValidation: false },
         category: { hasValidation: false },
         comment: { hasValidation: false },
-        file: { hasValidation: false },
         userFollower: { hasValidation: false },
         postLike: { hasValidation: false },
         story: { hasValidation: false },
+        file: { hasValidation: false },
         image: { hasValidation: false },
         configParam: { hasValidation: false },
         orgEmailUseTo: { hasValidation: false },
@@ -1528,101 +1528,6 @@ function $check_Comment_delete(input: any, context: QueryContext): any {
     return false;
 }
 
-function File_read(context: QueryContext, db: CrudContract): any {
-    const user: any = context.user ?? null;
-    return {
-        AND: [{ NOT: { isDeleted: { not: { equals: 0 } } } }, {
-            OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, (user == null) ? { OR: [] } : {
-                owner: {
-                    is:
-                        { id: user.id }
-                }
-            }, { groups: { some: { Users: { some: ((user?.id ?? null) == null) ? { OR: [] } : { id: { equals: (user?.id ?? null) } } } } } }, { AND: [{ isPublic: true }, { org: { Members: { some: ((user?.id ?? null) == null) ? { OR: [] } : { id: { equals: (user?.id ?? null) } } } } }] }]
-        }]
-    };
-}
-
-function $check_File_read(input: any, context: QueryContext): any {
-    const user: any = context.user ?? null;
-    if ((input?.isDeleted != 0)) { return false; }
-
-    if (((user != null) && input?.published)) { return true; }
-
-    if (((input?.owner?.id ?? null) == (user?.id ?? null))) { return true; }
-
-    if ((((input?.groups)?.some((_item: any) => (((_item?.Users)?.some((_item: any) => (_item?.id == user?.id))) ?? false))) ?? false)) { return true; }
-
-    if ((input?.isPublic && (((input?.org?.Members)?.some((_item: any) => (_item?.id == user?.id))) ?? false))) { return true; }
-
-    return false;
-}
-
-function File_create(context: QueryContext, db: CrudContract): any {
-    const user: any = context.user ?? null;
-    return {
-        OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, {
-            AND: [(user == null) ? { OR: [] } : {
-                owner: {
-                    is:
-                        { id: user.id }
-                }
-            }, { org: { Members: { some: ((user?.id ?? null) == null) ? { OR: [] } : { id: { equals: (user?.id ?? null) } } } } }]
-        }]
-    };
-}
-
-function $check_File_create(input: any, context: QueryContext): any {
-    const user: any = context.user ?? null;
-    if (((user != null) && input?.published)) { return true; }
-
-    if ((((input?.owner?.id ?? null) == (user?.id ?? null)) && (((input?.org?.Members)?.some((_item: any) => (_item?.id == user?.id))) ?? false))) { return true; }
-
-    return false;
-}
-
-function File_update(context: QueryContext, db: CrudContract): any {
-    return { AND: [] };
-}
-
-function $check_File_update(input: any, context: QueryContext): any {
-    return false;
-}
-
-function File_postUpdate(context: QueryContext, db: CrudContract): any {
-    const user: any = context.user ?? null;
-    return { OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, { AND: [{ AND: [((context.preValue?.owner?.id ?? null) == (user?.id ?? null)) ? { AND: [] } : { OR: [] }, ((((context.preValue?.org?.Members ?? null))?.some((_item: any) => (_item?.id == (user?.id ?? null)))) ?? false) ? { AND: [] } : { OR: [] }] }, { owner: { is: { id: context.preValue?.owner.id } } }] }] };
-}
-
-function $check_File_postUpdate(input: any, context: QueryContext): any {
-    const user: any = context.user ?? null;
-    if (((user != null) && context.preValue?.published)) { return true; }
-
-    if (((((context.preValue?.owner?.id ?? null) == (user?.id ?? null)) && (((context.preValue?.org?.Members)?.some((_item: any) => (_item?.id == user?.id))) ?? false)) && ((input.owner?.id ?? null) == (context.preValue?.owner?.id ?? null)))) { return true; }
-
-    return true;
-}
-
-function File_delete(context: QueryContext, db: CrudContract): any {
-    const user: any = context.user ?? null;
-    return {
-        OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, (user == null) ? { OR: [] } : {
-            owner: {
-                is:
-                    { id: user.id }
-            }
-        }]
-    };
-}
-
-function $check_File_delete(input: any, context: QueryContext): any {
-    const user: any = context.user ?? null;
-    if (((user != null) && input?.published)) { return true; }
-
-    if (((input?.owner?.id ?? null) == (user?.id ?? null))) { return true; }
-
-    return false;
-}
-
 function UserFollower_read(context: QueryContext, db: CrudContract): any {
     return { OR: [] };
 }
@@ -1765,6 +1670,101 @@ function Story_delete(context: QueryContext, db: CrudContract): any {
 function $check_Story_delete(input: any, context: QueryContext): any {
     const user: any = context.user ?? null;
     if (((user != null) && input?.published)) { return true; }
+
+    return false;
+}
+
+function File_read(context: QueryContext, db: CrudContract): any {
+    const user: any = context.user ?? null;
+    return {
+        AND: [{ NOT: { isDeleted: { not: { equals: 0 } } } }, {
+            OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, (user == null) ? { OR: [] } : {
+                owner: {
+                    is:
+                        { id: user.id }
+                }
+            }, { groups: { some: { Users: { some: ((user?.id ?? null) == null) ? { OR: [] } : { id: { equals: (user?.id ?? null) } } } } } }, { AND: [{ isPublic: true }, { org: { Members: { some: ((user?.id ?? null) == null) ? { OR: [] } : { id: { equals: (user?.id ?? null) } } } } }] }]
+        }]
+    };
+}
+
+function $check_File_read(input: any, context: QueryContext): any {
+    const user: any = context.user ?? null;
+    if ((input?.isDeleted != 0)) { return false; }
+
+    if (((user != null) && input?.published)) { return true; }
+
+    if (((input?.owner?.id ?? null) == (user?.id ?? null))) { return true; }
+
+    if ((((input?.groups)?.some((_item: any) => (((_item?.Users)?.some((_item: any) => (_item?.id == user?.id))) ?? false))) ?? false)) { return true; }
+
+    if ((input?.isPublic && (((input?.org?.Members)?.some((_item: any) => (_item?.id == user?.id))) ?? false))) { return true; }
+
+    return false;
+}
+
+function File_create(context: QueryContext, db: CrudContract): any {
+    const user: any = context.user ?? null;
+    return {
+        OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, {
+            AND: [(user == null) ? { OR: [] } : {
+                owner: {
+                    is:
+                        { id: user.id }
+                }
+            }, { org: { Members: { some: ((user?.id ?? null) == null) ? { OR: [] } : { id: { equals: (user?.id ?? null) } } } } }]
+        }]
+    };
+}
+
+function $check_File_create(input: any, context: QueryContext): any {
+    const user: any = context.user ?? null;
+    if (((user != null) && input?.published)) { return true; }
+
+    if ((((input?.owner?.id ?? null) == (user?.id ?? null)) && (((input?.org?.Members)?.some((_item: any) => (_item?.id == user?.id))) ?? false))) { return true; }
+
+    return false;
+}
+
+function File_update(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_File_update(input: any, context: QueryContext): any {
+    return false;
+}
+
+function File_postUpdate(context: QueryContext, db: CrudContract): any {
+    const user: any = context.user ?? null;
+    return { OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, { AND: [{ AND: [((context.preValue?.owner?.id ?? null) == (user?.id ?? null)) ? { AND: [] } : { OR: [] }, ((((context.preValue?.org?.Members ?? null))?.some((_item: any) => (_item?.id == (user?.id ?? null)))) ?? false) ? { AND: [] } : { OR: [] }] }, { owner: { is: { id: context.preValue?.owner.id } } }] }] };
+}
+
+function $check_File_postUpdate(input: any, context: QueryContext): any {
+    const user: any = context.user ?? null;
+    if (((user != null) && context.preValue?.published)) { return true; }
+
+    if (((((context.preValue?.owner?.id ?? null) == (user?.id ?? null)) && (((context.preValue?.org?.Members)?.some((_item: any) => (_item?.id == user?.id))) ?? false)) && ((input.owner?.id ?? null) == (context.preValue?.owner?.id ?? null)))) { return true; }
+
+    return true;
+}
+
+function File_delete(context: QueryContext, db: CrudContract): any {
+    const user: any = context.user ?? null;
+    return {
+        OR: [{ AND: [(user != null) ? { AND: [] } : { OR: [] }, { published: true }] }, (user == null) ? { OR: [] } : {
+            owner: {
+                is:
+                    { id: user.id }
+            }
+        }]
+    };
+}
+
+function $check_File_delete(input: any, context: QueryContext): any {
+    const user: any = context.user ?? null;
+    if (((user != null) && input?.published)) { return true; }
+
+    if (((input?.owner?.id ?? null) == (user?.id ?? null))) { return true; }
 
     return false;
 }

@@ -114,11 +114,6 @@ export type Category = Prisma.CategoryModel
  */
 export type Comment = Prisma.CommentModel
 /**
- * Model File
- * 
- */
-export type File = Prisma.FileModel
-/**
  * Model UserFollower
  * 
  */
@@ -133,6 +128,11 @@ export type PostLike = Prisma.PostLikeModel
  * 
  */
 export type Story = Prisma.StoryModel
+/**
+ * Model File
+ * 
+ */
+export type File = Prisma.FileModel
 /**
  * Model Image
  * 

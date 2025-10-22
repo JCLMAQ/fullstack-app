@@ -5,6 +5,7 @@ onlyBuiltDependencies:
   - '@swc/core'
   - '@tailwindcss/oxide'
   - esbuild
+  - lmdb
   - nx
   - oxc-resolver
   - prisma

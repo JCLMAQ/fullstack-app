@@ -62,10 +62,10 @@ export const ModelName = {
   Post: 'Post',
   Category: 'Category',
   Comment: 'Comment',
-  File: 'File',
   UserFollower: 'UserFollower',
   PostLike: 'PostLike',
   Story: 'Story',
+  File: 'File',
   Image: 'Image',
   ConfigParam: 'ConfigParam',
   OrgEmailUseTo: 'OrgEmailUseTo',
@@ -163,12 +163,12 @@ export const UserScalarFieldEnum = {
   Gender: 'Gender',
   social: 'social',
   Language: 'Language',
-  photoUrl: 'photoUrl',
-  avatarFileId: 'avatarFileId',
   dob: 'dob',
   address: 'address',
   isValidated: 'isValidated',
   isSuspended: 'isSuspended',
+  photoUrl: 'photoUrl',
+  avatarFileId: 'avatarFileId',
   managerId: 'managerId',
   Roles: 'Roles',
   Permissions: 'Permissions',
@@ -348,28 +348,6 @@ export const CommentScalarFieldEnum = {
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
-export const FileScalarFieldEnum = {
-  id: 'id',
-  numSeq: 'numSeq',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  published: 'published',
-  isDeleted: 'isDeleted',
-  isDeletedDT: 'isDeletedDT',
-  isPublic: 'isPublic',
-  ownerId: 'ownerId',
-  orgId: 'orgId',
-  name: 'name',
-  storageName: 'storageName',
-  type: 'type',
-  data: 'data',
-  size: 'size',
-  isArchived: 'isArchived'
-} as const
-
-export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]
-
-
 export const UserFollowerScalarFieldEnum = {
   user_id: 'user_id',
   follower_id: 'follower_id',
@@ -404,6 +382,28 @@ export const StoryScalarFieldEnum = {
 } as const
 
 export type StoryScalarFieldEnum = (typeof StoryScalarFieldEnum)[keyof typeof StoryScalarFieldEnum]
+
+
+export const FileScalarFieldEnum = {
+  id: 'id',
+  numSeq: 'numSeq',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  published: 'published',
+  isDeleted: 'isDeleted',
+  isDeletedDT: 'isDeletedDT',
+  isPublic: 'isPublic',
+  ownerId: 'ownerId',
+  orgId: 'orgId',
+  name: 'name',
+  storageName: 'storageName',
+  type: 'type',
+  data: 'data',
+  size: 'size',
+  isArchived: 'isArchived'
+} as const
+
+export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]
 
 
 export const ImageScalarFieldEnum = {

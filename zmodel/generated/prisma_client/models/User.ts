@@ -51,11 +51,11 @@ export type UserMinAggregateOutputType = {
   nickName: string | null
   Gender: $Enums.Gender | null
   Language: $Enums.Language | null
-  photoUrl: string | null
-  avatarFileId: string | null
   dob: Date | null
   isValidated: Date | null
   isSuspended: Date | null
+  photoUrl: string | null
+  avatarFileId: string | null
   managerId: string | null
   isTfaEnable: boolean | null
   tfaSecret: string | null
@@ -78,11 +78,11 @@ export type UserMaxAggregateOutputType = {
   nickName: string | null
   Gender: $Enums.Gender | null
   Language: $Enums.Language | null
-  photoUrl: string | null
-  avatarFileId: string | null
   dob: Date | null
   isValidated: Date | null
   isSuspended: Date | null
+  photoUrl: string | null
+  avatarFileId: string | null
   managerId: string | null
   isTfaEnable: boolean | null
   tfaSecret: string | null
@@ -106,12 +106,12 @@ export type UserCountAggregateOutputType = {
   Gender: number
   social: number
   Language: number
-  photoUrl: number
-  avatarFileId: number
   dob: number
   address: number
   isValidated: number
   isSuspended: number
+  photoUrl: number
+  avatarFileId: number
   managerId: number
   Roles: number
   Permissions: number
@@ -148,11 +148,11 @@ export type UserMinAggregateInputType = {
   nickName?: true
   Gender?: true
   Language?: true
-  photoUrl?: true
-  avatarFileId?: true
   dob?: true
   isValidated?: true
   isSuspended?: true
+  photoUrl?: true
+  avatarFileId?: true
   managerId?: true
   isTfaEnable?: true
   tfaSecret?: true
@@ -175,11 +175,11 @@ export type UserMaxAggregateInputType = {
   nickName?: true
   Gender?: true
   Language?: true
-  photoUrl?: true
-  avatarFileId?: true
   dob?: true
   isValidated?: true
   isSuspended?: true
+  photoUrl?: true
+  avatarFileId?: true
   managerId?: true
   isTfaEnable?: true
   tfaSecret?: true
@@ -203,12 +203,12 @@ export type UserCountAggregateInputType = {
   Gender?: true
   social?: true
   Language?: true
-  photoUrl?: true
-  avatarFileId?: true
   dob?: true
   address?: true
   isValidated?: true
   isSuspended?: true
+  photoUrl?: true
+  avatarFileId?: true
   managerId?: true
   Roles?: true
   Permissions?: true
@@ -321,12 +321,12 @@ export type UserGroupByOutputType = {
   Gender: $Enums.Gender | null
   social: runtime.JsonValue | null
   Language: $Enums.Language | null
-  photoUrl: string | null
-  avatarFileId: string | null
   dob: Date | null
   address: runtime.JsonValue | null
   isValidated: Date | null
   isSuspended: Date | null
+  photoUrl: string | null
+  avatarFileId: string | null
   managerId: string | null
   Roles: $Enums.Role[]
   Permissions: $Enums.PermissionClaim[]
@@ -375,12 +375,12 @@ export type UserWhereInput = {
   Gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   social?: Prisma.JsonNullableFilter<"User">
   Language?: Prisma.EnumLanguageNullableFilter<"User"> | $Enums.Language | null
-  photoUrl?: Prisma.StringNullableFilter<"User"> | string | null
-  avatarFileId?: Prisma.StringNullableFilter<"User"> | string | null
   dob?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   address?: Prisma.JsonNullableFilter<"User">
   isValidated?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   isSuspended?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  photoUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  avatarFileId?: Prisma.StringNullableFilter<"User"> | string | null
   managerId?: Prisma.StringNullableFilter<"User"> | string | null
   Roles?: Prisma.EnumRoleNullableListFilter<"User">
   Permissions?: Prisma.EnumPermissionClaimNullableListFilter<"User">
@@ -427,12 +427,12 @@ export type UserOrderByWithRelationInput = {
   Gender?: Prisma.SortOrderInput | Prisma.SortOrder
   social?: Prisma.SortOrderInput | Prisma.SortOrder
   Language?: Prisma.SortOrderInput | Prisma.SortOrder
-  photoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  avatarFileId?: Prisma.SortOrderInput | Prisma.SortOrder
   dob?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   isValidated?: Prisma.SortOrderInput | Prisma.SortOrder
   isSuspended?: Prisma.SortOrderInput | Prisma.SortOrder
+  photoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarFileId?: Prisma.SortOrderInput | Prisma.SortOrder
   managerId?: Prisma.SortOrderInput | Prisma.SortOrder
   Roles?: Prisma.SortOrder
   Permissions?: Prisma.SortOrder
@@ -483,11 +483,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   Gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   social?: Prisma.JsonNullableFilter<"User">
   Language?: Prisma.EnumLanguageNullableFilter<"User"> | $Enums.Language | null
-  photoUrl?: Prisma.StringNullableFilter<"User"> | string | null
   dob?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   address?: Prisma.JsonNullableFilter<"User">
   isValidated?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   isSuspended?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  photoUrl?: Prisma.StringNullableFilter<"User"> | string | null
   managerId?: Prisma.StringNullableFilter<"User"> | string | null
   Roles?: Prisma.EnumRoleNullableListFilter<"User">
   Permissions?: Prisma.EnumPermissionClaimNullableListFilter<"User">
@@ -534,12 +534,12 @@ export type UserOrderByWithAggregationInput = {
   Gender?: Prisma.SortOrderInput | Prisma.SortOrder
   social?: Prisma.SortOrderInput | Prisma.SortOrder
   Language?: Prisma.SortOrderInput | Prisma.SortOrder
-  photoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  avatarFileId?: Prisma.SortOrderInput | Prisma.SortOrder
   dob?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   isValidated?: Prisma.SortOrderInput | Prisma.SortOrder
   isSuspended?: Prisma.SortOrderInput | Prisma.SortOrder
+  photoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarFileId?: Prisma.SortOrderInput | Prisma.SortOrder
   managerId?: Prisma.SortOrderInput | Prisma.SortOrder
   Roles?: Prisma.SortOrder
   Permissions?: Prisma.SortOrder
@@ -573,12 +573,12 @@ export type UserScalarWhereWithAggregatesInput = {
   Gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
   social?: Prisma.JsonNullableWithAggregatesFilter<"User">
   Language?: Prisma.EnumLanguageNullableWithAggregatesFilter<"User"> | $Enums.Language | null
-  photoUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  avatarFileId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   dob?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   address?: Prisma.JsonNullableWithAggregatesFilter<"User">
   isValidated?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   isSuspended?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  photoUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  avatarFileId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   managerId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   Roles?: Prisma.EnumRoleNullableListFilter<"User">
   Permissions?: Prisma.EnumPermissionClaimNullableListFilter<"User">
@@ -604,11 +604,11 @@ export type UserCreateInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -654,12 +654,12 @@ export type UserUncheckedCreateInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -704,11 +704,11 @@ export type UserUpdateInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -754,12 +754,12 @@ export type UserUncheckedUpdateInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -804,12 +804,12 @@ export type UserCreateManyInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -835,11 +835,11 @@ export type UserUpdateManyMutationInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -864,12 +864,12 @@ export type UserUncheckedUpdateManyInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -926,12 +926,12 @@ export type UserCountOrderByAggregateInput = {
   Gender?: Prisma.SortOrder
   social?: Prisma.SortOrder
   Language?: Prisma.SortOrder
-  photoUrl?: Prisma.SortOrder
-  avatarFileId?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   address?: Prisma.SortOrder
   isValidated?: Prisma.SortOrder
   isSuspended?: Prisma.SortOrder
+  photoUrl?: Prisma.SortOrder
+  avatarFileId?: Prisma.SortOrder
   managerId?: Prisma.SortOrder
   Roles?: Prisma.SortOrder
   Permissions?: Prisma.SortOrder
@@ -961,11 +961,11 @@ export type UserMaxOrderByAggregateInput = {
   nickName?: Prisma.SortOrder
   Gender?: Prisma.SortOrder
   Language?: Prisma.SortOrder
-  photoUrl?: Prisma.SortOrder
-  avatarFileId?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   isValidated?: Prisma.SortOrder
   isSuspended?: Prisma.SortOrder
+  photoUrl?: Prisma.SortOrder
+  avatarFileId?: Prisma.SortOrder
   managerId?: Prisma.SortOrder
   isTfaEnable?: Prisma.SortOrder
   tfaSecret?: Prisma.SortOrder
@@ -988,11 +988,11 @@ export type UserMinOrderByAggregateInput = {
   nickName?: Prisma.SortOrder
   Gender?: Prisma.SortOrder
   Language?: Prisma.SortOrder
-  photoUrl?: Prisma.SortOrder
-  avatarFileId?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   isValidated?: Prisma.SortOrder
   isSuspended?: Prisma.SortOrder
+  photoUrl?: Prisma.SortOrder
+  avatarFileId?: Prisma.SortOrder
   managerId?: Prisma.SortOrder
   isTfaEnable?: Prisma.SortOrder
   tfaSecret?: Prisma.SortOrder
@@ -1309,52 +1309,6 @@ export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
 }
 
-export type UserCreateNestedOneWithoutFilesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutFilesInput, Prisma.UserUncheckedCreateWithoutFilesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFilesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserCreateNestedOneWithoutAvatarFileInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUncheckedCreateNestedOneWithoutAvatarFileInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutFilesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutFilesInput, Prisma.UserUncheckedCreateWithoutFilesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFilesInput
-  upsert?: Prisma.UserUpsertWithoutFilesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFilesInput, Prisma.UserUpdateWithoutFilesInput>, Prisma.UserUncheckedUpdateWithoutFilesInput>
-}
-
-export type UserUpdateOneWithoutAvatarFileNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
-  upsert?: Prisma.UserUpsertWithoutAvatarFileInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAvatarFileInput, Prisma.UserUpdateWithoutAvatarFileInput>, Prisma.UserUncheckedUpdateWithoutAvatarFileInput>
-}
-
-export type UserUncheckedUpdateOneWithoutAvatarFileNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
-  upsert?: Prisma.UserUpsertWithoutAvatarFileInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAvatarFileInput, Prisma.UserUpdateWithoutAvatarFileInput>, Prisma.UserUncheckedUpdateWithoutAvatarFileInput>
-}
-
 export type UserCreateNestedOneWithoutFollowersInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutFollowersInput, Prisma.UserUncheckedCreateWithoutFollowersInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutFollowersInput
@@ -1409,6 +1363,52 @@ export type UserUpdateOneRequiredWithoutStoriesNestedInput = {
   upsert?: Prisma.UserUpsertWithoutStoriesInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStoriesInput, Prisma.UserUpdateWithoutStoriesInput>, Prisma.UserUncheckedUpdateWithoutStoriesInput>
+}
+
+export type UserCreateNestedOneWithoutFilesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFilesInput, Prisma.UserUncheckedCreateWithoutFilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFilesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutAvatarFileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUncheckedCreateNestedOneWithoutAvatarFileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFilesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFilesInput, Prisma.UserUncheckedCreateWithoutFilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFilesInput
+  upsert?: Prisma.UserUpsertWithoutFilesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFilesInput, Prisma.UserUpdateWithoutFilesInput>, Prisma.UserUncheckedUpdateWithoutFilesInput>
+}
+
+export type UserUpdateOneWithoutAvatarFileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
+  upsert?: Prisma.UserUpsertWithoutAvatarFileInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAvatarFileInput, Prisma.UserUpdateWithoutAvatarFileInput>, Prisma.UserUncheckedUpdateWithoutAvatarFileInput>
+}
+
+export type UserUncheckedUpdateOneWithoutAvatarFileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarFileInput, Prisma.UserUncheckedCreateWithoutAvatarFileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarFileInput
+  upsert?: Prisma.UserUpsertWithoutAvatarFileInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAvatarFileInput, Prisma.UserUpdateWithoutAvatarFileInput>, Prisma.UserUncheckedUpdateWithoutAvatarFileInput>
 }
 
 export type UserCreateNestedOneWithoutApiKeysInput = {
@@ -1470,11 +1470,11 @@ export type UserCreateWithoutOrgsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -1519,12 +1519,12 @@ export type UserUncheckedCreateWithoutOrgsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -1592,12 +1592,12 @@ export type UserScalarWhereInput = {
   Gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   social?: Prisma.JsonNullableFilter<"User">
   Language?: Prisma.EnumLanguageNullableFilter<"User"> | $Enums.Language | null
-  photoUrl?: Prisma.StringNullableFilter<"User"> | string | null
-  avatarFileId?: Prisma.StringNullableFilter<"User"> | string | null
   dob?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   address?: Prisma.JsonNullableFilter<"User">
   isValidated?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   isSuspended?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  photoUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  avatarFileId?: Prisma.StringNullableFilter<"User"> | string | null
   managerId?: Prisma.StringNullableFilter<"User"> | string | null
   Roles?: Prisma.EnumRoleNullableListFilter<"User">
   Permissions?: Prisma.EnumPermissionClaimNullableListFilter<"User">
@@ -1623,11 +1623,11 @@ export type UserCreateWithoutTeamInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -1672,12 +1672,12 @@ export type UserUncheckedCreateWithoutTeamInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -1726,11 +1726,11 @@ export type UserCreateWithoutManagerInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -1775,12 +1775,12 @@ export type UserUncheckedCreateWithoutManagerInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -1845,11 +1845,11 @@ export type UserUpdateWithoutTeamInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1894,12 +1894,12 @@ export type UserUncheckedUpdateWithoutTeamInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -1959,11 +1959,11 @@ export type UserCreateWithoutUserSecretInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -2008,12 +2008,12 @@ export type UserUncheckedCreateWithoutUserSecretInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -2073,11 +2073,11 @@ export type UserUpdateWithoutUserSecretInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2122,12 +2122,12 @@ export type UserUncheckedUpdateWithoutUserSecretInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -2171,11 +2171,11 @@ export type UserCreateWithoutProfilesInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -2220,12 +2220,12 @@ export type UserUncheckedCreateWithoutProfilesInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -2290,11 +2290,11 @@ export type UserCreateWithoutGroupsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -2339,12 +2339,12 @@ export type UserUncheckedCreateWithoutGroupsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -2409,11 +2409,11 @@ export type UserCreateWithoutTodosAuthorInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -2458,12 +2458,12 @@ export type UserUncheckedCreateWithoutTodosAuthorInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -2523,11 +2523,11 @@ export type UserUpdateWithoutTodosAuthorInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2572,12 +2572,12 @@ export type UserUncheckedUpdateWithoutTodosAuthorInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -2621,11 +2621,11 @@ export type UserCreateWithoutTodoInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -2670,12 +2670,12 @@ export type UserUncheckedCreateWithoutTodoInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -2735,11 +2735,11 @@ export type UserUpdateWithoutTodoInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2784,12 +2784,12 @@ export type UserUncheckedUpdateWithoutTodoInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -2833,11 +2833,11 @@ export type UserCreateWithoutTasksAuthorInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -2882,12 +2882,12 @@ export type UserUncheckedCreateWithoutTasksAuthorInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -2947,11 +2947,11 @@ export type UserUpdateWithoutTasksAuthorInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2996,12 +2996,12 @@ export type UserUncheckedUpdateWithoutTasksAuthorInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -3045,11 +3045,11 @@ export type UserCreateWithoutTasksInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -3094,12 +3094,12 @@ export type UserUncheckedCreateWithoutTasksInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -3159,11 +3159,11 @@ export type UserUpdateWithoutTasksInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3208,12 +3208,12 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -3257,11 +3257,11 @@ export type UserCreateWithoutPostsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -3306,12 +3306,12 @@ export type UserUncheckedCreateWithoutPostsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -3371,11 +3371,11 @@ export type UserUpdateWithoutPostsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3420,12 +3420,12 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -3469,11 +3469,11 @@ export type UserCreateWithoutCommentsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -3518,12 +3518,12 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -3583,11 +3583,11 @@ export type UserUpdateWithoutCommentsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3632,12 +3632,12 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -3650,6 +3650,854 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
   Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
   Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
+  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
+  followers?: Prisma.UserFollowerUncheckedUpdateManyWithoutUserNestedInput
+  followings?: Prisma.UserFollowerUncheckedUpdateManyWithoutFollowerNestedInput
+  posts_liked?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutFollowersInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
+  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
+  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
+  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  Stories?: Prisma.StoryCreateNestedManyWithoutUserInput
+  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
+  followings?: Prisma.UserFollowerCreateNestedManyWithoutFollowerInput
+  posts_liked?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutFollowersInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
+  managerId?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
+  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  Stories?: Prisma.StoryUncheckedCreateNestedManyWithoutUserInput
+  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
+  followings?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutFollowerInput
+  posts_liked?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutFollowersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollowersInput, Prisma.UserUncheckedCreateWithoutFollowersInput>
+}
+
+export type UserCreateWithoutFollowingsInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
+  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
+  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
+  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  Stories?: Prisma.StoryCreateNestedManyWithoutUserInput
+  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
+  followers?: Prisma.UserFollowerCreateNestedManyWithoutUserInput
+  posts_liked?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutFollowingsInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
+  managerId?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
+  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  Stories?: Prisma.StoryUncheckedCreateNestedManyWithoutUserInput
+  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
+  followers?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutUserInput
+  posts_liked?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutFollowingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollowingsInput, Prisma.UserUncheckedCreateWithoutFollowingsInput>
+}
+
+export type UserUpsertWithoutFollowersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFollowersInput, Prisma.UserUncheckedUpdateWithoutFollowersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollowersInput, Prisma.UserUncheckedCreateWithoutFollowersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFollowersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFollowersInput, Prisma.UserUncheckedUpdateWithoutFollowersInput>
+}
+
+export type UserUpdateWithoutFollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
+  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
+  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
+  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  Stories?: Prisma.StoryUpdateManyWithoutUserNestedInput
+  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
+  followings?: Prisma.UserFollowerUpdateManyWithoutFollowerNestedInput
+  posts_liked?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
+  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+  Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
+  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
+  followings?: Prisma.UserFollowerUncheckedUpdateManyWithoutFollowerNestedInput
+  posts_liked?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutFollowingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFollowingsInput, Prisma.UserUncheckedUpdateWithoutFollowingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollowingsInput, Prisma.UserUncheckedCreateWithoutFollowingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFollowingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFollowingsInput, Prisma.UserUncheckedUpdateWithoutFollowingsInput>
+}
+
+export type UserUpdateWithoutFollowingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
+  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
+  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
+  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  Stories?: Prisma.StoryUpdateManyWithoutUserNestedInput
+  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
+  followers?: Prisma.UserFollowerUpdateManyWithoutUserNestedInput
+  posts_liked?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFollowingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
+  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+  Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
+  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
+  followers?: Prisma.UserFollowerUncheckedUpdateManyWithoutUserNestedInput
+  posts_liked?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPosts_likedInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
+  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
+  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
+  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  Stories?: Prisma.StoryCreateNestedManyWithoutUserInput
+  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
+  followers?: Prisma.UserFollowerCreateNestedManyWithoutUserInput
+  followings?: Prisma.UserFollowerCreateNestedManyWithoutFollowerInput
+}
+
+export type UserUncheckedCreateWithoutPosts_likedInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
+  managerId?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
+  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  Stories?: Prisma.StoryUncheckedCreateNestedManyWithoutUserInput
+  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
+  followers?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutUserInput
+  followings?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutFollowerInput
+}
+
+export type UserCreateOrConnectWithoutPosts_likedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPosts_likedInput, Prisma.UserUncheckedCreateWithoutPosts_likedInput>
+}
+
+export type UserUpsertWithoutPosts_likedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPosts_likedInput, Prisma.UserUncheckedUpdateWithoutPosts_likedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPosts_likedInput, Prisma.UserUncheckedCreateWithoutPosts_likedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPosts_likedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPosts_likedInput, Prisma.UserUncheckedUpdateWithoutPosts_likedInput>
+}
+
+export type UserUpdateWithoutPosts_likedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
+  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
+  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
+  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  Stories?: Prisma.StoryUpdateManyWithoutUserNestedInput
+  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
+  followers?: Prisma.UserFollowerUpdateManyWithoutUserNestedInput
+  followings?: Prisma.UserFollowerUpdateManyWithoutFollowerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPosts_likedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
+  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+  Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
+  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
+  followers?: Prisma.UserFollowerUncheckedUpdateManyWithoutUserNestedInput
+  followings?: Prisma.UserFollowerUncheckedUpdateManyWithoutFollowerNestedInput
+}
+
+export type UserCreateWithoutStoriesInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
+  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
+  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
+  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
+  followers?: Prisma.UserFollowerCreateNestedManyWithoutUserInput
+  followings?: Prisma.UserFollowerCreateNestedManyWithoutFollowerInput
+  posts_liked?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutStoriesInput = {
+  id?: string
+  numSeq?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  published?: boolean | null
+  isPublic?: boolean | null
+  isDeleted?: number | null
+  isDeletedDT?: Date | string | null
+  email: string
+  lastName?: string | null
+  firstName?: string | null
+  title?: $Enums.Title | null
+  nickName?: string | null
+  Gender?: $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: $Enums.Language | null
+  dob?: Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Date | string | null
+  isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
+  managerId?: string | null
+  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: boolean
+  tfaSecret?: string | null
+  passWordFaker?: string | null
+  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
+  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
+  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
+  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
+  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
+  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
+  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
+  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
+  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
+  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
+  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
+  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
+  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
+  followers?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutUserInput
+  followings?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutFollowerInput
+  posts_liked?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutStoriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
+}
+
+export type UserUpsertWithoutStoriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutStoriesInput, Prisma.UserUncheckedUpdateWithoutStoriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutStoriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutStoriesInput, Prisma.UserUncheckedUpdateWithoutStoriesInput>
+}
+
+export type UserUpdateWithoutStoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
+  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
+  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
+  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
+  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
+  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
+  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
+  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
+  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
+  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
+  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
+  followers?: Prisma.UserFollowerUpdateManyWithoutUserNestedInput
+  followings?: Prisma.UserFollowerUpdateManyWithoutFollowerNestedInput
+  posts_liked?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutStoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
+  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
+  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
+  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
+  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
+  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
+  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
+  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
+  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
   TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
   Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
@@ -3681,11 +4529,11 @@ export type UserCreateWithoutFilesInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -3730,12 +4578,12 @@ export type UserUncheckedCreateWithoutFilesInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -3784,11 +4632,11 @@ export type UserCreateWithoutAvatarFileInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -3833,11 +4681,11 @@ export type UserUncheckedCreateWithoutAvatarFileInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -3898,11 +4746,11 @@ export type UserUpdateWithoutFilesInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3947,12 +4795,12 @@ export type UserUncheckedUpdateWithoutFilesInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -4007,11 +4855,11 @@ export type UserUpdateWithoutAvatarFileInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -4056,11 +4904,11 @@ export type UserUncheckedUpdateWithoutAvatarFileInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -4074,854 +4922,6 @@ export type UserUncheckedUpdateWithoutAvatarFileInput = {
   Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
   Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
-  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
-  followers?: Prisma.UserFollowerUncheckedUpdateManyWithoutUserNestedInput
-  followings?: Prisma.UserFollowerUncheckedUpdateManyWithoutFollowerNestedInput
-  posts_liked?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutFollowersInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
-  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
-  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
-  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
-  Stories?: Prisma.StoryCreateNestedManyWithoutUserInput
-  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
-  followings?: Prisma.UserFollowerCreateNestedManyWithoutFollowerInput
-  posts_liked?: Prisma.PostLikeCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutFollowersInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  managerId?: string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
-  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
-  Stories?: Prisma.StoryUncheckedCreateNestedManyWithoutUserInput
-  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
-  followings?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutFollowerInput
-  posts_liked?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutFollowersInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutFollowersInput, Prisma.UserUncheckedCreateWithoutFollowersInput>
-}
-
-export type UserCreateWithoutFollowingsInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
-  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
-  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
-  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
-  Stories?: Prisma.StoryCreateNestedManyWithoutUserInput
-  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
-  followers?: Prisma.UserFollowerCreateNestedManyWithoutUserInput
-  posts_liked?: Prisma.PostLikeCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutFollowingsInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  managerId?: string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
-  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
-  Stories?: Prisma.StoryUncheckedCreateNestedManyWithoutUserInput
-  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
-  followers?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutUserInput
-  posts_liked?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutFollowingsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutFollowingsInput, Prisma.UserUncheckedCreateWithoutFollowingsInput>
-}
-
-export type UserUpsertWithoutFollowersInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutFollowersInput, Prisma.UserUncheckedUpdateWithoutFollowersInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutFollowersInput, Prisma.UserUncheckedCreateWithoutFollowersInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutFollowersInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutFollowersInput, Prisma.UserUncheckedUpdateWithoutFollowersInput>
-}
-
-export type UserUpdateWithoutFollowersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
-  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
-  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
-  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
-  Stories?: Prisma.StoryUpdateManyWithoutUserNestedInput
-  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
-  followings?: Prisma.UserFollowerUpdateManyWithoutFollowerNestedInput
-  posts_liked?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutFollowersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
-  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
-  Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
-  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
-  followings?: Prisma.UserFollowerUncheckedUpdateManyWithoutFollowerNestedInput
-  posts_liked?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserUpsertWithoutFollowingsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutFollowingsInput, Prisma.UserUncheckedUpdateWithoutFollowingsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutFollowingsInput, Prisma.UserUncheckedCreateWithoutFollowingsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutFollowingsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutFollowingsInput, Prisma.UserUncheckedUpdateWithoutFollowingsInput>
-}
-
-export type UserUpdateWithoutFollowingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
-  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
-  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
-  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
-  Stories?: Prisma.StoryUpdateManyWithoutUserNestedInput
-  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
-  followers?: Prisma.UserFollowerUpdateManyWithoutUserNestedInput
-  posts_liked?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutFollowingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
-  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
-  Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
-  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
-  followers?: Prisma.UserFollowerUncheckedUpdateManyWithoutUserNestedInput
-  posts_liked?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutPosts_likedInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
-  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
-  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
-  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
-  Stories?: Prisma.StoryCreateNestedManyWithoutUserInput
-  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
-  followers?: Prisma.UserFollowerCreateNestedManyWithoutUserInput
-  followings?: Prisma.UserFollowerCreateNestedManyWithoutFollowerInput
-}
-
-export type UserUncheckedCreateWithoutPosts_likedInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  managerId?: string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
-  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
-  Stories?: Prisma.StoryUncheckedCreateNestedManyWithoutUserInput
-  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
-  followers?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutUserInput
-  followings?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutFollowerInput
-}
-
-export type UserCreateOrConnectWithoutPosts_likedInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPosts_likedInput, Prisma.UserUncheckedCreateWithoutPosts_likedInput>
-}
-
-export type UserUpsertWithoutPosts_likedInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPosts_likedInput, Prisma.UserUncheckedUpdateWithoutPosts_likedInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPosts_likedInput, Prisma.UserUncheckedCreateWithoutPosts_likedInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutPosts_likedInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPosts_likedInput, Prisma.UserUncheckedUpdateWithoutPosts_likedInput>
-}
-
-export type UserUpdateWithoutPosts_likedInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
-  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
-  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
-  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
-  Stories?: Prisma.StoryUpdateManyWithoutUserNestedInput
-  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
-  followers?: Prisma.UserFollowerUpdateManyWithoutUserNestedInput
-  followings?: Prisma.UserFollowerUpdateManyWithoutFollowerNestedInput
-}
-
-export type UserUncheckedUpdateWithoutPosts_likedInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
-  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
-  Stories?: Prisma.StoryUncheckedUpdateManyWithoutUserNestedInput
-  Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUncheckedUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUncheckedUpdateOneWithoutUserNestedInput
-  followers?: Prisma.UserFollowerUncheckedUpdateManyWithoutUserNestedInput
-  followings?: Prisma.UserFollowerUncheckedUpdateManyWithoutFollowerNestedInput
-}
-
-export type UserCreateWithoutStoriesInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  avatarFile?: Prisma.FileCreateNestedOneWithoutUserAvatarInput
-  Orgs?: Prisma.OrganizationCreateNestedManyWithoutMembersInput
-  manager?: Prisma.UserCreateNestedOneWithoutTeamInput
-  Team?: Prisma.UserCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
-  Todo?: Prisma.UserTodoLinkCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretCreateNestedOneWithoutUserInput
-  followers?: Prisma.UserFollowerCreateNestedManyWithoutUserInput
-  followings?: Prisma.UserFollowerCreateNestedManyWithoutFollowerInput
-  posts_liked?: Prisma.PostLikeCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutStoriesInput = {
-  id?: string
-  numSeq?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  published?: boolean | null
-  isPublic?: boolean | null
-  isDeleted?: number | null
-  isDeletedDT?: Date | string | null
-  email: string
-  lastName?: string | null
-  firstName?: string | null
-  title?: $Enums.Title | null
-  nickName?: string | null
-  Gender?: $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
-  dob?: Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Date | string | null
-  isSuspended?: Date | string | null
-  managerId?: string | null
-  Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: boolean
-  tfaSecret?: string | null
-  passWordFaker?: string | null
-  Orgs?: Prisma.OrganizationUncheckedCreateNestedManyWithoutMembersInput
-  Team?: Prisma.UserUncheckedCreateNestedManyWithoutManagerInput
-  Profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutUsersInput
-  Groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUsersInput
-  Posts?: Prisma.PostUncheckedCreateNestedManyWithoutOwnerInput
-  Comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
-  Todo?: Prisma.UserTodoLinkUncheckedCreateNestedManyWithoutUserInput
-  TodosAuthor?: Prisma.TodoUncheckedCreateNestedManyWithoutOwnerInput
-  Tasks?: Prisma.UserTaskLinkUncheckedCreateNestedManyWithoutUserInput
-  TasksAuthor?: Prisma.TaskUncheckedCreateNestedManyWithoutOwnerInput
-  Files?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
-  ChangesLogs?: Prisma.ChangesTrackingUncheckedCreateNestedManyWithoutModifiedByInput
-  Tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
-  ApiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
-  userSecret?: Prisma.UserSecretUncheckedCreateNestedOneWithoutUserInput
-  followers?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutUserInput
-  followings?: Prisma.UserFollowerUncheckedCreateNestedManyWithoutFollowerInput
-  posts_liked?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutStoriesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
-}
-
-export type UserUpsertWithoutStoriesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutStoriesInput, Prisma.UserUncheckedUpdateWithoutStoriesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutStoriesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutStoriesInput, Prisma.UserUncheckedUpdateWithoutStoriesInput>
-}
-
-export type UserUpdateWithoutStoriesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFile?: Prisma.FileUpdateOneWithoutUserAvatarNestedInput
-  Orgs?: Prisma.OrganizationUpdateManyWithoutMembersNestedInput
-  manager?: Prisma.UserUpdateOneWithoutTeamNestedInput
-  Team?: Prisma.UserUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
-  Todo?: Prisma.UserTodoLinkUpdateManyWithoutUserNestedInput
-  TodosAuthor?: Prisma.TodoUpdateManyWithoutOwnerNestedInput
-  Tasks?: Prisma.UserTaskLinkUpdateManyWithoutUserNestedInput
-  TasksAuthor?: Prisma.TaskUpdateManyWithoutOwnerNestedInput
-  Files?: Prisma.FileUpdateManyWithoutOwnerNestedInput
-  ChangesLogs?: Prisma.ChangesTrackingUpdateManyWithoutModifiedByNestedInput
-  Tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
-  ApiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
-  userSecret?: Prisma.UserSecretUpdateOneWithoutUserNestedInput
-  followers?: Prisma.UserFollowerUpdateManyWithoutUserNestedInput
-  followings?: Prisma.UserFollowerUpdateManyWithoutFollowerNestedInput
-  posts_liked?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutStoriesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numSeq?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  published?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isPublic?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  isDeleted?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableEnumTitleFieldUpdateOperationsInput | $Enums.Title | null
-  nickName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
-  Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
-  isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tfaSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passWordFaker?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Orgs?: Prisma.OrganizationUncheckedUpdateManyWithoutMembersNestedInput
-  Team?: Prisma.UserUncheckedUpdateManyWithoutManagerNestedInput
-  Profiles?: Prisma.ProfileUncheckedUpdateManyWithoutUsersNestedInput
-  Groups?: Prisma.GroupUncheckedUpdateManyWithoutUsersNestedInput
-  Posts?: Prisma.PostUncheckedUpdateManyWithoutOwnerNestedInput
-  Comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   Todo?: Prisma.UserTodoLinkUncheckedUpdateManyWithoutUserNestedInput
   TodosAuthor?: Prisma.TodoUncheckedUpdateManyWithoutOwnerNestedInput
   Tasks?: Prisma.UserTaskLinkUncheckedUpdateManyWithoutUserNestedInput
@@ -4953,11 +4953,11 @@ export type UserCreateWithoutApiKeysInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -5002,12 +5002,12 @@ export type UserUncheckedCreateWithoutApiKeysInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -5067,11 +5067,11 @@ export type UserUpdateWithoutApiKeysInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5116,12 +5116,12 @@ export type UserUncheckedUpdateWithoutApiKeysInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -5165,11 +5165,11 @@ export type UserCreateWithoutTokensInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -5214,12 +5214,12 @@ export type UserUncheckedCreateWithoutTokensInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -5279,11 +5279,11 @@ export type UserUpdateWithoutTokensInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5328,12 +5328,12 @@ export type UserUncheckedUpdateWithoutTokensInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -5377,11 +5377,11 @@ export type UserCreateWithoutChangesLogsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -5426,12 +5426,12 @@ export type UserUncheckedCreateWithoutChangesLogsInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   managerId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
@@ -5491,11 +5491,11 @@ export type UserUpdateWithoutChangesLogsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5540,12 +5540,12 @@ export type UserUncheckedUpdateWithoutChangesLogsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -5589,11 +5589,11 @@ export type UserUpdateWithoutOrgsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5638,12 +5638,12 @@ export type UserUncheckedUpdateWithoutOrgsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -5687,12 +5687,12 @@ export type UserUncheckedUpdateManyWithoutOrgsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -5718,12 +5718,12 @@ export type UserCreateManyManagerInput = {
   Gender?: $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: $Enums.Language | null
-  photoUrl?: string | null
-  avatarFileId?: string | null
   dob?: Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Date | string | null
   isSuspended?: Date | string | null
+  photoUrl?: string | null
+  avatarFileId?: string | null
   Roles?: Prisma.UserCreateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserCreatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: boolean
@@ -5748,11 +5748,11 @@ export type UserUpdateWithoutManagerInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5797,12 +5797,12 @@ export type UserUncheckedUpdateWithoutManagerInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5846,12 +5846,12 @@ export type UserUncheckedUpdateManyWithoutManagerInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5876,11 +5876,11 @@ export type UserUpdateWithoutProfilesInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -5925,12 +5925,12 @@ export type UserUncheckedUpdateWithoutProfilesInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -5974,12 +5974,12 @@ export type UserUncheckedUpdateManyWithoutProfilesInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -6005,11 +6005,11 @@ export type UserUpdateWithoutGroupsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
   isTfaEnable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -6054,12 +6054,12 @@ export type UserUncheckedUpdateWithoutGroupsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -6103,12 +6103,12 @@ export type UserUncheckedUpdateManyWithoutGroupsInput = {
   Gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   social?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Language?: Prisma.NullableEnumLanguageFieldUpdateOperationsInput | $Enums.Language | null
-  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isValidated?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isSuspended?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Roles?: Prisma.UserUpdateRolesInput | $Enums.Role[]
   Permissions?: Prisma.UserUpdatePermissionsInput | $Enums.PermissionClaim[]
@@ -6318,12 +6318,12 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   Gender?: boolean
   social?: boolean
   Language?: boolean
-  photoUrl?: boolean
-  avatarFileId?: boolean
   dob?: boolean
   address?: boolean
   isValidated?: boolean
   isSuspended?: boolean
+  photoUrl?: boolean
+  avatarFileId?: boolean
   managerId?: boolean
   Roles?: boolean
   Permissions?: boolean
@@ -6371,12 +6371,12 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   Gender?: boolean
   social?: boolean
   Language?: boolean
-  photoUrl?: boolean
-  avatarFileId?: boolean
   dob?: boolean
   address?: boolean
   isValidated?: boolean
   isSuspended?: boolean
+  photoUrl?: boolean
+  avatarFileId?: boolean
   managerId?: boolean
   Roles?: boolean
   Permissions?: boolean
@@ -6404,12 +6404,12 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   Gender?: boolean
   social?: boolean
   Language?: boolean
-  photoUrl?: boolean
-  avatarFileId?: boolean
   dob?: boolean
   address?: boolean
   isValidated?: boolean
   isSuspended?: boolean
+  photoUrl?: boolean
+  avatarFileId?: boolean
   managerId?: boolean
   Roles?: boolean
   Permissions?: boolean
@@ -6437,12 +6437,12 @@ export type UserSelectScalar = {
   Gender?: boolean
   social?: boolean
   Language?: boolean
-  photoUrl?: boolean
-  avatarFileId?: boolean
   dob?: boolean
   address?: boolean
   isValidated?: boolean
   isSuspended?: boolean
+  photoUrl?: boolean
+  avatarFileId?: boolean
   managerId?: boolean
   Roles?: boolean
   Permissions?: boolean
@@ -6451,7 +6451,7 @@ export type UserSelectScalar = {
   passWordFaker?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numSeq" | "createdAt" | "updatedAt" | "published" | "isPublic" | "isDeleted" | "isDeletedDT" | "email" | "lastName" | "firstName" | "title" | "nickName" | "Gender" | "social" | "Language" | "photoUrl" | "avatarFileId" | "dob" | "address" | "isValidated" | "isSuspended" | "managerId" | "Roles" | "Permissions" | "isTfaEnable" | "tfaSecret" | "passWordFaker", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numSeq" | "createdAt" | "updatedAt" | "published" | "isPublic" | "isDeleted" | "isDeletedDT" | "email" | "lastName" | "firstName" | "title" | "nickName" | "Gender" | "social" | "Language" | "dob" | "address" | "isValidated" | "isSuspended" | "photoUrl" | "avatarFileId" | "managerId" | "Roles" | "Permissions" | "isTfaEnable" | "tfaSecret" | "passWordFaker", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>
   Orgs?: boolean | Prisma.User$OrgsArgs<ExtArgs>
@@ -6527,12 +6527,12 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     Gender: $Enums.Gender | null
     social: runtime.JsonValue | null
     Language: $Enums.Language | null
-    photoUrl: string | null
-    avatarFileId: string | null
     dob: Date | null
     address: runtime.JsonValue | null
     isValidated: Date | null
     isSuspended: Date | null
+    photoUrl: string | null
+    avatarFileId: string | null
     managerId: string | null
     Roles: $Enums.Role[]
     Permissions: $Enums.PermissionClaim[]
@@ -6999,12 +6999,12 @@ export interface UserFieldRefs {
   readonly Gender: Prisma.FieldRef<"User", 'Gender'>
   readonly social: Prisma.FieldRef<"User", 'Json'>
   readonly Language: Prisma.FieldRef<"User", 'Language'>
-  readonly photoUrl: Prisma.FieldRef<"User", 'String'>
-  readonly avatarFileId: Prisma.FieldRef<"User", 'String'>
   readonly dob: Prisma.FieldRef<"User", 'DateTime'>
   readonly address: Prisma.FieldRef<"User", 'Json'>
   readonly isValidated: Prisma.FieldRef<"User", 'DateTime'>
   readonly isSuspended: Prisma.FieldRef<"User", 'DateTime'>
+  readonly photoUrl: Prisma.FieldRef<"User", 'String'>
+  readonly avatarFileId: Prisma.FieldRef<"User", 'String'>
   readonly managerId: Prisma.FieldRef<"User", 'String'>
   readonly Roles: Prisma.FieldRef<"User", 'Role[]'>
   readonly Permissions: Prisma.FieldRef<"User", 'PermissionClaim[]'>
