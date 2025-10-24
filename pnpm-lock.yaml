@@ -97,10 +97,10 @@ importers:
         version: 6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3)
       '@zenstackhq/runtime':
         specifier: ^2.20.1
-        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@3.25.76)
+        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.12)
       '@zenstackhq/server':
         specifier: ^2.20.1
-        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@3.25.76)
+        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.12)
       animate-css-grid:
         specifier: ^1.5.1
         version: 1.5.1
@@ -239,6 +239,9 @@ importers:
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
     devDependencies:
       '@angular-devkit/architect':
         specifier: ^0.2003.6
@@ -431,7 +434,7 @@ importers:
         version: 10.1.0(@angular/compiler@21.0.0-next.8)(typescript@5.9.3)
       '@zenstackhq/openapi':
         specifier: ^2.20.1
-        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@3.25.76)
+        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.12)
       angular-eslint:
         specifier: 20.4.0
         version: 20.4.0(chokidar@4.0.3)(eslint@9.37.0(jiti@2.6.0))(typescript-eslint@8.44.1(eslint@9.37.0(jiti@2.6.0))(typescript@5.9.3))(typescript@5.9.3)
@@ -494,7 +497,7 @@ importers:
         version: 6.0.1(webpack-dev-server@5.2.2)(webpack@5.102.1)
       zenstack:
         specifier: ^2.20.1
-        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(@types/node@24.8.1)(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3)(zod@3.25.76)
+        version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(@types/node@24.8.1)(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.12)
 
 packages:
 
@@ -11253,6 +11256,9 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
+  zod@4.1.12:
+    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
+
   zone.js@0.15.1:
     resolution: {integrity: sha512-XE96n56IQpJM7NAoXswY3XRLcWFW83xe0BiAOeMD7K5k5xecOeul3Qcpx6GqEeeHNkW5DWL5zOyTbEfB4eti8w==}
 
@@ -17348,22 +17354,22 @@ snapshots:
     dependencies:
       langium: 1.3.1
 
-  '@zenstackhq/openapi@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@3.25.76)':
+  '@zenstackhq/openapi@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.12)':
     dependencies:
-      '@zenstackhq/runtime': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@3.25.76)
-      '@zenstackhq/sdk': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@3.25.76)
+      '@zenstackhq/runtime': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.12)
+      '@zenstackhq/sdk': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.12)
       openapi-types: 12.1.3
       semver: 7.7.2
       ts-pattern: 4.3.0
       yaml: 2.8.1
-      zod: 3.25.76
-      zod-validation-error: 4.0.2(zod@3.25.76)
+      zod: 4.1.12
+      zod-validation-error: 4.0.2(zod@4.1.12)
     transitivePeerDependencies:
       - '@prisma/client'
       - magicast
       - typescript
 
-  '@zenstackhq/runtime@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@3.25.76)':
+  '@zenstackhq/runtime@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.12)':
     dependencies:
       '@prisma/client': 6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3)
       bcryptjs: 2.4.3
@@ -17378,15 +17384,15 @@ snapshots:
       ts-pattern: 4.3.0
       tslib: 2.8.1
       uuid: 9.0.1
-      zod: 3.25.76
-      zod-validation-error: 4.0.2(zod@3.25.76)
+      zod: 4.1.12
+      zod-validation-error: 4.0.2(zod@4.1.12)
 
-  '@zenstackhq/sdk@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@3.25.76)':
+  '@zenstackhq/sdk@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.12)':
     dependencies:
       '@prisma/generator-helper': 6.17.1
       '@prisma/internals': 6.17.1(typescript@5.9.3)
       '@zenstackhq/language': 2.20.1
-      '@zenstackhq/runtime': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@3.25.76)
+      '@zenstackhq/runtime': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.12)
       langium: 1.3.1
       semver: 7.7.3
       ts-morph: 26.0.0
@@ -17397,14 +17403,14 @@ snapshots:
       - typescript
       - zod
 
-  '@zenstackhq/server@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@3.25.76)':
+  '@zenstackhq/server@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.12)':
     dependencies:
-      '@zenstackhq/runtime': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@3.25.76)
+      '@zenstackhq/runtime': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.12)
       decimal.js: 10.6.0
       superjson: 1.13.3
       ts-japi: 1.12.0
       url-pattern: 1.0.3
-      zod: 3.25.76
+      zod: 4.1.12
     transitivePeerDependencies:
       - '@prisma/client'
 
@@ -24081,12 +24087,12 @@ snapshots:
 
   yoctocolors@2.1.2: {}
 
-  zenstack@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(@types/node@24.8.1)(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3)(zod@3.25.76):
+  zenstack@2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(@types/node@24.8.1)(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.12):
     dependencies:
       '@paralleldrive/cuid2': 2.2.2
       '@types/node': 24.8.1
       '@zenstackhq/language': 2.20.1
-      '@zenstackhq/sdk': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@3.25.76)
+      '@zenstackhq/sdk': 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.12)
       async-exit-hook: 2.0.1
       colors: 1.4.0
       commander: 8.3.0
@@ -24108,8 +24114,8 @@ snapshots:
       vscode-languageserver: 8.1.0
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.1.0
-      zod: 3.25.76
-      zod-validation-error: 4.0.2(zod@3.25.76)
+      zod: 4.1.12
+      zod-validation-error: 4.0.2(zod@4.1.12)
     transitivePeerDependencies:
       - '@prisma/client'
       - magicast
@@ -24120,10 +24126,12 @@ snapshots:
     dependencies:
       zod: 3.25.76
 
-  zod-validation-error@4.0.2(zod@3.25.76):
+  zod-validation-error@4.0.2(zod@4.1.12):
     dependencies:
-      zod: 3.25.76
+      zod: 4.1.12
 
   zod@3.25.76: {}
+
+  zod@4.1.12: {}
 
   zone.js@0.15.1: {}

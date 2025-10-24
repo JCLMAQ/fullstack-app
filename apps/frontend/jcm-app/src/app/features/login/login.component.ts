@@ -26,7 +26,7 @@ import LoadingContainerComponent from '../../shared/components/loading-container
       <div
         class="w-full max-w-[400px] ml-[200px] p-10 rounded-2xl shadow-xl bg-surface-container border border-outline-variant"
       >
-        <h1 class="text-2xl mb-2 text-on-surface">Login</h1>
+        <h1 class="text-2xl mb-2 text-on-surface">Login bis</h1>
         <div class="flex gap-1 mb-8 text-sm text-on-surface">
           <span>Don't have an account?</span>
           <a class="text-primary cursor-pointer">Sign up!</a>
