@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/frontend/jcm-app",
         "index": "apps/frontend/jcm-app/src/index.html",
         "browser": "apps/frontend/jcm-app/src/main.ts",
-        "polyfills": ["@angular/localize/init"],
+        "polyfills": [
+          "@angular/localize/init"
+        ],
         "tsConfig": "apps/frontend/jcm-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -82,7 +86,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/frontend/jcm-app/jest.config.ts",
         "tsConfig": "apps/frontend/jcm-app/tsconfig.spec.json"
@@ -92,7 +98,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "jcm-app:build",
-        "port": 4210,
+        "port": 4100,
         "staticFilePath": "dist/apps/frontend/jcm-app/browser",
         "spa": true
       }
