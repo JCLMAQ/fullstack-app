@@ -11,7 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AvatarBase64Service } from '../../../core/services/avatar-base64.service';
 import { UserAvatarComponent } from '../../../shared/components/user-avatar/user-avatar.component';
-import { AuthService } from '../../auth/Services/auth.service';
+import { IamAuthService } from '../../auth/Services/iam-auth.service';
+// import { AuthService } from '../../auth/Services/auth.service';
 
 @Component({
   selector: 'app-profile-editor',
@@ -325,7 +326,8 @@ import { AuthService } from '../../auth/Services/auth.service';
   `
 })
 export class ProfileEditorComponent {
-  authService = inject(AuthService);
+  // authService = inject(AuthService);
+    authService = inject(IamAuthService);
   snackbar = inject(MatSnackBar);
   dialogRef = inject(MatDialogRef<ProfileEditorComponent>);
   avatarBase64Service = inject(AvatarBase64Service);

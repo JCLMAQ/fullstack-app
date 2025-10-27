@@ -12,7 +12,7 @@ export class ToastService {
 }
 
 @Component({
-  selector: 'app-toast',
+  selector: 'lib-toast',
   standalone: true,
   template: `
     @if (message) {

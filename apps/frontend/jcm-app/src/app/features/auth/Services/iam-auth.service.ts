@@ -78,8 +78,8 @@ export class IamAuthService {
 
     const response = await firstValueFrom(login$);
 
-    this.#authTokenSignal.set(response.access_token);
-    localStorage.setItem("authJwtToken", response.access_token);
+    this.#authTokenSignal.set(response.accessToken);
+    localStorage.setItem("authJwtToken", response.accessToken);
 
     const userLogged = await this.fetchUser();
     if (userLogged) {
@@ -146,7 +146,7 @@ export class IamAuthService {
     if (authToken) {
       const decodedJwt: IJwt = jwtDecode(authToken);
       console.log("Decoded JWT (IAM): ", decodedJwt);
-      const emailToCheck = decodedJwt.username; // username = email
+      const emailToCheck = decodedJwt.email // username = email
 
       if (emailToCheck) {
         try {
@@ -212,4 +212,59 @@ export class IamAuthService {
     this.authenticated = false;
     this.adminRole = false;
   }
+
+   // 🆕 Méthode pour actualiser le profil utilisateur et mettre à jour le signal
+  async refreshUserProfile(): Promise<void> {
+    try {
+      const updatedUser = await this.fetchUser();
+      if (updatedUser) {
+        this.#userSignal.set(updatedUser);
+        console.log('🔄 Profil utilisateur actualisé:', updatedUser);
+      }
+    } catch (error) {
+      console.error('⚠️ Erreur lors de l\'actualisation du profil utilisateur:', error);
+    }
+  }
+ async updateUserPhoto(photoUrl: string): Promise<{success: boolean, message: string, photoUrl?: string}> {
+
+    const pathUrl = "api/authentication/update-photo";
+
+    try {
+      console.log('🔐 Token d\'authentification:', this.authToken());
+      console.log('👤 Utilisateur actuel:', this.user());
+      console.log('📤 Données envoyées:', { photoUrl });
+
+      const response = await firstValueFrom(
+        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>(`${pathUrl}`, {
+          photoUrl
+        })
+      );
+
+      console.log('✅ Réponse complète du serveur:', response);
+
+      if (response.success && response.photoUrl) {
+        // Mettre à jour l'utilisateur local
+        const currentUser = this.user();
+        if (currentUser) {
+          const updatedUser = { ...currentUser, photoUrl: response.photoUrl };
+          this.#userSignal.set(updatedUser);
+          console.log('🔄 Utilisateur mis à jour localement:', updatedUser);
+        }
+      }
+
+      return response;
+    } catch (error) {
+      console.error('💥 Erreur détaillée lors de la mise à jour de la photo:', error);
+      console.error('💥 Type d\'erreur:', typeof error);
+      console.error('💥 Message d\'erreur:', (error as any)?.message);
+      console.error('💥 Status de l\'erreur:', (error as any)?.status);
+      console.error('💥 Error object complet:', error);
+
+      return {
+        success: false,
+        message: `Failed to update photo: ${(error as any)?.message || 'Unknown error'}`
+      };
+    }
+  }
+
 }

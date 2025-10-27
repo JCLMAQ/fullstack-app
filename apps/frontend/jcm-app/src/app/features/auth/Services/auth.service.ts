@@ -127,13 +127,16 @@ export class AuthService {
   }
 
   async updateUserPhoto(photoUrl: string): Promise<{success: boolean, message: string, photoUrl?: string}> {
+
+    const pathUrl = "api/authentication/update-photo";
+
     try {
       console.log('🔐 Token d\'authentification:', this.authToken());
       console.log('👤 Utilisateur actuel:', this.user());
       console.log('📤 Données envoyées:', { photoUrl });
 
       const response = await firstValueFrom(
-        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>('http://localhost:3100/api/authentication/update-photo', {
+        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>(`${pathUrl}`, {
           photoUrl
         })
       );

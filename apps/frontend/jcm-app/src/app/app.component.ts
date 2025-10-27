@@ -28,6 +28,6 @@ export class AppComponent {
   appStore = inject(AppStore);
 
   logCurrentUser = effect(() => {
-    console.log(this.appStore.user());
+    console.log("App Store User logged: ", this.appStore.user());
   });
 }
