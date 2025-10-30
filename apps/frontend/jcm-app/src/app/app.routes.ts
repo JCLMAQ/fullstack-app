@@ -27,7 +27,10 @@ export const appRoutes: Routes = [
       //   loadComponent: () => import('./features/auth/login/login.component'),
       //   // canActivate: [redirectDashboardIfAuthenticated()],
       // },
-
+    {
+        path: 'users',
+        loadChildren: () => import('@fe/user').then((m) => m.userRoutes),
+      },
       {
         path: 'dashboard',
         loadComponent: () =>

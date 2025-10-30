@@ -11,11 +11,10 @@ import {
   schema,
   validate,
 } from '@angular/forms/signals';
-import { FieldError } from '@fe/shared/utilities';
+import { FieldError } from '@fe/utilities';
 import { PersonalInfo } from '../models/personal-info';
 
-const passwordSchema = schema<{ password: string; confirmPassword: string }>(
-  (path) => {
+const passwordSchema = schema<{ password: string; confirmPassword: string }>((path) => {
     required(path.password, { message: 'Password is required' });
     required(path.confirmPassword, { message: 'Confirm Password is required' });
     validate(path, ({ valueOf }) => {

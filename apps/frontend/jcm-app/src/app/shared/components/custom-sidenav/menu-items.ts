@@ -12,6 +12,19 @@ export const menuItems: MenuItem[] = [
     route: 'home',
   },
   {
+    icon: 'supervised_user_circle', // person
+    //  icon: 'face', // person
+    label: 'SideNavMenu.Users',
+    route: 'users',
+    subItems: [
+      {
+        icon: 'person', // person
+        label: 'SideNavMenu.UserProfile',
+        route: 'userprofile',
+      }
+    ],
+  },
+  {
     icon: 'apps', // apps
     label: 'SideNavMenu.Todos',
     route: 'todos',

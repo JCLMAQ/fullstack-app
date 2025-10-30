@@ -1,5 +1,5 @@
- @if (fieldError().touched()) {
-      @for (error of field().errors(); track error.kind) {
+ @if (fieldErreur().touched()) {
+      @for (error of fieldErreur().errors(); track error.kind) {
         <div class="mt-1 text-sm text-red-600">{{ error.message }}</div>
       }
     }
