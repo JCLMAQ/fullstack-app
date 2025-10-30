@@ -4,6 +4,6 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 export const StoryScalarFieldEnumSchema = z.enum(["id", "numSeq", "createdAt", "updatedAt", "published", "isPublic", "isDeleted", "isDeletedDT", "caption", "user_id"])

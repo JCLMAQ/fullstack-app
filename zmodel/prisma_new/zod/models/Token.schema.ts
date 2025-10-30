@@ -4,7 +4,7 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { TokenTypeSchema } from '../enums/TokenType.schema';
 const baseSchema = z.object({
     id: z.number(),

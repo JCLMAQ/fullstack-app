@@ -4,6 +4,6 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 export const OrgEmailScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "published", "isPublic", "isDeleted", "isDeletedDT", "email", "description", "orgId"])

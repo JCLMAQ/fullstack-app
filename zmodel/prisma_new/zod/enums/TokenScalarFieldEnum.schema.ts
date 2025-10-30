@@ -4,6 +4,6 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 export const TokenScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "published", "isPublic", "isDeleted", "isDeletedDT", "tokenId", "type", "emailToken", "valid", "expiration", "userId"])

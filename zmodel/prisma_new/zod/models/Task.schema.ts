@@ -4,7 +4,7 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { TaskState } from '../../../generated/prisma_client/client';
 import { TaskStateSchema } from '../enums/TaskState.schema';
 const baseSchema = z.object({

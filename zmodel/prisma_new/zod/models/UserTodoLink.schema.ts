@@ -4,7 +4,7 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 const baseSchema = z.object({
     userId: z.string(),
     todoId: z.string(),

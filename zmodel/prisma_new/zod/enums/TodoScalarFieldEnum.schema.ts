@@ -4,6 +4,6 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 export const TodoScalarFieldEnumSchema = z.enum(["id", "numSeq", "createdAt", "updatedAt", "published", "isDeleted", "isDeletedDT", "isPublic", "ownerId", "orgId", "orderTodo", "title", "content", "todoState", "mainTodoId"])

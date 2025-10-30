@@ -4,7 +4,7 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { Gender, Language } from '../../../generated/prisma_client/client';
 import { TitleSchema } from '../enums/Title.schema';
 import { GenderSchema } from '../enums/Gender.schema';

@@ -4,6 +4,6 @@
 
 /* eslint-disable */
 
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 export const UserScalarFieldEnumSchema = z.enum(["id", "numSeq", "createdAt", "updatedAt", "published", "isPublic", "isDeleted", "isDeletedDT", "email", "lastName", "firstName", "title", "nickName", "Gender", "social", "Language", "dob", "address", "isValidated", "isSuspended", "photoUrl", "avatarFileId", "managerId", "Roles", "Permissions", "isTfaEnable", "tfaSecret", "passWordFaker"])
