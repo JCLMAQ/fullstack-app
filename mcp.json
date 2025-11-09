@@ -1,0 +1,22 @@
+{
+  "servers": {
+    "angular-cli": {
+      "command": "npx",
+      "args": ["-y", "@angular/cli", "mcp"]
+    },
+    "Prisma-Remote": {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://mcp.prisma.io/mcp"]
+    },
+    "deepcontext": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@wildcard-ai/deepcontext"
+      ]
+    }
+  }
+}
+
+
+
