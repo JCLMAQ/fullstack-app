@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from '@prisma/prisma';
+import { PrismaModule } from '@prisma/prisma-client';
 import { TodosController } from './todos.controller';
 import { TodosRepository } from './todos.repository';
 import { TodosService } from './todos.service';

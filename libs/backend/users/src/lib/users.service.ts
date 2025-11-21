@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { EnhancedPrismaService, PrismaService } from '@prisma/prisma';
-import { Prisma, Role, User, UserSecret } from '@prisma/prisma-client';
+import { Prisma, Role, User, UserSecret } from '@prisma/prisma';
+import { EnhancedPrismaService, PrismaService } from '@prisma/prisma-client';
 import { UsersRepository } from './users-repository';
 
 

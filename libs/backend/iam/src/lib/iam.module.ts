@@ -4,7 +4,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
-import { PrismaModule } from '@prisma/prisma';
+import { PrismaModule } from '@prisma/prisma-client';
 import { AccountValidationService } from './authentication/account-validation/account-validation.service';
 import { ApiKeysRepository } from './authentication/api-keys/api-key.repository';
 import { ApiKeysService } from './authentication/api-keys/api-keys.service';

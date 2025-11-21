@@ -1,5 +1,5 @@
 import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
-import { ApiKey, ChangesTracking, Gender, Group, Language, PermissionClaim, Post, Prisma, Profile, Role, Task, Title, Token, User, UserSecret } from '@prisma/prisma-client';
+import { ApiKey, ChangesTracking, Gender, Group, Language, PermissionClaim, Post, Prisma, Profile, Role, Task, Title, Token, User, UserSecret } from '@prisma/prisma';
 import { Exclude, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 

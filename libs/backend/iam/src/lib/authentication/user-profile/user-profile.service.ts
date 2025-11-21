@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@prisma/prisma';
+import { PrismaService } from '@prisma/prisma-client';
 import { I18nService } from 'nestjs-i18n';
 import { AuthResponse, UserProfile, UserProfileResponse } from '../dto/account-validation.dto/account-validation.dto';
 

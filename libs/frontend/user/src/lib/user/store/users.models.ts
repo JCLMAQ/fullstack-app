@@ -1,5 +1,5 @@
 
-import { User } from '@prisma/prisma-client';
+import { User } from '@prisma/prisma';
 
 export interface UserInterface extends Partial<User> {}
 

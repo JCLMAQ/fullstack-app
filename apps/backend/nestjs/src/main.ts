@@ -9,7 +9,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 // import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { PrismaService } from '@prisma/prisma';
+import { PrismaService } from '@prisma/prisma-client';
 import { ClsMiddleware } from 'nestjs-cls';
 import { AppModule } from './app/app.module';
 

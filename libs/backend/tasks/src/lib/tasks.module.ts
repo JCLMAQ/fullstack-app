@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from '@prisma/prisma';
+import { PrismaModule } from '@prisma/prisma-client';
 import { TasksController } from './tasks.controller';
 import { TasksRepository } from './tasks.repository';
 import { TasksService } from './tasks.service';

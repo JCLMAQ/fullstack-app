@@ -1,7 +1,7 @@
 // crud.middleware.ts
 
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { PrismaService } from '@prisma/prisma';
+import { PrismaService } from '@prisma/prisma-client';
 import { enhance } from '@zenstackhq/runtime';
 import RESTHandler from '@zenstackhq/server/api/rest';
 import { ZenStackMiddleware } from '@zenstackhq/server/express';

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@prisma/prisma';
-import { Prisma, Todo } from '@prisma/prisma-client';
+import { Prisma, Todo } from '@prisma/prisma';
+import { PrismaService } from '@prisma/prisma-client';
 
 /* Based on: https://www.tomray.dev/nestjs-prisma#seeding-data-with-prisma-studio
 We use the Repository design pattern - repository is a layer to encapsulate the logic required to access the database.

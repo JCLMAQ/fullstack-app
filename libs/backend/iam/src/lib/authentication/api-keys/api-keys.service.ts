@@ -1,6 +1,6 @@
 import { GeneratedApiKeyPayload, HashingService } from '@be/common';
 import { Injectable } from '@nestjs/common';
-import { ApiKey } from '@prisma/prisma-client';
+import { ApiKey } from '@prisma/prisma';
 import { randomUUID } from 'crypto';
 
 

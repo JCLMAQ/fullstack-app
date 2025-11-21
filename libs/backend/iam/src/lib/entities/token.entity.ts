@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Token, TokenType, User } from '@prisma/prisma-client';
+import { Token, TokenType, User } from '@prisma/prisma';
 
 export class TokenEntity implements Token {
 
@@ -8,9 +8,9 @@ export class TokenEntity implements Token {
   }
 
   // Propriétés requises par l'interface Token de Prisma
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Identifiant unique du token',
-    example: 1 
+    example: 1
   })
   id!: number;
 
@@ -21,38 +21,38 @@ export class TokenEntity implements Token {
   isDeleted!: number;
   isDeletedDT!: Date | null;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Identifiant du token',
-    example: 'token-abc-123' 
+    example: 'token-abc-123'
   })
   tokenId!: string | null;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Type de token',
-    enum: TokenType 
+    enum: TokenType
   })
   type!: TokenType;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Token email pour validation',
-    example: 'email-token-xyz' 
+    example: 'email-token-xyz'
   })
   emailToken!: string | null;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Validité du token',
-    example: true 
+    example: true
   })
   valid!: boolean;
 
-  @ApiProperty({ 
-    description: 'Date d\'expiration du token' 
+  @ApiProperty({
+    description: 'Date d\'expiration du token'
   })
   expiration!: Date;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'ID de l\'utilisateur propriétaire du token',
-    example: 'user-123' 
+    example: 'user-123'
   })
   userId!: string;
 

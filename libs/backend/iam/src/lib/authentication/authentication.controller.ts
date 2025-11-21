@@ -1,6 +1,6 @@
 import { ActiveUser, ActiveUserData } from '@be/common';
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
-import { PrismaService } from '@prisma/prisma';
+import { PrismaService } from '@prisma/prisma-client';
 import { Response } from 'express';
 import { I18nLang, I18nService } from 'nestjs-i18n';
 import { toFileStream } from 'qrcode';

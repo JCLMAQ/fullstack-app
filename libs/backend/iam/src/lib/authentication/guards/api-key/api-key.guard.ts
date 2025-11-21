@@ -1,12 +1,12 @@
 import { ActiveUserData, REQUEST_USER_KEY } from '@be/common';
 import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-  UnauthorizedException
+    CanActivate,
+    ExecutionContext,
+    Injectable,
+    UnauthorizedException
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { PrismaService } from '@prisma/prisma';
+import { PrismaService } from '@prisma/prisma-client';
 import { Request } from 'express';
 import { IS_PUBLIC_KEY } from '../../../authorization/decorators/public.decorator';
 

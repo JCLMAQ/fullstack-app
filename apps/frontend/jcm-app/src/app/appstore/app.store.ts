@@ -1,11 +1,11 @@
 import { computed, inject } from '@angular/core';
 import {
-    signalStore,
-    withComputed,
-    withProps,
-    withState
+  signalStore,
+  withComputed,
+  withProps,
+  withState
 } from '@ngrx/signals';
-// import { User } from '@prisma/prisma-client';
+// import { User } from '@prisma/prisma';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MessagesService } from '@fe/home';

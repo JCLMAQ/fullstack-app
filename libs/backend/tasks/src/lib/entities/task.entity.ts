@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Group, Task, TaskState, Todo, User, UserTaskLink } from '@prisma/prisma-client';
 import { UserEntity } from "@be/users";
+import { ApiProperty } from "@nestjs/swagger";
+import { Group, Task, TaskState, Todo, User, UserTaskLink } from '@prisma/prisma';
 
 export class TaskEntity implements Task {
 
@@ -25,22 +25,22 @@ export class TaskEntity implements Task {
   taskState!: TaskState;
   mainTaskId!: string | null;
   todoId!: string | null;
-  
+
   // Relations optionnelles
   @ApiProperty({ type: () => UserEntity })
   owner?: User;
-  
+
   @ApiProperty({ type: () => TaskEntity })
   mainTask?: Task | null;
-  
+
   @ApiProperty({ type: () => [TaskEntity] })
   SubTasks?: Task[];
-  
+
   @ApiProperty({ type: () => [UserEntity] })
   groups?: Group[];
-  
+
   @ApiProperty({ type: () => [UserEntity] })
   Users?: UserTaskLink[];
-  
+
   todo?: Todo;
 }

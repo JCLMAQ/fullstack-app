@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { TodoState } from '@prisma/prisma-client';
+import { TodoState } from '@prisma/prisma';
 import { IsBoolean, IsEnum, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateTodoDto {

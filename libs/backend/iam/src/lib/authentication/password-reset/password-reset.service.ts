@@ -1,7 +1,7 @@
 import { HashingService } from '@be/common';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@prisma/prisma';
-import { TokenType } from '@prisma/prisma-client';
+import { TokenType } from '@prisma/prisma';
+import { PrismaService } from '@prisma/prisma-client';
 import { randomBytes } from 'crypto';
 import { I18nService } from 'nestjs-i18n';
 import { AuthResponse } from '../dto/account-validation.dto/account-validation.dto';
