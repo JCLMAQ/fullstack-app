@@ -58,8 +58,9 @@
       "@fe/ui/pages": ["libs/frontend/ui/pages/src/index.ts"],
       "@fe/user": ["libs/frontend/user/src/index.ts"],
       "@fe/utilities": ["libs/frontend/utilities/src/index.ts"],
-      "@prisma/prisma": ["libs/prisma/src/index.ts"],
-      "@prisma/prisma-client": ["zmodel/prisma_new/client.ts"]
+
+      "@prisma/prisma-client": ["libs/prisma/src/index.ts"],
+      "@prisma/prisma": ["zmodel/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

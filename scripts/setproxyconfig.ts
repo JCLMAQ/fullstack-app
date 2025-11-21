@@ -1,7 +1,11 @@
-const { writeFile } = require('fs');
-// read server variables from .env file
-require('dotenv').config();
-require('dotenv-expand').expand(require('dotenv').config());
+import { writeFile } from 'fs';
+// read server variables from .env file with dotenvx (automatic expansion)
+import '@dotenvx/dotenvx/config';
+
+// const { writeFile } = require('fs');
+// // read server variables from .env file
+// require('dotenv').config();
+// require('dotenv-expand').expand(require('dotenv').config());
 // import dotEnv from 'dotenv';
 // import dotenvExpand from 'dotenv-expand';
 
