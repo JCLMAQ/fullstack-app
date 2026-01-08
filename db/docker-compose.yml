@@ -1,7 +1,7 @@
 
 services:
     postgres:
-        container_name: postgres
+        container_name: postgres-fullstack-app
         image: postgres:latest
         environment:
             POSTGRES_USER: ${POSTGRES_USER}
@@ -20,7 +20,7 @@ services:
         restart: unless-stopped
 
     pgadmin:
-        container_name: pgadmin
+        container_name: pgadmin-fullstack-app
         image: dpage/pgadmin4:latest
         environment:
             PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
